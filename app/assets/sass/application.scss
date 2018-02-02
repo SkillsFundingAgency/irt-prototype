@@ -29,3 +29,163 @@ $path: "/public/images/";
 }
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.back-to-previous {
+  font-family: nta, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none;
+  display: block;
+  position: static;
+  width: 2.25em;
+  padding-left: 0.75em;
+  text-align: right;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(11, 12, 12);
+  background: url(https://assets.registertovote.service.gov.uk/assets/images/icon-caret-left.png) left 0.2em no-repeat;
+  margin: 2em 0px 0px 0px;
+  overflow: hidden;
+}
+
+.visuallyhidden{
+  display: none;
+}
+
+input.text {
+  text-transform: none;
+  border: 1px solid #bbb;
+  margin: 0 0 1em;
+  padding: 0.5em;
+}
+
+label {
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.help-content {
+  border-left: #bfc1c3 solid 4px;
+  padding: 14px 0 14px 14px;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+span.postcode {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.validation-wrapper {
+  font-size: 19px;
+  clear: left;
+  margin-bottom: 1em;
+}
+
+#address_uprn{
+  font-family: "nta",Arial,sans-serif;
+  font-size: 19px;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.next, .search {
+  box-sizing: border-box;
+  font-size: 19px;
+  text-align: center;
+  clear: both;
+  margin: 2em 0;
+}
+
+.multiple-choice {
+  display: block;
+  float: none;
+  position: relative;
+  padding: 0 0 0 38px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 641px)
+{
+.multiple-choice {
+  float: left;
+  margin-right: 10px;
+  clear:none;
+}
+}
+@media (min-width: 641px)
+{
+.inline .multiple-choice {
+  margin-bottom: 0;
+  margin-right: 30px;
+}
+}
+
+.inline .multiple-choice {
+  clear: none;
+}
+
+.multiple-choice label {
+  cursor: pointer;
+  padding: 8px 10px 9px 12px;
+  display: block;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+@media (min-width: 641px)
+{
+.multiple-choice label {
+  float: left;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+}
+.multiple-choice input {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  z-index: 1;
+  margin: 0;
+  zoom: 1;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.multiple-choice [type=radio] + label::before {
+  content: "";
+  border: 2px solid;
+  background: transparent;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.multiple-choice [type=radio] + label::after {
+  content: "";
+  border: 10px solid;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  zoom: 1;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.multiple-choice input:checked + label::after {
+  zoom: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
