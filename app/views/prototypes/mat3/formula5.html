@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="content">
+
+    <div class="service-info">
+        <nav id="secondary-nav" class="account-menu" role="navigation" aria-label="Account">
+            <a href="/personal-account" class="account-menu__link account-menu__link--home account-menu__link--active" data-journey-click="link - click:utility-nav:Account home">
+                            <span class="account-icon account-icon--home">
+
+
+                                    Home
+
+                            </span>
+            </a>
+
+            <a href="#" class="account-menu__link account-menu__link--menu js-hidden js-visible" aria-hidden="true" aria-expanded="false" data-journey-click="link - click:utility-nav:Account menu">
+
+
+                Account menu
+
+            </a>
+
+            <ul class="account-menu__main">
+                <li class="account-menu__link--back hidden" aria-hidden="true">
+                    <a href="#" class="account-menu__link" data-journey-click="link - click:utility-nav:Back">
+
+
+                        Back
+
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="/personal-account/signout?continueUrl=%2Ffeedback-survey%3Forigin%3DPERTAX" class="account-menu__link" data-journey-click="link - click:utility-nav:Sign out">
+
+
+                        Sign out
+
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="heading-secondary">BLYTHE ACADEMY</h1>
+            <p>UKPRN: 12345678</p>
+            <h1 class="heading-large">Programme funding formula 2017 to 2018</h1>
+
+        </div>
+    </div>
+    
+
+<div class="grid-row" style="margin: 0 0 15px">
+
+<div style="border: 1px solid #ddd; padding: 15px 10px 0">
+<h4>How do we calculate the programme funding?</h4>
+<p class="bold">(Total Student Numbers x National funding rate per student x Retention factor x Programme cost weighting + Disadvantage funding + Large Programme funding) x Area cost allowance = Total</p>
+</div>
+
+
+
+
+            <h3 class="heading-small card-heading">
+
+                Total Student Numbers
+                <span class="data-item bold-xlarge">574</span>
+
+            </h3>
+
+
+        <div class="card-action">
+            <a class="ga-track-anchor-click" href="tables/table1a">See breakdown</a>
+        </div>
+
+
+
+                <h3 class="heading-small card-heading">
+
+                    National funding rate per student
+                    <span class="data-item bold-xlarge">£4,000</span>
+
+                </h3>
+
+
+                    <p>
+                        = £2,259,349
+                    </p>
+
+                    <a class="ga-track-anchor-click" href="tables/table1b">See breakdown</a>
+
+
+                <h3 class="heading-small card-heading">
+
+                    Retention factor
+                    <span class="data-item bold-xlarge">0.997</span>
+                </h3>
+
+
+            <div class="card-action">
+
+
+               <p>
+                        = £2,207,836
+               </p>
+
+                <h3 class="heading-small card-heading">
+                    Programme cost weighting
+                    <span class="data-item bold-xlarge">1.004</span>
+                </h3>
+            <p>
+                        = £2,216,182
+            </p>
+                <h3 class="heading-small card-heading">
+                    Disadvantage funding
+                    <span class="data-item bold-xlarge">£135,462</span>
+                </h3>
+
+            <p>
+                       = £2,351,644  </p>
+                   <a class="ga-track-anchor-click" href="tables/table2a">See breakdown</a>
+
+
+                <h3 class="heading-small card-heading">
+                    Large Programme funding
+                    <span class="data-item bold-xlarge">£1.600</span>
+                </h3>
+                <p>
+                        = £2,353,244
+                </p>
+                    <a class="ga-track-anchor-click" href="tables/table2b">See breakdown</a>
+
+
+    </div>
+
+<!--<h2 class="heading-medium margin-bottom margin-top" style="margin-left: 15px">Sum multiplied by Area cost allowance</h2>-->
+
+            <h3 class="heading-small card-heading">
+                Area cost allowance
+                <span class="data-item bold-xlarge">1.120</span>
+            </h3>
+
+            <h3 class="heading-small card-heading">
+                Total
+                <span class="data-item bold-xlarge">£2,635,633</span>
+            </h3>
+  
+
+</div>
+
+ 
+    
+
+    </main>
+
+{% endblock %}

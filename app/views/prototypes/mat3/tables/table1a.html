@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="content">
+
+    <div class="service-info">
+        <nav id="secondary-nav" class="account-menu" role="navigation" aria-label="Account">
+            <a href="/personal-account" class="account-menu__link account-menu__link--home account-menu__link--active" data-journey-click="link - click:utility-nav:Account home">
+                            <span class="account-icon account-icon--home">
+
+
+                                    Home
+
+                            </span>
+            </a>
+
+            <a href="#" class="account-menu__link account-menu__link--menu js-hidden js-visible" aria-hidden="true" aria-expanded="false" data-journey-click="link - click:utility-nav:Account menu">
+
+
+                Account menu
+
+            </a>
+
+            <ul class="account-menu__main">
+                <li class="account-menu__link--back hidden" aria-hidden="true">
+                    <a href="#" class="account-menu__link" data-journey-click="link - click:utility-nav:Back">
+
+
+                        Back
+
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="/personal-account/signout?continueUrl=%2Ffeedback-survey%3Forigin%3DPERTAX" class="account-menu__link" data-journey-click="link - click:utility-nav:Sign out">
+
+
+                        Sign out
+
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+            <a href="../formula4" style="margin-top: 20px; display: block; text-decoration: none">
+                &lt; Back
+            </a>
+
+            <h1 class="heading-secondary">BLYTHE ACADEMY</h1>
+            <p>UKPRN: 12345678</p>
+        </div>
+    </div>
+
+
+    <div class="grid-row">
+
+        <div class="column-two-thirds">
+
+        <table class="tableizer-table">
+            <thead><tr class="tableizer-firstrow"><th>Student Numbers (Including 19-24 Students)</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr></thead><tbody>
+        <tr><td>Total Lagged Student Number</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>573</td></tr>
+        <tr><td>Exceptional Variations to Lagged Student Number</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>1</td></tr>
+        <tr><td>Total Student Numbers for 2017/18</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>574</td></tr>
+        </tbody></table>
+
+
+
+    </div>
+    </div>
+
+
+
+
+</main>
+
+{% endblock %}

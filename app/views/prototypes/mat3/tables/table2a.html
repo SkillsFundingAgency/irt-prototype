@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="content">
+
+    <div class="service-info">
+        <nav id="secondary-nav" class="account-menu" role="navigation" aria-label="Account">
+            <a href="/personal-account" class="account-menu__link account-menu__link--home account-menu__link--active" data-journey-click="link - click:utility-nav:Account home">
+                            <span class="account-icon account-icon--home">
+
+
+                                    Home
+
+                            </span>
+            </a>
+
+            <a href="#" class="account-menu__link account-menu__link--menu js-hidden js-visible" aria-hidden="true" aria-expanded="false" data-journey-click="link - click:utility-nav:Account menu">
+
+
+                Account menu
+
+            </a>
+
+            <ul class="account-menu__main">
+                <li class="account-menu__link--back hidden" aria-hidden="true">
+                    <a href="#" class="account-menu__link" data-journey-click="link - click:utility-nav:Back">
+
+
+                        Back
+
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="/personal-account/signout?continueUrl=%2Ffeedback-survey%3Forigin%3DPERTAX" class="account-menu__link" data-journey-click="link - click:utility-nav:Sign out">
+
+
+                        Sign out
+
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+    <div class="grid-row">
+        <a href="../formula4" style="margin-top: 20px; display: block; text-decoration: none">
+                &lt; Back
+            </a>
+            <h1 class="heading-secondary">BLYTHE ACADEMY</h1>
+            <p>UKPRN: 12345678</p>
+        </div>
+    </div>
+
+
+    <div class="grid-row">
+
+
+
+        <table class="tableizer-table">
+            <thead>
+            <tr class="tableizer-firstrow">
+                <th colspan="4">Distribution of Disadvantage Funding</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="4">Disadvantage Block 1</td>
+            </tr>
+            <tr>
+                <td>Economic Deprivation Funding</td>
+                <td>Block 1 Factor</td>
+                <td>Funding including Programme</td>
+                <td>Block 1 Funding</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>7.28%</td>
+                <td>£435,472</td>
+                <td>£31,682</td>
+            </tr>
+            <tr>
+                <td>Care Leavers</td>
+                <td>Number of Qualifying Students</td>
+                <td>Rate per Qualifying Student</td>
+                <td>Care Leaver Funding</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>0</td>
+                <td>£480</td>
+                <td>£0</td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Block 1 Funding</td>
+                <td>£31,682</td>
+            </tr>
+            <tr>
+                <td colspan="4">Disadvantage Block 2</td>
+            </tr>
+            <tr>
+                <td>Total 2017/18 Instances attracting Funding per Student</td>
+                <td>Instances attracting funding per Student Census </td>
+                <td>Instances attracting funding per Student YPMAD</td>
+                <td>Instances per student applied for 2017/18</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>0.792</td>
+                <td>0.874</td>
+                <td>0.833</td>
+            </tr>
+            <tr>
+                <td colspan="2">&nbsp;</td>
+                <td>Block 2 Funding Rates</td>
+                <td>Block 2 Funding</td>
+            </tr>
+            <tr>
+                <td>Total Funded Instances for 2017/18</td>
+                <td>98.28</td>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Students attracting the Higher Rate </td>
+                <td>98.28</td>
+                <td>£480</td>
+                <td>£47,175</td>
+            </tr>
+            <tr>
+                <td>Students attracting the Lower Rate </td>
+                <td>0.00</td>
+                <td>£292</td>
+                <td>£0</td>
+            </tr>
+            <tr>
+                <td>Students attracting the FTE Rate</td>
+                <td>Students</td>
+                <td>0.00</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>FTEs</td>
+                <td>0.00</td>
+                <td>£480</td>
+                <td>£0</td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Block 2 Funding</td>
+                <td>£47,175</td>
+            </tr>
+            <tr>
+                <td colspan="3">Minimum top up if applicable</td>
+                <td>£0</td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Disadvantage Funding (sum of Block 1, Block 2 and minimum top up)</td>
+                <td>£135,462</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+
+
+</main>
+
+{% endblock %}
