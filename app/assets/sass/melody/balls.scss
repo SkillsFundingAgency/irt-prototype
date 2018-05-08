@@ -267,9 +267,13 @@ a:link {
         display:none
     }
 
+   
 
 
-/*dashboard*/
+
+
+
+//*dashboard*/
 
 .account-icon--home {
   background-image: url("../images/account-icon-home.svg");
@@ -523,14 +527,16 @@ html[data-useragent*='MSIE 10.0'] .flex-container {
   padding: 0 15px;
 }
 
-.card a {
-  display: inline-block;
-  font-size: 16px;
-  line-height: 20px;
+
+
+.card-body.active a {
   text-decoration: none;
 }
 
-.card-body.active a {
+.card a {
+  display: inline-block;
+  
+  line-height: 20px;
   text-decoration: none;
 }
 
@@ -554,6 +560,8 @@ html[data-useragent*='MSIE 10.0'] .flex-container {
   transition-delay: .25s;
 }
 
+// 16-19
+
 .maths-cards .card h3 {
   font-size: 16px;
   margin: 25px 0 0 0;
@@ -567,7 +575,7 @@ html[data-useragent*='MSIE 10.0'] .flex-container {
   margin-right:0
   }
   .maths-cards .card {
-    flex-basis: 19%;
+    flex-basis: 28%;
   }
 }
 
@@ -590,7 +598,7 @@ html[data-useragent*='MSIE 10.0'] .flex-container {
 
   cursor: pointer; // Encourage clicking on the label
 
-  // remove 300ms pause on mobile
+   // remove 300ms pause on mobile
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 
@@ -708,4 +716,10 @@ html[data-useragent*='MSIE 10.0'] .flex-container {
     margin-bottom: 0;
     margin-right: $gutter;
   }
+}
+
+
+@media (min-width: 769px)
+{
+  .toggled-content ::-webkit-scrollbar{-webkit-appearance:none;width:7px}
 }
