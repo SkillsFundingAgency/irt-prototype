@@ -291,19 +291,48 @@ $(document).ready(function() {
 </script>
 
 <main role="main" id="content">
-    {% include "includes/phase_banner_alpha.html" %}
+    <div class="service-info">
+        <nav id="secondary-nav" class="account-menu" role="navigation" aria-label="Account">
+            <a href="dash7" class="account-menu__link account-menu__link--home account-menu__link--active" data-journey-click="link - click:utility-nav:Account home">
+                            <span class="account-icon account-icon--home">
 
-    
-    
-    <div class="grid-row ">
-        <div class="navigation">
-        <ul>
-            <li><a class="font-xsmall" href="dashboard-new2">Home</a></li>
-            
-            <li><a class="font-xsmall" href="/">Sign out</a></li>
-        </ul>
-        </div>
+
+                                    Home
+
+                            </span>
+            </a>
+
+            <a href="#" class="account-menu__link account-menu__link--menu js-hidden js-visible" aria-hidden="true" aria-expanded="false" data-journey-click="link - click:utility-nav:Account menu">
+
+
+                Account menu
+
+            </a>
+
+            <ul class="account-menu__main">
+                <li class="account-menu__link--back hidden" aria-hidden="true">
+                    <a href="#" class="account-menu__link" data-journey-click="link - click:utility-nav:Back">
+
+
+                        Back
+
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="#" class="account-menu__link"  data-journey-click="link - click:utility-nav:Sign out">
+
+
+                        Sign out
+
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
+
      <div class="grid-row">
         <div class="column-two-thirds">
 
@@ -338,7 +367,7 @@ $(document).ready(function() {
                     <button type="button" value="Select contract types" id="funding-title" tabindex="0" role="button" class="filters-headings heading-small focusing">Filter by academy<span class="up-arrow-new"> </span></button>
 
 
-                        <fieldset class="filters" style="height: 500px;">
+                        <fieldset class="filters">
 
                             <legend class="visuallyhidden">Search</legend>
 
@@ -382,108 +411,7 @@ $(document).ready(function() {
                                             St Anne Primary
                                         </label>
 
-                                    </li>
-
-
-
-                                    <li class="multiple-choice">
-                                        <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">
-                                        <label class="block" for="contract-type-2">
-                                            Trinity Primary Academy            </label>
-
-                                    </li>
-                                    <li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Noel Park Primary School            </label>
-
-                                    </li>
-                                        <li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Greensward Academy            </label>
-
-                                        </li>
-                                            <li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Maltings Academy            </label>
-
-                                            </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">New Rickstones Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Clacton Coastal Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Richmond Park Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Tendring Technology College            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Ashingdon Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Felixstowe Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Plumberow Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Ryde Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Sandown Bay Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Westerings Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Hamford Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">St James the Great Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Columbus School and College            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Langer Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">The Pioneer School            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Barton Hill Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Brockworth Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Charles Warren Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">The Green Way Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Hall Road Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">The New Forest Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Newington Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Offa's Mead Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Percy Shurmer Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">The Rawlett School (An Aet Academy)            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">The Ridge Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Severn View Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Sir Herbert Leon Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Tamworth Enterprise College and AET Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Wishmore Cross Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Montgomery Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">North Ormesby Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Feversham Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Winton Community Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Anglesey Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Beacon Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Broadlands Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Cottingley Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Lea Forest Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Shafton Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">St Helen's Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Four Dwellings Primary Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Greenwood Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Four Dwellings Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Caldicotes Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Hazelwood Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Meadstead Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Kingswood Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">North Thoresby Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Swallow Hill Community College            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">The Utterby Primary Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Firth Park Academy            </label>
-
-                                </li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Newlands Academy</label></li><li class="multiple-choice">                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">                                         <label class="block" for="contract-type-2">Hillsview Academy</label></li>
-
+                                    
                                  </ul>
                             </section>
                             </div>
