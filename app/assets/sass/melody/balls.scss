@@ -718,11 +718,9 @@ html[data-useragent*='MSIE 10.0'] .flex-container {
   }
 }
 
-
-@media (min-width: 769px)
-{
-  .toggled-content ::-webkit-scrollbar{-webkit-appearance:none;width:7px}
+.heading-medium-custom {
+  font-size: 60px!important;
+  line-height: 60px!important;
+  color: #696969;
 }
-
-
 
