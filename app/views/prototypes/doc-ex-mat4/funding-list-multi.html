@@ -291,55 +291,24 @@ $(document).ready(function() {
 </script>
 
 <main role="main" id="content">
-    <div class="service-info">
-        <nav id="secondary-nav" class="account-menu" role="navigation" aria-label="Account">
-            <a href="dash7" class="account-menu__link account-menu__link--home account-menu__link--active" data-journey-click="link - click:utility-nav:Account home">
-                            <span class="account-icon account-icon--home">
-
-
-                                    Home
-
-                            </span>
-            </a>
-
-            <a href="#" class="account-menu__link account-menu__link--menu js-hidden js-visible" aria-hidden="true" aria-expanded="false" data-journey-click="link - click:utility-nav:Account menu">
-
-
-                Account menu
-
-            </a>
-
-            <ul class="account-menu__main">
-                <li class="account-menu__link--back hidden" aria-hidden="true">
-                    <a href="#" class="account-menu__link" data-journey-click="link - click:utility-nav:Back">
-
-
-                        Back
-
-                    </a>
-                </li>
-
-
-
-                <li>
-                    <a href="#" class="account-menu__link"  data-journey-click="link - click:utility-nav:Sign out">
-
-
-                        Sign out
-
-                    </a>
-                </li>
-            </ul>
-        </nav>
+      <div class="grid-row ">
+        <div class="navigation">
+        <ul>
+            <li><a class="font-xsmall" href="dash-old">Home</a></li>
+            <li><a class="font-xsmall active" href="funding-list-multi">Funding statements</a></li>
+            <li><a class="font-xsmall" href="download-list">Files to download</a></li>
+            <li><a class="font-xsmall" href="basic-upload">Upload files to ESFA</a></li>
+            <li><a class="font-xsmall" href="#">Sign out</a></li>
+        </ul>
+        </div>
     </div>
-<a href="#" title="back to previous page" onclick="window.history.go(-1); return false;" class="link-back">Back</a>
      <div class="grid-row">
         <div class="column-two-thirds">
 
 
-       <h1 class="heading-secondary">Multi Academy Trust: ROMERO</h1>
+       <h1 class="heading-secondary">ROMERO</h1>
       <p>UKPRN: 12345678</p>
-       <h1 class="heading-large margin-bottom">Funding allocations</h1>
+       <h1 class="heading-large margin-bottom">Funding statements</h1>
         </div>
     </div>
 
@@ -391,7 +360,7 @@ $(document).ready(function() {
                                         <input id="contract-type-5" name="contract" type="checkbox">
                                         <label class="block" for="contract-type-5">
                                             
-                                            John Fisher
+                                            John Fisher primary
                                         </label>
                                     </li>
 
@@ -399,7 +368,7 @@ $(document).ready(function() {
                                         <input id="contract-type-6" name="contract" type="checkbox">
                                         <label class="block" for="contract-type-6">
                                             
-                                            Newman
+                                            Kingswood
                                         </label>
                                     </li>
 
@@ -408,11 +377,11 @@ $(document).ready(function() {
                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">
                                         <label class="block" for="contract-type-2">
                                             
-                                            St Anne
+                                            Longmeadows
                                         </label></li>
 
                                         <li class="multiple-choice" style="padding-left:0;">
-                                        <a href="funding-list-lots">
+                                        <a href="funding-list-multi2">
                                             
                                             Show more
                                         </a>
@@ -425,9 +394,84 @@ $(document).ready(function() {
                             </div>
                         </fieldset>
                       </div>  
+
+
+  <div class="filter-relative">
+                    <button type="button" value="Select contract types" id="funding-title" tabindex="0" role="button" class="filters-headings heading-small focusing">Filter by type<span class="up-arrow-new"> </span></button>
+
+
+                        <fieldset class="filters">
+
+                            <legend class="visuallyhidden">Search</legend>
+
+                            
+                            <div class="displayed-checkbox">
+                            <section class="toggled-content">
+                                <ul>
+                                    
+                                    <li class="multiple-choice">
+                                        <input id="contract-type-1" name="contract" type="checkbox" value="16-19 Funding">
+                                        <label class="block" for="contract-type-1">
+                                            
+                                            General Annual Grant 
+                                        </label>
+                                    </li>
+
+                                    
+                                        
+                                    </li>
+                                    <li class="multiple-choice">
+                                        <input id="contract-type-5" name="contract" type="checkbox">
+                                        <label class="block" for="contract-type-5">
+                                            
+                                            16 to 19 funding
+                                        </label>
+                                    </li>
+
+                                                                        
+                                    
+                                 </ul>
+                            </section>
+                            </div>
+                        </fieldset>
+                      </div>  
+
+                      
                     
                  
-                    
+                    <div class="filter-relative">  
+                        <button type="button" value="Select years" id="funding-title-2" tabindex="0" role="button" class="filters-headings heading-small focusing">Filter by academic year<span class="up-arrow-new-2"></span></button>
+
+                        <fieldset class="filters">
+
+                            <legend class="visuallyhidden">Search</legend>
+
+
+                            <div class="displayed-checkbox-2">
+                            <section class="toggled-content">
+                                <ul>
+                                    <li class="multiple-choice">
+                                        <input id="year17" name="years" type="checkbox" >
+                                        <label class="block" for="year17">
+
+                                            2018 to 2019
+                                        </label>
+                                    </li>
+                                    
+                                    <li class="multiple-choice">
+                                        <input id="year16" name="years" type="checkbox" >
+                                        <label class="block" for="year16">
+
+                                            2017 to 2018
+                                        </label>
+                                    </li>
+                                    
+                                    
+                                </ul>
+                            </section>
+                            </div>
+                        </fieldset>
+                        </div>
                       
                     
                                 
@@ -444,9 +488,9 @@ $(document).ready(function() {
         <div id="tab1" class="main-table">
 
              <ul class="tab-content">
-                      <div>
+                    <div>
 
-                    <span class="heading-medium" style="margin-top:0"> Blythe Academy</span>
+                    <span class="heading-medium" style="margin-top:0"> Blythe academy</span>
                     <p></p>
 
                         
@@ -455,32 +499,34 @@ $(document).ready(function() {
                      
                      
                        <span class="small align-right" style="float:right;">£5018,386.92</span></p>
-                </div>
+                       <p>20 April 2018</p>
+                </div><hr>
                 
-
+<div>
                     <li>
                         
-                        <p><a class="small" href="16">16 to 19 allocation 2018 to 2019</a>
+                        <p><a class="small" href="16">16 to 19 funding 2018 to 2019</a>
                             <span class="small align-right" style="float:right;">£783,268.00</span></p>
+                            <p>2 April 2018</p><hr>
                         
-                    </li>
+                    </li><hr><br></div>
                     
-                   <hr>
-                    
-                   <li>
-                        <div>
-                    <span class="heading-medium" style="margin-top:0"> John Fisher Primary</span>
-                    <p></p>
-                    
-                </div>
-                        <p> <a class="small" href="#">General Annual Grant 2018 to 2019</a>
-                        
-                        <span class="small align-right" style="float:right;" align="right">£83,268.00</span></p>
-                    </li><hr>
+                
+                    <div>
 
-                         
-    <br>
-    <br>
+                    <span class="heading-medium" style="margin-top:0"> John Fisher primary</span>
+                    <p></p>
+
+                        
+                    <p class="small"><a href="no-content">General Annual Grant 2018 to 2019</a>
+                        
+                     
+                     
+                       <span class="small align-right" style="float:right;">£83,268.00</span></p>
+                       <p>20 April 2018</p>
+                </div><hr>
+                  
+                        
 
     
 

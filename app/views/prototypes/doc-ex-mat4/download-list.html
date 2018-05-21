@@ -291,49 +291,17 @@ $(document).ready(function() {
 </script>
 
 <main role="main" id="content">
-     <div class="service-info">
-        <nav id="secondary-nav" class="account-menu" role="navigation" aria-label="Account">
-            <a href="dash7" class="account-menu__link account-menu__link--home account-menu__link--active" data-journey-click="link - click:utility-nav:Account home">
-                            <span class="account-icon account-icon--home">
-
-
-                                    Home
-
-                            </span>
-            </a>
-
-            <a href="#" class="account-menu__link account-menu__link--menu js-hidden js-visible" aria-hidden="true" aria-expanded="false" data-journey-click="link - click:utility-nav:Account menu">
-
-
-                Account menu
-
-            </a>
-
-            <ul class="account-menu__main">
-                <li class="account-menu__link--back hidden" aria-hidden="true">
-                    <a href="#" class="account-menu__link" data-journey-click="link - click:utility-nav:Back">
-
-
-                        Back
-
-                    </a>
-                </li>
-
-
-
-                <li>
-                    <a href="#" class="#" data-journey-click="link - click:utility-nav:Sign out">
-
-
-                        Sign out
-
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <div class="grid-row ">
+        <div class="navigation">
+         <ul>
+              <li><a class="font-xsmall" href="dash-old">Home</a></li>
+              <li><a class="font-xsmall active" href="funding-list-multi">Funding statements</a></li>
+              <li><a class="font-xsmall" href="download-list">Files to download</a></li>
+              <li><a class="font-xsmall" href="basic-upload">Upload files to ESFA</a></li>
+              <li><a class="font-xsmall" href="#">Sign out</a></li>
+          </ul>
+        </div>
     </div>
-
-<a href="#" title="back to previous page" onclick="window.history.go(-1); return false;" class="link-back">Back</a>
      <div class="grid-row">
         <div class="column-two-thirds">
 
@@ -378,7 +346,7 @@ $(document).ready(function() {
                                         <input id="contract-type-1" name="contract" type="checkbox" value="16-19 Funding">
 
                                         <label class="block" for="contract-type-1">
-                                                                                        Blythe Academy
+                                                                                        Blythe
                                         </label>
                                     </li>
 
@@ -389,7 +357,7 @@ $(document).ready(function() {
                                         <input id="contract-type-5" name="contract" type="checkbox">
                                         <label class="block" for="contract-type-5">
                                             
-                                            John Fisher Primary
+                                            John Fisher primary
                                         </label>
                                     </li>
 
@@ -397,7 +365,7 @@ $(document).ready(function() {
                                         <input id="contract-type-6" name="contract" type="checkbox">
 
                                         <label class="block" for="contract-type-6">
-                                                                                        Newman Academy
+                                                                                        Newman
                                         </label>
                                     </li>
 
@@ -406,7 +374,7 @@ $(document).ready(function() {
                                         <input id="contract-type-2" name="contract" type="checkbox" value="Mainstream">
                                         <label class="block" for="contract-type-2">
                                             
-                                            St Anne Primary
+                                            St Anne primary
                                         </label>
 
                                     
@@ -419,14 +387,14 @@ $(document).ready(function() {
                  
                     
                       <div class="filter-relative">  
-                        <button type="button" value="Select years" id="funding-title-2" tabindex="0" role="button" class="filters-headings heading-small focusing">Filter by year<span class="down-arrow-2"></span></button>
+                        <button type="button" value="Select contract types" id="funding-title" tabindex="0" role="button" class="filters-headings heading-small focusing">Filter by academic year<span class="up-arrow-new"> </span></button>
 
                         <fieldset class="filters">
 
                             <legend class="visuallyhidden">Search</legend>
 
 
-                            <div class="hidden-2">
+                           <div class="displayed-checkbox">
                             <section class="toggled-content">
                                 <ul>
                                     <li class="multiple-choice">
@@ -467,20 +435,22 @@ $(document).ready(function() {
              <ul class="tab-content">
                       <div>
 
-                    <span class="heading-medium" style="margin-top:0"> Blythe Academy</span>
+                    <span class="heading-medium" style="margin-top:0"> Blythe academy</span>
                     
                         
                         <span class="small align-right" style="float:right;" align="right"></span></p>
                     </li>
                     <div class="grid-row mini-card">
     <div class="column-two-thirds">
-        <p class="small" "attachment-details"><a href="/public/documents/february.xls" target="_blank">Business case 2018 to 2019</a></p>
+        <p class="small" "attachment-details"><a href="/public/documents/BCtemplate.xlsx" target="_blank">Business case 2018 to 2019</a></p>
         <p>20 March 2018</p>
+        <p class="small" "attachment-details"><br>
+        Downloaded by Jane Jones on 13 April 2018</p>
         
     </div>
     <section class="attachment">
     <div class="attachment-thumb">
-        <a class="thumbnail" href="/public/documents/february.xls" target="_blank">
+        <a class="thumbnail" href="/public/documents/BCtemplate.xlsx" target="_blank">
             <img src="/public/images/xls_thumbnail2.png">
         </a>
     </div>
@@ -492,21 +462,22 @@ $(document).ready(function() {
 <p> </p>
 <div>
 
-                    <span class="heading-medium" style="margin-top:0"> John Fisher Academy</span>
+                    <span class="heading-medium" style="margin-top:0"> John Fisher primary</span>
                     
                         
                         <span class="small align-right" style="float:right;" align="right"></span></p>
                     </li>
                     <div class="grid-row mini-card">
     <div class="column-two-thirds">
-        <p class="small" "attachment-details"><a href="/public/documents/february.xls" target="_blank">Business case 2018 to 2019</a></p>
+        <p class="small" "attachment-details"><a href="/public/documents/BCtemplate.xlsx" target="_blank">Business case 2018 to 2019</a></p>
         <p>2 March 2018</p>
-
+<p class="small" "attachment-details"><br>
+        Downloaded by Jane Jones on 13 April 2018</p>
         
     </div>
     <section class="attachment">
     <div class="attachment-thumb">
-        <a class="thumbnail" href="/public/documents/february.xls" target="_blank">
+        <a class="thumbnail" href="/public/documents/BCtemplate.xlsx" target="_blank">
             <img src="/public/images/xls_thumbnail2.png">
         </a>
 
