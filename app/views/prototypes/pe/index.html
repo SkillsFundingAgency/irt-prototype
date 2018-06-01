@@ -270,7 +270,8 @@
             <label id="SearchByMATAccordion" for="SearchByMAT" class="" aria-controls="SearchByMATFieldset">School or college name or reference number (URN)<span class="visuallyhidden"> this element dynamically updates the page</span></label>
         </div>
 
-        <form method="get" action="/prototypes/pe/school">
+        <!--<form method="get" action="/prototypes/pe/school">-->
+        <form method="get" onsubmit="this.action='/prototypes/pe/'+this.fieldName.value;">
             <div id="SearchByMATFieldset" class="panel panel-border-narrow optional-section js-hidden" aria-expanded="false" aria-hidden="true">
                 <div class="mat-search">
                     <label for="FindByMAT">
@@ -288,7 +289,7 @@
                 </div>
                 <div class="search-container">
                     <div class="search-text">
-                        <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input id="FindByMAT" class="form-control mbl tt-input" autocomplete="off" name="matname" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" aria-activedescendant="" aria-owns="FindByMAT_listbox" role="combobox" aria-readonly="true" aria-autocomplete="list" type="text"><span role="status" aria-live="polite" style="position: absolute; padding: 0px; border: 0px none; height: 1px; width: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;"></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;nta&quot;, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div role="listbox" class="tt-menu form-control mtm" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div role="presentation" class="tt-dataset tt-dataset-2"></div></div></span>
+                        <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input id="fieldName" class="form-control mbl tt-input" autocomplete="off" name="matname" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" aria-activedescendant="" aria-owns="FindByMAT_listbox" role="combobox" aria-readonly="true" aria-autocomplete="list" type="text"><span role="status" aria-live="polite" style="position: absolute; padding: 0px; border: 0px none; height: 1px; width: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;"></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;nta&quot;, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div role="listbox" class="tt-menu form-control mtm" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div role="presentation" class="tt-dataset tt-dataset-2"></div></div></span>
                     </div>
                     <input id="SelectedMATCode" name="matcode" type="hidden">
                     <input name="searchtype" value="search-by-mat" class="search-input" type="submit">
