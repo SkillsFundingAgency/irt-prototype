@@ -234,6 +234,7 @@
                 background-color: white;
                 z-index: 99 !important;
             }
+        strong{font-weight: 600}
         </style>
 
 <main role="main" id="content">
@@ -258,7 +259,7 @@
 
 
         <h3 class="heading-medium" style="font-weight: 300;">
-            Search for
+            Search by:
         </h3>
 
 
@@ -267,32 +268,31 @@
 
         <div class="multiple-choice" data-target="SearchByMATFieldset">
             <input id="SearchByMAT" name="school-search" value="SearchByMAT" aria-controls="SearchByMATFieldset" aria-expanded="false" type="radio">
-            <label id="SearchByMATAccordion" for="SearchByMAT" class="" aria-controls="SearchByMATFieldset">School or college name or reference number (URN)<span class="visuallyhidden"> this element dynamically updates the page</span></label>
+            <label id="SearchByMATAccordion" for="SearchByMAT" class="" aria-controls="SearchByMATFieldset">School or college name or reference number <span class="visuallyhidden"> this element dynamically updates the page</span></label>
         </div>
 
-        <!--<form method="get" action="/prototypes/pe/school">-->
-        <form method="get" onsubmit="this.action='/prototypes/pe/'+this.fieldName.value;">
+        <form method="get" onsubmit="this.action='/prototypes/pe/'+document.getElementsByClassName('num1')[0].value;">
             <div id="SearchByMATFieldset" class="panel panel-border-narrow optional-section js-hidden" aria-expanded="false" aria-hidden="true">
                 <div class="mat-search">
                     <label for="FindByMAT">
-                        <span class="visuallyhidden">Enter an multi-academy trust or sponsor name, </span>For example, Aston Academy
+                        <span class="visuallyhidden">Enter a name, URN, LAESTAB or UKPRN </span>Name, URN, LAESTAB or UKPRN.<br> For example, Lickhill Primary School or 107946
                     </label>
                     <details>
                         <summary><span class="summary">more info<span class="visuallyhidden"> Click to expand</span></span></summary>
                         <div class="panel-indent">
                             <p class="pad-170">
-                                Multi-academy trusts (MATs) are academy trusts that run more than one school or college. Where there is more than one MAT under the same academy sponsor, we publish performance figures in the
-                                name of the sponsor as if it were a single MAT. Selecting either the MAT or sponsor name, which are often similar, will take you to the same information.
-                            </p>
+                                <strong>Name, URN, LAESTAB, or UKPRN</strong><br>
+                                Enter the establishment's name or a reference number: URN (Unique Reference Number), LAESTAB (Local Authority Establishment Number), UKPRN: (UK ProviderReference Number)</p>
                         </div>
                     </details>
                 </div>
                 <div class="search-container">
                     <div class="search-text">
-                        <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input id="fieldName" class="form-control mbl tt-input" autocomplete="off" name="matname" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" aria-activedescendant="" aria-owns="FindByMAT_listbox" role="combobox" aria-readonly="true" aria-autocomplete="list" type="text"><span role="status" aria-live="polite" style="position: absolute; padding: 0px; border: 0px none; height: 1px; width: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;"></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;nta&quot;, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div role="listbox" class="tt-menu form-control mtm" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div role="presentation" class="tt-dataset tt-dataset-2"></div></div></span>
+                        <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+                            <input id="FindByMAT" class="form-control mbl tt-input num1" autocomplete="off" name="matname" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" aria-activedescendant="" aria-owns="FindByMAT_listbox" role="combobox" aria-readonly="true" aria-autocomplete="list" type="text"><span role="status" aria-live="polite" style="position: absolute; padding: 0px; border: 0px none; height: 1px; width: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;"></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;nta&quot;, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div role="listbox" class="tt-menu form-control mtm" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div role="presentation" class="tt-dataset tt-dataset-2"></div></div></span>
                     </div>
                     <input id="SelectedMATCode" name="matcode" type="hidden">
-                    <input name="searchtype" value="search-by-mat" class="search-input" type="submit">
+                    <input name="" value="" class="search-input" type="submit">
                 </div>
             </div>
         </form>
@@ -355,51 +355,6 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-
-<h3 class="heading-medium" style="font-weight: 300;">
-    Search by school name
-</h3>
-<div class="bottom search-container">
-                <form role="search" method="get" id="searchform" class="form-search" action="/prototypes/pe/school">
-    <label class="visuallyhidden" for="s">Search for:</label>
-    <div class="search-input-wrapper">
-        <input type="search" value="" name="" id="s" class="search-query" placeholder="">
-        <input type="submit" id="searchsubmit" value="Search" class="btn">
-    </div>
-</form>
-            </div>
-
-
-
-
-          <h3 class="heading-medium" style="margin-top:30px;    font-weight: 300;">
-    Search by local authority name
-</h3>
-<div class="bottom search-container">
-                <form role="search" method="get" id="searchform" class="form-search" action="/prototypes/pe/local-authority">
-    <label class="visuallyhidden" for="s">Search for:</label>
-    <div class="search-input-wrapper">
-        <input type="search" value="" name="s" id="s" class="search-query" placeholder="">
-        <input type="submit" id="searchsubmit" value="Search" class="btn">
-    </div>
-</form>
-            </div>
-
-
--->
 
 
 
