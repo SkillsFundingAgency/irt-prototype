@@ -306,7 +306,7 @@
                         <legend class="visuallyhidden">Select a search type option</legend>
 
                         <div class="search-types" aria-live="polite">
-                            <div>
+
 
 
                                 <div class="multiple-choice" data-target="SearchByTownFieldset">
@@ -314,7 +314,7 @@
                                     <label id="TownOrCityAccordion" for="TownOrCity" class="" aria-controls="SearchByTownFieldset">Local authority name or reference number (LA Code)<span class="visuallyhidden"> this element dynamically updates the page</span></label>
                                 </div>
 
-                                <form method="get" action="/prototypes/pe/local-authority">
+                                <form method="get" onsubmit="this.action='/prototypes/pe/'+document.getElementsByClassName('num')[0].value;">
                                     <div id="SearchByTownFieldset" class="panel panel-border-narrow optional-section js-hidden" aria-expanded="false" aria-hidden="false">
                                         <label for="FindSchoolByTown">
                                             <span class="visuallyhidden">Enter a location name, </span>For example, Tameside or Gloucestershire
@@ -322,7 +322,7 @@
                                         </label>
                                         <div class="search-container">
                                             <div class="search-text">
-                                                <input id="FindSchoolByTown" class="form-control mbl" name="keywords" placeholder="" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                                                <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                                                 <div class="search-divider"></div>
                                                 <div class="radius-container">
                                                     <select id="radius" class="form-control" name="radius">
@@ -345,40 +345,8 @@
                                 <div class="multiple-choice" data-target="SearchByPostcodeFieldset">
                                 </div>
 
-                                <form method="get">
-                                    <div id="SearchByPostcodeFieldset" class="panel panel-border-narrow optional-section js-hidden" aria-expanded="false">
-                                        <label for="FindByPostcode">
-                                            <span class="visuallyhidden">Enter a postcode, </span>For example, CV32 or OL14 5NS or
-                                            <a href="#" id="PostcodeFindCurrentPosition">use your current location</a>
-                                        </label>
-                                        <div class="search-container">
-                                            <div class="search-text">
-                                                <table style="border: none; padding: 0; margin: 0;">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td style="max-width: 299px; width: 100%;"><span class="twitter-typeahead" style="position: relative; display: inline-block;"><input id="FindByPostcode" class="form-control mbl tt-input" name="keywords" placeholder="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" aria-activedescendant="" aria-owns="FindByPostcode_listbox" role="combobox" aria-readonly="true" aria-autocomplete="list" type="text"><span role="status" aria-live="polite" style="position: absolute; padding: 0px; border: 0px none; height: 1px; width: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;"></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;nta&quot;, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div role="listbox" class="tt-menu form-control mtm" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div role="presentation" class="tt-dataset tt-dataset-1"></div></div></span></td>
-                                                        <td>
-                                                            <div class="radius-container" style="border-left: 1px solid #bfc1c3;">
-                                                                <select id="radius" class="form-control" name="radius">
-                                                                    <option value="1">1 mile</option>
-                                                                    <option value="3" selected="">3 miles</option>
-                                                                    <option value="5">5 miles</option>
-                                                                    <option value="10">10 miles</option>
-                                                                    <option value="15">15 miles</option>
-                                                                    <option value="20">20 miles</option>
-                                                                    <option value="25">25 miles</option>
-                                                                </select>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <input name="searchtype" value="search-by-postcode" class="search-input" type="submit">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+
+
 
                         </div>
 
