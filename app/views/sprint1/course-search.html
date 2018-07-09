@@ -1,0 +1,170 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style>
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+      <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-one-third">
+                <div class="govuk-form-group">
+                      <label class="govuk-label" for="provider"> Provider </label>
+                    <input class="govuk-input" id="provider" type="text" name="provider">
+                  </div>
+
+
+              <div class="govuk-grid-row">
+
+                <div class="govuk-form-group govuk-grid-column-one-half">
+                  <label class="govuk-label" for="location"> Location </label>
+                <input class="govuk-input" id="location" type="text" name="locaton">
+                </div>
+
+                  <div class="govuk-form-group govuk-grid-column-one-half">
+                      <label class="govuk-label" for="radius"> Radius </label>
+                      <select class="govuk-select" id="radius" name="radius">
+                          <option>1 mile</option>
+                          <option>3 miles</option>
+                          <option>5 miles</option>
+                      </select>
+                  </div>
+
+              </div>
+
+
+
+          <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
+            <fieldset>
+              <legend>
+              <h3 class="govuk-heading-m">Level?</h3>
+              </legend>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
+                <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 (13)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
+                <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 (45)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
+                <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (13)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
+                <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 (0)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 (0)</label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="form-group govuk-checkboxes">
+            <fieldset>
+              <legend>
+              <h3 class="govuk-heading-m">How to Study?</h3>
+              </legend>
+              <div class="govuk-checkboxes__item">
+                <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
+                <label class="govuk-label govuk-checkboxes__label" for="study0">All (71)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study1" name="study" type="checkbox" value="1">
+                <label class="govuk-label govuk-checkboxes__label" for="study1">Full Time (24)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study2" name="study" type="checkbox" value="2">
+                <label class="govuk-label govuk-checkboxes__label" for="study2">Part Time (13)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study3" name="study" type="checkbox" value="3">
+                <label class="govuk-label govuk-checkboxes__label" for="study3">Flexible (13)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study4" name="study" type="checkbox" value="4">
+                <label class="govuk-label govuk-checkboxes__label" for="study4">Classroom (13)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study5" name="study" type="checkbox" value="5">
+                <label class="govuk-label govuk-checkboxes__label" for="study5">Online (45)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study6" name="study" type="checkbox" value="6">
+                <label class="govuk-label govuk-checkboxes__label" for="study6">Evenings (0)</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="study7" name="study" type="checkbox" value="6">
+                <label class="govuk-label govuk-checkboxes__label" for="study7">Weekends (0)</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" id="select-box" name="select-box">
+              <option>More filters</option>
+              <option>More filters 2</option>
+              <option>More filters 3</option>
+            </select>
+          </div>
+
+          </div>
+
+          <div class="govuk-grid-column-two-thirds">
+
+          <div class="govuk-form-group govuk-grid-column-two-thirds">
+              <label class="govuk-label" for="name"> Course name </label>
+              <input class="govuk-input govuk-!-margin-bottom-3" id="name" type="text" name="name">
+              <p>Popular searches: <a href="#">English</a> <a href="#">ESOL</a> <a href="#">Maths</a></p>
+          </div>
+
+
+
+              <div class="form-group govuk-grid-column-one-third">
+                  <label class="govuk-label" for="sort"> Sort results by  </label>
+                  <select class="govuk-select" id="sort" name="sort">
+                      <option>Distance</option>
+                      <option>Name</option>
+                      <option>Popular</option>
+                  </select>
+              </div>
+
+            <div class="govuk-grid-column-full">
+              <h3><a href="#">Advanced Diploma in Child Care Studies</a></h3>
+              <br/>
+            </div>
+            <div class="govuk-grid-column-one-third"> <span>Solihull College</span><br/>
+              <span>Location: 1 High St, B91 1TY</span><br/>
+              <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+              <span>Duration: 1 year</span>
+            </div>
+            <div class="govuk-grid-column-one-third"> <span>Full Time | Classroom | Daytime</span><br/>
+              <span>Level 3</span><br/>
+              <span>Diploma</span><br/>
+              <span>Start date: 3rd September 2018</span>
+            </div>
+            <div class="govuk-grid-column-one-third"> <img src="/public/images/map.png" alt="Map" class="img-responsive" />
+            </div>
+          </div>
+
+      </div>
+    </main>
+</div>
+{% endblock %}
