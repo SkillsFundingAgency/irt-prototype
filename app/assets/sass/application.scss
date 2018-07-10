@@ -367,11 +367,57 @@ strong{font-weight: 600}
 .listing-view-link.is-active {
   color: #D2D2DC;
 }
-
-
-//Typo
-span{
-  font-size: 17px;
-  line-height: 25px;
-  font-family: "nta", Arial, sans-serif;
+.homepage-course-subject a {
+  font-family: nta,Arial,sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 16px;
+  line-height: 1.25;
+  text-decoration: none;
 }
+@media (min-width: 641px){
+  .homepage-course-subject a {
+    font-size: 19px;
+    line-height: 1.3157894737;
+  }
+  }
+
+.homepage-course-subject li {
+  padding-bottom: .263em;
+  margin-top: .263em;
+  display: inline-block;
+  width: 100%;
+}
+ul {
+  list-style-type: none;
+}
+
+@media (min-width: 641px){
+.homepage-jobcategories {
+  -moz-column-count: 2;
+  -moz-column-gap: 30px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 30px;
+  column-count: 2;
+  column-gap: 30px;
+}
+}
+
+@media (min-width: 769px){
+.homepage-course-subject {
+  -moz-column-count: 3;
+  -moz-column-gap: 30px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 30px;
+  column-count: 3;
+  column-gap: 30px;
+}}
+
+
+
+  //Typo
+  span{
+    font-size: 17px;
+    line-height: 25px;
+    font-family: "nta", Arial, sans-serif;
+  }
