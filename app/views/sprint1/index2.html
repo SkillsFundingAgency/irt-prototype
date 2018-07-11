@@ -294,7 +294,7 @@ strong{font-weight: 600}
 
                             <div class="search-container">
                                 <div class="search-text">
-                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                                    <input id="postcode" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                                     <div class="search-divider"></div>
                                     <div class="radius-container">
                                         <select id="radius" class="form-control" name="radius" style="background: black;
@@ -410,6 +410,15 @@ $j( function() {
 	}
   } );
   
+});
+
+$j(document).ready(function(e) {
+    
+	$j("#header-search").submit(function(e) {
+        e.preventDefault();
+		$j(location).attr("href","course-search?course="+$("#course").val()+"&postcode="+$("#postcode").val());
+    });
+	
 });
 
 </script>

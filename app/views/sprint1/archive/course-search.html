@@ -1,420 +1,376 @@
-
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-  GOV.UK Prototype Kit
+{% block page_title %}
+  GOV.UK prototype kit
 {% endblock %}
 
 {% block content %}
+<style>
 
 
-<style>.govuk-width-container{max-width: none;}
-.govuk-button{background:#000;}
-.govuk-button:hover{background:#a9a9a9;}
-.search-container .search-text #radius {
-    width: 100px;
-    height: 38px;
-    border: none;
-}
-
-.search-container .search-text .radius-container {
-    width: 98px;
-    height: 38px;
-    border: 1px solid #bfc1c3;
-    border-left: none;
-    float: left;
-}
-
-.optional-section, .help-content {
-    border-left: #bfc1c3 solid 4px;
-    padding: 14px 0 14px 14px;
-    margin-bottom: 0.5em !important;
-    clear: both;
-}
-
-.search-container .search-text {
-    width: 100%;
-    max-width: 439px;
-    float: left;
-    box-sizing: border-box;
-    padding-right: 40px;
-    margin-right: -40px;
-}
-.search-container .search-text input.form-control {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-family: "nta",Arial,sans-serif;
-    font-weight: 400;
-    text-transform: none;
-    font-size: 14px;
-    line-height: 1.1428571429;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 4px 4px 3px 4px;
-    background-color: #fff;
-    border: 1px solid #bfc1c3;
-}
-
-.btn, .btn:visited {
-    display: inline;
-    border: none;
-    text-decoration: none;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.25;
-    padding: 8px 16px;
-    cursor: pointer;
-    background-image: none;
-    text-shadow: none;
-    box-shadow: none;
-}
-
-
-.btn-secondary, .btn, .btn:visited {
-    background-color: #2e3191;
-    color: #fff;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    font-weight: 400;
-    overflow: visible;
-    -webkit-font-smoothing: antialiased;
-}
-
-
-/*
-textarea, select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    font-family: "nta", Helvetica, Arial, sans-serif;
-    height: auto;
-    border-radius: 0;
-    padding: 5px;
-    border: 2px solid #0b0c0c;
-    margin-bottom: 10px;
-    -webkit-appearance: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 19px;
-    line-height: 1.3157894737;
-    color: #0b0c0c;
-    margin-bottom: 0;
-}
-
-*/
-
-.pub-c-lead-paragraph {
-    font-family: "nta", Arial, sans-serif;
-    font-weight: 400;
-    text-transform: none;
-    font-size: 22px;
-    line-height: 1.2;
-    margin-bottom: 35px;
-    max-width: 30em;
-}
-
-.form-search {
-    width: 100%;
-    position: relative;
-    max-width: 350px;
-    display: inline-block;
-    margin-bottom: 0;
-}
-
-.form-search .search-input-wrapper {
-    width: 100%;
-    display: inline-block;
-    position: relative;
-}
-.form-search input.search-query {
-    height: 40px;
-    float: left;
-    width: 86%;
-    z-index: 10;
-}
-.form-search input[type="submit"] {
-    width: 40px;
-    height: 40px;
-    float: left;
-    padding: 6px;
-    background: #0b0c0c url(/public/images/search-button.png) no-repeat 2px 50%;
-    text-indent: -5000px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.schools-search-page .search-types .optional-section label {
-    font-family: "nta",Arial,sans-serif;
-    font-weight: 700;
-    text-transform: none;
-    font-size: 16px;
-    line-height: 1.25;
-    float: left;
-    width: 100%;
-    margin-bottom: 1em;
-}
-.optional-section label {
-    font-size: 19px;
-    line-height: 1.3157894737;
-}
-
-@media only screen and (min-width: 641px){
-    .multiple-choice label {
-        float: left;
-        padding-top: 7px;
-        padding-bottom: 7px;
-    }
-}
-.multiple-choice label {
-    cursor: pointer;
-    padding: 8px 10px 9px 12px;
-    display: block;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-}
-.multiple-choice label{font-size: 16px;}
-.multiple-choice {
-    display: block;
-    clear: left;
-    position: relative;
-    padding: 0 0 0 38px;
-    margin-bottom: 10px;
-}
-.search-types .optional-section label {
-    font-family: "nta",Arial,sans-serif;
-    font-weight: 700;
-    text-transform: none;
-    font-size: 16px;
-    line-height: 1.25;
-    float: left;
-    width: 100%;
-    margin-bottom: 1em;
-}
-.search-container .search-text input {
-    width: 100%;
-    max-width: 400px;
-    height: 40px;
-    vertical-align: top;
-    margin-bottom: 0px !important;
-}
-.search-container input.search-input {
-    float: left;
-    box-sizing: border-box;
-    border: solid 2px #005c2a;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    overflow: hidden;
-    text-indent: -500px;
-    border-radius: 0;
-}
-.search-container .search-text span.twitter-typeahead {
-    width: 100%;
-    max-width: 400px;
-}
-
-.schools-search-page .search-container {
-    width: 439px;
-    margin-top: 8px;
-}
-.search-text .search-divider {
-    border-left: 1px solid #bfc1c3;
-    float: left;
-    height: 26px;
-    margin: 7px 0 7px -2px;
-}
-.search-text input#FindSchoolByTown {
-    max-width: 299px;
-    border-right: 0px;
-    float: left;
-}
-
-.form-control {
-    font-size: 16px;
-    line-height: 1.25;
-}
-
-
-.schools-search-page .tt-menu {
-    margin-top: 0px !important;
-    background-color: white;
-    z-index: 99 !important;
-}
-strong{font-weight: 600}
-.govuk-input,.govuk-select{border-color: #efefef!important;}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+      <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-one-third foo">
+                <!--<div class="govuk-form-group">
+                      <label class="govuk-label" for="provider"> Provider </label>
+                    <input class="govuk-input" id="provider" type="text" name="provider">
+                  </div>-->
 
 
 
-        <header class="homepage-top govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
-            <div class="content-container">
-                <div class="grid-row" data-sf-element="Row">
-                    <div id="MainContentTop_T945D82B6001_Col00" class="sf_colsIn govuk-grid-column-two-thirds" data-sf-element="Container" data-placeholder-label="Home banner Full Width Container">
-
-                        <div>
-                            <div><h1 class="heading-xlarge govuk-heading-xl" id="site-header" style="padding-top: 30px">Find a course</h1><p class="lede">Explore what kind of course is right for you
-                       </p></div>
-
-                        </div>
-                        <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
-                            <div class="header-search-content">
-
-                            <div class="search-input-wrapper">
-
-                                <div class="govuk-form-group">
-                                <div class="ui-widget">
-                                    <label class="govuk-label" for="address-line-2">
-                                    </label>
-                                    
-                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                    </div>
-                            <p class="lede">Qualification Level</p>
-                            <a target="_blank" style="position: relative; top:-20px; color: #fff;font-size: 12px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
-                            <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
-                                <label class="govuk-label" for="radius"> Radius </label>
-                                <select class="govuk-select" id="radius" name="radius">
-                                    <option>All</option>
-                                    <option>Level 1</option>
-                                    <option>Level 2</option>
-                                    <option>Level 3</option>
-                                    <option>Level 4</option>
-                                    <option>Level 5</option>
-                                    <option>Level 6</option>
-                                    <option>Level 7</option>
-                                    <option>Level 8</option>
-                                </select>
-                            </div>
-                            <div class="govuk-grid-column" style="width: 100%"></div>
-                            <p class="lede">Location</p>
-
-                            <div class="search-container">
-                                <div class="search-text">
-                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
-                                    <div class="search-divider"></div>
-                                    <div class="radius-container">
-                                        <select id="radius" class="form-control" name="radius" style="background: black;
-    color: white;">
-                                            <option value="1">1 mile</option>
-                                            <option value="3">3 miles</option>
-                                            <option value="5">5 miles</option>
-                                            <option value="10">10 miles</option>
-                                            <option value="15">15 miles</option>
-                                            <option value="20" selected="selected">20 miles</option>
-                                            <option value="25">25 miles</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
-                            </div>
-<br>
-<br>
-<br>
-                            <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px">
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-        </header>
-
-<div class="govuk-width-container homepage-bottom" style="max-width: 960px; padding-bottom: 30px">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
-
-       <h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
-        <p class="lede" style="padding-left: 20px">If you already know the establishment search here</p>
-        <div class="header-search-content govuk-grid-column-two-thirds">
-            <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
-
-            <div class="search-input-wrapper">
-
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="address-line-2">
-                    </label>
-                    <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" placeholder="Provider">
+              <!--  <div class="govuk-form-group govuk-grid-column-one-half">
+                  <label class="govuk-label" for="location"> Location </label>
+                <input class="govuk-input" id="location" type="text" name="locaton">
                 </div>
 
+                  <div class="govuk-form-group govuk-grid-column-one-half">
+                      <label class="govuk-label" for="radius"> Distance </label>
+                      <select class="govuk-select" id="radius" name="radius">
+                          <option value="1">1 mile</option>
+                          <option value="3">3 miles</option>
+                          <option value="5">5 miles</option>
+                          <option value="10">10 miles</option>
+                          <option value="15">15 miles</option>
+                          <option value="20" selected="selected">20 miles</option>
+                          <option value="25">25 miles</option>
+                      </select>
+                  </div>
+
+              </div>-->
+
+
+                  <p class="lede">Location</p>
+
+                  <div class="govuk-!-margin-bottom-9">
+                  <div class="search-container">
+                      <div class="search-text">
+                          <input id="FindSchoolByTown" style="max-width: 150px;" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                          <div class="search-divider"></div>
+                          <div class="radius-container">
+                              <select id="radius" class="form-control" name="radius" style="background: black;color: white;">
+                                  <option value="1">1 mile</option>
+                                  <option value="3">3 miles</option>
+                                  <option value="5">5 miles</option>
+                                  <option value="10">10 miles</option>
+                                  <option value="15">15 miles</option>
+                                  <option value="20" selected="selected">20 miles</option>
+                                  <option value="25">25 miles</option>
+                              </select>
+                          </div>
+                      </div>
+                      <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
+                      <!--<input name="searchtype" value="search-by-location" class="search-input" type="submit">-->
+                  </div>
+                  </div>
+
+
+<br>
+<br>
+
+
+
+              <p class="lede">How to Study?</p>
+
+              <div class="form-group govuk-checkboxes">
+                  <fieldset>
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
+                          <label class="govuk-label govuk-checkboxes__label" for="study0">All (71)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study1" name="study" type="checkbox" value="1">
+                          <label class="govuk-label govuk-checkboxes__label" for="study1">Full Time (24)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study2" name="study" type="checkbox" value="2">
+                          <label class="govuk-label govuk-checkboxes__label" for="study2">Part Time (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study3" name="study" type="checkbox" value="3">
+                          <label class="govuk-label govuk-checkboxes__label" for="study3">Flexible (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study4" name="study" type="checkbox" value="4">
+                          <label class="govuk-label govuk-checkboxes__label" for="study4">Classroom (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study5" name="study" type="checkbox" value="5">
+                          <label class="govuk-label govuk-checkboxes__label" for="study5">Online (45)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study6" name="study" type="checkbox" value="6">
+                          <label class="govuk-label govuk-checkboxes__label" for="study6">Evenings (0)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study7" name="study" type="checkbox" value="6">
+                          <label class="govuk-label govuk-checkboxes__label" for="study7">Weekends (0)</label>
+                      </div>
+                  </fieldset>
+              </div>
+
+              <br>
+              <br>
+
+
+
+              <p class="lede">Level</p>
+            <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
+                <fieldset>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                    <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
+                    <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 (13)</label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
+                    <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 (45)</label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
+                    <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (13)</label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
+                    <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 (0)</label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                    <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 (0)</label>
+                  </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                        <label class="govuk-label govuk-checkboxes__label" for="level5">Level 6 (0)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                        <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 (0)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                        <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 (0)</label>
+                    </div>
+                </fieldset>
+          </div>
+              <br>
+
+
+
+              <p class="lede">Qualification type</p>
+              <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
+                  <fieldset>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                          <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
+                          <label class="govuk-label govuk-checkboxes__label" for="level1">GCSC (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
+                          <label class="govuk-label govuk-checkboxes__label" for="level2">NVQ (45)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
+                          <label class="govuk-label govuk-checkboxes__label" for="level3">Certificate of Attendance (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
+                          <label class="govuk-label govuk-checkboxes__label" for="level4">Access to Higher Education</label>
+                      </div>
+                  </fieldset>
+              </div>
+
+
+
+
+
+
+          </div>
+
+          <div class="govuk-grid-column-two-thirds homepage-bottom">
+
+              <div class="header-search-content">
+                  <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
+
+                      <div class="search-input-wrapper">
+
+                          <div class="govuk-form-group">
+                              <label class="govuk-label" for="address-line-2">
+                              </label>
+                              <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" placeholder="Course name">
+                          </div>
+
+                      </div>
+                      <input class="submit" type="submit" value="Search">
+                  </form>
+
+              </div>
+
+
+
+             <!-- <div class="form-group govuk-grid-column-one-third">
+                  <label class="govuk-label" for="sort"> Sort results by  </label>
+                  <select class="govuk-select" id="sort" name="sort">
+                      <option>Distance</option>
+                      <option>Name</option>
+                      <option>Popular</option>
+                  </select>
+              </div>-->
+
+
+
+            <div class="govuk-grid-column-full">
+                <div class="govuk-grid-column-one-half">
+            <a href="#" style="display: block;margin-bottom: 20px;">1 - 10 of 15 results</a>
+
+                </div>
+                <div class="govuk-grid-column-one-half">
+
+
+                    <span class="listing-view-link is-active" title="List view">
+                        <svg viewBox="0 0 23.604 15" id="search-icon--list-icon" width="8%" height="8%"><path d="M0 0h6.953v4.234H0zm0 5.366h6.953V9.6H0zm0 5.366h6.953v4.234H0zM8.156 0h15.448v4.234H8.156zm0 5.366h15.448V9.6H8.156zm0 5.366h15.448v4.234H8.156z"></path></svg>
+                        <i class="icon icon-list"></i><span class="is-hidden">List</span></span>
+
+
+                    <a class="listing-view-link listing-view-link-last" title="Map view" href="#" rel="nofollow">
+                        <svg viewBox="0 0 10.883 15.927" id="search-icon--map-pointer-icon" width="4%" height="4%"><path d="M5.442 0A5.441 5.441 0 0 0 0 5.442c0 5.08 5.442 10.485 5.442 10.485s5.442-5.222 5.442-10.485A5.442 5.442 0 0 0 5.442 0zm.01 6.016a1.798 1.798 0 1 1 .002-3.596 1.798 1.798 0 0 1-.001 3.596z"></path></svg>
+                        <i class="icon icon-location"></i><span class="is-hidden">Map</span></a>
+
+
+                </div>
+                </div>
+
+            <div class="govuk-grid-column-full">
+
+              <h3><a href="#">Advanced Diploma in Child Care Studies</a></h3>
             </div>
-            <input class="submit" type="submit" value="Search">
-                </form>
+            <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+              <span>Location: 1 High St, B91 1TY</span><br/>
+              <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+              <span>Duration: 1 year</span>
+            </div>
+            <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+              <span>Level 3</span><br/>
+              <span>Diploma</span><br/>
+              <span>Start date: 3rd September 2018</span>
+            </div>
+           <!-- <div class="govuk-grid-column-one-third"> <img src="/public/images/map.png" alt="Map" class="img-responsive" />
+            </div>-->
 
-        </div>
+              <div class="govuk-grid-column-full">
+              <h3><a href="#">National Academy in Child Care Studies</a></h3>
+          </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
 
-
-        <div class="govuk-grid-column-one-third"><br><br><br><br><br><br><br></div>
-
-        <hr style="padding: 0 41px;
-    opacity: 0.5;
-    margin-bottom: 75px;
-    width: 87%;
-    border: solid 1px #21827b;">
-            <h2 class="govuk-heading-l" style="padding-left: 20px">Explore by sector</h2>
-
-            <ul class="homepage-course-subject" style="position: relative;
-    left: -19px;">
-                <li><a href="#">Agriculture, Enviromental and Animal care</a></li>
-                <li><a href="#">Business and Administrative</a></li>
-                <li><a href="#">Catering and Hospitality</a></li>
-                <li><a href="#">Childcare and Education</a></li>
-                <li><a href="#">Construction</a></li>
-                <li><a href="#">Creative and Design</a></li>
-                <li><a href="#">Digital</a></li>
-                <li><a href="#">Engineering and Manufacturing</a></li>
-                <li><a href="#">Hair and Beauty</a></li>
-                <li><a href="#">Health and Science</a></li>
-                <li><a href="#">Legal, Finance and Accounting</a></li>
-                <li><a href="#">Protective Services</a></li>
-                <li><a href="#">Sales, Marketing and Procurement</a></li>
-                <li><a href="#">Social care</a></li>
-                <li><a href="#">Transport and Logistics</a></li>
-            </ul>
+              <div class="govuk-grid-column-full">
+                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
 
 
 
+              <div class="govuk-grid-column-full">
+                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
 
+              <div class="govuk-grid-column-full">
+                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
+
+
+              <div class="govuk-grid-column-full">
+                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
+
+              <div class="govuk-grid-column-full">
+                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
+
+
+
+
+
+              <p style="padding-left: 20px;position: relative;top: 50px;">&lt;-&nbsp;&nbsp;1&nbsp;&nbsp;<a href="#">2</a>&nbsp;&nbsp;<a href="#">3</a>&nbsp;&nbsp;-&gt;
+              </p>
+
+          </div>
+
+      </div>
     </main>
 </div>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script>
-
-var $j = jQuery.noConflict();
-
-$j( function() {  
-  $j( "#course" ).autocomplete({
-	source: function( request, response ) {
-	  $j.ajax( {
-		url: "http://www.marsspiders.com/api/coursesearch.php",
-		dataType: "jsonp",
-		data: {
-		  what: request.term
-		},
-		success: function( data ) {
-		  console.log("kk");
-		  response( data );
-		}
-	  } );
-	},
-	minLength: 1,
-	select: function( event, ui ) {
-	 
-	}
-  } );
-  
-});
-
-</script>
-
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
 <script src="https://www.compare-school-performance.service.gov.uk/public/termi/element.details.js"></script>
 <script src="https://www.compare-school-performance.service.gov.uk/public/assets/scripts/application.js?v=1.1.18116.1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js" integrity="sha256-VCsWOz+0GuHdS/sIICtQNTFJdbaDI80rxvoB7BXabrU=" crossorigin="anonymous"></script>
@@ -446,6 +402,5 @@ $j( function() {
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn1x_WJWXTzZ9XVSYh7TymeE9LM7_wb8s&amp;libraries=places&amp;callback=loadViewModel"></script>
-
 
 {% endblock %}
