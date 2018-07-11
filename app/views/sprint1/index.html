@@ -417,7 +417,7 @@ $j(document).ready(function(e) {
 
     $j("#header-search").submit(function(e) {
         e.preventDefault();
-        $j(location).attr("href","course-search?course="+$("#course").val()+"&postcode="+$("#postcode").val());
+        $j(location).attr("href","/sprint1/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
     });
 
 });

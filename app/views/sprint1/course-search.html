@@ -31,7 +31,7 @@
     $j(document).ready(function() {
 
         $j("#course").val(getUrlParameter("course"));
-        $j("#postcode").val(getUrlParameter("postcode"));
+        $j("#FindSchoolByTown").val(getUrlParameter("postcode"));
 
     });
 
@@ -100,7 +100,7 @@
                   <div class="govuk-!-margin-bottom-9">
                   <div class="search-container">
                       <div class="search-text">
-                          <input id="postcode" style="max-width: 150px;" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                          <input id="FindSchoolByTown" style="max-width: 150px;" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                           <div class="search-divider"></div>
                           <div class="radius-container">
                               <select id="radius" class="form-control" name="radius" style="background: black;color: white;">
