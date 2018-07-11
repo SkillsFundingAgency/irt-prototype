@@ -5,15 +5,60 @@
 {% endblock %}
 
 {% block content %}
-<style>
-
-
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function() {
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function() {
+
+        $j("#course").val(getUrlParameter("course"));
+        $j("#FindSchoolByTown").val(getUrlParameter("postcode"));
 
     });
+
+
+
+    $j( function() {
+        $j( "#course" ).autocomplete({
+            source: function( request, response ) {
+                $j.ajax( {
+                    url: "https://www.marsspiders.com/api/coursesearch.php",
+                    dataType: "jsonp",
+                    data: {
+                        what: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+            },
+            minLength: 3,
+            select: function( event, ui ) {
+
+            }
+        } );
+
+    });
+
+
 </script>
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
@@ -210,7 +255,7 @@
                           <div class="govuk-form-group">
                               <label class="govuk-label" for="address-line-2">
                               </label>
-                              <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" placeholder="Course name">
+                              <input class="govuk-input" id="course" name="address-line-2" type="text" placeholder="Course name">
                           </div>
 
                       </div>
