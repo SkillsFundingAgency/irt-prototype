@@ -9,7 +9,8 @@
 
 
 <style>.govuk-width-container{max-width: none;}
-
+.govuk-button{background:#000;}
+.govuk-button:hover{background:#a9a9a9;}
 .search-container .search-text #radius {
     width: 100px;
     height: 38px;
@@ -261,22 +262,31 @@ strong{font-weight: 600}
                             <div class="search-input-wrapper">
 
                                 <div class="govuk-form-group">
+                                <div class="ui-widget">
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
-                                    <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" placeholder="Course name">
+                                    
+                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name" />
+                                    </div>
                                 </div>
 
                             </div>
-                        <input class="submit" type="submit" value="Search">
+
                     </div>
                             <p class="lede">Qualification Level</p>
                             <a target="_blank" style="position: relative; top:-20px; color: #fff;font-size: 12px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
                             <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
                                 <label class="govuk-label" for="radius"> Radius </label>
                                 <select class="govuk-select" id="radius" name="radius">
+                                    <option>All</option>
                                     <option>Level 1</option>
                                     <option>Level 2</option>
                                     <option>Level 3</option>
+                                    <option>Level 4</option>
+                                    <option>Level 5</option>
+                                    <option>Level 6</option>
+                                    <option>Level 7</option>
+                                    <option>Level 8</option>
                                 </select>
                             </div>
                             <div class="govuk-grid-column" style="width: 100%"></div>
@@ -284,7 +294,7 @@ strong{font-weight: 600}
 
                             <div class="search-container">
                                 <div class="search-text">
-                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Post code" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                                     <div class="search-divider"></div>
                                     <div class="radius-container">
                                         <select id="radius" class="form-control" name="radius" style="background: black;
@@ -301,8 +311,10 @@ strong{font-weight: 600}
                                 </div>
                                 <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
                             </div>
-
-
+<br>
+<br>
+<br>
+                            <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px">
 
                         </form>
                     </div>
@@ -318,6 +330,7 @@ strong{font-weight: 600}
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
        <h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
+        <p class="lede" style="padding-left: 20px">If you already know the establishment search here</p>
         <div class="header-search-content govuk-grid-column-two-thirds">
             <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
 
@@ -347,21 +360,21 @@ strong{font-weight: 600}
 
             <ul class="homepage-course-subject" style="position: relative;
     left: -19px;">
-                <li><a href="/course-categories/agriculture">Agriculture, Enviromental and Animal care</a></li>
-                <li><a href="/job-categories/business-and-finance">Business and Administrative</a></li>
-                <li><a href="/job-categories/computing-technology-and-digital">Catering and Hospitality</a></li>
-                <li><a href="/job-categories/construction-and-trades">Childcare and Education</a></li>
-                <li><a href="/job-categories/creative-and-media">Construction</a></li>
-                <li><a href="/job-categories/delivery-and-storage">Creative and Design</a></li>
-                <li><a href="/job-categories/emergency-and-uniform-services">Digital</a></li>
-                <li><a href="/job-categories/engineering-and-maintenance">Engineering and Manufacturing</a></li>
-                <li><a href="/job-categories/healthcare">Hair and Beauty</a></li>
-                <li><a href="/job-categories/hospitality-and-food">Health and Science</a></li>
-                <li><a href="/job-categories/law-and-legal">Legal, Finance and Accounting</a></li>
-                <li><a href="/job-categories/managerial">Protective Services</a></li>
-                <li><a href="/job-categories/manufacturing">Sales, Marketing and Procurement</a></li>
-                <li><a href="/job-categories/social-care">Social care</a></li>
-                <li><a href="/job-categories/transport">Transport and Logistics</a></li>
+                <li><a href="#">Agriculture, Enviromental and Animal care</a></li>
+                <li><a href="#">Business and Administrative</a></li>
+                <li><a href="#">Catering and Hospitality</a></li>
+                <li><a href="#">Childcare and Education</a></li>
+                <li><a href="#">Construction</a></li>
+                <li><a href="#">Creative and Design</a></li>
+                <li><a href="#">Digital</a></li>
+                <li><a href="#">Engineering and Manufacturing</a></li>
+                <li><a href="#">Hair and Beauty</a></li>
+                <li><a href="#">Health and Science</a></li>
+                <li><a href="#">Legal, Finance and Accounting</a></li>
+                <li><a href="#">Protective Services</a></li>
+                <li><a href="#">Sales, Marketing and Procurement</a></li>
+                <li><a href="#">Social care</a></li>
+                <li><a href="#">Transport and Logistics</a></li>
             </ul>
 
 
@@ -369,5 +382,36 @@ strong{font-weight: 600}
 
     </main>
 </div>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+
+var $j = jQuery.noConflict();
+
+$j( function() {  
+  $j( "#course" ).autocomplete({
+	source: function( request, response ) {
+	  $j.ajax( {
+		url: "http://www.marsspiders.com/api/coursesearch.php",
+		dataType: "jsonp",
+		data: {
+		  what: request.term
+		},
+		success: function( data ) {
+		  console.log("kk");
+		  response( data );
+		}
+	  } );
+	},
+	minLength: 1,
+	select: function( event, ui ) {
+	 
+	}
+  } );
+  
+});
+
+</script>
 
 {% endblock %}
