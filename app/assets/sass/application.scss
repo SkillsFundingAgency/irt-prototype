@@ -352,7 +352,7 @@ textarea, select, input[type="text"], input[type="password"], input[type="dateti
   z-index: 99 !important;
 }
 strong{font-weight: 600}
-.govuk-input,.govuk-select{border-color: #efefef!important;}
+.govuk-input,.govuk-select, .search-text input#FindSchoolByTown{border-color: #efefef!important;}
 
 .foo fieldset{
   display: block;
