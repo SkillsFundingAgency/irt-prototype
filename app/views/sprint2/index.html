@@ -267,27 +267,31 @@ strong{font-weight: 600}
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
                                     
-                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name or Provider" />
+                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name" />
                                     </div>
                                 </div>
 
                             </div>
 
                     </div>
-                            <p class="lede">Qualification Level</p>
+                            <p class="lede">Qualification level</p>
                             <a target="_blank" style="position: relative; top:-20px; color: #fff;font-size: 12px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
                             <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
                                 <label class="govuk-label" for="radius"> Radius </label>
                                 <select class="govuk-select" id="radius" name="radius">
-                                    <option>All</option>
-                                    <option>Level 1</option>
-                                    <option>Level 2</option>
-                                    <option>Level 3</option>
-                                    <option>Level 4</option>
-                                    <option>Level 5</option>
-                                    <option>Level 6</option>
-                                    <option>Level 7</option>
-                                    <option>Level 8</option>
+
+
+                                    <option value="0">Select level</option>
+                                    <option value="" selected="">Any Level</option>
+                                    <option value="LV1">Level 1 - NVQ Level 1</option>
+                                    <option value="LV2">Level 2 - GCSE Equivalent</option>
+                                    <option value="LV3">Level 3 - A-Level Equivalent</option>
+                                    <option value="LV4">Level 4 - Foundation Degree/Higher apprenticeship</option>
+                                    <option value="LV5">Level 5 - Foundation Degree year 2</option>
+                                    <option value="LV6">Level 6 - Honours Degree</option>
+                                    <option value="LV7">Level 7 - Masters Degree </option>
+                                    <option value="LV8">Level 8 - Doctorate</option>
+
                                 </select>
                             </div>
                             <div class="govuk-grid-column" style="width: 100%"></div>
@@ -295,7 +299,7 @@ strong{font-weight: 600}
 
                             <div class="search-container">
                                 <div class="search-text">
-                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                                     <div class="search-divider"></div>
                                     <div class="radius-container">
                                         <select id="radius" class="form-control" name="radius" style="background: black;
