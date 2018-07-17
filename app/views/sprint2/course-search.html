@@ -5,16 +5,63 @@
 {% endblock %}
 
 {% block content %}
-<style>
 
-
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function() {
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function() {
+
+        $j("#course").val(getUrlParameter("course"));
+        $j("#FindSchoolByTown").val(getUrlParameter("postcode"));
 
     });
+
+
+
+    $j( function() {
+        $j( "#course" ).autocomplete({
+            source: function( request, response ) {
+                $j.ajax( {
+                    url: "https://www.marsspiders.com/api/coursesearch.php",
+                    dataType: "jsonp",
+                    data: {
+                        what: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+            },
+            minLength: 3,
+            select: function( event, ui ) {
+
+            }
+        } );
+
+    });
+
+
 </script>
+
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
       <div class="govuk-grid-row">
@@ -45,10 +92,10 @@
                       </select>
                   </div>
 
-              </div>-->
+              </div>
 
 
-                  <p class="lede">Location</p>
+                  <p class="lede">Location</p>-->
 
                   <div class="govuk-!-margin-bottom-9">
                   <div class="search-container">
@@ -60,10 +107,10 @@
                                   <option value="1">1 mile</option>
                                   <option value="3">3 miles</option>
                                   <option value="5">5 miles</option>
-                                  <option value="10">10 miles</option>
+                                  <option value="10" selected="selected">10 miles</option>
                                   <option value="15">15 miles</option>
-                                  <option value="20" selected="selected">20 miles</option>
-                                  <option value="25">25 miles</option>
+                                  <option value="20">20 miles</option>
+                                  <option value="20">National</option>
                               </select>
                           </div>
                       </div>
@@ -92,19 +139,19 @@
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="study2" name="study" type="checkbox" value="2">
-                          <label class="govuk-label govuk-checkboxes__label" for="study2">Part Time (13)</label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study2">Part Time (36)</label>
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="study3" name="study" type="checkbox" value="3">
-                          <label class="govuk-label govuk-checkboxes__label" for="study3">Flexible (13)</label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study3">Flexible (10)</label>
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="study4" name="study" type="checkbox" value="4">
-                          <label class="govuk-label govuk-checkboxes__label" for="study4">Classroom (13)</label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study4">Classroom (1)</label>
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="study5" name="study" type="checkbox" value="5">
-                          <label class="govuk-label govuk-checkboxes__label" for="study5">Online (45)</label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study5">Online (0)</label>
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="study6" name="study" type="checkbox" value="6">
@@ -139,7 +186,7 @@
                   </div>
                   <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
-                    <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (13)</label>
+                    <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (2)</label>
                   </div>
                   <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
@@ -155,7 +202,7 @@
                     </div>
                     <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                        <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 (0)</label>
+                        <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 (11)</label>
                     </div>
                     <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
@@ -176,7 +223,7 @@
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
-                          <label class="govuk-label govuk-checkboxes__label" for="level1">GCSC (13)</label>
+                          <label class="govuk-label govuk-checkboxes__label" for="level1">GCSE (13)</label>
                       </div>
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
@@ -193,7 +240,31 @@
                   </fieldset>
               </div>
 
-
+                <p class="lede">Age suitability?</p>
+                <div class="govuk-form-group">
+                    <fieldset>
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-1" name="where-do-you-live" type="radio" value="england">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-1">
+                                    All ages
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                                    16 - 19 years olds
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+                                    19+ year olds
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
 
 
 
@@ -203,14 +274,14 @@
           <div class="govuk-grid-column-two-thirds homepage-bottom">
 
               <div class="header-search-content">
-                  <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
+                  <form action="/sprint2/course-search" class="site-search ui-front" id="header-search" method="post">
 
                       <div class="search-input-wrapper">
 
                           <div class="govuk-form-group">
                               <label class="govuk-label" for="address-line-2">
                               </label>
-                              <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" placeholder="Course name">
+                              <input class="govuk-input" id="course" name="address-line-2" type="text" placeholder="Course name">
                           </div>
 
                       </div>
@@ -245,7 +316,7 @@
                         <i class="icon icon-list"></i><span class="is-hidden">List</span></span>
 
 
-                    <a class="listing-view-link listing-view-link-last" title="Map view" href="#" rel="nofollow">
+                    <a class="listing-view-link listing-view-link-last" title="Map view" href="map" rel="nofollow">
                         <svg viewBox="0 0 10.883 15.927" id="search-icon--map-pointer-icon" width="4%" height="4%"><path d="M5.442 0A5.441 5.441 0 0 0 0 5.442c0 5.08 5.442 10.485 5.442 10.485s5.442-5.222 5.442-10.485A5.442 5.442 0 0 0 5.442 0zm.01 6.016a1.798 1.798 0 1 1 .002-3.596 1.798 1.798 0 0 1-.001 3.596z"></path></svg>
                         <i class="icon icon-location"></i><span class="is-hidden">Map</span></a>
 
@@ -255,14 +326,15 @@
 
             <div class="govuk-grid-column-full">
 
-              <h3><a href="#">Advanced Diploma in Child Care Studies</a></h3>
+              <h3><a href="course-details">Advanced Diploma in Child Care Studies</a></h3>
             </div>
             <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
               <span>Location: 1 High St, B91 1TY</span><br/>
               <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
-              <span>Duration: 1 year</span>
+              <span>Duration: 1 year</span><br>
+                <span>Contact: 0297 768 5947</span>
             </div>
-            <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
+            <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time</span><br/>
               <span>Level 3</span><br/>
               <span>Diploma</span><br/>
               <span>Start date: 3rd September 2018</span>
@@ -271,12 +343,77 @@
             </div>-->
 
               <div class="govuk-grid-column-full">
-              <h3><a href="#">National Academy in Child Care Studies</a></h3>
+              <h3><a href="course-details">National Academy in Child Care Studies</a></h3>
           </div>
               <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
                   <span>Location: 1 High St, B91 1TY</span><br/>
                   <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span><br>
+                  <span>Contact: 0156 768 5947</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Classroom</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+
+              </div>
+
+              <div class="govuk-grid-column-full">
+                  <h3><a href="course-details">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span><br>
+                  <span>Contact: 0208 768 5947</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Daytime</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
+
+
+
+              <div class="govuk-grid-column-full">
+                  <h3><a href="course-details">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span><br>
+                  <span>Contact: 0155 768 5947</span>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
+
+              <div class="govuk-grid-column-full">
+                  <h3><a href="course-details">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
                   <span>Duration: 1 year</span>
+                  <span>Contact: 0177 768 5947</span><br>
+              </div>
+              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time</span><br/>
+                  <span>Level 5</span><br/>
+                  <span>Diploma</span><br/>
+                  <span>Start date: 3rd September 2018</span>
+              </div>
+
+
+              <div class="govuk-grid-column-full">
+                  <h3><a href="course-details">National Academy in Child Care Studies</a></h3>
+              </div>
+              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
+                  <span>Location: 1 High St, B91 1TY</span><br/>
+                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
+                  <span>Duration: 1 year</span><br>
+                  <span>Contact: 0207 768 5947</span>
               </div>
               <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
                   <span>Level 5</span><br/>
@@ -285,71 +422,13 @@
               </div>
 
               <div class="govuk-grid-column-full">
-                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
+                  <h3><a href="course-details">National Academy in Child Care Studies</a></h3>
               </div>
               <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
                   <span>Location: 1 High St, B91 1TY</span><br/>
                   <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
-                  <span>Duration: 1 year</span>
-              </div>
-              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
-                  <span>Level 5</span><br/>
-                  <span>Diploma</span><br/>
-                  <span>Start date: 3rd September 2018</span>
-              </div>
-
-
-
-              <div class="govuk-grid-column-full">
-                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
-              </div>
-              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
-                  <span>Location: 1 High St, B91 1TY</span><br/>
-                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
-                  <span>Duration: 1 year</span>
-              </div>
-              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
-                  <span>Level 5</span><br/>
-                  <span>Diploma</span><br/>
-                  <span>Start date: 3rd September 2018</span>
-              </div>
-
-              <div class="govuk-grid-column-full">
-                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
-              </div>
-              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
-                  <span>Location: 1 High St, B91 1TY</span><br/>
-                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
-                  <span>Duration: 1 year</span>
-              </div>
-              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
-                  <span>Level 5</span><br/>
-                  <span>Diploma</span><br/>
-                  <span>Start date: 3rd September 2018</span>
-              </div>
-
-
-              <div class="govuk-grid-column-full">
-                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
-              </div>
-              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
-                  <span>Location: 1 High St, B91 1TY</span><br/>
-                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
-                  <span>Duration: 1 year</span>
-              </div>
-              <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
-                  <span>Level 5</span><br/>
-                  <span>Diploma</span><br/>
-                  <span>Start date: 3rd September 2018</span>
-              </div>
-
-              <div class="govuk-grid-column-full">
-                  <h3><a href="#">National Academy in Child Care Studies</a></h3>
-              </div>
-              <div class="govuk-grid-column-one-half"> <span>Solihull College</span><br/>
-                  <span>Location: 1 High St, B91 1TY</span><br/>
-                  <span>Distance: 1.2 miles > <a href="#">Journey time</a></span><br/>
-                  <span>Duration: 1 year</span>
+                  <span>Duration: 1 year</span><br>
+                  <span>Contact: 0185 768 5947</span>
               </div>
               <div class="govuk-grid-column-one-half govuk-!-margin-bottom-8"> <span>Full Time | Classroom | Daytime</span><br/>
                   <span>Level 5</span><br/>
@@ -361,7 +440,7 @@
 
 
 
-              <p style="padding-left: 20px;position: relative;top: 50px;">&lt;-&nbsp;&nbsp;1&nbsp;&nbsp;<a href="#">2</a>&nbsp;&nbsp;<a href="#">3</a>&nbsp;&nbsp;-&gt;
+              <p style="padding-left: 20px;">&lt;-&nbsp;&nbsp;1&nbsp;&nbsp;<a href="#">2</a>&nbsp;&nbsp;<a href="#">3</a>&nbsp;&nbsp;-&gt;
               </p>
 
           </div>

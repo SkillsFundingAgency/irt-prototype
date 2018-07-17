@@ -1,0 +1,235 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style>
+
+#map {
+ 	height: 400px; 
+	width: 100%; 
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBJryOtVAE3meu8GQ45qNTOJPr2OdoHA9I" type="text/javascript"></script>
+<script>
+$(document).ready(function(e) {
+   	var myLatlngC  = new google.maps.LatLng(51.994877, -0.984023);
+		  function initialize() {
+			var mapOptions = {
+			  zoom: 13,
+			  center: myLatlngC,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP			};
+			var mapC = new google.maps.Map(document.getElementById('map'), mapOptions);
+			var markerC = new google.maps.Marker({position:myLatlngC, map:mapC});
+		  }
+	google.maps.event.addDomListener(window, 'load', initialize); 
+});
+</script>
+<main id="content" role="main"> 
+
+    <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+                    <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Find a course</a></li>
+
+            
+        </ol>
+    </div>
+ 
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            English Language and English Literature A Level
+        </h1>
+        <nav aria-label="skip to your documents" class="govuk-jump-links" role="navigation">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+                    <ol class="govuk-list govuk-list--number">
+                        <li>
+                            <a class="govuk-link" href="#1">Qualification detail</a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#2">Course description</a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#3">Entry requirements</a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#4">Equipment required</a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="govuk-grid-column-one-half">
+                    <ol class="govuk-list govuk-list--number" start="5">
+                        <li>
+                            <a class="govuk-link" href="#5">Assessment method</a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#6">Venue</a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#7">Course duration</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </nav>
+        <section id="1">
+            <h2 class="govuk-heading-m">1. Qualification detail</h2>
+            <table class="govuk-table" role="presentation">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Qualification name</td>
+                        <td class="govuk-table__cell">English Language/Literature A Level</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Qualification Level</td>
+                        <td class="govuk-table__cell">Level 3</td>
+                    </tr>
+
+
+
+
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Course type</td>
+                        <td class="govuk-table__cell">Full time</td>
+                    </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Course start date</td>
+                    <td class="govuk-table__cell">07 September 2018</td>
+
+                </tr>
+                                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Apprenticeship duration</td>
+                    <td class="govuk-table__cell">2 years</td>
+
+                </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Instruction language</td>
+                        <td class="govuk-table__cell">English</td>
+                    </tr>
+                                                        <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Additional pricing information</td>
+                        <td class="govuk-table__cell">For those aged 16 to 18, courses are government funded.</td>
+                    </tr>
+                                                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Attendance pattern</td>
+                        <td class="govuk-table__cell">Daytime/working hours</td>
+                    </tr>
+                                </tbody>
+            </table>
+        </section>
+        <section id="2">
+            <h2 class="govuk-heading-m">2. Course description</h2>
+
+             <p class="govuk-body govuk-!-font-size-19">
+                This challenging course will develop students' knowledge and understanding of English Literature and Language through the study of novels, plays and poetry.  It is a course which combines aspects of linguistic study with the analysis of literary and non-literary texts.
+            </p>
+        </section>
+        <section id="3">
+            <h2 class="govuk-heading-m">3. Entry requirements</h2>
+             <p class="govuk-body govuk-!-font-size-19">
+                Students should have achieved a Grade 4 or above in GCSE English Language and Grade 6 in English Literature.
+            </p>
+        </section>
+        <section id="4">
+            <h2 class="govuk-heading-m">4. Equipment required</h2>
+             <p class="govuk-body govuk-!-font-size-19">
+                No equipment required
+            </p>
+        </section>
+        <section id="5">
+            <h2 class="govuk-heading-m">5. Assessment method</h2>
+             <p class="govuk-body govuk-!-font-size-19">Not available</p>
+
+        </section>
+        <section id="6">
+            <h2 class="govuk-heading-m">6. Venue</h2>
+  
+                <table class="govuk-table" role="presentation">
+                    <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Name</td>
+                        <td class="govuk-table__cell">The Buckingham School</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Address</td>
+                            <td class="govuk-table__cell">
+                                London Road<br>
+                                Buckingham<br>
+                                MK18 1AT<br>
+                                    <a class="govuk-link" target="_blank" href="http://maps.google.com/?q=51.994612,-0.984092">Find on Google maps</a>
+                            </td>
+                    </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Website</td>
+                            <td class="govuk-table__cell">
+                                <a class="govuk-link" href="http://www.buckinghamschool.com/">http://www.buckinghamschool.com</a>
+                            </td>
+                        </tr>
+                                                                <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Phone</td>
+                            <td class="govuk-table__cell">01280 812206</td>
+                        </tr>
+                        
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell" colspan="2"><div id="map"></div></td>
+                        </tr>
+                        
+                                        </tbody>
+                </table>
+        </section>
+        <section id="7">
+            <h2 class="govuk-heading-m">7. Course duration</h2>
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="col">Start date</th>
+                    <th class="govuk-table__header" scope="col">End date</th>
+                </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">02.02.2019</td>
+                        <td class="govuk-table__cell">02.04.2021</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        </div>
+        <div class="govuk-grid-column-one-third">
+            <aside class="govuk-related-items" role="complementary">
+                <h2 class="govuk-heading-m">Provider Details</h2>
+                 <p class="govuk-body govuk-!-font-size-19">Buckingham School</p>
+
+                <ul class="govuk-font-s govuk-list">
+                        <li>
+                            Website:
+                            <a class="govuk-link" href="http://www.buckinghamschool.com/">http://www.buckinghamschool.com/</a>
+                        </li>
+                                            <li>
+                            Email:
+                            <a class="govuk-link" href="mailto:jryan@buckinghamschool.org">jryan@buckinghamschool.org</a>
+                        </li>
+                                    </ul>
+            </aside>
+            <aside class="govuk-related-items" role="complementary">
+<h2 class="govuk-heading-m">Want to speak to an adviser?</h2>
+ <p class="govuk-body govuk-!-font-size-19" style="margin-bottom: 0px;"><span class="govuk-bold-s">Call </span>0800 100 900 or <a class="govuk-link" style="white-space: nowrap;" href="https://cxdirect.serco.com/visitor/EntryPage.htm" rel="external">use webchat</a></p>
+ <p class="govuk-body govuk-!-font-size-19 govuk-gray">8am to 10pm, 7 days a week</p>
+</aside>
+        </div>
+</div>
+
+ 
+
+
+ </main> 
+{% endblock %}

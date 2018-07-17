@@ -256,7 +256,7 @@ strong{font-weight: 600}
                        </p></div>
 
                         </div>
-                        <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
+                        <form action="/sprint2/course-search" class="site-search ui-front" id="header-search" method="post">
                             <div class="header-search-content">
 
                             <div class="search-input-wrapper">
@@ -266,7 +266,7 @@ strong{font-weight: 600}
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
                                     
-                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name" />
+                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name or Provider" />
                                     </div>
                                 </div>
 
@@ -294,7 +294,7 @@ strong{font-weight: 600}
 
                             <div class="search-container">
                                 <div class="search-text">
-                                    <input id="postcode" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                                     <div class="search-divider"></div>
                                     <div class="radius-container">
                                         <select id="radius" class="form-control" name="radius" style="background: black;
@@ -302,10 +302,10 @@ strong{font-weight: 600}
                                             <option value="1">1 mile</option>
                                             <option value="3">3 miles</option>
                                             <option value="5">5 miles</option>
-                                            <option value="10">10 miles</option>
+                                            <option value="10" selected="selected">10 miles</option>
                                             <option value="15">15 miles</option>
-                                            <option value="20" selected="selected">20 miles</option>
-                                            <option value="25">25 miles</option>
+                                            <option value="20">20 miles</option>
+                                            <option value="20">National</option>
                                         </select>
                                     </div>
                                 </div>
@@ -329,10 +329,10 @@ strong{font-weight: 600}
 <div class="govuk-width-container homepage-bottom" style="max-width: 960px; padding-bottom: 30px">
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
-       <h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
+       <!--<h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
         <p class="lede" style="padding-left: 20px">If you already know the establishment search here</p>
         <div class="header-search-content govuk-grid-column-two-thirds">
-            <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
+            <form action="/sprint2/course-search" class="site-search ui-front" id="header-search" method="post">
 
             <div class="search-input-wrapper">
 
@@ -355,26 +355,26 @@ strong{font-weight: 600}
     opacity: 0.5;
     margin-bottom: 75px;
     width: 87%;
-    border: solid 1px #21827b;">
+    border: solid 1px #21827b;">-->
             <h2 class="govuk-heading-l" style="padding-left: 20px">Explore by sector</h2>
 
             <ul class="homepage-course-subject" style="position: relative;
     left: -19px;">
-                <li><a href="#">Agriculture, Enviromental and Animal care</a></li>
-                <li><a href="#">Business and Administrative</a></li>
-                <li><a href="#">Catering and Hospitality</a></li>
-                <li><a href="#">Childcare and Education</a></li>
-                <li><a href="#">Construction</a></li>
-                <li><a href="#">Creative and Design</a></li>
-                <li><a href="#">Digital</a></li>
-                <li><a href="#">Engineering and Manufacturing</a></li>
-                <li><a href="#">Hair and Beauty</a></li>
-                <li><a href="#">Health and Science</a></li>
-                <li><a href="#">Legal, Finance and Accounting</a></li>
-                <li><a href="#">Protective Services</a></li>
-                <li><a href="#">Sales, Marketing and Procurement</a></li>
-                <li><a href="#">Social care</a></li>
-                <li><a href="#">Transport and Logistics</a></li>
+                <li><a href="#">Health, Public Services and Care</a></li>
+                <li><a href="#">Science and Mathematics</a></li>
+                <li><a href="#">Agriculture, Horticulture and Animal Care</a></li>
+                <li><a href="#">Engineering and Manufacturing Technologies</a></li>
+                <li><a href="#">Construction, Planning and the Built Environment</a></li>
+                <li><a href="#">Information and Communication Technology (ICT)</a></li>
+                <li><a href="#">Retail and Commercial Enterprise</a></li>
+                <li><a href="#">Leisure, Travel and Tourism</a></li>
+                <li><a href="#">Arts, Media and Publishing</a></li>
+                <li><a href="#">History, Philosophy and Theology</a></li>
+                <li><a href="#">Social Sciences</a></li>
+                <li><a href="#">Languages, Literature and Culture</a></li>
+                <li><a href="#">Education and Training</a></li>
+                <li><a href="#">Preparation for Life and Work</a></li>
+                <li><a href="#">Business, Administration, Finance and Law</a></li>
             </ul>
 
 
@@ -393,7 +393,7 @@ $j( function() {
   $j( "#course" ).autocomplete({
 	source: function( request, response ) {
 	  $j.ajax( {
-		url: "http://www.marsspiders.com/api/coursesearch.php",
+		url: "https://www.marsspiders.com/api/coursesearch.php",
 		dataType: "jsonp",
 		data: {
 		  what: request.term
@@ -412,13 +412,14 @@ $j( function() {
   
 });
 
+
 $j(document).ready(function(e) {
-    
-	$j("#header-search").submit(function(e) {
+
+    $j("#header-search").submit(function(e) {
         e.preventDefault();
-		$j(location).attr("href","course-search?course="+$("#course").val()+"&postcode="+$("#postcode").val());
+        $j(location).attr("href","/sprint2/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
     });
-	
+
 });
 
 </script>

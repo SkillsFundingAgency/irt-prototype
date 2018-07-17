@@ -5,62 +5,58 @@
 {% endblock %}
 
 {% block content %}
-<style>
-
-
-</style>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 <script>
 
-var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
 
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
         }
-    }
-};
+    };
 
-var $j = jQuery.noConflict();
+    var $j = jQuery.noConflict();
 
-$j(document).ready(function() {
+    $j(document).ready(function() {
 
-	$j("#course").val(getUrlParameter("course"));
-	$j("#postcode").val(getUrlParameter("postcode"));
+        $j("#course").val(getUrlParameter("course"));
+        $j("#FindSchoolByTown").val(getUrlParameter("postcode"));
 
-});
-
+    });
 
 
-$j( function() {  
-  $j( "#course" ).autocomplete({
-	source: function( request, response ) {
-	  $j.ajax( {
-		url: "http://www.marsspiders.com/api/coursesearch.php",
-		dataType: "jsonp",
-		data: {
-		  what: request.term
-		},
-		success: function( data ) {
-		  response( data );
-		}
-	  } );
-	},
-	minLength: 3,
-	select: function( event, ui ) {
-	 
-	}
-  } );
-  
-});
+
+    $j( function() {
+        $j( "#course" ).autocomplete({
+            source: function( request, response ) {
+                $j.ajax( {
+                    url: "https://www.marsspiders.com/api/coursesearch.php",
+                    dataType: "jsonp",
+                    data: {
+                        what: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+            },
+            minLength: 3,
+            select: function( event, ui ) {
+
+            }
+        } );
+
+    });
 
 
 </script>
@@ -102,7 +98,7 @@ $j( function() {
                   <div class="govuk-!-margin-bottom-9">
                   <div class="search-container">
                       <div class="search-text">
-                          <input id="postcode" style="max-width: 150px;" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                          <input id="FindSchoolByTown" style="max-width: 150px;" class="form-control mbl num" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                           <div class="search-divider"></div>
                           <div class="radius-container">
                               <select id="radius" class="form-control" name="radius" style="background: black;color: white;">
@@ -252,14 +248,14 @@ $j( function() {
           <div class="govuk-grid-column-two-thirds homepage-bottom">
 
               <div class="header-search-content">
-                  <form action="/sprint1/course-search" class="site-search ui-front" id="header-search" method="post">
+                  <form action="/sprint2/course-search" class="site-search ui-front" id="header-search" method="post">
 
                       <div class="search-input-wrapper">
 
                           <div class="govuk-form-group">
                               <label class="govuk-label" for="address-line-2">
                               </label>
-                              <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name">
+                              <input class="govuk-input" id="course" name="address-line-2" type="text" placeholder="Course name">
                           </div>
 
                       </div>
@@ -278,7 +274,7 @@ $j( function() {
                       <option>Popular</option>
                   </select>
               </div>-->
-
+            <img src="/public/images/map.png" style="max-width: 100%;margin-bottom: 20px">
 
 
             <div class="govuk-grid-column-full">
@@ -288,15 +284,15 @@ $j( function() {
                 </div>
                 <div class="govuk-grid-column-one-half">
 
-
-                    <span class="listing-view-link is-active" title="List view">
+                    <a class="listing-view-link listing-view-link-last" title="List view" rel="nofollow" href="course-search">
+                    <span class="" title="List view">
                         <svg viewBox="0 0 23.604 15" id="search-icon--list-icon" width="8%" height="8%"><path d="M0 0h6.953v4.234H0zm0 5.366h6.953V9.6H0zm0 5.366h6.953v4.234H0zM8.156 0h15.448v4.234H8.156zm0 5.366h15.448V9.6H8.156zm0 5.366h15.448v4.234H8.156z"></path></svg>
-                        <i class="icon icon-list"></i>List</span>
+                        <i class="icon icon-list"></i><span class="is-hidden">List</span></span></a>
 
 
-                    <a href="map" class="" title="Map view" style="z-index: 999">
+
                         <svg viewBox="0 0 10.883 15.927" id="search-icon--map-pointer-icon" width="4%" height="4%"><path d="M5.442 0A5.441 5.441 0 0 0 0 5.442c0 5.08 5.442 10.485 5.442 10.485s5.442-5.222 5.442-10.485A5.442 5.442 0 0 0 5.442 0zm.01 6.016a1.798 1.798 0 1 1 .002-3.596 1.798 1.798 0 0 1-.001 3.596z"></path></svg>
-                        Map</a>
+                        <i class="icon icon-location"></i><span class="is-hidden listing-view-link is-active">Map</span>
 
 
                 </div>
@@ -410,16 +406,14 @@ $j( function() {
 
 
 
-              <p style="padding-left: 20px;">&lt;-&nbsp;&nbsp;1&nbsp;&nbsp;<a href="#">2</a>&nbsp;&nbsp;<a href="#">3</a>&nbsp;&nbsp;-&gt;
+              <p style="padding-left: 20px;position: relative;top: 50px;">&lt;-&nbsp;&nbsp;1&nbsp;&nbsp;<a href="#">2</a>&nbsp;&nbsp;<a href="#">3</a>&nbsp;&nbsp;-&gt;
               </p>
-
 
           </div>
 
       </div>
     </main>
 </div>
-
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
 <script src="https://www.compare-school-performance.service.gov.uk/public/termi/element.details.js"></script>
@@ -453,6 +447,5 @@ $j( function() {
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn1x_WJWXTzZ9XVSYh7TymeE9LM7_wb8s&amp;libraries=places&amp;callback=loadViewModel"></script>
-
 
 {% endblock %}
