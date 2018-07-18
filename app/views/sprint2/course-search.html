@@ -6,7 +6,19 @@
 
 {% block content %}
 
-        <style>.select-mode{width: 50%}</style>
+<style>
+
+.select-mode{width: 50%}
+
+#accordion .ui-accordion-header { background: #ddd; border-radius: 0; border: 3px solid #ddd; position: relative; }
+#accordion .ui-accordion-header-collapsed { margin-bottom:15px;}
+#accordion .ui-accordion-content { border-radius: 0; border: 3px solid #ddd;  margin-bottom:15px;}
+#accordion .ui-accordion-header:focus { outline: 3px solid #FFBF47; }
+#accordion .ui-accordion-header-icon { display: block; float:right; margin-top:5px;}
+
+.num-selected { margin-left: 1px; margin-top:5px; font-size:13px; margin-bottom:-10px}
+
+</style>
 
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
@@ -35,6 +47,11 @@
 
         $j("#course").val(getUrlParameter("course"));
         $j("#FindSchoolByTown").val(getUrlParameter("postcode"));
+		
+		$j( "#accordion" ).accordion({
+		  collapsible: true,
+		  heightStyle: "content"
+		});
 
     });
 
@@ -122,12 +139,10 @@
                   </div>
                   </div>
 
-
-<br>
 <br>
 
 
-                <p class="lede">Age suitability?</p>
+                <!--<p class="lede">Age suitability?</p>
                 <div class="govuk-form-group">
                     <fieldset>
                         <div class="govuk-radios">
@@ -151,15 +166,48 @@
                             </div>
                         </div>
                     </fieldset>
+                </div>-->
+				
+				<div id="accordion">
+				<h3 class="lede">Age suitability?
+				</h3>
+				
+                <div class="govuk-form-group">
+                    
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-1" name="where-do-you-live" type="radio" value="england" checked="checked">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-1">
+                                    All ages
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                                    16 - 19 years olds
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+                                    19+ year olds
+                                </label>
+                            </div>
+                        </div>
+                   
                 </div>
 
-                <br>
+				
+				
+            
 
 
-              <p class="lede">How to Study?</p>
+              <h3 class="lede">How to Study?
+			  <p class="num-selected">1 selected</p>
+			  </h3>
 
               <div class="form-group govuk-checkboxes">
-                  <fieldset>
+                 
                       <div class="govuk-checkboxes__item">
                           <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
                           <label class="govuk-label govuk-checkboxes__label" for="study0">All (71)</label>
@@ -192,20 +240,16 @@
                           <input class="govuk-checkboxes__input" id="study7" name="study" type="checkbox" value="6">
                           <label class="govuk-label govuk-checkboxes__label" for="study7">Weekends (0)</label>
                       </div>
-                  </fieldset>
+                  
               </div>
 
-              <br>
+            
 
-
-
-
-
-
-
-              <p class="lede">Qualification type</p>
+              <h3 class="lede">Qualification type
+			  <p class="num-selected">5 selected</p>
+			  </h3>
               <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
-                  <fieldset>
+                 
                       <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
                           <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
@@ -230,18 +274,16 @@
                           <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
                           <label class="govuk-label govuk-checkboxes__label" for="level4">Access to Higher Education (0)</label>
                       </div>
-                  </fieldset>
+                  
               </div>
-                <br>
+                
 
 
-
-
-
-
-                <p class="lede">Level</p>
+                <h3 class="lede">Level
+				
+				<p class="num-selected">7 selected</p></h3>
                 <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
-                    <fieldset>
+                    
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
                             <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
@@ -278,12 +320,12 @@
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
                             <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 (0)</label>
                         </div>
-                    </fieldset>
+                   
                 </div>
+</div>
 
 
-
-                <div id="filter-addtional-controls">
+                <div id="filter-addtional-controls" style="margin-top:40px;">
                     <a href="#" class="add-clear-filters" id="clear-filters">Clear all filters</a>
                 </div>
 
