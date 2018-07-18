@@ -290,38 +290,88 @@
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
-                            <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 (13)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 - NVQ Level 1 (13)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
-                            <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 (45)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 - GCSE Equivalent (45)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
-                            <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (2)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 - A-Level Equivalent (2)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
-                            <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 - Foundation Degree/Higher apprenticeship (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 - Foundation Degree year 2 (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 6 (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 6 - Honours Degree (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 (11)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 - Masters Degree (11)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 - Doctorate (0)</label>
                         </div>
                    
                 </div>
+
+
+                <h3 class="lede">Start date
+
+                    <p class="num-selected">Anytime selected</p></h3>
+                <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
+
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0" checked="checked">
+                        <label class="govuk-label govuk-checkboxes__label" for="level0">Anytime</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                        <label class="govuk-label govuk-checkboxes__label" for="level0">From today</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                        <label class="govuk-label govuk-checkboxes__label" for="level0">Select date from</label>
+                    </div>
+
+                </div>
+
+
+
+
+                <h3 class="lede">Accredited Courses
+                    </h3>
+
+                    <div class="govuk-form-group">
+
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-1" name="where-do-you-live" type="radio" value="england">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-1">
+                                    Show accredited courses only
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -364,7 +414,7 @@
 
 
 
-            <div class="govuk-grid-column-full">
+            <div class="govuk-grid-column-full" style="border-bottom: solid 2px black; padding-bottom: 20px">
 
                 <p class="establishment-data-download">
                     <a href="#">Print this page</a>
@@ -387,7 +437,24 @@
 
 
                 </div>-->
+
+                <div class="form-group">
+                    <span class="form-label">Sort by:</span>
+                    <select class="form-control trigger-result-update sortby-selector" name="z">
+                        <option id="alpha-az" value="a" selected="">Relevance</option>
+                        <option id="alpha-az" value="a">Distance</option>
+                        <option id="alpha-az" value="a">Start day</option>
+                        <option id="alpha-za" value="z">Alphabetical A-Z</option>
+                    </select>
+
                 </div>
+
+
+                </div>
+
+
+
+
 
             <div class="govuk-grid-column-full">
 
