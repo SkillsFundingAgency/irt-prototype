@@ -253,8 +253,9 @@ strong{font-weight: 600}
                     <div id="MainContentTop_T945D82B6001_Col00" class="sf_colsIn govuk-grid-column-two-thirds" data-sf-element="Container" data-placeholder-label="Home banner Full Width Container">
 
                         <div>
-                            <div><h1 class="heading-xlarge govuk-heading-xl" id="site-header" style="padding-top: 30px">Find a course</h1><p class="lede">Explore what kind of course is right for you
-                       </p></div>
+                            <div><h1 class="heading-xlarge govuk-heading-xl" id="site-header" style="padding-top: 30px">Find a course</h1><p class="lede" style="color: white;font-size:18px; font-weight: normal!important">
+                                Search for training and learning opportunities at all levels. We’ll show you courses from colleges, training providers and local education authorities. <a style="color: white" href="https://nationalcareersservice.direct.gov.uk/contact-us/home">Contact an adviser</a> if you need help finding the right course for you.
+                            </p></div>
 
                         </div>
                         <form action="/sprint3/course-search" class="site-search ui-front" id="header-search" method="post">
@@ -264,17 +265,20 @@ strong{font-weight: 600}
 
                                 <div class="govuk-form-group">
                                 <div class="ui-widget">
+
+                                    <p class="lede">Course name</p>
+
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
                                     
-                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Course name" />
+                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="For example, Engineering." />
                                     </div>
                                 </div>
 
                             </div>
 
                     </div>
-                            <p class="lede">Qualification level</p>
+                            <p class="lede">Qualification level (Optional)</p>
                             <a target="_blank" style="position: relative; top:-20px; color: #fff;font-size: 12px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
                             <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
                                 <label class="govuk-label" for="radius"> Radius </label>
@@ -282,21 +286,21 @@ strong{font-weight: 600}
 
 
                                     <option value="0">Select level</option>
-                                    <option value="" selected="">All</option>
-                                    <option value="LV1">Entry level</option>
-                                    <option value="LV1">Level 1 - NVQ Level 1</option>
-                                    <option value="LV2">Level 2 - GCSE Equivalent</option>
-                                    <option value="LV3">Level 3 - A-Level Equivalent</option>
-                                    <option value="LV4">Level 4 - Foundation Degree/Higher apprenticeship</option>
-                                    <option value="LV5">Level 5 - Foundation Degree year 2</option>
-                                    <option value="LV6">Level 6 - Honours Degree</option>
-                                    <option value="LV7">Level 7 - Masters Degree </option>
-                                    <option value="LV8">Level 8 - Doctorate</option>
+                                    <option value="" selected="">The level you want to study at.</option>
+                                    <option value="LV1">Entry level - Skills for Life/Entry level certificate</option>
+                                    <option value="LV1">Level 1 - ESOL/Level 1 award</option>
+                                    <option value="LV2">Level 2 - GCSE /Level 2 certificate</option>
+                                    <option value="LV3">Level 3 - A level/Level 3 diploma</option>
+                                    <option value="LV4">Level 4 - Certificate of higher education/Higher apprenticeship</option>
+                                    <option value="LV5">Level 5 - Foundation degree/NVQ Level 5</option>
+                                    <option value="LV6">Level 6 - Degree/City & Guilds Associateship</option>
+                                    <option value="LV7">Level 7 - Masters Degree/City & Guilds Membership</option>
+                                    <option value="LV8">Level 8 - PhD/City & Guilds Fellowship</option>
 
                                 </select>
                             </div>
                             <div class="govuk-grid-column" style="width: 100%"></div>
-                            <p class="lede">Location</p>
+                            <p class="lede">Location (Optional)</p>
 
                             <div class="search-container">
                                 <div class="search-text">
