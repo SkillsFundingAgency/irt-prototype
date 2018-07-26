@@ -1,0 +1,298 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBJryOtVAE3meu8GQ45qNTOJPr2OdoHA9I" type="text/javascript"></script>
+<script>
+$(document).ready(function(e) {
+   	var myLatlngC  = new google.maps.LatLng(51.994877, -0.984023);
+		  function initialize() {
+			var mapOptions = {
+			  zoom: 13,
+			  center: myLatlngC,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP			};
+			var mapC = new google.maps.Map(document.getElementById('map'), mapOptions);
+			var markerC = new google.maps.Marker({position:myLatlngC, map:mapC});
+		  }
+	google.maps.event.addDomListener(window, 'load', initialize);
+});
+</script>-->
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Find a course</a></li>
+
+
+    </ol>
+</div>
+
+
+<a class="link-back mt" href="course-search">Back to results</a>
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Chemistry
+        </h1>
+        <section id="1">
+
+
+            <table class="govuk-table" role="presentation">
+                <tbody class="govuk-table__body">
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Qualification name</td>
+                    <td class="govuk-table__cell">Level 2 Diploma in Plumbing Studies</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Entry requirements</td>
+                    <td class="govuk-table__cell">
+
+                        For entry into Kendrick School Sixth Form, applicants will normally have to satisfy the following minimum conditions:  8 GCSEs grades A* - C two of which must be English Language and Mathematics and all should be from full GCSE courses.
+                        <details role="group">
+
+                            <summary role="button" aria-controls="details-content-d354f2b4-11ca-4b24-982d-df72b3e8ab30" aria-expanded="false">
+
+                                <span style="color:#005ea5"> Read more</span></summary>
+                            <div class="panel" id="details-content-d354f2b4-11ca-4b24-982d-df72b3e8ab30" aria-hidden="true">
+
+                         B grades or above in the subjects to be studied at AS/A-level (Grade B or above in the Higher Tier is an entry requirement for Mathematics and/or Science AS/A level courses). Students who have taken Foundation Tier GCSE courses in Mathematics and Sciences (rather than Higher Tier) are unlikely to have covered all the appropriate topics from which they can move on to A-level in the context of this school.  To study a Science subject it would be necessary for an applicant to have achieved at least a B grade in both Science and Additional Science or Separate Science GCSEs.  Students would be expected to have studied GCSE in subjects they wish to study at A-level. In the case of Economics and Sociology where the subjects may not have been studied at GCSE level, Grade B in English Literature and a Humanity would be required as a condition of entry to the course.  Students living overseas at the time of application and not taking GCSE courses must provide evidence of the equivalence of their externally taken qualifications to GCSE by an official organisation (for example NARIC).  For GCSEs under the new grading system, entry requirements are: o 8 GCSEs of A*-C or 9-4 o For the subjects to be studied at A Level the requirement will be A*-B or 9-6
+
+
+
+                            </div>
+                            </summary>
+                        </details>
+
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Cost</td>
+                    <td class="govuk-table__cell">0
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Start date</td>
+                    <td class="govuk-table__cell">September 2015</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Duration</td>
+                    <td class="govuk-table__cell">2 years</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Attendance</td>
+                    <td class="govuk-table__cell">Full time</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Study times</td>
+                    <td class="govuk-table__cell">Daytime/working hours</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Study location</td>
+                    <td class="govuk-table__cell">Location/campus</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <a target="_blank" href="https://www.kendrick.reading.sch.uk/page/?title=Chemistry&pid=82" role="button" class="govuk-button govuk-button--start">
+                Apply now
+            </a>
+            <p style="position: relative;top: -25px; font-size: 14px;">On the provider’s website</p>
+
+        </section>
+
+
+
+        <section id="2">
+            <h2 class="govuk-heading-m">Course description</h2>
+
+            <p class="govuk-body govuk-!-font-size-19">
+                During the first part of Year 12, the concepts and ideas studied at GCSE level will be reviewed and built on, with topics including Atomic Structure and Bonding, Chemical Calculations and Basic Organic Chemistry. This allows all students, regardless of the specification studied at GCSE level, to gain a firm basis for progression. During the second part of Year 12, topics such as Energetics, Kinetics, Alkenes, Alcohols and Group 2 Metals are covered. Towards the end of Year 12 and into Year 13, more advanced topics are studied. Organic Chemistry is developed further with topics such as Stereoisomerism, Aromatic Chemistry and Structure Determination (including NMR) being taught. Advanced Inorganic and Physical Chemistry topics include Thermodynamics, Redox Equilibria and Transition Metals. The complete two years of study lead to the A-level examination. During the two year A level course students will develop their practical skills through carrying out a range of experiments including twelve required practical tasks. Practical skills are assessed within the A-level written examinations. In addition, a separate 'endorsement of practical skills' will be taken alongside A-level. This will be assessed by teachers and will be based on direct observation of students' competency in a range of skills that are not assessable within written examinations.
+            </p>
+            <p class="govuk-heading-s">What you’ll need to bring</p>
+            <p class="govuk-body govuk-!-font-size-19">
+                No equipment required
+            </p>
+            <p class="govuk-heading-s">How you’ll be assessed</p>
+            <p class="govuk-body govuk-!-font-size-19">Examinations (100%). In addition, for A-level, there is a 'Practical Skills Endorsement' that is teacher assessed (pass/fail).
+            </p>
+        </section>
+
+        <!-- <hr>
+
+         <h2 class="govuk-heading-m" style="padding-top:10px ">Speak to a National Careers adviser</h2>
+         <p class="govuk-body govuk-!-font-size-19" style="margin-bottom: 0px;"><span class="govuk-bold-s">Call </span>0800 100 900 or <a class="govuk-link" style="white-space: nowrap;" href="https://cxdirect.serco.com/visitor/EntryPage.htm" rel="external">use webchat</a></p>
+         <p class="govuk-body govuk-!-font-size-19 govuk-gray">8am to 10pm, 7 days a week</p>
+ -->
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+
+        <section id="6">
+            <aside class="govuk-related-items" role="complementary">
+                <h2 class="govuk-heading-s" style="margin-top: 10px">Provider</h2>
+                <p class="govuk-body-s">Kendrick School</p>
+                <hr>
+                <h2 class="govuk-heading-s" style="margin-top: 10px;padding-top: 10px">Venue</h2>
+
+                <table class="govuk-table" role="presentation">
+                    <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Name</td>
+                        <td class="govuk-table__cell govuk-body-s">	Kendrick School</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Address</td>
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                            London Road<br>
+                            Reading<br>
+                            RG1 5BN<br>
+                            <a class="govuk-link" target="_blank" href="https://www.google.com/maps?ll=51.451521,-0.96588&z=16&t=m&hl=en-US&gl=GB&mapclient=embed&cid=10225270531911568758">Find on Google maps</a>
+                        </td>
+                    </tr><tr class="govuk-table__row">
+                        <td class="govuk-table__cell" colspan="2">     <details>
+
+                            <summary>
+
+                                <span style="color:#005ea5"> Journey time</span></summary>
+                            <div class="panel">
+
+                                <select class="form-control valid select-mode" name="" aria-invalid="false">
+                                    <option value="DRIVING" aria-live="polite">Driving</option>
+                                    <option value="TRANSIT" aria-live="polite">Bus/Train</option>
+                                    <option value="WALKING" aria-live="polite">Walking</option>
+                                    <option value="BICYCLING" aria-live="polite">Cycling</option>
+                                </select>
+
+                                <span class="journey-time" aria-live="polite">25 mins</span>
+                            </div>
+                        </details></td>
+
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Website</td>
+                        <td class="govuk-table__cell">
+                            <a class="govuk-link govuk-body-s" target="_blank" href="https://www.kendrick.reading.sch.uk/">https://www.kendrick.reading.sch.uk/</a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Email</td>
+                        <td class="govuk-table__cell govuk-body-s"><a href="mailto:admin@kendrick.reading.sch.uk">admin@kendrick.reading.sch.uk</a> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Phone</td>
+                        <td class="govuk-table__cell govuk-body-s">0118 9015859</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <details>
+
+                    <summary style="position: relative;top:-10px">
+                        <span style="color:#005ea5;">Other dates and venues</span>
+                    </summary>
+                    <div class="panel">
+                        <table class="govuk-table">
+                            <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__header govuk-body-s" scope="col">Venue</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Start date</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Options</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s">Clarence Street</td>
+                                <td class="govuk-table__cell govuk-body-s">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Boswall Street</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+
+                <hr>
+
+
+            </aside>
+        </section>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+</main>
+{% endblock %}
