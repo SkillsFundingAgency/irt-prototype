@@ -426,3 +426,46 @@ ul {
 .grey {
   color: #6f777b;
 }
+
+//soc buttons
+
+.icons-buttons li a {
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-size: 21px 21px;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.icons-buttons li a.twitter {
+  background-image: url(/public/images/icon-twitter.svg);
+}
+.icons-buttons li a.facebook {
+  background-image: url(/public/images/icon-facebook.svg);
+}
+.icons-buttons li a.linkedin {
+  background-image: url(/public/images/icon-linkedin.svg);
+}
+.icons-buttons li a.email {
+  background-image: url(/public/images/icon-email.svg);
+}
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.icons-buttons li {
+  list-style: none;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+.icons-buttons li  a {
+  text-decoration: none;
+}
+.icons-buttons ul {
+  margin: 0 0 6 0px;
+  padding-left: 0;
+}
