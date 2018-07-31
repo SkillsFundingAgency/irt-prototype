@@ -292,6 +292,10 @@ strong{font-weight: 600}
     width: 100%;
 }
 .select-editable{width: 100%}
+.govuk-error-message{display: none}
+
+
+
 </style>
 
 
@@ -307,7 +311,7 @@ strong{font-weight: 600}
                             </p></div>
 
                         </div>
-                        <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post">
+                        <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post" name="frm">
                             <div class="header-search-content">
 
                             <div class="search-input-wrapper">
@@ -318,6 +322,11 @@ strong{font-weight: 600}
                                     <p class="lede">Course name</p>
 
                                     <p style="color: white; font-weight: normal; font-size: 16px;padding: 0!important;margin-bottom:0;position: relative; top:-16px;">For example, Engineering or Hairdressing</p>
+
+
+                                    <span id="dob-error" class="govuk-error-message">
+                                     Enter a course name
+                                      </span>
 
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
@@ -382,7 +391,7 @@ strong{font-weight: 600}
 <br>
 <br>
 <br>
-                            <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px">
+                            <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px" onclick="return IsEmpty();">
 
                         </form>
                     </div>
@@ -574,6 +583,19 @@ $j(document).ready(function(e) {
     $(document).ready(function(){
         $('#ErrorSummaryHeading').focus();
     });
+
+
+
+    function IsEmpty(){
+        if(document.forms['frm'].course.value === "")
+        {
+            //alert("empty");
+            $('.govuk-error-message').css("display","block");
+            $('#header-search').addClass( "govuk-form-group--error" );
+            return false;
+        }
+        return true;
+    }
 
 
 </script>
