@@ -243,6 +243,55 @@ textarea, select, input[type="text"], input[type="password"], input[type="dateti
 strong{font-weight: 600}
 .govuk-input,.govuk-select{border-color: #efefef!important;}
 .govuk-main-wrapper{padding-bottom: 0!important;}
+
+/*SELECT SEARCH*/
+
+ .select-editable {
+     position:relative;
+     background-color:white;
+     border:solid #eee 2px;
+     width:120px;
+     height:40px;
+	 overflow:visible;
+ }
+ .select-editable select {
+     position:absolute;
+     top:42px;
+     left:0px;
+     font-size:14px;
+     border:none;
+     width:500px;
+	 max-width:100vw;
+     margin:0;
+	 display:none;
+	 height:auto;
+	 z-index:10001;
+ }
+ .select-editable input {
+     position:absolute;
+     top:0px;
+     left:0px;
+     width:100px;
+     padding:1px;
+	 padding-left:8px;
+     font-size:12px;
+     border:none;
+ }
+ .select-editable select:focus, .select-editable input:focus {
+     outline:none;
+ }
+
+
+.select-editable .govuk-input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 40px;
+    margin-right: -40px;
+    float: left;
+    width: 100%;
+}
+.select-editable{width: 100%}
 </style>
 
 
@@ -273,7 +322,15 @@ strong{font-weight: 600}
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
                                     
-                                    <input class="govuk-input" id="course" name="course" type="text" placeholder="Enter a course name" />
+                                    <!--<input class="govuk-input" id="course" name="course" type="text" placeholder="Enter a course name" />-->
+
+									<div class="select-editable">
+										<select id="course-list" class="govuk-select">
+										
+										</select>
+										<input class="govuk-input" type="text" name="course" id="course"value="" placeholder="Enter a course name"/>
+									</div>
+									
                                     </div>
                                 </div>
 
@@ -414,18 +471,77 @@ xmlDoc = parser.parseFromString(xml,"text/xml");
 var items=[];
 var els = xmlDoc.getElementsByTagName('sub')
 for (var i=0, len = els.length; i<len; i++) {
-    items.push(els[i].childNodes[0].nodeValue);
+    items.push(els[i].childNodes[0].nodeValue);	
 }
 
+//create an array from XML
+var allItems=[];
+var els = xmlDoc.getElementsByTagName('expansion')
+	for (var i=0, len = els.length; i<len; i++) {
+		var children=[];	
+		for (var k = 0; k < els[i].childNodes.length; k++) {
+			if (els[i].childNodes[k].nodeName==="sub") {
+				children.push(els[i].childNodes[k].firstChild.nodeValue);
+			}
+		}//end for  
+		allItems.push(children);
+	} //end for i
 
-//autocomplete
-$j( function() {  
-  $j( "#course" ).autocomplete({
-	source: items,
-	minLength: 1,
-  } );
-  
+//search array
+function doSearch(text, items) {
+	
+	//to lower case
+	text=text.toLowerCase();
+	
+	$j.each(items, function(i, val) {
+		//search each subarray
+		var found=false;
+		$j.each(val, function(i, value) {
+			value=value.toLowerCase();
+			if (value.indexOf(text)>-1) {
+				found=true;
+				
+			}
+		});
+		//if found add entire subarray to the list
+		if (found) {
+			$j.each(val, function(i, value) {
+				$('#course-list').append($('<option>', {
+					value: value,
+					text: value
+				}));
+				
+			});
+		}
+	});
+	
+}	
+	
+$j("#course").keyup(function(e) {
+	//remove old items		
+	$j("#course-list option").each(function (e) {
+		$(this).remove();
+	});
+	//search
+	doSearch($(this).val(), allItems);
+	//expand
+	var length=$j("#course-list").children('option').length;
+	if (length>0) {
+		var size = (length<10 ? length : 40);
+		$j("#course-list").attr("size", size);
+		$j("#course-list").show();
+	} else {
+		$j("#course-list").hide();
+	}
 });
+
+$j("#course-list").change(function(e) {
+	$j("#course").val($j(this).val());
+	$j(this).hide();
+	$j("#course").focus();
+});
+
+
 
 
 $j(document).ready(function(e) {
