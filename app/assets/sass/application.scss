@@ -469,3 +469,23 @@ ul {
   margin: 0 0 6 0px;
   padding-left: 0;
 }
+
+//icons
+
+.side-space {
+  margin-right: .5em;
+}
+.icon-medium {
+  font-size: 24px;
+  &:before {
+    vertical-align: bottom;
+    padding-bottom: 1em;
+  }
+}
+.icon-small {
+  font-size: 18px;
+  &:before {
+    vertical-align: middle;
+    padding-bottom: 1em;
+  }
+}
