@@ -51,6 +51,12 @@
 		  collapsible: true,
 		  heightStyle: "content"
 		});
+		
+		$j(".accordion-link").each(function (e) {
+			$(this).click(function (e) {
+				e.stopPropagation();
+			});
+		});
 
     });
 
@@ -116,12 +122,9 @@
 
                   <p class="lede">Location</p>-->
 
-                  <div class="" style="    border-radius: 0;
-    border: 3px solid #ddd;padding: 10px;
-    ">
-                  <div class="search-container">
+                  <div class="search-container clearfix" style="margin-bottom: 15px">
                       <div class="search-text" style="padding-right: 0">
-                          <input id="FindSchoolByTown" style="max-width: 170px;" class="form-control mbl num" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                          <input id="FindSchoolByTown" style="max-width: 200px;" class="form-control mbl num" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                           <div class="search-divider"></div>
                           <div class="radius-container">
                               <select id="radius" class="form-control" name="radius" style="background: black;color: white;">
@@ -138,14 +141,6 @@
                       <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
 
                   </div>
-
-                      <input name="searchtype" value="Apply" class="search-input govuk-button" type="submit" style="background: #000;position: relative;
-    top: 10px;
-    left: 200px;margin-bottom: 10px;
-}">
-                  </div>
-
-<br>
 
 
                 <!--<p class="lede">Age suitability?</p>
@@ -319,8 +314,8 @@
                 
 
 
-                <h3 class="lede">Qualification level
-				
+                <h3 class="lede">Qualification level<br>
+                    <a class="accordion-link" target="_blank" style="font-size: 13px;color: #005ea5;z-index: 999" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
 				<p class="num-selected">2 selected</p></h3>
                 <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
                     
@@ -330,39 +325,39 @@
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
-                            <label class="govuk-label govuk-checkboxes__label" for="level0">Entry level - Skills for Life/Entry level certificate</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level0">Entry level (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
-                            <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 - ESOL/Level 1 award (13)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
-                            <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 - GCSE /Level 2 certificate (45)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
-                            <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 - A level/Level 3 diploma (2)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (1)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
-                            <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 - Certificate of higher education/Higher apprenticeship (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 (70)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 - Foundation degree/NVQ Level 5 (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 6 - Degree/City & Guilds Associateship (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 6 (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 - Masters Degree/City & Guilds Membership (11)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 (0)</label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
-                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 - PhD/City & Guilds Fellowship (0)</label>
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 (0)</label>
                         </div>
                    
                 </div>
@@ -371,7 +366,7 @@
 </div>
 
 
-                <div id="filter-addtional-controls" style="margin-top:40px;">
+                <div id="filter-addtional-controls" style="margin-top:15px;">
                     <a href="#" class="add-clear-filters" id="clear-filters">Clear all filters</a>
                 </div>
 
