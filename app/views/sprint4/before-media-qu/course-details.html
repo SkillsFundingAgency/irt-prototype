@@ -48,19 +48,6 @@ GOV.UK prototype kit
         height: 400px;
         width: 100%;
     }
-	
-	.enrol-text {
-		position: relative;top: -25px; font-size: 14px;
-	}
-	
-	@media all and (max-width: 640px) {
-		.enrol-text {
-			margin-top:12px;
-		}
-		.share-links li {
-			margin:5px !important;
-		}
-	}
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -151,7 +138,7 @@ $(document).ready(function(e) {
             <a target="_blank" href="https://www.newham.ac.uk/course-listing/city-guilds-intermediate-diploma-in-plumbing.html" role="button" class="govuk-button govuk-button--start">
                 Enrol now
             </a>
-            <p class="enrol-text">on the provider’s website</p>
+            <p style="position: relative;top: -25px; font-size: 14px;">on the provider’s website</p>
 
         </section>
 
@@ -176,7 +163,7 @@ $(document).ready(function(e) {
 
         <div class="icons-buttons" style="margin-top: 80px">
             <h3 class="govuk-heading-m">Share this page</h3>
-            <ul class="share-links">
+            <ul>
                 <li>
                     <a target="_blank" href="https://twitter.com/intent/tweet?original_referer&amp;url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F&amp;text=GOV.UK+social+sharing+buttons%3A+the+first+10+weeks" class="twitter">Twitter</a>
                 </li>
@@ -251,12 +238,12 @@ $(document).ready(function(e) {
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell govuk-body-s">Website</td>
                         <td class="govuk-table__cell">
-                            <a class="govuk-link govuk-body-s" target="_blank" href="http://www.newham.ac.uk" style="word-break: break-all;">http://www.newham.ac.uk</a>
+                            <a class="govuk-link govuk-body-s" target="_blank" href="http://www.newham.ac.uk">http://www.newham.ac.uk</a>
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell govuk-body-s">Email</td>
-                        <td class="govuk-table__cell govuk-body-s"><a href="mailto:	externalenquiries@newham.ac.uk" style="word-break: break-all;">	externalenquiries@newham.ac.uk</a> </td>
+                        <td class="govuk-table__cell govuk-body-s"><a href="mailto:	externalenquiries@newham.ac.uk">	externalenquiries@newham.ac.uk</a> </td>
                     </tr>
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell govuk-body-s">Phone</td>
