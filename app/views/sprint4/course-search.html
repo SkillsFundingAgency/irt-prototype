@@ -31,7 +31,94 @@
     .gap-mobile{margin-top: 30px;padding-top: 30px; border-top: 1px solid #ddd}
 }
 
+/*SELECT SEARCH*/
 
+ .select-editable {
+     position:relative;
+     background-color:white;
+     border:solid #eee 2px;
+     width:calc(100%);
+     height:40px;
+	 overflow:visible;
+	 float:left;
+ }
+ .select-editable ul {
+     position:absolute;
+     top:44px;
+     left:0px;
+     width:500px;
+	 max-width:100vw;
+     margin:0;
+	 display:none;
+	 height:auto;
+	 max-height:400px;
+	 z-index:10001;
+	 font-size:17px !important;
+	 cursor:pointer;
+	 padding:0;
+	 border-top:none;
+	 border-right: solid 1px #ccc;
+	 border-left: solid 1px #ccc;
+	 border-bottom: solid 1px #ccc;	 
+	 list-style-type: none;
+	 background-color:#fff;
+	 overflow-y: scroll;
+	 overflow-x: hidden;
+ }
+ 
+  .select-editable li:hover {
+     border-top: solid 1px #ccc;
+	 border-bottom: solid 1px #ccc;
+ }
+ 
+  .select-editable li {
+     padding: 5px;
+	 text-overflow: ellipsis;
+	 height:20px;
+ }
+  
+ 
+ .select-editable input {
+     position:absolute;
+     top:0px;
+     left:0px;
+     width:100px;
+     padding:1px;
+	 padding-left:8px;
+     font-size:17px !important;
+     border:none;
+ }
+ 
+  .select-editable input:focus {
+     outline: 3px solid #FFBF47;
+ }
+ 
+ 
+.select-editable .govuk-input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 40px;
+    margin-right: -40px;
+    float: left;
+    width: 100%;
+}
+
+.radius-container {
+	width: 105px !important;
+	float:left;
+}
+
+
+.radius {
+	width: 100% !important;
+}
+
+.town {
+	width:calc(100% - 108px) !important;
+	float:left;
+}
+li{    font-family: "nta", Arial, sans-serif;}
 </style>
 
 
@@ -77,27 +164,7 @@
 
 
 
-    $j( function() {
-        $j( "#course" ).autocomplete({
-            source: function( request, response ) {
-                $j.ajax( {
-                    url: "https://www.marsspiders.com/api/coursesearch.php",
-                    dataType: "jsonp",
-                    data: {
-                        what: request.term
-                    },
-                    success: function( data ) {
-                        response( data );
-                    }
-                } );
-            },
-            minLength: 3,
-            select: function( event, ui ) {
 
-            }
-        } );
-
-    });
 
 
 </script>
@@ -137,12 +204,12 @@
 
                   <p class="lede">Location</p>-->
 
-                  <div class="search-container clearfix" style="margin-bottom: 15px">
+                  <div class="search-container clearfix" style="margin-bottom: 15px; height:40px;">
                       <div class="search-text" style="padding-right: 0">
-                          <input id="FindSchoolByTown" style="max-width: 200px;" class="form-control mbl num" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                          <input id="FindSchoolByTown" style="max-width: 200px;" class="govuk-input mbl num town" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                           <div class="search-divider"></div>
                           <div class="radius-container">
-                              <select id="radius" class="form-control" name="radius" style="background: black;color: white;">
+                              <select id="radius" class="govuk-select radius" name="radius" style="background: black;color: white;">
                                   <option value="1">1 mile</option>
                                   <option value="3">3 miles</option>
                                   <option value="5">5 miles</option>
@@ -398,11 +465,16 @@
                           <div class="govuk-form-group">
                               <label class="govuk-label" for="address-line-2">
                               </label>
-                              <input class="govuk-input" id="course" name="address-line-2" type="text" placeholder="Course name">
+									<div class="select-editable">
+										<ul id="course-list">
+										
+										</ul>
+										<input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter a course name"/>
+									</div>
                           </div>
 
                       </div>
-                      <input class="submit" type="submit" value="Search">
+                      <input class="submit govuk-button" type="submit" value="Search" style="">
                   </form>
 
               </div>
@@ -611,6 +683,128 @@ SO50 5FS</span><br/>
 <script src="https://www.compare-school-performance.service.gov.uk/public/termi/element.details.js"></script>
 <script src="https://www.compare-school-performance.service.gov.uk/public/assets/scripts/application.js?v=1.1.18116.1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js" integrity="sha256-VCsWOz+0GuHdS/sIICtQNTFJdbaDI80rxvoB7BXabrU=" crossorigin="anonymous"></script>
+
+<script>
+
+//parse XML
+var xml="";
+$j.ajax({ 
+    url: "tsenu.html",
+    async: false,
+    success: function (data){
+        xml = data;
+    }
+});
+parser = new DOMParser();
+xmlDoc = parser.parseFromString(xml,"text/xml");
+var items=[];
+var els = xmlDoc.getElementsByTagName('sub')
+for (var i=0, len = els.length; i<len; i++) {
+    items.push(els[i].childNodes[0].nodeValue);	
+}
+
+//create an array from XML
+var allItems=[];
+var els = xmlDoc.getElementsByTagName('expansion')
+	for (var i=0, len = els.length; i<len; i++) {
+		var children=[];	
+		for (var k = 0; k < els[i].childNodes.length; k++) {
+			if (els[i].childNodes[k].nodeName==="sub") {
+				children.push(els[i].childNodes[k].firstChild.nodeValue);
+			}
+		}//end for  
+		allItems.push(children);
+	} //end for i
+	
+//search array
+function doSearch(text, items) {
+	
+	//to lower case
+	text=text.toLowerCase();
+	var textHigh=text.toUpperCase();
+	
+	var listItems=[];
+	$j.each(items, function(i, val) {
+		//search each subarray
+		var found=false;
+		$j.each(val, function(i, value) {
+			value=value.toLowerCase();
+			if (value.indexOf(text)>-1) {
+				found=true;
+			}
+		});
+		//if found add entire subarray to the list
+		if (found) {
+			listItems.push.apply(listItems,val);
+		}
+	});
+	
+	listItems.sort();
+	
+	//add exat match to first;
+	var pos;
+	if (listItems.indexOf(textHigh)>-1) {
+		pos=listItems.indexOf(textHigh);
+		listItems.splice(pos,1);
+		listItems.unshift(textHigh);
+	}
+	
+	$j.each(listItems, function(i, value) {
+		var valueLow=value.toLowerCase();
+		var valueHigh=value.toUpperCase();
+		var textReplace='<strong>'+textHigh+'</strong>';
+		if (valueLow.indexOf(text)>-1) {
+			formated=valueHigh.replace(textHigh, textReplace);
+		} else {
+		formated=valueHigh;
+		}
+			
+		$('#course-list').append($('<li>', {
+			"data-value": value,
+			html: formated
+		}));		
+	});			
+	
+}	
+
+$j("#course").keyup(function(e) {
+	//remove old items		
+	$j("#course-list li").each(function (e) {
+		$(this).remove();
+	});
+	//search
+	doSearch($(this).val(), allItems);
+	//expand
+	var length=$j("#course-list").children('li').length;
+	if (length>0) {
+		$j("#course-list").show();
+	} else {
+		$j("#course-list").hide();
+	}
+});
+
+$j("#course-list").click(function (e) {
+		$j("#course").val($j("li:hover").attr("data-value"));
+		$j(this).hide();
+		$j("#course").focus();
+});
+
+
+
+
+$j(document).ready(function(e) {
+	
+	$j(window).on("load resize", function(e) {
+		$("#course-list").width($("#course").width()+50);
+	});
+	
+	$j("#course").click(function(e) {
+		$j("#course-list").hide();
+	});
+
+});
+
+</script>
 
 <script>
     var localAuthorities = [{"id":"301","LANAME":"Barking and Dagenham","REGION":"32","REGIONNAME":"London East"},{"id":"302","LANAME":"Barnet","REGION":"33","REGIONNAME":"London North"},{"id":"370","LANAME":"Barnsley","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"800","LANAME":"Bath and North East Somerset","REGION":"45","REGIONNAME":"South West B"},{"id":"822","LANAME":"Bedford","REGION":"25","REGIONNAME":"East of England A"},{"id":"303","LANAME":"Bexley","REGION":"32","REGIONNAME":"London East"},{"id":"330","LANAME":"Birmingham","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"889","LANAME":"Blackburn with Darwen","REGION":"6","REGIONNAME":"North West A"},{"id":"890","LANAME":"Blackpool","REGION":"6","REGIONNAME":"North West A"},{"id":"350","LANAME":"Bolton","REGION":"7","REGIONNAME":"North West B"},{"id":"837","LANAME":"Bournemouth","REGION":"43","REGIONNAME":"South West A"},{"id":"867","LANAME":"Bracknell Forest","REGION":"36","REGIONNAME":"South East A"},{"id":"380","LANAME":"Bradford","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"304","LANAME":"Brent","REGION":"35","REGIONNAME":"London West"},{"id":"846","LANAME":"Brighton and Hove","REGION":"39","REGIONNAME":"South East D"},{"id":"801","LANAME":"Bristol","REGION":"45","REGIONNAME":"South West B"},{"id":"305","LANAME":"Bromley","REGION":"34","REGIONNAME":"London South"},{"id":"825","LANAME":"Buckinghamshire","REGION":"36","REGIONNAME":"South East A"},{"id":"351","LANAME":"Bury","REGION":"7","REGIONNAME":"North West B"},{"id":"381","LANAME":"Calderdale","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"873","LANAME":"Cambridgeshire","REGION":"25","REGIONNAME":"East of England A"},{"id":"202","LANAME":"Camden","REGION":"31","REGIONNAME":"London Central"},{"id":"823","LANAME":"Central Bedfordshire","REGION":"25","REGIONNAME":"East of England A"},{"id":"895","LANAME":"Cheshire East","REGION":"9","REGIONNAME":"North West C"},{"id":"896","LANAME":"Cheshire West & Chester","REGION":"9","REGIONNAME":"North West C"},{"id":"201","LANAME":"City of London","REGION":"32","REGIONNAME":"London East"},{"id":"908","LANAME":"Cornwall","REGION":"43","REGIONNAME":"South West A"},{"id":"840","LANAME":"County Durham","REGION":"1","REGIONNAME":"North East A"},{"id":"331","LANAME":"Coventry","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"306","LANAME":"Croydon","REGION":"34","REGIONNAME":"London South"},{"id":"909","LANAME":"Cumbria","REGION":"6","REGIONNAME":"North West A"},{"id":"841","LANAME":"Darlington","REGION":"1","REGIONNAME":"North East A"},{"id":"831","LANAME":"Derby","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"830","LANAME":"Derbyshire","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"878","LANAME":"Devon","REGION":"43","REGIONNAME":"South West A"},{"id":"371","LANAME":"Doncaster","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"835","LANAME":"Dorset","REGION":"43","REGIONNAME":"South West A"},{"id":"332","LANAME":"Dudley","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"307","LANAME":"Ealing","REGION":"35","REGIONNAME":"London West"},{"id":"811","LANAME":"East Riding of Yorkshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"845","LANAME":"East Sussex","REGION":"39","REGIONNAME":"South East D"},{"id":"308","LANAME":"Enfield","REGION":"33","REGIONNAME":"London North"},{"id":"881","LANAME":"Essex","REGION":"27","REGIONNAME":"East of England B"},{"id":"390","LANAME":"Gateshead","REGION":"3","REGIONNAME":"North East B"},{"id":"916","LANAME":"Gloucestershire","REGION":"45","REGIONNAME":"South West B"},{"id":"203","LANAME":"Greenwich","REGION":"32","REGIONNAME":"London East"},{"id":"204","LANAME":"Hackney","REGION":"32","REGIONNAME":"London East"},{"id":"876","LANAME":"Halton","REGION":"9","REGIONNAME":"North West C"},{"id":"205","LANAME":"Hammersmith and Fulham","REGION":"35","REGIONNAME":"London West"},{"id":"850","LANAME":"Hampshire","REGION":"37","REGIONNAME":"South East B"},{"id":"309","LANAME":"Haringey","REGION":"33","REGIONNAME":"London North"},{"id":"310","LANAME":"Harrow","REGION":"35","REGIONNAME":"London West"},{"id":"805","LANAME":"Hartlepool","REGION":"1","REGIONNAME":"North East A"},{"id":"311","LANAME":"Havering","REGION":"32","REGIONNAME":"London East"},{"id":"884","LANAME":"Herefordshire","REGION":"22","REGIONNAME":"West Midlands B"},{"id":"919","LANAME":"Hertfordshire","REGION":"25","REGIONNAME":"East of England A"},{"id":"312","LANAME":"Hillingdon","REGION":"35","REGIONNAME":"London West"},{"id":"313","LANAME":"Hounslow","REGION":"35","REGIONNAME":"London West"},{"id":"921","LANAME":"Isle of Wight","REGION":"37","REGIONNAME":"South East B"},{"id":"420","LANAME":"Isles of Scilly","REGION":"43","REGIONNAME":"South West A"},{"id":"206","LANAME":"Islington","REGION":"31","REGIONNAME":"London Central"},{"id":"207","LANAME":"Kensington and Chelsea","REGION":"31","REGIONNAME":"London Central"},{"id":"886","LANAME":"Kent","REGION":"39","REGIONNAME":"South East D"},{"id":"810","LANAME":"Kingston Upon Hull","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"314","LANAME":"Kingston upon Thames","REGION":"34","REGIONNAME":"London South"},{"id":"382","LANAME":"Kirklees","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"340","LANAME":"Knowsley","REGION":"9","REGIONNAME":"North West C"},{"id":"208","LANAME":"Lambeth","REGION":"31","REGIONNAME":"London Central"},{"id":"888","LANAME":"Lancashire","REGION":"6","REGIONNAME":"North West A"},{"id":"383","LANAME":"Leeds","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"856","LANAME":"Leicester","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"855","LANAME":"Leicestershire","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"209","LANAME":"Lewisham","REGION":"32","REGIONNAME":"London East"},{"id":"925","LANAME":"Lincolnshire","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"341","LANAME":"Liverpool","REGION":"9","REGIONNAME":"North West C"},{"id":"821","LANAME":"Luton","REGION":"25","REGIONNAME":"East of England A"},{"id":"352","LANAME":"Manchester","REGION":"7","REGIONNAME":"North West B"},{"id":"887","LANAME":"Medway","REGION":"39","REGIONNAME":"South East D"},{"id":"315","LANAME":"Merton","REGION":"34","REGIONNAME":"London South"},{"id":"806","LANAME":"Middlesbrough","REGION":"1","REGIONNAME":"North East A"},{"id":"826","LANAME":"Milton Keynes","REGION":"36","REGIONNAME":"South East A"},{"id":"391","LANAME":"Newcastle upon Tyne","REGION":"3","REGIONNAME":"North East B"},{"id":"316","LANAME":"Newham","REGION":"32","REGIONNAME":"London East"},{"id":"926","LANAME":"Norfolk","REGION":"27","REGIONNAME":"East of England B"},{"id":"812","LANAME":"North East Lincolnshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"813","LANAME":"North Lincolnshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"802","LANAME":"North Somerset","REGION":"45","REGIONNAME":"South West B"},{"id":"392","LANAME":"North Tyneside","REGION":"3","REGIONNAME":"North East B"},{"id":"815","LANAME":"North Yorkshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"928","LANAME":"Northamptonshire","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"929","LANAME":"Northumberland","REGION":"3","REGIONNAME":"North East B"},{"id":"892","LANAME":"Nottingham","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"891","LANAME":"Nottinghamshire","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"353","LANAME":"Oldham","REGION":"7","REGIONNAME":"North West B"},{"id":"931","LANAME":"Oxfordshire","REGION":"36","REGIONNAME":"South East A"},{"id":"874","LANAME":"Peterborough","REGION":"25","REGIONNAME":"East of England A"},{"id":"879","LANAME":"Plymouth","REGION":"43","REGIONNAME":"South West A"},{"id":"836","LANAME":"Poole","REGION":"43","REGIONNAME":"South West A"},{"id":"851","LANAME":"Portsmouth","REGION":"37","REGIONNAME":"South East B"},{"id":"870","LANAME":"Reading","REGION":"36","REGIONNAME":"South East A"},{"id":"317","LANAME":"Redbridge","REGION":"32","REGIONNAME":"London East"},{"id":"807","LANAME":"Redcar and Cleveland","REGION":"1","REGIONNAME":"North East A"},{"id":"318","LANAME":"Richmond upon Thames","REGION":"34","REGIONNAME":"London South"},{"id":"354","LANAME":"Rochdale","REGION":"7","REGIONNAME":"North West B"},{"id":"372","LANAME":"Rotherham","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"857","LANAME":"Rutland","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"355","LANAME":"Salford","REGION":"7","REGIONNAME":"North West B"},{"id":"333","LANAME":"Sandwell","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"343","LANAME":"Sefton","REGION":"9","REGIONNAME":"North West C"},{"id":"373","LANAME":"Sheffield","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"893","LANAME":"Shropshire","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"871","LANAME":"Slough","REGION":"36","REGIONNAME":"South East A"},{"id":"334","LANAME":"Solihull","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"933","LANAME":"Somerset","REGION":"43","REGIONNAME":"South West A"},{"id":"803","LANAME":"South Gloucestershire","REGION":"45","REGIONNAME":"South West B"},{"id":"393","LANAME":"South Tyneside","REGION":"3","REGIONNAME":"North East B"},{"id":"852","LANAME":"Southampton","REGION":"37","REGIONNAME":"South East B"},{"id":"882","LANAME":"Southend-on-Sea","REGION":"27","REGIONNAME":"East of England B"},{"id":"210","LANAME":"Southwark","REGION":"31","REGIONNAME":"London Central"},{"id":"342","LANAME":"St. Helens","REGION":"9","REGIONNAME":"North West C"},{"id":"860","LANAME":"Staffordshire","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"356","LANAME":"Stockport","REGION":"7","REGIONNAME":"North West B"},{"id":"808","LANAME":"Stockton-on-Tees","REGION":"1","REGIONNAME":"North East A"},{"id":"861","LANAME":"Stoke-on-Trent","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"935","LANAME":"Suffolk","REGION":"27","REGIONNAME":"East of England B"},{"id":"394","LANAME":"Sunderland","REGION":"3","REGIONNAME":"North East B"},{"id":"936","LANAME":"Surrey","REGION":"38","REGIONNAME":"South East C"},{"id":"319","LANAME":"Sutton","REGION":"34","REGIONNAME":"London South"},{"id":"866","LANAME":"Swindon","REGION":"45","REGIONNAME":"South West B"},{"id":"357","LANAME":"Tameside","REGION":"7","REGIONNAME":"North West B"},{"id":"894","LANAME":"Telford and Wrekin","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"883","LANAME":"Thurrock","REGION":"27","REGIONNAME":"East of England B"},{"id":"880","LANAME":"Torbay","REGION":"43","REGIONNAME":"South West A"},{"id":"211","LANAME":"Tower Hamlets","REGION":"32","REGIONNAME":"London East"},{"id":"358","LANAME":"Trafford","REGION":"7","REGIONNAME":"North West B"},{"id":"384","LANAME":"Wakefield","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"335","LANAME":"Walsall","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"320","LANAME":"Waltham Forest","REGION":"33","REGIONNAME":"London North"},{"id":"212","LANAME":"Wandsworth","REGION":"31","REGIONNAME":"London Central"},{"id":"877","LANAME":"Warrington","REGION":"9","REGIONNAME":"North West C"},{"id":"937","LANAME":"Warwickshire","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"869","LANAME":"West Berkshire","REGION":"36","REGIONNAME":"South East A"},{"id":"938","LANAME":"West Sussex","REGION":"38","REGIONNAME":"South East C"},{"id":"213","LANAME":"Westminster","REGION":"31","REGIONNAME":"London Central"},{"id":"359","LANAME":"Wigan","REGION":"7","REGIONNAME":"North West B"},{"id":"865","LANAME":"Wiltshire","REGION":"45","REGIONNAME":"South West B"},{"id":"868","LANAME":"Windsor and Maidenhead","REGION":"36","REGIONNAME":"South East A"},{"id":"344","LANAME":"Wirral","REGION":"9","REGIONNAME":"North West C"},{"id":"872","LANAME":"Wokingham","REGION":"36","REGIONNAME":"South East A"},{"id":"336","LANAME":"Wolverhampton","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"885","LANAME":"Worcestershire","REGION":"22","REGIONNAME":"West Midlands B"},{"id":"816","LANAME":"York","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"}];

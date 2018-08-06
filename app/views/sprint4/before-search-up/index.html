@@ -254,42 +254,19 @@ strong{font-weight: 600}
      height:40px;
 	 overflow:visible;
  }
- .select-editable ul {
+ .select-editable select {
      position:absolute;
-     top:44px;
+     top:42px;
      left:0px;
+     font-size:14px;
+     border:none;
      width:500px;
 	 max-width:100vw;
      margin:0;
 	 display:none;
 	 height:auto;
-	 max-height:400px;
 	 z-index:10001;
-	 font-size:17px !important;
-	 cursor:pointer;
-	 padding:0;
-	 border-top:none;
-	 border-right: solid 1px #ccc;
-	 border-left: solid 1px #ccc;
-	 border-bottom: solid 1px #ccc;	 
-	 list-style-type: none;
-	 background-color:#fff;
-	 overflow-y: scroll;
-	 overflow-x: hidden;
  }
- 
-  .select-editable li:hover {
-     border-top: solid 1px #ccc;
-	 border-bottom: solid 1px #ccc;
- }
- 
-  .select-editable li {
-     padding: 5px;
-	 text-overflow: ellipsis;
-	 height:20px;
- }
-  
- 
  .select-editable input {
      position:absolute;
      top:0px;
@@ -297,15 +274,14 @@ strong{font-weight: 600}
      width:100px;
      padding:1px;
 	 padding-left:8px;
-     font-size:17px !important;
+     font-size:12px;
      border:none;
  }
- 
-  .select-editable input:focus {
-     outline: 3px solid #FFBF47;
+ .select-editable select:focus, .select-editable input:focus {
+     outline:none;
  }
- 
- 
+
+
 .select-editable .govuk-input {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -319,7 +295,7 @@ strong{font-weight: 600}
 .govuk-error-message{display: none}
 
 .radius-container {
-	width: 100px !important;
+	width: 85px !important;
 	float:left;
 }
 
@@ -329,7 +305,7 @@ strong{font-weight: 600}
 }
 
 .town {
-	width:calc(100% - 103px) !important;
+	width:calc(100% - 88px) !important;
 	float:left;
 }
 
@@ -371,9 +347,9 @@ strong{font-weight: 600}
                                     <!--<input class="govuk-input" id="course" name="course" type="text" placeholder="Enter a course name" />-->
 
 									<div class="select-editable">
-										<ul id="course-list">
+										<select id="course-list" class="govuk-select">
 										
-										</ul>
+										</select>
 										<input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter a course name"/>
 									</div>
 									
@@ -412,7 +388,7 @@ strong{font-weight: 600}
                                     <input id="FindSchoolByTown" class="form-control mbl num town" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
                                     <div class="search-divider" style="float:left;"></div>
                                     <div class="radius-container" style="float:left;">
-                                        <select id="radius" class="govuk-select radius" name="radius" style="background: white;color: black;">
+                                        <select id="radius" class="form-control radius" name="radius" style="background: white;color: black;">
                                             <option value="1">1 mile</option>
                                             <option value="3">3 miles</option>
                                             <option value="5">5 miles</option>
@@ -532,15 +508,13 @@ var els = xmlDoc.getElementsByTagName('expansion')
 		}//end for  
 		allItems.push(children);
 	} //end for i
-	
+
 //search array
 function doSearch(text, items) {
 	
 	//to lower case
 	text=text.toLowerCase();
-	var textHigh=text.toUpperCase();
 	
-	var listItems=[];
 	$j.each(items, function(i, val) {
 		//search each subarray
 		var found=false;
@@ -548,62 +522,45 @@ function doSearch(text, items) {
 			value=value.toLowerCase();
 			if (value.indexOf(text)>-1) {
 				found=true;
+				
 			}
 		});
 		//if found add entire subarray to the list
 		if (found) {
-			listItems.push.apply(listItems,val);
+			$j.each(val, function(i, value) {
+				$('#course-list').append($('<option>', {
+					value: value,
+					text: value
+				}));
+				
+			});
 		}
 	});
 	
-	listItems.sort();
-	
-	//add exat match to first;
-	var pos;
-	if (listItems.indexOf(textHigh)>-1) {
-		pos=listItems.indexOf(textHigh);
-		listItems.splice(pos,1);
-		listItems.unshift(textHigh);
-	}
-	
-	$j.each(listItems, function(i, value) {
-		var valueLow=value.toLowerCase();
-		var valueHigh=value.toUpperCase();
-		var textReplace='<strong>'+textHigh+'</strong>';
-		if (valueLow.indexOf(text)>-1) {
-			formated=valueHigh.replace(textHigh, textReplace);
-		} else {
-		formated=valueHigh;
-		}
-			
-		$('#course-list').append($('<li>', {
-			"data-value": value,
-			html: formated
-		}));		
-	});			
-	
 }	
-
+	
 $j("#course").keyup(function(e) {
 	//remove old items		
-	$j("#course-list li").each(function (e) {
+	$j("#course-list option").each(function (e) {
 		$(this).remove();
 	});
 	//search
 	doSearch($(this).val(), allItems);
 	//expand
-	var length=$j("#course-list").children('li').length;
+	var length=$j("#course-list").children('option').length;
 	if (length>0) {
+		var size = (length<10 ? length : 40);
+		$j("#course-list").attr("size", size);
 		$j("#course-list").show();
 	} else {
 		$j("#course-list").hide();
 	}
 });
 
-$j("#course-list").click(function (e) {
-		$j("#course").val($j("li:hover").attr("data-value"));
-		$j(this).hide();
-		$j("#course").focus();
+$j("#course-list").change(function(e) {
+	$j("#course").val($j(this).val());
+	$j(this).hide();
+	$j("#course").focus();
 });
 
 
@@ -617,12 +574,8 @@ $j(document).ready(function(e) {
     });
 	
 	$j(window).on("load resize", function(e) {
-		$("#course-list").width($("#course").width()+50);
+		$("#course-list").width($("#course").width()+40);
 	});
-	
-	$j("#course").click(function(e) {
-		$j("#course-list").hide();
-	});	
 
 });
 

@@ -1,248 +1,35 @@
-
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-  GOV.UK Prototype Kit
+{% block page_title %}
+  GOV.UK prototype kit
 {% endblock %}
 
 {% block content %}
 
+<style>
 
-<style>.govuk-width-container{max-width: none;}
-.govuk-button{background:#000;}
-.govuk-button:hover{background:#a9a9a9;}
-.search-container .search-text #radius {
-    width: 100px;
-    height: 38px;
-    border: none;
-}
+.select-mode{width: 50%}
 
-.search-container .search-text .radius-container {
-    width: 98px;
-    height: 38px;
-    border: 1px solid #bfc1c3;
-    border-left: none;
-    float: left;
-}
+#accordion .ui-accordion-header { background: #ddd; border-radius: 0; border: 3px solid #ddd; position: relative; }
+#accordion .ui-accordion-header-collapsed { margin-bottom:15px;}
+#accordion .ui-accordion-content { border-radius: 0; border: 3px solid #ddd;  margin-bottom:15px;}
+#accordion .ui-accordion-header:focus { outline: 3px solid #FFBF47; }
+#accordion .ui-accordion-header-icon { display: block; float:right; margin-top:5px;}
 
-.optional-section, .help-content {
-    border-left: #bfc1c3 solid 4px;
-    padding: 14px 0 14px 14px;
-    margin-bottom: 0.5em !important;
-    clear: both;
-}
-
-.search-container .search-text {
-    width: 100%;
-    max-width: 439px;
-    float: left;
-    box-sizing: border-box;
-    padding-right: 40px;
-    margin-right: -40px;
-}
-.search-container .search-text input.form-control {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-family: "nta",Arial,sans-serif;
-    font-weight: 400;
-    text-transform: none;
-    font-size: 14px;
-    line-height: 1.1428571429;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 4px 4px 3px 4px;
-    background-color: #fff;
-    border: 1px solid #bfc1c3;
-}
-
-.btn, .btn:visited {
-    display: inline;
-    border: none;
-    text-decoration: none;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.25;
-    padding: 8px 16px;
-    cursor: pointer;
-    background-image: none;
-    text-shadow: none;
-    box-shadow: none;
-}
+.num-selected { margin-left: 1px; margin-top:5px; font-size:13px; margin-bottom:-10px}
 
 
-.btn-secondary, .btn, .btn:visited {
-    background-color: #2e3191;
-    color: #fff;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    font-weight: 400;
-    overflow: visible;
-    -webkit-font-smoothing: antialiased;
-}
 
-
-/*
-textarea, select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    font-family: "nta", Helvetica, Arial, sans-serif;
-    height: auto;
-    border-radius: 0;
-    padding: 5px;
-    border: 2px solid #0b0c0c;
-    margin-bottom: 10px;
-    -webkit-appearance: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 19px;
-    line-height: 1.3157894737;
-    color: #0b0c0c;
-    margin-bottom: 0;
-}
-
-*/
-
-.pub-c-lead-paragraph {
-    font-family: "nta", Arial, sans-serif;
-    font-weight: 400;
-    text-transform: none;
-    font-size: 22px;
-    line-height: 1.2;
-    margin-bottom: 35px;
-    max-width: 30em;
-}
-
-.form-search {
-    width: 100%;
-    position: relative;
-    max-width: 350px;
-    display: inline-block;
-    margin-bottom: 0;
-}
-
-.form-search .search-input-wrapper {
-    width: 100%;
-    display: inline-block;
-    position: relative;
-}
-.form-search input.search-query {
-    height: 40px;
-    float: left;
-    width: 86%;
-    z-index: 10;
-}
-.form-search input[type="submit"] {
-    width: 40px;
-    height: 40px;
-    float: left;
-    padding: 6px;
-    background: #0b0c0c url(/public/images/search-button.png) no-repeat 2px 50%;
-    text-indent: -5000px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.schools-search-page .search-types .optional-section label {
-    font-family: "nta",Arial,sans-serif;
-    font-weight: 700;
-    text-transform: none;
-    font-size: 16px;
-    line-height: 1.25;
-    float: left;
-    width: 100%;
-    margin-bottom: 1em;
-}
-.optional-section label {
-    font-size: 19px;
-    line-height: 1.3157894737;
-}
-
-@media only screen and (min-width: 641px){
-    .multiple-choice label {
-        float: left;
-        padding-top: 7px;
-        padding-bottom: 7px;
+@media all and (max-width: 640px) {
+    .enrol-text {
+        margin-top:12px;
     }
-}
-.multiple-choice label {
-    cursor: pointer;
-    padding: 8px 10px 9px 12px;
-    display: block;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-}
-.multiple-choice label{font-size: 16px;}
-.multiple-choice {
-    display: block;
-    clear: left;
-    position: relative;
-    padding: 0 0 0 38px;
-    margin-bottom: 10px;
-}
-.search-types .optional-section label {
-    font-family: "nta",Arial,sans-serif;
-    font-weight: 700;
-    text-transform: none;
-    font-size: 16px;
-    line-height: 1.25;
-    float: left;
-    width: 100%;
-    margin-bottom: 1em;
-}
-.search-container .search-text input {
-    width: 100%;
-    max-width: 400px;
-    height: 40px;
-    vertical-align: top;
-    margin-bottom: 0px !important;
-}
-.search-container input.search-input {
-    float: left;
-    box-sizing: border-box;
-    border: solid 2px #005c2a;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    overflow: hidden;
-    text-indent: -500px;
-    border-radius: 0;
-}
-.search-container .search-text span.twitter-typeahead {
-    width: 100%;
-    max-width: 400px;
-}
+    .share-links li {
+        margin:5px !important;
+    }
 
-.schools-search-page .search-container {
-    width: 439px;
-    margin-top: 8px;
+    .gap-mobile{margin-top: 30px;padding-top: 30px; border-top: 1px solid #ddd}
 }
-.search-text .search-divider {
-    border-left: 1px solid #bfc1c3;
-    float: left;
-    height: 26px;
-    margin: 7px 0 7px -2px;
-}
-.search-text input#FindSchoolByTown {
-    max-width: 299px;
-    border-right: 0px;
-    float: left;
-}
-
-.form-control {
-    font-size: 16px;
-    line-height: 1.25;
-}
-
-
-.schools-search-page .tt-menu {
-    margin-top: 0px !important;
-    background-color: white;
-    z-index: 99 !important;
-}
-strong{font-weight: 600}
-.govuk-input,.govuk-select{border-color: #efefef!important;}
-.govuk-main-wrapper{padding-bottom: 0!important;}
 
 /*SELECT SEARCH*/
 
@@ -250,9 +37,10 @@ strong{font-weight: 600}
      position:relative;
      background-color:white;
      border:solid #eee 2px;
-     width:120px;
+     width:calc(100% - 120px);
      height:40px;
 	 overflow:visible;
+	 float:left;
  }
  .select-editable select {
      position:absolute;
@@ -291,180 +79,588 @@ strong{font-weight: 600}
     float: left;
     width: 100%;
 }
-.select-editable{width: 100%}
-.govuk-error-message{display: none}
+
+.radius-container {
+	width: 105px !important;
+	float:left;
+}
 
 
+.radius {
+	width: 100% !important;
+}
+
+.town {
+	width:calc(100% - 108px) !important;
+	float:left;
+}
 
 </style>
 
 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+<script>
 
-        <header class="homepage-top govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
-            <div class="content-container">
-                <div class="grid-row" data-sf-element="Row">
-                    <div id="MainContentTop_T945D82B6001_Col00" class="sf_colsIn govuk-grid-column-two-thirds" data-sf-element="Container" data-placeholder-label="Home banner Full Width Container">
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
 
-                        <div>
-                            <div><h1 class="heading-xlarge govuk-heading-xl" id="site-header" style="padding-top: 30px">Find a course</h1><p class="lede" style="color: white;font-size:18px; font-weight: normal!important">
-                                Search for training and learning opportunities at all levels. We’ll show you courses from colleges, training providers and local education authorities. <a style="color: white" href="https://nationalcareersservice.direct.gov.uk/contact-us/home">Contact an adviser</a> if you need help finding the right course for you.
-                            </p></div>
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
 
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function() {
+
+        $j("#course").val(getUrlParameter("course"));
+        $j("#FindSchoolByTown").val(getUrlParameter("postcode"));
+		
+		$j( "#accordion" ).accordion({
+		  collapsible: true,
+		  heightStyle: "content"
+		});
+		
+		$j(".accordion-link").each(function (e) {
+			$(this).click(function (e) {
+				e.stopPropagation();
+			});
+		});
+
+    });
+
+
+
+
+
+
+</script>
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+      <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-one-third foo">
+                <!--<div class="govuk-form-group">
+                      <label class="govuk-label" for="provider"> Provider </label>
+                    <input class="govuk-input" id="provider" type="text" name="provider">
+                  </div>-->
+
+
+
+              <!--  <div class="govuk-form-group govuk-grid-column-one-half">
+                  <label class="govuk-label" for="location"> Location </label>
+                <input class="govuk-input" id="location" type="text" name="locaton">
+                </div>
+
+                  <div class="govuk-form-group govuk-grid-column-one-half">
+                      <label class="govuk-label" for="radius"> Distance </label>
+                      <select class="govuk-select" id="radius" name="radius">
+                          <option value="1">1 mile</option>
+                          <option value="3">3 miles</option>
+                          <option value="5">5 miles</option>
+                          <option value="10">10 miles</option>
+                          <option value="15">15 miles</option>
+                          <option value="20" selected="selected">20 miles</option>
+                          <option value="25">25 miles</option>
+                      </select>
+                  </div>
+
+              </div>
+
+
+                  <p class="lede">Location</p>-->
+
+                  <div class="search-container clearfix" style="margin-bottom: 15px; height:40px;">
+                      <div class="search-text" style="padding-right: 0">
+                          <input id="FindSchoolByTown" style="max-width: 200px;" class="govuk-input mbl num town" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                          <div class="search-divider"></div>
+                          <div class="radius-container">
+                              <select id="radius" class="govuk-select radius" name="radius" style="background: black;color: white;">
+                                  <option value="1">1 mile</option>
+                                  <option value="3">3 miles</option>
+                                  <option value="5">5 miles</option>
+                                  <option value="10" selected="selected">10 miles</option>
+                                  <option value="15">15 miles</option>
+                                  <option value="20">20 miles</option>
+                                  <option value="20">National</option>
+                              </select>
+                          </div>
+                      </div>
+                      <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
+
+                  </div>
+
+
+                <!--<p class="lede">Age suitability?</p>
+                <div class="govuk-form-group">
+                    <fieldset>
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-1" name="where-do-you-live" type="radio" value="england" checked="checked">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-1">
+                                    All ages
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                                    16 - 19 years olds
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+                                    19+ year olds
+                                </label>
+                            </div>
                         </div>
-                        <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post" name="frm">
-                            <div class="header-search-content">
+                    </fieldset>
+                </div>-->
+				
+				<div id="accordion">
+				<h3 class="lede">Age suitability
+				</h3>
+				
+                <div class="govuk-form-group">
+                    
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-1" name="where-do-you-live" type="radio" value="england" checked="checked">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-1">
+                                    All ages
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                                    16 to 19 year-olds
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
+                                <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+                                    19+ year-olds
+                                </label>
+                            </div>
+                        </div>
+                   
+                </div>
 
-                            <div class="search-input-wrapper">
-
-                                <div class="govuk-form-group">
-                                <div class="ui-widget">
-
-                                    <p class="lede">Course name</p>
-
-                                    <p style="color: white; font-weight: normal; font-size: 16px;padding: 0!important;margin-bottom:0;position: relative; top:-16px;">For example, Engineering or Hairdressing</p>
+				
+				
+            
 
 
-                                    <span id="dob-error" class="govuk-error-message">
-                                     Enter a course name
-                                      </span>
+              <h3 class="lede">Full-time or part-time
+			  </h3>
 
-                                    <label class="govuk-label" for="address-line-2">
-                                    </label>
-                                    
-                                    <!--<input class="govuk-input" id="course" name="course" type="text" placeholder="Enter a course name" />-->
+              <div class="form-group govuk-checkboxes">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
+                          <label class="govuk-label govuk-checkboxes__label" for="study0">Show all (60)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study1" name="study" type="checkbox" value="1">
+                          <label class="govuk-label govuk-checkboxes__label" for="study1">Full Time (24)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="study2" name="study" type="checkbox" value="2">
+                          <label class="govuk-label govuk-checkboxes__label" for="study2">Part-time (36)</label>
+                      </div>
+                  <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="study2" name="study" type="checkbox" value="2">
+                      <label class="govuk-label govuk-checkboxes__label" for="study2">Flexible (0)</label>
+                  </div>
 
-									<div class="select-editable">
+              </div>
+
+
+
+                <h3 class="lede">Classroom or online
+                    <p class="num-selected">1 selected</p>
+                </h3>
+
+                <div class="form-group govuk-checkboxes">
+
+                    <div class="govuk-checkboxes__item">
+                        <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
+                        <label class="govuk-label govuk-checkboxes__label" for="study0">Show all (71)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="study4" name="study" type="checkbox" value="4">
+                        <label class="govuk-label govuk-checkboxes__label" for="study4">Classroom (1)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="study4" name="study" type="checkbox" value="4">
+                        <label class="govuk-label govuk-checkboxes__label" for="study4">Work-based (1)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="study5" name="study" type="checkbox" value="5">
+                        <label class="govuk-label govuk-checkboxes__label" for="study5">Online/Distance learning (69)</label>
+                    </div>
+                </div>
+
+
+                <h3 class="lede">Day, night or weekend
+                </h3>
+
+                <div class="form-group govuk-checkboxes">
+
+                    <div class="govuk-checkboxes__item">
+                        <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
+                        <label class="govuk-label govuk-checkboxes__label" for="study0">Show all (71)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="study7" name="study" type="checkbox" value="6">
+                        <label class="govuk-label govuk-checkboxes__label" for="study7">Normal working Hours (71)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="study7" name="study" type="checkbox" value="6">
+                        <label class="govuk-label govuk-checkboxes__label" for="study7">Day release/Block release (0)</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="study6" name="study" type="checkbox" value="6">
+                        <label class="govuk-label govuk-checkboxes__label" for="study6">Evening/Weekend (0)</label>
+                    </div>
+
+                </div>
+
+
+
+              <!--  <h3 class="lede">Qualification type
+			  <p class="num-selected">5 selected</p>
+			  </h3>
+              <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                          <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
+                          <label class="govuk-label govuk-checkboxes__label" for="level1">GCSE or equivalent (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
+                          <label class="govuk-label govuk-checkboxes__label" for="level1">GCE A/AS Level or equivalent (0)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
+                          <label class="govuk-label govuk-checkboxes__label" for="level2">NVQ (45)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
+                          <label class="govuk-label govuk-checkboxes__label" for="level3">Certificate of Attendance (13)</label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
+                          <label class="govuk-label govuk-checkboxes__label" for="level4">Access to Higher Education (0)</label>
+                      </div>
+                  
+              </div>-->
+                
+
+
+                <h3 class="lede">Qualification level<br>
+                    <a class="accordion-link" target="_blank" style="font-size: 13px;color: #005ea5;z-index: 999" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
+				<p class="num-selected">2 selected</p></h3>
+                <div class="form-group govuk-checkboxes govuk-!-margin-bottom-5">
+                    
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                            <label class="govuk-label govuk-checkboxes__label" for="level0">All (71)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level0" name="level" type="checkbox" value="0">
+                            <label class="govuk-label govuk-checkboxes__label" for="level0">Entry level (0)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level1" name="level" type="checkbox" value="1">
+                            <label class="govuk-label govuk-checkboxes__label" for="level1">Level 1 (0)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level2" name="level" type="checkbox" value="2">
+                            <label class="govuk-label govuk-checkboxes__label" for="level2">Level 2 (0)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level3" name="level" type="checkbox" value="3">
+                            <label class="govuk-label govuk-checkboxes__label" for="level3">Level 3 (1)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level4" name="level" type="checkbox" value="4">
+                            <label class="govuk-label govuk-checkboxes__label" for="level4">Level 4 (70)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 5 (0)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 6 (0)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 7 (0)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="level5" name="level" type="checkbox" value="5">
+                            <label class="govuk-label govuk-checkboxes__label" for="level5">Level 8 (0)</label>
+                        </div>
+                   
+                </div>
+
+
+</div>
+
+
+                <div id="filter-addtional-controls" style="margin-top:15px;">
+                    <a href="#" class="add-clear-filters" id="clear-filters">Clear all filters</a>
+                </div>
+
+
+          </div>
+
+          <div class="govuk-grid-column-two-thirds homepage-bottom gap-mobile">
+
+              <div class="header-search-content">
+                  <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post">
+
+                      <div class="search-input-wrapper">
+
+                          <div class="govuk-form-group">
+                              <label class="govuk-label" for="address-line-2">
+                              </label>
+                              	<div class="select-editable">
 										<select id="course-list" class="govuk-select">
 										
 										</select>
-										<input class="govuk-input" type="text" name="course" id="course"value="" placeholder="Enter a course name"/>
+										<input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter a course name"/>
 									</div>
-									
-                                    </div>
-                                </div>
+                          </div>
 
-                            </div>
+                      </div>
+                      <input class="submit govuk-button" type="submit" value="Search" style="width:80px;height:42px;margin-left:5px;float:left;">
+                  </form>
 
-                    </div>
-                            <p class="lede">Qualification level (Optional)</p>
-                            <a target="_blank" style="position: relative; top:-16px; color: #fff;font-size: 16px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
-                            <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
-                                <label class="govuk-label" for="radius"> Radius </label>
-                                <select class="govuk-select" id="radius" name="radius">
+              </div>
 
 
-                                    <option value="0" selected="">Select level</option>
-                                   <!-- <option value="" >The level you want to study at.</option>-->
-                                    <option value="LV1">Entry level - Skills for Life</option>
-                                    <option value="LV1">Level 1 - First certificate </option>
-                                    <option value="LV2">Level 2 - GCSE/O level</option>
-                                    <option value="LV3">Level 3 - A level/Access to higher education diploma</option>
-                                    <option value="LV4">Level 4 - Certificate of higher education/HNC</option>
-                                    <option value="LV5">Level 5 - Foundation degree/HND</option>
-                                    <option value="LV6">Level 6 - Degree/Graduate diploma</option>
-                                    <option value="LV7">Level 7 - Masters Degree/Postgraduate diploma</option>
-                                    <option value="LV8">Level 8 - Doctorate/PhD</option>
 
-                                </select>
-                            </div>
-                            <div class="govuk-grid-column" style="width: 100%"></div>
-                            <p class="lede">Location (Optional)</p>
-                            <p style="color: white; font-weight: normal; font-size: 16px;padding: 0!important;margin-bottom:0;position: relative; top:-16px;">Enter a postcode or town. For example, S1 1WB or Sheffield</p>
-                            <div class="search-container">
-                                <div class="search-text">
-                                    <input id="FindSchoolByTown" class="form-control mbl num" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
-                                    <div class="search-divider"></div>
-                                    <div class="radius-container">
-                                        <select id="radius" class="form-control" name="radius" style="background: white;color: black;">
-                                            <option value="1">1 mile</option>
-                                            <option value="3">3 miles</option>
-                                            <option value="5">5 miles</option>
-                                            <option value="10" selected="selected">10 miles</option>
-                                            <option value="15">15 miles</option>
-                                            <option value="20">20 miles</option>
-                                            <option value="20">National</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
-                            </div>
-<br>
-<br>
-<br>
-                            <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px" onclick="return IsEmpty();">
+             <!-- <div class="form-group govuk-grid-column-one-third">
+                  <label class="govuk-label" for="sort"> Sort results by  </label>
+                  <select class="govuk-select" id="sort" name="sort">
+                      <option>Distance</option>
+                      <option>Name</option>
+                      <option>Popular</option>
+                  </select>
+              </div>-->
 
-                        </form>
-                    </div>
+
+
+            <div class="govuk-grid-column-full" style="border-bottom: solid 2px #ddd; padding-bottom: 20px;margin-bottom: 10px">
+
+                <p class="establishment-data-download">
+                    <a href="#">Print or download these search results</a>
+                <span style="margin-bottom: 20px; text-align: right;padding-left: 15%">Showing 1 - 10 of 15 results</span>
+                </p>
+
+                <div class="form-group">
+                    <span class="form-label">Sort by:</span>
+                    <select class="form-control trigger-result-update sortby-selector" name="z">
+                        <option id="alpha-az" value="a" selected="">Relevance</option>
+                        <option id="alpha-az" value="a">Distance</option>
+                        <option id="alpha-az" value="a">Start date</option>
+                    </select>
+
                 </div>
+
+
+                </div>
+
+
+
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-4">
+
+                  <h3><a href="course-details">            City & Guilds Intermediate Diploma in Plumbing
+                  </a><br/><span style="font-weight: normal">Level 1</span>
+                      <span style="font-weight: normal"> <br>Part-time | Classroom-based | Normal working hours </span><br/>
+                  </h3>
+                  <span><span class="grey"> Provider:</span> Newham College of Further Education</span><br/>
+               <span><span class="grey"> Location: </span>Welfare Road
+                        Stratford
+                        Greater London
+                        E15 4HT</span><br/>
+                  <span><span class="grey"> Distance:</span> 2.3  miles</span><br/>
+                  <span><span class="grey">Start date: </span>10 September 2018</span><br/>
+                  <span><span class="grey"> Duration: </span>35 weeks</span>
+              </div>
+
+
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-4">
+
+                  <h3><a href="course-details-plumbing">            Advanced Apprenticeship in Domestic Plumbing & Heating
+                  </a><br/><span style="font-weight: normal">Level 3</span>
+                      <span style="font-weight: normal"> <br>Part-time | Classroom-based | Normal working hours </span><br/>
+                  </h3>
+                  <span><span class="grey"> Provider:</span>Eastleigh College</span><br/>
+               <span><span class="grey"> Location: </span>Chestnut Avenue
+Eastleigh
+Hampshire
+SO50 5FS</span><br/>
+                  <span><span class="grey"> Distance:</span> 72.3  miles</span><br/>
+                  <span><span class="grey">Start date: </span>12 September 2018</span><br/>
+                  <span><span class="grey"> Duration: </span>2 years</span>
+              </div>
+
+
+
+
+
+
+
+
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-4">
+              <h3><a href="course-details">Diploma in Bricklaying (Bricklaying, Brickwork, Construction, Diploma,)</a><br/><span style="font-weight: normal">Level 1</span>
+                  <span style="font-weight: normal"> <br>Part-time | Classroom | Day release/Block release </span><br/>
+              </h3>
+                <span><span class="grey"> Provider:</span> Barking & Dagenham College</span><br/>
+
+               <span><span class="grey"> Location: </span>Dagenham Road
+                    Romford
+                    Essex
+                    RM7 0XU</span><br/>
+                <span><span class="grey"> Distance:</span> 1.3  miles</span><br/>
+              <span><span class="grey">Start date: </span>03 September 2018</span><br/>
+                <span><span class="grey"> Duration: </span>35 weeks</span>
             </div>
 
 
 
 
-        </header>
-<!--
-<div class="govuk-width-container homepage-bottom" style="max-width: 960px; padding-bottom: 30px">
-   <main class="govuk-main-wrapper " id="main-content" role="main">
 
-     <h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
-       <p class="lede" style="padding-left: 20px">If you already know the establishment search here</p>
-       <div class="header-search-content govuk-grid-column-two-thirds">
-           <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post">
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-4">
+                  <h3><a href="course-details">Trowel Occupations (bricklaying) Level 3 Diploma C & G (QCF)</a><br/><span style="font-weight: normal">Level 1</span>
+                      <span style="font-weight: normal"> <br>Full time | Classroom | Normal working hours </span><br/>
+                  </h3>
+                  <span><span class="grey"> Provider:</span> Newham College of Further Education</span><br/>
+               <span><span class="grey"> Location: </span>	Burnside House
+                                        Rainham
+                                        Essex
+                                        RM13 8GP</span><br/>
+                  <span><span class="grey"> Distance:</span> 3.3  miles</span><br/>
 
-           <div class="search-input-wrapper">
-
-               <div class="govuk-form-group">
-                   <label class="govuk-label" for="address-line-2">
-                   </label>
-                   <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" placeholder="Provider">
-               </div>
-
-           </div>
-           <input class="submit" type="submit" value="Search">
-               </form>
-
-       </div>
-
-
-       <div class="govuk-grid-column-one-third"><br><br><br><br><br><br><br></div>
-
-       <hr style="padding: 0 41px;
-   opacity: 0.5;
-   margin-bottom: 75px;
-   width: 87%;
-   border: solid 1px #21827b;">
-            <h2 class="govuk-heading-l" style="padding-left: 20px">Explore by sector</h2>
-
-            <ul class="homepage-course-subject" style="position: relative;
-    left: -19px;">
-                <li><a href="#">Health, Public Services and Care</a></li>
-                <li><a href="#">Science and Mathematics</a></li>
-                <li><a href="#">Agriculture, Horticulture and Animal Care</a></li>
-                <li><a href="#">Engineering and Manufacturing Technologies</a></li>
-                <li><a href="#">Construction, Planning and the Built Environment</a></li>
-                <li><a href="#">Information and Communication Technology (ICT)</a></li>
-                <li><a href="#">Retail and Commercial Enterprise</a></li>
-                <li><a href="#">Leisure, Travel and Tourism</a></li>
-                <li><a href="#">Arts, Media and Publishing</a></li>
-                <li><a href="#">History, Philosophy and Theology</a></li>
-                <li><a href="#">Social Sciences</a></li>
-                <li><a href="#">Languages, Literature and Culture</a></li>
-                <li><a href="#">Education and Training</a></li>
-                <li><a href="#">Preparation for Life and Work</a></li>
-                <li><a href="#">Business, Administration, Finance and Law</a></li>
-            </ul>
+                  <span><span class="grey">Start date: </span>10 September 2018</span><br/>
+                  <span><span class="grey"> Duration: </span>34 weeks</span>
+              </div>
 
 
 
 
+
+
+
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-4">
+                  <h3><a href="course-details">Diploma in Bricklaying (Bricklaying, Brickwork, Construction, Diploma,)</a><br/><span style="font-weight: normal">Level 1</span>
+                      <span style="font-weight: normal"> <br>Part-time | Classroom | Day release/Block release </span><br/>
+                  </h3>
+                  <span><span class="grey"> Provider:</span> Barking & Dagenham College</span><br/>
+
+               <span><span class="grey"> Location: </span>Dagenham Road
+                    Romford
+                    Essex
+                    RM7 0XU</span><br/>
+                  <span><span class="grey"> Distance:</span> 1.3  miles</span><br/>
+                  <span><span class="grey">Start date: </span>03 September 2018</span><br/>
+                  <span><span class="grey"> Duration: </span>35 weeks</span>
+              </div>
+
+
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-4">
+
+                  <h3><a href="course-details">            City & Guilds Intermediate Diploma in Plumbing
+                  </a><br/><span style="font-weight: normal">Level 1</span>
+                      <span style="font-weight: normal"> <br>Part-time | Classroom | Normal working hours </span><br/>
+                  </h3>
+                  <span><span class="grey"> Provider:</span> Newham College of Further Education</span><br/>
+               <span><span class="grey"> Location: </span>Welfare Road
+                        STRATFORD
+                        Greater London
+                        E15 4HT</span><br/>
+                  <span><span class="grey"> Distance:</span> 2.3  miles</span><br/>
+                  <span><span class="grey">Start date: </span>10 September 2018</span><br/>
+                  <span><span class="grey"> Duration: </span>35 weeks</span>
+              </div>
+
+
+              <div class="govuk-grid-column-full govuk-!-margin-bottom-8">
+                  <h3><a href="course-details">Trowel Occupations (bricklaying) Level 3 Diploma C & G (QCF)</a><br/><span style="font-weight: normal">Level 1</span>
+                      <span style="font-weight: normal"> <br>Full time | Classroom | Normal working hours </span><br/>
+                  </h3>
+                  <span><span class="grey"> Provider:</span>Newham College of Further Education</span><br/>
+               <span><span class="grey"> Location: </span>	Burnside House
+                                        Rainham
+                                        Essex
+                                        RM13 8GP</span><br/>
+                  <span><span class="grey"> Distance:</span> 3.3  miles</span><br/>
+
+                  <span><span class="grey">Start date: </span>10 September 2018</span><br/>
+                  <span><span class="grey"> Duration: </span>34 weeks</span>
+              </div>
+
+
+
+              <div class="govuk-!-margin-bottom-8" style="">
+              <p style="padding-left: 20px;">&lt;-&nbsp;&nbsp;1&nbsp;&nbsp;<a href="#">2</a>&nbsp;&nbsp;<a href="#">3</a>&nbsp;&nbsp;-&gt;
+              </p>
+
+
+
+
+                  <div class="icons-buttons" style="margin-top: 80px">
+                      <h3 class="govuk-heading-m">Share this page</h3>
+                      <ul>
+                          <li>
+                              <a target="_blank" href="https://twitter.com/intent/tweet?original_referer&amp;url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F&amp;text=GOV.UK+social+sharing+buttons%3A+the+first+10+weeks" class="twitter">Twitter</a>
+                          </li>
+                          <li>
+                              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="facebook">Facebook</a>
+                          </li>
+                          <li>
+                              <a target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="linkedin">LinkedIn</a>
+                          </li>
+                          <li>
+                              <a href="mailto:?subject=I wanted to share this post with you from Inside GOV.UK&amp;body=GOV.UK social sharing buttons: the first 10 weeks https://insidegovuk.blog.gov.uk/2014/02/20/gov-uk-social-sharing-buttons-the-first-10-weeks/" class="email">Email</a>
+                          </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                  </div>
+
+
+
+          </div>
+          </div>
+
+      </div>
     </main>
-</div>-->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
-var $j = jQuery.noConflict();
+<script src="https://www.compare-school-performance.service.gov.uk/public/termi/element.details.js"></script>
+<script src="https://www.compare-school-performance.service.gov.uk/public/assets/scripts/application.js?v=1.1.18116.1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js" integrity="sha256-VCsWOz+0GuHdS/sIICtQNTFJdbaDI80rxvoB7BXabrU=" crossorigin="anonymous"></script>
+
+<script>
 
 //parse XML
 var xml="";
@@ -554,20 +750,18 @@ $j("#course-list").change(function(e) {
 
 
 $j(document).ready(function(e) {
-
-    $j("#header-search").submit(function(e) {
-        e.preventDefault();
-        $j(location).attr("href","/sprint4/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
-    });
+	
+	$j(window).on("load resize", function(e) {
+		$("#course-list").width($("#course").width()+40);
+	});
+	
+	$j("#course").click(function(e) {
+		$j("#course-list").hide();
+	});
 
 });
 
 </script>
-
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://www.compare-school-performance.service.gov.uk/public/termi/element.details.js"></script>
-<script src="https://www.compare-school-performance.service.gov.uk/public/assets/scripts/application.js?v=1.1.18116.1"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js" integrity="sha256-VCsWOz+0GuHdS/sIICtQNTFJdbaDI80rxvoB7BXabrU=" crossorigin="anonymous"></script>
 
 <script>
     var localAuthorities = [{"id":"301","LANAME":"Barking and Dagenham","REGION":"32","REGIONNAME":"London East"},{"id":"302","LANAME":"Barnet","REGION":"33","REGIONNAME":"London North"},{"id":"370","LANAME":"Barnsley","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"800","LANAME":"Bath and North East Somerset","REGION":"45","REGIONNAME":"South West B"},{"id":"822","LANAME":"Bedford","REGION":"25","REGIONNAME":"East of England A"},{"id":"303","LANAME":"Bexley","REGION":"32","REGIONNAME":"London East"},{"id":"330","LANAME":"Birmingham","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"889","LANAME":"Blackburn with Darwen","REGION":"6","REGIONNAME":"North West A"},{"id":"890","LANAME":"Blackpool","REGION":"6","REGIONNAME":"North West A"},{"id":"350","LANAME":"Bolton","REGION":"7","REGIONNAME":"North West B"},{"id":"837","LANAME":"Bournemouth","REGION":"43","REGIONNAME":"South West A"},{"id":"867","LANAME":"Bracknell Forest","REGION":"36","REGIONNAME":"South East A"},{"id":"380","LANAME":"Bradford","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"304","LANAME":"Brent","REGION":"35","REGIONNAME":"London West"},{"id":"846","LANAME":"Brighton and Hove","REGION":"39","REGIONNAME":"South East D"},{"id":"801","LANAME":"Bristol","REGION":"45","REGIONNAME":"South West B"},{"id":"305","LANAME":"Bromley","REGION":"34","REGIONNAME":"London South"},{"id":"825","LANAME":"Buckinghamshire","REGION":"36","REGIONNAME":"South East A"},{"id":"351","LANAME":"Bury","REGION":"7","REGIONNAME":"North West B"},{"id":"381","LANAME":"Calderdale","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"873","LANAME":"Cambridgeshire","REGION":"25","REGIONNAME":"East of England A"},{"id":"202","LANAME":"Camden","REGION":"31","REGIONNAME":"London Central"},{"id":"823","LANAME":"Central Bedfordshire","REGION":"25","REGIONNAME":"East of England A"},{"id":"895","LANAME":"Cheshire East","REGION":"9","REGIONNAME":"North West C"},{"id":"896","LANAME":"Cheshire West & Chester","REGION":"9","REGIONNAME":"North West C"},{"id":"201","LANAME":"City of London","REGION":"32","REGIONNAME":"London East"},{"id":"908","LANAME":"Cornwall","REGION":"43","REGIONNAME":"South West A"},{"id":"840","LANAME":"County Durham","REGION":"1","REGIONNAME":"North East A"},{"id":"331","LANAME":"Coventry","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"306","LANAME":"Croydon","REGION":"34","REGIONNAME":"London South"},{"id":"909","LANAME":"Cumbria","REGION":"6","REGIONNAME":"North West A"},{"id":"841","LANAME":"Darlington","REGION":"1","REGIONNAME":"North East A"},{"id":"831","LANAME":"Derby","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"830","LANAME":"Derbyshire","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"878","LANAME":"Devon","REGION":"43","REGIONNAME":"South West A"},{"id":"371","LANAME":"Doncaster","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"835","LANAME":"Dorset","REGION":"43","REGIONNAME":"South West A"},{"id":"332","LANAME":"Dudley","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"307","LANAME":"Ealing","REGION":"35","REGIONNAME":"London West"},{"id":"811","LANAME":"East Riding of Yorkshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"845","LANAME":"East Sussex","REGION":"39","REGIONNAME":"South East D"},{"id":"308","LANAME":"Enfield","REGION":"33","REGIONNAME":"London North"},{"id":"881","LANAME":"Essex","REGION":"27","REGIONNAME":"East of England B"},{"id":"390","LANAME":"Gateshead","REGION":"3","REGIONNAME":"North East B"},{"id":"916","LANAME":"Gloucestershire","REGION":"45","REGIONNAME":"South West B"},{"id":"203","LANAME":"Greenwich","REGION":"32","REGIONNAME":"London East"},{"id":"204","LANAME":"Hackney","REGION":"32","REGIONNAME":"London East"},{"id":"876","LANAME":"Halton","REGION":"9","REGIONNAME":"North West C"},{"id":"205","LANAME":"Hammersmith and Fulham","REGION":"35","REGIONNAME":"London West"},{"id":"850","LANAME":"Hampshire","REGION":"37","REGIONNAME":"South East B"},{"id":"309","LANAME":"Haringey","REGION":"33","REGIONNAME":"London North"},{"id":"310","LANAME":"Harrow","REGION":"35","REGIONNAME":"London West"},{"id":"805","LANAME":"Hartlepool","REGION":"1","REGIONNAME":"North East A"},{"id":"311","LANAME":"Havering","REGION":"32","REGIONNAME":"London East"},{"id":"884","LANAME":"Herefordshire","REGION":"22","REGIONNAME":"West Midlands B"},{"id":"919","LANAME":"Hertfordshire","REGION":"25","REGIONNAME":"East of England A"},{"id":"312","LANAME":"Hillingdon","REGION":"35","REGIONNAME":"London West"},{"id":"313","LANAME":"Hounslow","REGION":"35","REGIONNAME":"London West"},{"id":"921","LANAME":"Isle of Wight","REGION":"37","REGIONNAME":"South East B"},{"id":"420","LANAME":"Isles of Scilly","REGION":"43","REGIONNAME":"South West A"},{"id":"206","LANAME":"Islington","REGION":"31","REGIONNAME":"London Central"},{"id":"207","LANAME":"Kensington and Chelsea","REGION":"31","REGIONNAME":"London Central"},{"id":"886","LANAME":"Kent","REGION":"39","REGIONNAME":"South East D"},{"id":"810","LANAME":"Kingston Upon Hull","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"314","LANAME":"Kingston upon Thames","REGION":"34","REGIONNAME":"London South"},{"id":"382","LANAME":"Kirklees","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"340","LANAME":"Knowsley","REGION":"9","REGIONNAME":"North West C"},{"id":"208","LANAME":"Lambeth","REGION":"31","REGIONNAME":"London Central"},{"id":"888","LANAME":"Lancashire","REGION":"6","REGIONNAME":"North West A"},{"id":"383","LANAME":"Leeds","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"856","LANAME":"Leicester","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"855","LANAME":"Leicestershire","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"209","LANAME":"Lewisham","REGION":"32","REGIONNAME":"London East"},{"id":"925","LANAME":"Lincolnshire","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"341","LANAME":"Liverpool","REGION":"9","REGIONNAME":"North West C"},{"id":"821","LANAME":"Luton","REGION":"25","REGIONNAME":"East of England A"},{"id":"352","LANAME":"Manchester","REGION":"7","REGIONNAME":"North West B"},{"id":"887","LANAME":"Medway","REGION":"39","REGIONNAME":"South East D"},{"id":"315","LANAME":"Merton","REGION":"34","REGIONNAME":"London South"},{"id":"806","LANAME":"Middlesbrough","REGION":"1","REGIONNAME":"North East A"},{"id":"826","LANAME":"Milton Keynes","REGION":"36","REGIONNAME":"South East A"},{"id":"391","LANAME":"Newcastle upon Tyne","REGION":"3","REGIONNAME":"North East B"},{"id":"316","LANAME":"Newham","REGION":"32","REGIONNAME":"London East"},{"id":"926","LANAME":"Norfolk","REGION":"27","REGIONNAME":"East of England B"},{"id":"812","LANAME":"North East Lincolnshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"813","LANAME":"North Lincolnshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"802","LANAME":"North Somerset","REGION":"45","REGIONNAME":"South West B"},{"id":"392","LANAME":"North Tyneside","REGION":"3","REGIONNAME":"North East B"},{"id":"815","LANAME":"North Yorkshire","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"},{"id":"928","LANAME":"Northamptonshire","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"929","LANAME":"Northumberland","REGION":"3","REGIONNAME":"North East B"},{"id":"892","LANAME":"Nottingham","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"891","LANAME":"Nottinghamshire","REGION":"14","REGIONNAME":"East Midlands A"},{"id":"353","LANAME":"Oldham","REGION":"7","REGIONNAME":"North West B"},{"id":"931","LANAME":"Oxfordshire","REGION":"36","REGIONNAME":"South East A"},{"id":"874","LANAME":"Peterborough","REGION":"25","REGIONNAME":"East of England A"},{"id":"879","LANAME":"Plymouth","REGION":"43","REGIONNAME":"South West A"},{"id":"836","LANAME":"Poole","REGION":"43","REGIONNAME":"South West A"},{"id":"851","LANAME":"Portsmouth","REGION":"37","REGIONNAME":"South East B"},{"id":"870","LANAME":"Reading","REGION":"36","REGIONNAME":"South East A"},{"id":"317","LANAME":"Redbridge","REGION":"32","REGIONNAME":"London East"},{"id":"807","LANAME":"Redcar and Cleveland","REGION":"1","REGIONNAME":"North East A"},{"id":"318","LANAME":"Richmond upon Thames","REGION":"34","REGIONNAME":"London South"},{"id":"354","LANAME":"Rochdale","REGION":"7","REGIONNAME":"North West B"},{"id":"372","LANAME":"Rotherham","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"857","LANAME":"Rutland","REGION":"16","REGIONNAME":"East Midlands B"},{"id":"355","LANAME":"Salford","REGION":"7","REGIONNAME":"North West B"},{"id":"333","LANAME":"Sandwell","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"343","LANAME":"Sefton","REGION":"9","REGIONNAME":"North West C"},{"id":"373","LANAME":"Sheffield","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"893","LANAME":"Shropshire","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"871","LANAME":"Slough","REGION":"36","REGIONNAME":"South East A"},{"id":"334","LANAME":"Solihull","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"933","LANAME":"Somerset","REGION":"43","REGIONNAME":"South West A"},{"id":"803","LANAME":"South Gloucestershire","REGION":"45","REGIONNAME":"South West B"},{"id":"393","LANAME":"South Tyneside","REGION":"3","REGIONNAME":"North East B"},{"id":"852","LANAME":"Southampton","REGION":"37","REGIONNAME":"South East B"},{"id":"882","LANAME":"Southend-on-Sea","REGION":"27","REGIONNAME":"East of England B"},{"id":"210","LANAME":"Southwark","REGION":"31","REGIONNAME":"London Central"},{"id":"342","LANAME":"St. Helens","REGION":"9","REGIONNAME":"North West C"},{"id":"860","LANAME":"Staffordshire","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"356","LANAME":"Stockport","REGION":"7","REGIONNAME":"North West B"},{"id":"808","LANAME":"Stockton-on-Tees","REGION":"1","REGIONNAME":"North East A"},{"id":"861","LANAME":"Stoke-on-Trent","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"935","LANAME":"Suffolk","REGION":"27","REGIONNAME":"East of England B"},{"id":"394","LANAME":"Sunderland","REGION":"3","REGIONNAME":"North East B"},{"id":"936","LANAME":"Surrey","REGION":"38","REGIONNAME":"South East C"},{"id":"319","LANAME":"Sutton","REGION":"34","REGIONNAME":"London South"},{"id":"866","LANAME":"Swindon","REGION":"45","REGIONNAME":"South West B"},{"id":"357","LANAME":"Tameside","REGION":"7","REGIONNAME":"North West B"},{"id":"894","LANAME":"Telford and Wrekin","REGION":"20","REGIONNAME":"West Midlands A"},{"id":"883","LANAME":"Thurrock","REGION":"27","REGIONNAME":"East of England B"},{"id":"880","LANAME":"Torbay","REGION":"43","REGIONNAME":"South West A"},{"id":"211","LANAME":"Tower Hamlets","REGION":"32","REGIONNAME":"London East"},{"id":"358","LANAME":"Trafford","REGION":"7","REGIONNAME":"North West B"},{"id":"384","LANAME":"Wakefield","REGION":"12","REGIONNAME":"South and West Yorkshire"},{"id":"335","LANAME":"Walsall","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"320","LANAME":"Waltham Forest","REGION":"33","REGIONNAME":"London North"},{"id":"212","LANAME":"Wandsworth","REGION":"31","REGIONNAME":"London Central"},{"id":"877","LANAME":"Warrington","REGION":"9","REGIONNAME":"North West C"},{"id":"937","LANAME":"Warwickshire","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"869","LANAME":"West Berkshire","REGION":"36","REGIONNAME":"South East A"},{"id":"938","LANAME":"West Sussex","REGION":"38","REGIONNAME":"South East C"},{"id":"213","LANAME":"Westminster","REGION":"31","REGIONNAME":"London Central"},{"id":"359","LANAME":"Wigan","REGION":"7","REGIONNAME":"North West B"},{"id":"865","LANAME":"Wiltshire","REGION":"45","REGIONNAME":"South West B"},{"id":"868","LANAME":"Windsor and Maidenhead","REGION":"36","REGIONNAME":"South East A"},{"id":"344","LANAME":"Wirral","REGION":"9","REGIONNAME":"North West C"},{"id":"872","LANAME":"Wokingham","REGION":"36","REGIONNAME":"South East A"},{"id":"336","LANAME":"Wolverhampton","REGION":"24","REGIONNAME":"West Midlands C"},{"id":"885","LANAME":"Worcestershire","REGION":"22","REGIONNAME":"West Midlands B"},{"id":"816","LANAME":"York","REGION":"10","REGIONNAME":"North Yorkshire and The Humber"}];
@@ -585,19 +779,6 @@ $j(document).ready(function(e) {
     });
 
 
-
-    function IsEmpty(){
-        if(document.forms['frm'].course.value === "")
-        {
-            //alert("empty");
-            $('.govuk-error-message').css("display","block");
-            $('#header-search').addClass( "govuk-form-group--error" );
-            return false;
-        }
-        return true;
-    }
-
-
 </script>
 
 
@@ -609,6 +790,5 @@ $j(document).ready(function(e) {
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn1x_WJWXTzZ9XVSYh7TymeE9LM7_wb8s&amp;libraries=places&amp;callback=loadViewModel"></script>
-
 
 {% endblock %}
