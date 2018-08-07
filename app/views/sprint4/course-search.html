@@ -119,6 +119,52 @@
 	float:left;
 }
 li{    font-family: "nta", Arial, sans-serif;}
+
+
+.govuk-radios__label, .govuk-checkboxes__label {
+	padding-right:0 !important;
+}
+
+@media all and (min-width: 640px) and (max-width: 1024px) {
+
+	.ui-accordion .ui-accordion-content {
+		padding: 10px !important;
+	}
+	
+	.govuk-radios__label, .govuk-checkboxes__label {
+		font-size: 15px;
+		padding-left:0;
+	}
+	
+	.govuk-radios__input + .govuk-radios__label::before {
+		width: 30px;
+		height: 30px;
+	}
+	
+	.govuk-radios__input + .govuk-radios__label::after {
+		top:8px;
+		left:8px;
+		border: 7px solid #000;	
+	}
+	
+	.govuk-checkboxes__input + .govuk-checkboxes__label::before {
+		width: 30px;
+		height: 30px;
+	}
+	
+	.govuk-checkboxes__input + .govuk-checkboxes__label::after {
+		top: 7px;
+		left:4px;
+		width: 18px;
+		height: 7px;
+		-webkit-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		border: solid;
+		border-width: 0 0 4px 4px;
+	}	
+}
+
 </style>
 
 

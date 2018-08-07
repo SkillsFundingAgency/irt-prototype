@@ -739,16 +739,22 @@ function doSearch(text, items) {
 		}
 	});
 	
+	
+	var topItems=[];
+	$j.each(listItems, function(i, value) {
+		if (value.indexOf(textHigh)>-1) {
+			topItems.push(value);
+		}
+	});
+	topItems.sort();
 	listItems.sort();
+	topItems.push.apply(topItems,listItems);
+	listItems=[];
+	$j.each(topItems, function(i, value) {
+		if ($.inArray(value, listItems) === -1) listItems.push(value);
+	});
 	
-	//add exat match to first;
-	var pos;
-	if (listItems.indexOf(textHigh)>-1) {
-		pos=listItems.indexOf(textHigh);
-		listItems.splice(pos,1);
-		listItems.unshift(textHigh);
-	}
-	
+	//format
 	$j.each(listItems, function(i, value) {
 		var valueLow=value.toLowerCase();
 		var valueHigh=value.toUpperCase();
@@ -763,9 +769,9 @@ function doSearch(text, items) {
 			"data-value": value,
 			html: formated
 		}));		
-	});			
+	});				
 	
-}	
+}		
 
 $j("#course").keyup(function(e) {
 	//remove old items		
