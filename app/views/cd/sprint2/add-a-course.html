@@ -75,9 +75,21 @@ GOV.UK prototype kit
 		margin-bottom:20px;
 		clear:both;
 	}
+    .govuk-date-input__item {
+        width: 60px;
+        margin-right: 40px;
+    }
+    .govuk-input--width-4 {
+        width: 9ex;
+    }
 
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <main id="content" role="main">
 
@@ -185,6 +197,21 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
 			Start date
 		  </label>
 
+
+
+                <script>
+                    var $j = jQuery.noConflict();
+                    $j( function() {
+                        $j( "#datepicker" ).datepicker();
+                    } );
+                </script>
+                </head>
+                <body>
+
+                <p>Date: <input type="text" id="datepicker"></p>
+
+
+
 		</div>	
 		
         <div class="govuk-form-group">
@@ -197,7 +224,7 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
                     <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
                             <label class="govuk-label govuk-date-input__label" for="dob-day">
-                                Day
+                                Day(s)
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
                         </div>
@@ -206,11 +233,22 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
                     <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
                             <label class="govuk-label govuk-date-input__label" for="dob-month">
-                                Month
+                                Month(s)
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
                         </div>
                     </div>
+
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="dob-year">
+                                Year(s)
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4 " id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
+                        </div>
+                    </div>
+
+
                 </div>
             </fieldset>
         </div>
