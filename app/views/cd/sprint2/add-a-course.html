@@ -78,6 +78,7 @@ GOV.UK prototype kit
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <main id="content" role="main">
 
 <div class="govuk-breadcrumbs">
@@ -90,9 +91,9 @@ GOV.UK prototype kit
 </div>
 
 <div style="float:right;text-align:right;" class="govuk-body">
-Logged in: <strong>Mr. Appleased</strong><br/>
+Logged in: <strong>Mr. Appleseed</strong><br/>
 <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
-<a href="#" class="govuk-link">Your account</a>
+<a href="account-management" class="govuk-link">Your account</a>
 </div>
 
 
@@ -123,8 +124,8 @@ Logged in: <strong>Mr. Appleased</strong><br/>
 		  </label>
 		  <select class="govuk-select" id="type" name="type">
 			<option value="A" select>A level</option>
-			<option value="B">B level</option>
-			<option value="C">C level</option>
+			<option value="B">AS level</option>
+			<option value="C">Btech</option>
 
 		  </select>
 		</div>
@@ -134,7 +135,7 @@ Logged in: <strong>Mr. Appleased</strong><br/>
 			Course subject
 		  </label>
 		  <input class="govuk-input" id="sub" name="sub" type="text" style="width:85%;float:left;"/>
-		  <input class="submit" class="govuk-button" type="submit" value="Search" style="width:12%;float:right;"/>
+		  <input class="submit govuk-button" type="submit" value="Search" style="width:12%;float:right;"/>
 		</div>
 		
 		
@@ -142,7 +143,7 @@ Logged in: <strong>Mr. Appleased</strong><br/>
 		  <label class="govuk-label">
 			Course title
 		  </label>
-		  <p>Matehmatics with Further Mathematics A level <a href="#" style="float:right;">Edit</a></p>
+		  <p class="govuk-heading-s"> Matehmatics with Further Mathematics A level <a href="#" style="margin-left: 15px;"><i class="far fa-edit"></i> Edit</a></p>
 		</div>
 	
 		
@@ -159,7 +160,7 @@ Logged in: <strong>Mr. Appleased</strong><br/>
 			<option value="1">Newham College</option>
 
 		  </select>
-		  <input class="submit" class="govuk-button" type="submit" value="Add venue >" style="width:12%;float:right;"/>
+		  <input class="submit govuk-button" type="submit" value="Add venue >" style="width:12%;float:right;"/>
 		</div>
 
 		<div class="govuk-form-group" style="clear:both;">
@@ -186,24 +187,46 @@ Logged in: <strong>Mr. Appleased</strong><br/>
 
 		</div>	
 		
-		<div class="govuk-form-group" style="margin-bottom:60px;">
-		  <label class="govuk-label" for="sub">
-			Duration
-		  </label>
-			<input class="submit" class="govuk-button" type="submit" value="Days" style="float:left;margin-right:10px;"/>
-			<input class="submit" class="govuk-button" type="submit" value="Months" style="float:left;margin-right:10px;"/>
-			<input class="submit" class="govuk-button" type="submit" value="Enter custom value" style="float:left;margin-right:10px;"/>
-		</div>
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
+                <label class="govuk-label" for="sub">
+                    Duration
+                </label>
+                <div class="govuk-date-input" id="dob">
 
-		<div class="govuk-form-group" style="margin-bottom:60px;">
-		  <label class="govuk-label" for="sub">
-			Full time or part time
-		  </label>
-			<input class="submit" class="govuk-button" type="submit" value="Full time" style="float:left;margin-right:10px;"/>
-			<input class="submit" class="govuk-button" type="submit" value="Part time" style="float:left;margin-right:10px;"/>
-			<input class="submit" class="govuk-button" type="submit" value="Flexible" style="float:left;margin-right:10px;"/>
-			<input class="submit" class="govuk-button" type="submit" value="Online" style="float:left;margin-right:10px;"/>
-		</div>	
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="dob-day">
+                                Day
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
+                        </div>
+                    </div>
+
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="dob-month">
+                                Month
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+
+
+        <div class="btn-gr">
+            <label class="govuk-label">Full time or part time</label>
+            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Full-time</button>
+            <button id="venues-show" class="govuk-button govuk-colour" value="Search" type="submit" style="background:#2b8cc4	;color: #000000; border:2px solid black">Part-time</button>
+            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Flexible</button>
+            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Online</button>
+        </div>
+
+
 
 				<div class="govuk-form-group">
 		  <label class="govuk-label" for="level">
@@ -297,7 +320,7 @@ Logged in: <strong>Mr. Appleased</strong><br/>
 				<h3 class="govuk-heading-s">Bulk upload</h3>
 	
 		<div class="govuk-form-group">
-		<a href="#" role="button" class="govuk-button govuk-button--start">
+		<a href="bulk-upload" role="button" class="govuk-button govuk-button--start">
 		  Start now
 		</a>
 		</div>
