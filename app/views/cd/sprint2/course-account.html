@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+	
+	.enrol-text {
+		position: relative;top: -25px; font-size: 14px;
+	}
+	
+	@media all and (max-width: 640px) {
+		.enrol-text {
+			margin-top:12px;
+		}
+		.share-links li {
+			margin:5px !important;
+		}
+	}
+	
+	.pnl {
+	
+		border:solid 1px #000;
+		padding:20px;
+		margin:5px;
+	
+	}
+	
+	h3 {
+		width:100%;
+		margin-bottom:20px;
+		clear:both;
+	}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory account</a></li>
+
+
+    </ol>
+</div>
+
+<div style="float:right;text-align:right;" class="govuk-body">
+Logged in: <strong>Mr. Appleased</strong><br/>
+<a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
+<a href="#" class="govuk-link">Your account</a>
+</div>
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Manage your account
+        </h1>
+	</div>	
+
+    <div class="govuk-grid-column-full">
+	
+	
+	
+	<!--TABS-->
+	
+	<div class="govuk-tabs" data-module="tabs">
+  <h2 class="govuk-tabs__title">
+    Account
+  </h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#approved">
+        Organisation
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#drafts">
+        Reports
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#archived">
+        Manage users
+      </a>
+    </li>
+
+  </ul>
+
+  <section class="govuk-tabs__panel" id="approved">
+				
+	<p>City of London Academy Shoreditch Park Audrey Street</p>
+	<p>London</p>
+	<p>E2 8QH</p>
+	<p>Your term start date: 1 September</p>
+
+
+  </section>
+  
+  
+  <section class="govuk-tabs__panel" id="drafts">
+    <h2 class="govuk-heading-s">Reports </h2>
+
+
+  </section>
+  <section class="govuk-tabs__panel" id="archived">
+    <h2 class="govuk-heading-s">Manage users </h2>
+
+
+  </section>
+
+</div>
+
+<!--END TABS-->
+	
+
+	</div>	
+	
+	<div class="govuk-grid-row">
+	
+	    <div class="govuk-grid-column-full">
+<div class="pnl">
+		<img src="/public/images/chart2.png" alt="Chart" style="width:100%;height:auto;" />
+	
+	</div>
+		</div>
+		
+	</div>	
+
+	<div class="govuk-grid-row">
+	
+	    <div class="govuk-grid-column-full">
+<div class="pnl">
+		
+	<h2 class="govuk-heading-s">Manage users </h2>
+	
+	<p><a href="#">John Strong</a>&nbsp;&nbsp;&nbsp;<a href="#">john@nehamcollege.co.uk</a></p>
+	<p><a href="#">Mary Brown</a>&nbsp;&nbsp;&nbsp;<a href="#">mary@nehamcollege.co.uk</a></p>
+	
+	</div>
+		</div>
+		
+	</div>	
+
+
+</main>
+{% endblock %}
