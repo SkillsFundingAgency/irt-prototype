@@ -348,7 +348,7 @@ strong{font-weight: 600}
                             </p></div>
 
                         </div>
-                        <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post" name="frm">
+                        <form action="/sprint5/course-search" class="site-search ui-front" id="header-search" method="post" name="frm">
                             <div class="header-search-content">
 
                             <div class="search-input-wrapper">
@@ -446,7 +446,7 @@ strong{font-weight: 600}
      <h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
        <p class="lede" style="padding-left: 20px">If you already know the establishment search here</p>
        <div class="header-search-content govuk-grid-column-two-thirds">
-           <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post">
+           <form action="/sprint5/course-search" class="site-search ui-front" id="header-search" method="post">
 
            <div class="search-input-wrapper">
 
@@ -556,22 +556,16 @@ function doSearch(text, items) {
 		}
 	});
 	
-	
-	var topItems=[];
-	$j.each(listItems, function(i, value) {
-		if (value.indexOf(textHigh)>-1) {
-			topItems.push(value);
-		}
-	});
-	topItems.sort();
 	listItems.sort();
-	topItems.push.apply(topItems,listItems);
-	listItems=[];
-	$j.each(topItems, function(i, value) {
-		if ($.inArray(value, listItems) === -1) listItems.push(value);
-	});
 	
-	//format
+	//add exat match to first;
+	var pos;
+	if (listItems.indexOf(textHigh)>-1) {
+		pos=listItems.indexOf(textHigh);
+		listItems.splice(pos,1);
+		listItems.unshift(textHigh);
+	}
+	
 	$j.each(listItems, function(i, value) {
 		var valueLow=value.toLowerCase();
 		var valueHigh=value.toUpperCase();
@@ -586,7 +580,7 @@ function doSearch(text, items) {
 			"data-value": value,
 			html: formated
 		}));		
-	});				
+	});			
 	
 }	
 
@@ -619,7 +613,7 @@ $j(document).ready(function(e) {
 
     $j("#header-search").submit(function(e) {
         e.preventDefault();
-        $j(location).attr("href","/sprint4/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
+        $j(location).attr("href","/sprint5/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
     });
 	
 	$j(window).on("load resize", function(e) {

@@ -1,0 +1,329 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBJryOtVAE3meu8GQ45qNTOJPr2OdoHA9I" type="text/javascript"></script>
+<script>
+$(document).ready(function(e) {
+   	var myLatlngC  = new google.maps.LatLng(51.994877, -0.984023);
+		  function initialize() {
+			var mapOptions = {
+			  zoom: 13,
+			  center: myLatlngC,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP			};
+			var mapC = new google.maps.Map(document.getElementById('map'), mapOptions);
+			var markerC = new google.maps.Marker({position:myLatlngC, map:mapC});
+		  }
+	google.maps.event.addDomListener(window, 'load', initialize);
+});
+</script>-->
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Find a course</a></li>
+
+
+    </ol>
+</div>
+
+
+<a class="link-back mt" href="course-search">Back to results</a>
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Advanced Apprenticeship in Domestic Plumbing & Heating
+        </h1>
+        <section id="1">
+
+
+            <table class="govuk-table" role="presentation">
+                <tbody class="govuk-table__body">
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Qualification name</td>
+                    <td class="govuk-table__cell">	Level 3 NVQ Diploma in Domestic Plumbing and Heating (Gas Fired Water and Central Heating Appliances)</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Entry requirements</td>
+                    <td class="govuk-table__cell">
+                        Entry is subject to interview and assessment. You will need to have relevant employment with a Gas Safe Registered employer.
+                        <details role="group">
+
+                            <summary role="button" aria-controls="details-content-d354f2b4-11ca-4b24-982d-df72b3e8ab30" aria-expanded="false">
+
+                                <span style="color:#005ea5"> Read more</span></summary>
+                            <div class="panel" id="details-content-d354f2b4-11ca-4b24-982d-df72b3e8ab30" aria-hidden="true">
+
+                                In addition, you will need to have completed an Intermediate Apprenticeship in Domestic Plumbing and Heating or have completed an Intermediate Apprenticeship in Domestic Heating or have a Level 2 Diploma/NVQ Diploma in Domestic Plumbing or have a Level 2 Diploma/NVQ Diploma in Domestic Heating and be able to demonstrate ability equivalent to, or exceeding Level 2 in English and maths.
+
+                                For further advice and guidance about the course entry requirements, the College has a dedicated IAG Advisor who can be contacted on telephone 023 8091 1299 or visit Eastleigh College, Chestnut Avenue, Eastleigh, Hampshire, SO50 5FS.
+
+
+                            </div>
+                            </summary>
+                        </details>
+
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Cost</td>
+                    <td class="govuk-table__cell">0
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Start date</td>
+                    <td class="govuk-table__cell">12 September 2018</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Duration</td>
+                    <td class="govuk-table__cell">2 years</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Attendance</td>
+                    <td class="govuk-table__cell">Part-time</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Day, night or weekend</td>
+                    <td class="govuk-table__cell">Normal working hours</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Classroom or online</td>
+                    <td class="govuk-table__cell">Classroom-based</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <a target="_blank" href="https://www.eastleigh.ac.uk/careers/plumbing/course-listing/advanced-apprenticeship-in-domestic-plumbing-and-heating-ecta-apprenticeship/" role="button" class="govuk-button govuk-button--start">
+                Apply now
+            </a>
+            <p style="position: relative;top: -25px; font-size: 14px;">on the provider’s website</p>
+
+        </section>
+
+
+
+        <section id="2">
+            <h2 class="govuk-heading-m">Course description</h2>
+
+            <p class="govuk-body govuk-!-font-size-19" style="margin-bottom: 0">
+                The Advanced Apprenticeship in Domestic Plumbing and Heating builds on the skills and competence that are gained through the Intermediate Apprenticeship in Domestic Plumbing and Heating, developing advanced level skills. In addition, the supervision of domestic plumbing and heating installers is included.
+
+
+                <details role="group">
+
+                    <summary role="button" aria-controls="details-content-d354f2b4-11ca-4b24-982d-df72b3e8ab30" aria-expanded="false">
+
+                        <span style="color:#005ea5"> Read more</span></summary>
+                    <p class="panel" id="details-content-d354f2b4-11ca-4b24-982d-df72b3e8ab30" aria-hidden="true">
+
+
+                The following pathway is offered: -Domestic Plumbing and Heating (Gas-Fired Water and Central Heating Appliances) The Apprenticeship includes units relating to; organising resources in building services engineering; electrical work on domestic plumbing and heating systems; hot water, cold water, central heating system and sanitation systems installation, commissioning, servicing and maintenance techniques; core gas safety for natural gas in domestic building services engineering; installation, commissioning and de-commissioning of gas pipework up to 35mm in domestic and small commercial premises; installation and maintenance of domestic gas water heating and wet central heating appliances. You will achieve a Level 3 NVQ Diploma in Domestic Plumbing and Heating (Gas-Fired Water and Central Heating Appliances). . Unless exempt on entry, you will also achieve Level 2 Functional Skills qualifications in English, Maths and ICT. Completion of the Level 3 NVQ Diploma will provide evidence of competence to the Gas Safe Register in the following competence categories: CCN 1, CENWAT1, CPA 1, MET 1 and CoNGLP 1PD.You will learn through a combination of on- and off-the-job training. You will attend college one day per week during term time and spend the rest of your time earning and learning in the workplace. You will be assessed on a continuous basis through a combination of knowledge and practical assessment activities, including assessment of activities in the workplace. The Apprenticeship has a minimum duration of 24 months. Your progress will be continuously monitored and supported by an Apprenticeship ...more on College website
+
+                    </p>
+                    </summary>
+                </details>
+
+
+
+            </p>
+            <p class="govuk-heading-s">What you’ll need to bring</p>
+            <p class="govuk-body govuk-!-font-size-19">
+                No equipment required
+            </p>
+            <p class="govuk-heading-s">How you’ll be assessed</p>
+            <p class="govuk-body govuk-!-font-size-19">Not available
+            </p>
+        </section>
+
+        <div class="icons-buttons" style="margin-top: 80px">
+            <h3 class="govuk-heading-m">Share this page</h3>
+            <ul>
+                <li>
+                    <a target="_blank" href="https://twitter.com/intent/tweet?original_referer&amp;url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F&amp;text=GOV.UK+social+sharing+buttons%3A+the+first+10+weeks" class="twitter">Twitter</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="facebook">Facebook</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="linkedin">LinkedIn</a>
+                </li>
+                <li>
+                    <a href="mailto:?subject=I wanted to share this post with you from Inside GOV.UK&amp;body=GOV.UK social sharing buttons: the first 10 weeks https://insidegovuk.blog.gov.uk/2014/02/20/gov-uk-social-sharing-buttons-the-first-10-weeks/" class="email">Email</a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+
+        <section id="6">
+            <aside class="govuk-related-items" role="complementary">
+                <h2 class="govuk-heading-s" style="margin-top: 10px">Provider</h2>
+                <p class="govuk-body-s">Eastleigh College</p>
+                <hr>
+                <h2 class="govuk-heading-s" style="margin-top: 10px;padding-top: 10px">Venue</h2>
+
+                <table class="govuk-table" role="presentation">
+                    <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Name</td>
+                        <td class="govuk-table__cell govuk-body-s">	Eastleigh College</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Address</td>
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                            Chestnut Avenue<br>
+                            Eastleigh<br>
+                            Hampshire<br>
+                            SO50 5FS<br>
+                            <a class="govuk-link" target="_blank" href="https://www.google.com/maps?q=50.961638,-1.358891">Find on Google maps</a>
+                        </td>
+                    </tr><tr class="govuk-table__row">
+                        <td class="govuk-table__cell" colspan="2">     <details>
+
+                            <summary>
+
+                                <span style="color:#005ea5"> Journey time</span></summary>
+                            <div class="panel">
+
+                                <select class="form-control valid select-mode" name="" aria-invalid="false">
+                                    <option value="TRANSIT" aria-live="polite">Bus/Train</option>
+                                    <option value="WALKING" aria-live="polite">Walking</option>
+                                    <option value="BICYCLING" aria-live="polite">Cycling</option>
+                                    <option value="DRIVING" aria-live="polite">Driving</option>
+                                </select>
+
+                                <span class="journey-time" aria-live="polite">2 hrs 15 mins</span>
+                            </div>
+                        </details></td>
+
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Website</td>
+                        <td class="govuk-table__cell">
+                            <a class="govuk-link govuk-body-s" target="_blank" href="http://www.eastleigh.ac.uk">http://www.eastleigh.ac.uk</a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Email</td>
+                        <td class="govuk-table__cell govuk-body-s"><a href="mailto:	goplaces@eastleigh.ac.uk">	goplaces@eastleigh.ac.uk</a> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Phone</td>
+                        <td class="govuk-table__cell govuk-body-s">023 8091 1000</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <details>
+
+                    <summary style="position: relative;top:-10px">
+                        <span style="color:#005ea5;">Other dates and venues</span>
+                    </summary>
+                    <div class="panel">
+                        <table class="govuk-table">
+                            <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__header govuk-body-s" scope="col">Venue</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Start date</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Options</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s">Clarence Street</td>
+                                <td class="govuk-table__cell govuk-body-s">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Boswall Street</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+
+                <hr>
+
+
+            </aside>
+        </section>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+</main>
+{% endblock %}

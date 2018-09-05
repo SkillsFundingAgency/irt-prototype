@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
@@ -246,66 +246,66 @@ strong{font-weight: 600}
 
 /*SELECT SEARCH*/
 
- .select-editable {
-     position:relative;
-     background-color:white;
-     border:solid #eee 2px;
-     width:120px;
-     height:40px;
-	 overflow:visible;
- }
- .select-editable ul {
-     position:absolute;
-     top:44px;
-     left:0px;
-     width:500px;
-	 max-width:100vw;
-     margin:0;
-	 display:none;
-	 height:auto;
-	 max-height:400px;
-	 z-index:10001;
-	 font-size:17px !important;
-	 cursor:pointer;
-	 padding:0;
-	 border-top:none;
-	 border-right: solid 1px #ccc;
-	 border-left: solid 1px #ccc;
-	 border-bottom: solid 1px #ccc;	 
-	 list-style-type: none;
-	 background-color:#fff;
-	 overflow-y: scroll;
-	 overflow-x: hidden;
- }
- 
-  .select-editable li:hover {
-     border-top: solid 1px #ccc;
-	 border-bottom: solid 1px #ccc;
- }
- 
-  .select-editable li {
-     padding: 5px;
-	 text-overflow: ellipsis;
-	 height:20px;
- }
-  
- 
- .select-editable input {
-     position:absolute;
-     top:0px;
-     left:0px;
-     width:100px;
-     padding:1px;
-	 padding-left:8px;
-     font-size:17px !important;
-     border:none;
- }
- 
-  .select-editable input:focus {
-     outline: 3px solid #FFBF47;
- }
- 
- 
+.select-editable {
+    position:relative;
+    background-color:white;
+    border:solid #eee 2px;
+    width:120px;
+    height:40px;
+    overflow:visible;
+}
+.select-editable ul {
+    position:absolute;
+    top:44px;
+    left:0px;
+    width:500px;
+    max-width:100vw;
+    margin:0;
+    display:none;
+    height:auto;
+    max-height:400px;
+    z-index:10001;
+    font-size:17px !important;
+    cursor:pointer;
+    padding:0;
+    border-top:none;
+    border-right: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    list-style-type: none;
+    background-color:#fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.select-editable li:hover {
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+}
+
+.select-editable li {
+    padding: 5px;
+    text-overflow: ellipsis;
+    height:20px;
+}
+
+
+.select-editable input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100px;
+    padding:1px;
+    padding-left:8px;
+    font-size:17px !important;
+    border:none;
+}
+
+.select-editable input:focus {
+    outline: 3px solid #FFBF47;
+}
+
+
 .select-editable .govuk-input {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -319,41 +319,41 @@ strong{font-weight: 600}
 .govuk-error-message{display: none}
 
 .radius-container {
-	width: 100px !important;
-	float:left;
+    width: 100px !important;
+    float:left;
 }
 
 
 .radius {
-	width: 100% !important;
+    width: 100% !important;
 }
 
 .town {
-	width:calc(100% - 103px) !important;
-	float:left;
+    width:calc(100% - 103px) !important;
+    float:left;
 }
 
 </style>
 
 
 
-        <header class="homepage-top govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
-            <div class="content-container">
-                <div class="grid-row" data-sf-element="Row">
-                    <div id="MainContentTop_T945D82B6001_Col00" class="sf_colsIn govuk-grid-column-two-thirds" data-sf-element="Container" data-placeholder-label="Home banner Full Width Container">
+<header class="homepage-top govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
+    <div class="content-container">
+        <div class="grid-row" data-sf-element="Row">
+            <div id="MainContentTop_T945D82B6001_Col00" class="sf_colsIn govuk-grid-column-two-thirds" data-sf-element="Container" data-placeholder-label="Home banner Full Width Container">
 
-                        <div>
-                            <div><h1 class="heading-xlarge govuk-heading-xl" id="site-header" style="padding-top: 30px">Find a course</h1><p class="lede" style="color: white;font-size:18px; font-weight: normal!important">
-                                Search for training and learning opportunities at all levels. We’ll show you courses from colleges, training providers and local education authorities. <a style="color: white" href="https://nationalcareersservice.direct.gov.uk/contact-us/home">Contact an adviser</a> if you need help finding the right course for you.
-                            </p></div>
+                <div>
+                    <div><h1 class="heading-xlarge govuk-heading-xl" id="site-header" style="padding-top: 30px">Find a course</h1><p class="lede" style="color: white;font-size:18px; font-weight: normal!important">
+                        Search for training and learning opportunities at all levels. We’ll show you courses from colleges, training providers and local education authorities. <a style="color: white" href="https://nationalcareersservice.direct.gov.uk/contact-us/home">Contact an adviser</a> if you need help finding the right course for you.
+                    </p></div>
 
-                        </div>
-                        <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post" name="frm">
-                            <div class="header-search-content">
+                </div>
+                <form action="/sprint5/course-search" class="site-search ui-front" id="header-search" method="post" name="frm">
+                    <div class="header-search-content">
 
-                            <div class="search-input-wrapper">
+                        <div class="search-input-wrapper">
 
-                                <div class="govuk-form-group">
+                            <div class="govuk-form-group">
                                 <div class="ui-widget">
 
                                     <p class="lede">Course name</p>
@@ -367,78 +367,76 @@ strong{font-weight: 600}
 
                                     <label class="govuk-label" for="address-line-2">
                                     </label>
-                                    
+
                                     <!--<input class="govuk-input" id="course" name="course" type="text" placeholder="Enter a course name" />-->
 
-									<div class="select-editable">
-										<ul id="course-list">
-										
-										</ul>
-										<input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter a course name"/>
-									</div>
-									
+                                    <div class="select-editable">
+                                        <ul id="course-list">
+                                        </ul>
+                                        <input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter a course name"/>
                                     </div>
                                 </div>
-
                             </div>
 
+                        </div>
+
                     </div>
-                            <p class="lede">Qualification level (Optional)</p>
-                            <a target="_blank" style="position: relative; top:-16px; color: #fff;font-size: 16px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
-                            <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
-                                <label class="govuk-label" for="radius"> Radius </label>
-                                <select class="govuk-select" id="radius" name="radius">
+                    <p class="lede">Qualification level (Optional)</p>
+                    <a target="_blank" style="position: relative; top:-16px; color: #fff;font-size: 16px;" href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels"> What qualification levels mean</a>
+                    <div class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: none">
+                        <label class="govuk-label" for="radius"> Radius </label>
+                        <select class="govuk-select" id="radius" name="radius">
 
 
-                                    <option value="0" selected="">Select level</option>
-                                   <!-- <option value="" >The level you want to study at.</option>-->
-                                    <option value="LV1">Entry level - Skills for Life</option>
-                                    <option value="LV1">Level 1 - First certificate </option>
-                                    <option value="LV2">Level 2 - GCSE/O level</option>
-                                    <option value="LV3">Level 3 - A level/Access to higher education diploma</option>
-                                    <option value="LV4">Level 4 - Certificate of higher education/HNC</option>
-                                    <option value="LV5">Level 5 - Foundation degree/HND</option>
-                                    <option value="LV6">Level 6 - Degree/Graduate diploma</option>
-                                    <option value="LV7">Level 7 - Masters Degree/Postgraduate diploma</option>
-                                    <option value="LV8">Level 8 - Doctorate/PhD</option>
+                            <option value="0" selected="">Select level</option>
+                            <!-- <option value="" >The level you want to study at.</option>-->
+                            <option value="LV1">Entry level - Skills for Life</option>
+                            <option value="LV1">Level 1 - First certificate </option>
+                            <option value="LV2">Level 2 - GCSE/O level</option>
+                            <option value="LV3">Level 3 - A level/Access to higher education diploma</option>
+                            <option value="LV4">Level 4 - Certificate of higher education/HNC</option>
+                            <option value="LV5">Level 5 - Foundation degree/HND</option>
+                            <option value="LV6">Level 6 - Degree/Graduate diploma</option>
+                            <option value="LV7">Level 7 - Masters Degree/Postgraduate diploma</option>
+                            <option value="LV8">Level 8 - Doctorate/PhD</option>
 
+                        </select>
+                    </div>
+                    <div class="govuk-grid-column" style="width: 100%"></div>
+                    <p class="lede">Location (Optional)</p>
+                    <p style="color: white; font-weight: normal; font-size: 16px;padding: 0!important;margin-bottom:0;position: relative; top:-16px;">Enter a full postcode. For example, S1 1WB</p>
+                    <div class="search-container">
+                        <div class="search-text">
+                            <input id="" class="form-control mbl num town" name="keywords" placeholder="Postcode" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
+                            <div class="search-divider" style="float:left;"></div>
+                            <div class="radius-container" style="float:left;">
+                                <select id="radius" class="govuk-select radius" name="radius" style="background: white;color: black;">
+                                    <option value="1">1 mile</option>
+                                    <option value="3">3 miles</option>
+                                    <option value="5">5 miles</option>
+                                    <option value="10" selected="selected">10 miles</option>
+                                    <option value="15">15 miles</option>
+                                    <option value="20">20 miles</option>
+                                    <option value="20">National</option>
                                 </select>
                             </div>
-                            <div class="govuk-grid-column" style="width: 100%"></div>
-                            <p class="lede">Location (Optional)</p>
-                            <p style="color: white; font-weight: normal; font-size: 16px;padding: 0!important;margin-bottom:0;position: relative; top:-16px;">Enter a postcode or town. For example, S1 1WB or Sheffield</p>
-                            <div class="search-container">
-                                <div class="search-text">
-                                    <input id="FindSchoolByTown" class="form-control mbl num town" name="keywords" placeholder="Postcode or town" autocomplete="off" data-suggestion-url="/suggest-town/" type="text">
-                                    <div class="search-divider" style="float:left;"></div>
-                                    <div class="radius-container" style="float:left;">
-                                        <select id="radius" class="govuk-select radius" name="radius" style="background: white;color: black;">
-                                            <option value="1">1 mile</option>
-                                            <option value="3">3 miles</option>
-                                            <option value="5">5 miles</option>
-                                            <option value="10" selected="selected">10 miles</option>
-                                            <option value="15">15 miles</option>
-                                            <option value="20">20 miles</option>
-                                            <option value="20">National</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
-                            </div>
-<br>
-<br>
-<br>
-                            <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px" onclick="return IsEmpty();">
-
-                        </form>
+                        </div>
+                        <input id="LocationCoordinates" name="LocationCoordinates" value="52.40099669999999,-1.5081222000000025" type="hidden">
                     </div>
-                </div>
+                    <br>
+                    <br>
+                    <br>
+                    <input type="submit" value="Search" class="govuk-button" style="margin-top: 20px" onclick="return IsEmpty();">
+
+                </form>
             </div>
+        </div>
+    </div>
 
 
 
 
-        </header>
+</header>
 <!--
 <div class="govuk-width-container homepage-bottom" style="max-width: 960px; padding-bottom: 30px">
    <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -446,7 +444,7 @@ strong{font-weight: 600}
      <h1 class="heading-xlarge govuk-heading-xl" style="padding-left: 20px">Search by Provider </h1>
        <p class="lede" style="padding-left: 20px">If you already know the establishment search here</p>
        <div class="header-search-content govuk-grid-column-two-thirds">
-           <form action="/sprint4/course-search" class="site-search ui-front" id="header-search" method="post">
+           <form action="/sprint5/course-search" class="site-search ui-front" id="header-search" method="post">
 
            <div class="search-input-wrapper">
 
@@ -501,136 +499,126 @@ strong{font-weight: 600}
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
 
-var $j = jQuery.noConflict();
+    var $j = jQuery.noConflict();
 
-//parse XML
-var xml="";
-$j.ajax({ 
-    url: "tsenu.html",
-    async: false,
-    success: function (data){
-        xml = data;
-    }
-});
-parser = new DOMParser();
-xmlDoc = parser.parseFromString(xml,"text/xml");
-var items=[];
-var els = xmlDoc.getElementsByTagName('sub')
-for (var i=0, len = els.length; i<len; i++) {
-    items.push(els[i].childNodes[0].nodeValue);	
-}
-
-//create an array from XML
-var allItems=[];
-var els = xmlDoc.getElementsByTagName('expansion')
-	for (var i=0, len = els.length; i<len; i++) {
-		var children=[];	
-		for (var k = 0; k < els[i].childNodes.length; k++) {
-			if (els[i].childNodes[k].nodeName==="sub") {
-				children.push(els[i].childNodes[k].firstChild.nodeValue);
-			}
-		}//end for  
-		allItems.push(children);
-	} //end for i
-	
-//search array
-function doSearch(text, items) {
-	
-	//to lower case
-	text=text.toLowerCase();
-	var textHigh=text.toUpperCase();
-	
-	var listItems=[];
-	$j.each(items, function(i, val) {
-		//search each subarray
-		var found=false;
-		$j.each(val, function(i, value) {
-			value=value.toLowerCase();
-			if (value.indexOf(text)>-1) {
-				found=true;
-			}
-		});
-		//if found add entire subarray to the list
-		if (found) {
-			listItems.push.apply(listItems,val);
-		}
-	});
-	
-	
-	var topItems=[];
-	$j.each(listItems, function(i, value) {
-		if (value.indexOf(textHigh)>-1) {
-			topItems.push(value);
-		}
-	});
-	topItems.sort();
-	listItems.sort();
-	topItems.push.apply(topItems,listItems);
-	listItems=[];
-	$j.each(topItems, function(i, value) {
-		if ($.inArray(value, listItems) === -1) listItems.push(value);
-	});
-	
-	//format
-	$j.each(listItems, function(i, value) {
-		var valueLow=value.toLowerCase();
-		var valueHigh=value.toUpperCase();
-		var textReplace='<strong>'+textHigh+'</strong>';
-		if (valueLow.indexOf(text)>-1) {
-			formated=valueHigh.replace(textHigh, textReplace);
-		} else {
-		formated=valueHigh;
-		}
-			
-		$('#course-list').append($('<li>', {
-			"data-value": value,
-			html: formated
-		}));		
-	});				
-	
-}	
-
-$j("#course").keyup(function(e) {
-	//remove old items		
-	$j("#course-list li").each(function (e) {
-		$(this).remove();
-	});
-	//search
-	doSearch($(this).val(), allItems);
-	//expand
-	var length=$j("#course-list").children('li').length;
-	if (length>0) {
-		$j("#course-list").show();
-	} else {
-		$j("#course-list").hide();
-	}
-});
-
-$j("#course-list").click(function (e) {
-		$j("#course").val($j("li:hover").attr("data-value"));
-		$j(this).hide();
-		$j("#course").focus();
-});
-
-
-
-
-$j(document).ready(function(e) {
-
-    $j("#header-search").submit(function(e) {
-        e.preventDefault();
-        $j(location).attr("href","/sprint4/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
+    //parse XML
+    var xml="";
+    $j.ajax({
+        url: "tsenu.html",
+        async: false,
+        success: function (data){
+            xml = data;
+        }
     });
-	
-	$j(window).on("load resize", function(e) {
-		$("#course-list").width($("#course").width()+50);
-	});
-	
-	$j("#course").click(function(e) {
-		$j("#course-list").hide();
-	});	
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(xml,"text/xml");
+    var items=[];
+    var els = xmlDoc.getElementsByTagName('sub')
+    for (var i=0, len = els.length; i<len; i++) {
+        items.push(els[i].childNodes[0].nodeValue);
+    }
 
-});
+    //create an array from XML
+    var allItems=[];
+    var els = xmlDoc.getElementsByTagName('expansion')
+    for (var i=0, len = els.length; i<len; i++) {
+        var children=[];
+        for (var k = 0; k < els[i].childNodes.length; k++) {
+            if (els[i].childNodes[k].nodeName==="sub") {
+                children.push(els[i].childNodes[k].firstChild.nodeValue);
+            }
+        }//end for
+        allItems.push(children);
+    } //end for i
+    //search array
+    function doSearch(text, items) {
+//to lower case
+        text=text.toLowerCase();
+        var textHigh=text.toUpperCase();
+        var listItems=[];
+        $j.each(items, function(i, val) {
+//search each subarray
+            var found=false;
+            $j.each(val, function(i, value) {
+                value=value.toLowerCase();
+                if (value.indexOf(text)>-1) {
+                    found=true;
+                }
+            });
+//if found add entire subarray to the list
+            if (found) {
+                listItems.push.apply(listItems,val);
+            }
+        });
+        var topItems=[];
+        $j.each(listItems, function(i, value) {
+            if (value.indexOf(textHigh)>-1) {
+                topItems.push(value);
+            }
+        });
+        topItems.sort();
+        listItems.sort();
+        topItems.push.apply(topItems,listItems);
+        listItems=[];
+        $j.each(topItems, function(i, value) {
+            if ($.inArray(value, listItems) === -1) listItems.push(value);
+        });
+//format
+        $j.each(listItems, function(i, value) {
+            var valueLow=value.toLowerCase();
+            var valueHigh=value.toUpperCase();
+            var textReplace='<strong>'+textHigh+'</strong>';
+            if (valueLow.indexOf(text)>-1) {
+                formated=valueHigh.replace(textHigh, textReplace);
+            } else {
+                formated=valueHigh;
+            }
+            $('#course-list').append($('<li>', {
+                "data-value": value,
+                html: formated
+            }));
+        });
+    }
+
+    $j("#course").keyup(function(e) {
+//remove old items
+        $j("#course-list li").each(function (e) {
+            $(this).remove();
+        });
+//search
+        doSearch($(this).val(), allItems);
+//expand
+        var length=$j("#course-list").children('li').length;
+        if (length>0) {
+            $j("#course-list").show();
+        } else {
+            $j("#course-list").hide();
+        }
+    });
+
+    $j("#course-list").click(function (e) {
+        $j("#course").val($j("li:hover").attr("data-value"));
+        $j(this).hide();
+        $j("#course").focus();
+    });
+
+
+
+
+    $j(document).ready(function(e) {
+
+        $j("#header-search").submit(function(e) {
+            e.preventDefault();
+            $j(location).attr("href","/sprint5/course-search?course="+$("#course").val()+"&postcode="+$("#FindSchoolByTown").val());
+        });
+        $j(window).on("load resize", function(e) {
+            $("#course-list").width($("#course").width()+50);
+        });
+        $j("#course").click(function(e) {
+            $j("#course-list").hide();
+        });
+
+    });
 
 </script>
 
