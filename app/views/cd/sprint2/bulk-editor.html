@@ -207,6 +207,12 @@ span{font-size: 14px}
     td:nth-child(25){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
     td:nth-child(26){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
     td:nth-child(27){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
+	
+	.tarea {
+		width:40vw;
+		height: 500px;
+		resize:none;
+	}
 </style>
 
 
@@ -238,22 +244,108 @@ span{font-size: 14px}
 </script>
 
 <script>
-    var $j = jQuery.noConflict();
-    $j(document).ready(function() {
+var $j = jQuery.noConflict();
+$j(document).ready(function() {
 
-        $j('#my_popup').popup({
+        $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration, #popup-bring').popup({
             opacity: 0.999,
             color:'#fff',
             transition: 'all 0.3s'
         });
+   
+	
+	setInterval(function(){
+	
+	$j(".open-descript").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-descript').popup('show');
+		});
+	});
+	
+	$j(".close-descript").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-descript').popup('hide');
+		});
+	});	
+	
+	$j(".open-url").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-url').popup('show');
+		});
+	});
+	
+	$j(".close-url").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-url').popup('hide');
+		});
+	});	
 
-        $j('#my_popup_2').popup({
-            opacity: 0.999,
-            color:'#fff',
-            transition: 'all 0.3s'
-        });
+	$j(".open-req").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-req').popup('show');
+		});
+	});
+	
+	$j(".close-req").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-req').popup('hide');
+		});
+	});
 
-    });
+	$j(".open-cost").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-cost').popup('show');
+		});
+	});
+	
+	$j(".close-cost").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-cost').popup('hide');
+		});
+	});
+
+	$j(".open-duration").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-duration').popup('show');
+		});
+	});
+	
+	$j(".close-duration").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-duration').popup('hide');
+		});
+	});	
+	
+	$j(".open-bring").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-bring').popup('show');
+		});
+	});
+	
+	$j(".close-bring").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-bring').popup('hide');
+		});
+	});	
+	
+	}, 500);
+
+	$j("#duplicate").click(function(e) {
+		$j(".check:checkbox:checked").each (function(e) {
+			$j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
+			$j(this).prop('checked', false);
+		});
+	});
+	
+	$j("#delete").click(function(e) {
+		if (confirm('Are you sure you want to delete selected items?')) {
+			$j(".check:checkbox:checked").each (function(e) {
+				$j(this).closest("tr").remove();
+			});
+		}
+	});	
+	
+});
 </script>
 
 
@@ -262,7 +354,7 @@ span{font-size: 14px}
 
 
 
-    function divClicked() {
+   /* function divClicked() {
         var divHtml = $(this).html();
         var editableText = $("<textarea />");
         editableText.val(divHtml);
@@ -287,7 +379,7 @@ span{font-size: 14px}
 
 
 
-    });
+    });*/
 
 
 
@@ -339,60 +431,166 @@ span{font-size: 14px}
     left: -400px;
 }
 .hidden,.my_popup_2 {display: none}
+.govuk-button {margin-bottom: 0;}
 </style>
 
 
 
 
-<table class="govuk-table" style="font-size: 14px;">
+<table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
-    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Select rows</th><th class="govuk-table__header" scope="col">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width: 400px">Qualification title</th><th class="govuk-table__header" scope="col">Course description</th><th class="govuk-table__header" scope="col">Course URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col">How you'll be assessed</th><th class="govuk-table__header" scope="col">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
+    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Select rows</th><th class="govuk-table__header" scope="col">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width: 500px">Qualification title</th><th class="govuk-table__header" scope="col">Course description</th><th class="govuk-table__header" scope="col">Course URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col">How you'll be assessed</th><th class="govuk-table__header" scope="col">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
+	
+<tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
     <td class="govuk-table__cell">
-        <button type="submit" class="govuk-button edit-btn my_popup_open" style="margin-right: 20px">
+        <button type="button" class="govuk-button edit-btn open-descript" style="margin-right: 20px">
             Edit
         </button>
 
 
-        <div id="my_popup"><div style="padding:0 20%">
-            <button class="my_popup_close govuk-button">Insert bullets</button>
-            <button class="my_popup_close govuk-button">Spell check</button>
-       <p class="foo123" style="font-size: 14px"> Who is the course for:<br>
-        This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
 
-        <br>What you’ll learn:<br>
-        You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
-        effective communication
-        equality
-        diversity and rights
-        anatomy and physiology
-        social sciences
-
-        <br>How you’ll learn<br>
-        Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
-
-
-
-        <br>Where next?<br>
-        If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
-       </p>
-            <button class="my_popup_close govuk-button">Close</button>
-
-        </div></div>
 
     </td>
-    <td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000154085316</td>
     <td class="govuk-table__cell">
-        <button class="my_popup_2_open">Open popup</button>
-        <div id="my_popup_2">
-        There are no formal qualifications for this course, however you will require a confirmation letter of 12 hours placement per week for the duration of the course within an early years setting, You will also require minimum functional skills level 1 in literacy and numeracy.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">34</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">10-Sep-18</td><td class="govuk-table__cell">Part Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Sutton Coldfield Campus</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">NCFE</td><td class="govuk-table__cell">You will be assessed at your placement, through written assessments and a portfolio you will create.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">
-        </div>
+	        <button type="button" class="govuk-button edit-btn open-url" style="margin-right: 20px">
+            Edit
+        </button>
+	</td>
+    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-req" style="margin-right: 20px">
+            Edit
+        </button>
+		
     </td>
+	
+	    <td class="govuk-table__cell">
+        
+
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-cost" style="margin-right: 20px">
+            Edit
+        </button>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		34
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		Weeks
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-duration" style="margin-right: 20px">
+            Edit
+        </button>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		&nbsp;
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		10-Sept-2018
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		Part-time
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		Location/Campus
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		Daytime/Working hours
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+            Edit
+        </button>
+		
+    </td>
+	
+	
+	    <td class="govuk-table__cell">
+        
+		Sutto Coldfield Campus
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		2
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		&nbsp;
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		NCFE
+		
+    </td>
+	
+		    <td class="govuk-table__cell">
+        
+		&nbsp;
+		
+    </td>
+	
+		    <td class="govuk-table__cell">
+        
+		&nbsp;
+		
+    </td>
+	
+		    <td class="govuk-table__cell">
+        
+		&nbsp;
+		
+    </td>
+	
 </tr>
-<tr class="govuk-table__row last"><td class="foo">
+
+
+
+
+</tbody></table>
+
+<table class="govuk-table" style="font-size: 14px;">
+<tr class="govuk-table__row last"><td class="foo" style="width: 30px; padding-right: 20px; padding-left: 20px">
     Add new course
-</td><td class="govuk-table__cell"></td><td colspan="2">
-    <div class="header-search-content" style="font-size: 14px">
+</td><td style=" background-color: white;">
+    <div class="header-search-content" style="font-size: 14px;">
         <form action="" class="site-search ui-front" id="header-search" method="post">
 
             <div class="search-input-wrapper">
@@ -409,12 +607,11 @@ span{font-size: 14px}
                 </div>
 
             </div>
-            <input class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left">
+            <input class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
         </form>
 
     </div>
 </td>
-    <td colspan="20"></td>
 </tr>
 </tbody></table>
 
@@ -427,11 +624,11 @@ span{font-size: 14px}
 
 
 
-    <button type="submit" class="govuk-button" style="margin-right: 20px">
+    <button type="submit" class="govuk-button" style="margin-right: 20px" id="duplicate">
         Duplicate row
     </button>
 
-    <button type="submit" class="govuk-button" style="margin-right: 20px">
+    <button type="submit" class="govuk-button" style="margin-right: 20px" id="delete">
         Delete row
     </button>
 
@@ -445,6 +642,79 @@ span{font-size: 14px}
 
 
 	</header>
+	
+	
+	
+        <div id="popup-descript"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">
+Who is the course for:
+This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
+
+What you’ll learn:
+You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
+effective communication
+equality
+diversity and rights
+anatomy and physiology
+social sciences
+
+How you’ll learn
+Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
+
+Where next?
+If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
+       </textarea>
+            <button class="govuk-button close-descript">Close</button>
+
+        </div></div>
+		
+        <div id="popup-url"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">http://www.oxford-college.org
+       </textarea>
+            <button class="govuk-button close-url">Close</button>
+
+        </div></div>
+
+		<div id="popup-req"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Requirements
+       </textarea>
+            <button class="govuk-button close-req">Close</button>
+
+        </div></div>
+		
+        <div id="popup-cost"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Cost description
+       </textarea>
+            <button class="govuk-button close-cost">Close</button>
+
+        </div></div>	
+
+		<div id="popup-duration"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Duration description
+       </textarea>
+            <button class="govuk-button close-duration">Close</button>
+
+        </div></div>
+		
+        <div id="popup-bring"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">You need to bring...
+       </textarea>
+            <button class="govuk-button close-bring">Close</button>
+
+        </div></div>		
+		
 {% endblock %}
 
 
