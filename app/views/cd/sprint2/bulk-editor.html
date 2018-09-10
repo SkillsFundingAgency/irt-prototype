@@ -195,10 +195,12 @@ span{font-size: 14px}
     textarea {width: 500px; font-size: 14px; height: 140px}
 
     .foo123{border: 2px solid hotpink}
-    td:nth-child(2){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
+    td:nth-child(1){padding-left: 30px;}
+    td:nth-child(2){background-color: #f9f9f9;padding-left: 30px; padding-right: 10px}
     td:nth-child(3){background-color: #f9f9f9;padding-left: 10px;}
     td:nth-child(4){ padding-left: 20px}
 
+    td:nth-child(19){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
     td:nth-child(20){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
     td:nth-child(21){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
     td:nth-child(22){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
@@ -439,7 +441,7 @@ $j(document).ready(function() {
 
 <table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
-    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Select rows</th><th class="govuk-table__header" scope="col">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width: 500px">Qualification title</th><th class="govuk-table__header" scope="col">Course description</th><th class="govuk-table__header" scope="col">Course URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col">How you'll be assessed</th><th class="govuk-table__header" scope="col">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
+    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 150px">Select rows</th><th class="govuk-table__header" scope="col" style="padding-left: 20px">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width: 500px; padding-left: 20px">Qualification title</th><th class="govuk-table__header" scope="col">Course description</th><th class="govuk-table__header" scope="col">Course URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col" style="padding-left: 20px">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col">How you'll be assessed</th><th class="govuk-table__header" scope="col">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
 	
 <tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
     <td class="govuk-table__cell">
@@ -479,52 +481,93 @@ $j(document).ready(function() {
     </td>
 	
 	    <td class="govuk-table__cell">
-        
-		34
+
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 50%">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>...</option>
+                <option selected="selected">34</option>
+                <option>...</option>
+                <option>52</option>
+            </select>
+
 		
     </td>
 	
 	    <td class="govuk-table__cell">
-        
-		Weeks
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
+
+                <option>Days</option>
+                <option selected="selected">Weeks</option>
+                <option>Selected</option>
+            </select>
+		
+    </td>
+	
+	    <td class="govuk-table__cell" style="padding-left: 20px">
+
+            <div class="govuk-checkboxes__item" style="padding: 0 0 0 22px"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Flexible</label> </div>
+		
+    </td>
+	
+
+    <td class="govuk-table__cell" style="padding-left: 20px">
+
+        <div class="govuk-checkboxes__item" style="padding: 0 0 0 22px"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label> </div>
+
+    </td>
 		
     </td>
 	
 	    <td class="govuk-table__cell">
-        
-		<button type="submit" class="govuk-button edit-btn open-duration" style="margin-right: 20px">
-            Edit
-        </button>
+
+            <script>
+                var $j = jQuery.noConflict();
+                $j( function() {
+                    $j( "#datepicker" ).datepicker();
+                } );
+            </script>
+
+            <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;color:inherit;background-color: inherit">
+        </td>
+	
+	    <td class="govuk-table__cell">
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                <option>Full-time /p-t</option>
+                <option>Part-time</option>
+                <option>Flexible</option>
+            </select>
 		
     </td>
 	
 	    <td class="govuk-table__cell">
-        
-		&nbsp;
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                <option>Location/Campus</option>
+                <option>Online</option>
+                <option>Work-based</option>
+            </select>
 		
     </td>
 	
 	    <td class="govuk-table__cell">
-        
-		10-Sept-2018
-		
-    </td>
-	
-	    <td class="govuk-table__cell">
-        
-		Part-time
-		
-    </td>
-	
-	    <td class="govuk-table__cell">
-        
-		Location/Campus
-		
-    </td>
-	
-	    <td class="govuk-table__cell">
-        
-		Daytime/Working hours
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                <option>Daytime/working hours</option>
+                <option>Part-time</option>
+                <option>Flexible</option>
+            </select>
 		
     </td>
 	
@@ -538,20 +581,24 @@ $j(document).ready(function() {
 	
 	
 	    <td class="govuk-table__cell">
-        
-		Sutto Coldfield Campus
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
+                <option>Matthew Boulton Campus</option>
+                <option>Sutton Coldfield Campus</option>
+                <option>Botanical Gardens</option>
+            </select>
 		
     </td>
 	
-	    <td class="govuk-table__cell">
+	    <td class="govuk-table__cell" style="padding-left: 40px">
         
 		2
 		
     </td>
 	
 	    <td class="govuk-table__cell">
-        
-		&nbsp;
+
+            Other regulated/accredited qualification
 		
     </td>
 	
@@ -562,20 +609,20 @@ $j(document).ready(function() {
     </td>
 	
 		    <td class="govuk-table__cell">
-        
-		&nbsp;
+
+                You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.
 		
     </td>
 	
 		    <td class="govuk-table__cell">
-        
-		&nbsp;
+
+                Health, Public Services and Care
 		
     </td>
 	
 		    <td class="govuk-table__cell">
-        
-		&nbsp;
+
+                Health and Social Care
 		
     </td>
 	
@@ -673,7 +720,7 @@ If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent
         <div id="popup-url"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<textarea class="govuk-textarea tarea">http://www.oxford-college.org
+			<textarea class="govuk-textarea tarea">http://www.bmet.ac.uk/courses/76000122775958
        </textarea>
             <button class="govuk-button close-url">Close</button>
 
@@ -682,7 +729,7 @@ If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent
 		<div id="popup-req"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<textarea class="govuk-textarea tarea">Requirements
+			<textarea class="govuk-textarea tarea">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.
        </textarea>
             <button class="govuk-button close-req">Close</button>
 
@@ -691,7 +738,7 @@ If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent
         <div id="popup-cost"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<textarea class="govuk-textarea tarea">Cost description
+			<textarea class="govuk-textarea tarea">TBC
        </textarea>
             <button class="govuk-button close-cost">Close</button>
 
