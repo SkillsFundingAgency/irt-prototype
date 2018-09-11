@@ -258,7 +258,7 @@ $j(document).ready(function() {
 
 
 
-    $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration, #popup-bring').popup({
+    $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring').popup({
             opacity: 0.999,
             color:'#fff',
             transition: 'all 0.3s'
@@ -325,9 +325,38 @@ $j(document).ready(function() {
 		$j(this).click(function (e) {
 			$j('#popup-duration').popup('hide');
 		});
-	});	
-	
-	$j(".open-bring").each(function (e) {
+	});
+
+
+        $j(".open-dur").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-dur').popup('show');
+            });
+        });
+
+        $j(".close-dur").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-dur').popup('hide');
+            });
+        });
+
+
+        $j(".open-start-des").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-start-des').popup('show');
+            });
+        });
+
+        $j(".close-start-des").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-start-des').popup('hide');
+            });
+        });
+
+
+
+
+        $j(".open-bring").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-bring').popup('show');
 		});
@@ -532,7 +561,7 @@ $j(document).ready(function() {
 	
 	    <td class="govuk-table__cell" style="padding-left: 20px">
 
-            <button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+            <button type="submit" class="govuk-button edit-btn open-dur style="margin-right: 20px">
                 Edit
             </button>
     </td>
@@ -544,7 +573,7 @@ $j(document).ready(function() {
             <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label>
         </div>-->
 
-        <button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+        <button type="submit" class="govuk-button edit-btn open-start-des" style="margin-right: 20px">
             Edit
         </button>
 
@@ -789,22 +818,22 @@ If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent
 
         </div></div>
 		
-        <div id="popup-bring"><div style="padding:0;width:100%;">
+        <div id="popup-dur"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
 			<textarea class="govuk-textarea tarea">Duration description
        </textarea>
-            <button class="govuk-button close-bring">Close</button>
+            <button class="govuk-button close-dur">Close</button>
 
         </div></div>
 
 
-<div id="popup-bring"><div style="padding:0;width:100%;">
+<div id="popup-start-des"><div style="padding:0;width:100%;">
     <button class="my_popup_close govuk-button">Insert bullets</button>
     <button class="my_popup_close govuk-button">Spell check</button>
     <textarea class="govuk-textarea tarea">Start date additional information
     </textarea>
-    <button class="govuk-button close-bring">Close</button>
+    <button class="govuk-button close-start-des">Close</button>
 
 </div></div>
 
