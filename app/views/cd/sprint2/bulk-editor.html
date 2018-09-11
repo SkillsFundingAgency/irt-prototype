@@ -185,7 +185,7 @@ GOV.UK prototype kit
         width: 200px;
     }
 
-    th, td {
+    th.govuk-table__header, td.govuk-table__cell {
         width: 193px;
     }
     .govuk-checkboxes__input + .govuk-checkboxes__label::before {
@@ -217,7 +217,6 @@ span{font-size: 14px}
 	}
 
     .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
-
 </style>
 
 
@@ -458,7 +457,7 @@ $j(document).ready(function() {
 
 <table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
-    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th><th class="govuk-table__header" scope="col" style="width: 140px">Course sumary</th><th class="govuk-table__header" scope="col" style="width: 140px">Course URL</th><th class="govuk-table__header" scope="col" style="width: 140px">Entry requirements</th><th class="govuk-table__header" scope="col" style="width: 90px">Cost</th><th class="govuk-table__header" scope="col" style="width: 140px">Cost description</th><th class="govuk-table__header" scope="col" style="width: 120px">Duration</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration units</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col" style="width: 140px">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 120px">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th><th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th><th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
+    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th><th class="govuk-table__header" scope="col" style="width: 140px">Course sumary</th><th class="govuk-table__header" scope="col" style="width: 140px">Course URL</th><th class="govuk-table__header" scope="col" style="width: 140px">Entry requirements</th><th class="govuk-table__header" scope="col" style="width: 90px">Cost</th><th class="govuk-table__header" scope="col" style="width: 140px">Cost description</th><th class="govuk-table__header" scope="col" style="width: 120px">Duration</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration units</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration description</th><th class="govuk-table__header" scope="col">Start date additional information</th><th class="govuk-table__header" scope="col" style="width: 140px">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 120px">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th><th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th><th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
 	
 <tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
     <td class="govuk-table__cell">
@@ -533,14 +532,21 @@ $j(document).ready(function() {
 	
 	    <td class="govuk-table__cell" style="padding-left: 20px">
 
-            <div class="govuk-checkboxes__item" style="padding: 0 0 0 22px"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Flexible</label> </div>
-		
+            <button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+                Edit
+            </button>
     </td>
 	
 
     <td class="govuk-table__cell" style="padding-left: 20px">
 
-        <div class="govuk-checkboxes__item" style="padding: 0 0 0 22px"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label> </div>
+        <!--<div class="govuk-checkboxes__item" style="padding: 0 0 0 22px">
+            <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label>
+        </div>-->
+
+        <button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+            Edit
+        </button>
 
     </td>
 		
@@ -554,9 +560,9 @@ $j(document).ready(function() {
                     $j( "#datepicker" ).datepicker();
                 } );
             </script>
-
+<div>
             <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;
-    top: 10px;color:inherit;background-color: inherit">
+    top: 10px;color:inherit;background-color: inherit"></div>
             <i class="far fa-edit" style="    position: relative;
         left: 90px;
     top: -15px;"></i>
@@ -713,6 +719,9 @@ $j(document).ready(function() {
     <button type="submit" class="govuk-button" style="margin-right: 20px">
         Confirm and save
     </button>
+    <a href="/sprint5/course-details" class="govuk-button" style="margin-right: 20px">
+       Preview
+    </a>
 
 
 	</header>
@@ -774,7 +783,7 @@ If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent
 		<div id="popup-duration"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<textarea class="govuk-textarea tarea">Duration description
+			<textarea class="govuk-textarea tarea">Duration additional information
        </textarea>
             <button class="govuk-button close-duration">Close</button>
 
@@ -783,12 +792,36 @@ If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent
         <div id="popup-bring"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<textarea class="govuk-textarea tarea">You need to bring...
+			<textarea class="govuk-textarea tarea">Duration description
        </textarea>
             <button class="govuk-button close-bring">Close</button>
 
-        </div></div>		
-		
+        </div></div>
+
+
+<div id="popup-bring"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Start date additional information
+    </textarea>
+    <button class="govuk-button close-bring">Close</button>
+
+</div></div>
+
+
+
+<div id="popup-bring"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">You need to bring...
+    </textarea>
+    <button class="govuk-button close-bring">Close</button>
+
+</div></div>
+
+
+
+
 {% endblock %}
 
 
