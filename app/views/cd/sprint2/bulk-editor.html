@@ -186,7 +186,7 @@ GOV.UK prototype kit
     }
 
     th, td {
-        width: 215px;
+        width: 193px;
     }
     .govuk-checkboxes__input + .govuk-checkboxes__label::before {
         border: 2px solid  #bfc1c3;
@@ -196,25 +196,28 @@ span{font-size: 14px}
 
     .foo123{border: 2px solid hotpink}
     td:nth-child(1){padding-left: 30px;}
-    td:nth-child(2){background-color: #f9f9f9;padding-left: 30px; padding-right: 10px}
-    td:nth-child(3){background-color: #f9f9f9;padding-left: 10px;}
+    td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
+    td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
     td:nth-child(4){ padding-left: 20px}
 
-    td:nth-child(19){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(20){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(21){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(22){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(23){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(24){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(25){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(26){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
-    td:nth-child(27){background-color: #f9f9f9;padding-left: 10px; padding-right: 10px}
+    td:nth-child(19){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
 	
 	.tarea {
 		width:40vw;
 		height: 500px;
 		resize:none;
 	}
+
+    .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
+
 </style>
 
 
@@ -455,7 +458,7 @@ $j(document).ready(function() {
 
 <table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
-    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th><th class="govuk-table__header" scope="col" style="padding-left: 20px">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width: 500px; padding-left: 20px">Qualification title</th><th class="govuk-table__header" scope="col">Course description</th><th class="govuk-table__header" scope="col">Course URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col" style="padding-left: 20px">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col" style="width: 400px">How you'll be assessed</th><th class="govuk-table__header" scope="col">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
+    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width:410px; padding-left: 20px">Qualification title</th><th class="govuk-table__header" scope="col" style="width: 140px">Course description</th><th class="govuk-table__header" scope="col" style="width: 140px">Course URL</th><th class="govuk-table__header" scope="col" style="width: 140px">Entry requirements</th><th class="govuk-table__header" scope="col" style="width: 140px">Cost</th><th class="govuk-table__header" scope="col" style="width: 140px">Cost description</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration units</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col" style="width: 140px">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 140px">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col" style="width: 400px">How you'll be assessed</th><th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
 	
 <tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
     <td class="govuk-table__cell">
@@ -481,8 +484,8 @@ $j(document).ready(function() {
     </td>
 	
 	    <td class="govuk-table__cell">
-        
 
+            <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
 		
     </td>
 	
@@ -523,7 +526,7 @@ $j(document).ready(function() {
 
                 <option>Days</option>
                 <option selected="selected">Weeks</option>
-                <option>Selected</option>
+                <option>Years</option>
             </select>
 		
     </td>
@@ -552,9 +555,11 @@ $j(document).ready(function() {
                 } );
             </script>
 
-            <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;color:inherit;background-color: inherit">
+            <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;
+    top: 10px;color:inherit;background-color: inherit">
             <i class="far fa-edit" style="    position: relative;
-    left: -65px;"></i>
+        left: 90px;
+    top: -15px;"></i>
         </td>
 	
 	    <td class="govuk-table__cell">
@@ -614,7 +619,7 @@ $j(document).ready(function() {
 	
 	    <td class="govuk-table__cell">
 
-            Other regulated/accredited qualification
+            Other regulated
 		
     </td>
 	
@@ -717,24 +722,24 @@ $j(document).ready(function() {
         <div id="popup-descript"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<textarea class="govuk-textarea tarea">
-Who is the course for:
+			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px">
+<p class="shade">Who is the course for:</p>
 This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
-
-What you’ll learn:
+                <i class="far fa-edit"></i>
+<p class="shade">What you’ll learn:</p>
 You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
 effective communication
 equality
 diversity and rights
 anatomy and physiology
-social sciences
+social sciences  <i class="far fa-edit"></i>
 
-How you’ll learn
+<p class="shade">How you’ll learn</p>
 Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
-
-Where next?
+                <i class="far fa-edit"></i>
+<p class="shade">Where next?</p>
 If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
-       </textarea>
+                <i class="far fa-edit"></i>  </div>
             <button class="govuk-button close-descript">Close</button>
 
         </div></div>
