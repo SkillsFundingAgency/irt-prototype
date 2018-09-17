@@ -250,8 +250,41 @@ span{font-size: 14px}
 var $j = jQuery.noConflict();
 $j(document).ready(function() {
 
-    $j("#readmore").click(function(){
+    $j("#readmore").click(function(e){
         $j("span.showit").toggle();
+    e.preventDefault();
+    });
+
+    $j( "#header-search" ).submit(function( event ) {
+        //alert( "Handler for .submit() called." );
+        var miscCharge = $j("#miscCharge").val();
+
+        if(!isNaN(miscCharge))
+        {
+            //do some thing if it's a number  alert('Yeah a number');
+            var x= (miscCharge).length;
+            //alert(x);
+            if (x == 8){
+
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input'>Lars number: 12345678 </td></tr>");
+                //alert('NEW ROW CREATED');
+            }
+
+            else{
+                //alert('Error number too short or too long');
+                $j("#number-too-long-error").toggle();
+            }
+
+
+        }else{
+            //do some thing if it's NOT a number alert('Error not a number');
+            $j("#must-be-a-number-error").toggle();
+
+        }
+
+
+
+        event.preventDefault();
     });
 
 
@@ -411,8 +444,6 @@ $j(document).ready(function() {
 	
 });
 
-
-
 </script>
 
 
@@ -527,10 +558,6 @@ $j(document).ready(function() {
         </td>
 
     <td class="govuk-table__cell" style="padding-left: 20px">
-
-        <!--<div class="govuk-checkboxes__item" style="padding: 0 0 0 22px">
-            <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label>
-        </div>-->
 
         <button type="submit" class="govuk-button edit-btn open-start-des" style="margin-right: 20px">
             Edit
@@ -723,18 +750,10 @@ $j(document).ready(function() {
 		NCFE
 		
     </td>
-	
-		    <td class="govuk-table__cell">
-                <script>
 
-                $("#readmore").click(function(e){
-					e.preventDefault();
-                    $("span.showit").show();
-                });
-                </script>
+    <td class="govuk-table__cell">
 
                 You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
-		
     </td>
 	
 		    <td class="govuk-table__cell">
@@ -756,6 +775,8 @@ $j(document).ready(function() {
 
 </tbody></table>
 
+
+
 <table class="govuk-table" style="font-size: 14px;">
 <tr class="govuk-table__row last"><td class="foo" style="width: 30px; padding-right: 20px; padding-left: 20px">
     Add new course
@@ -763,21 +784,26 @@ $j(document).ready(function() {
     <div class="header-search-content" style="font-size: 14px;">
         <form action="" class="site-search ui-front" id="header-search" method="post">
 
-            <div class="search-input-wrapper">
+            <div class="search-input-wrapper govuk-form-group--error">
 
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="address-line-2" style="font-size: 14px">
                     </label>
                     <div class="select-editable">
-                        <ul id="course-list" style="width: 92px;">
+                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
+                    </span>
 
-                        </ul>
-                        <input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter LARS" style="font-size: 14px;float: left;width: 70%">
+                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
+                    </span>
+
+                        <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS" style="font-size: 14px;float: left;width: 70%">
                     </div>
                 </div>
-
+                <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
             </div>
-            <input class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
+
         </form>
 
     </div>
@@ -787,6 +813,13 @@ $j(document).ready(function() {
 
 
 
+
+    <table id="lars-search-results" class="govuk-table" style="margin-top: 30px">
+
+
+
+
+    </table>
 
 
 
