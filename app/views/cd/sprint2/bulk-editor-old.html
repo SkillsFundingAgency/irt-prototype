@@ -385,29 +385,8 @@ $j(document).ready(function() {
 		}
 	});
 
-		
-	$j("#duration-units").change(function (e) {
-		$j("#duration").empty();
-		var i=0;
-		switch ($j("#duration-units").val()) {
-			case "1":
-				i=31;
-				$j("#duration").append('<option>Less than one day</option>');
-				break;
-			case "2":
-				i=52;
-				break;	
-			case "3":
-				i=6;
-				break;	
-			case "4":
-				i=24;
-				break;					
-		}
-		for (x=1; x<=i; x++) {
-			$j("#duration").append('<option>'+x+'</option>');
-		}
-	});
+
+
 
 	
 });
@@ -507,91 +486,15 @@ $j(document).ready(function() {
 
 <table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-	<th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th>
-	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">Course ID</th>
-	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th>
-	<th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Start date</th>
-	<th class="govuk-table__header" scope="col">Start date additional information</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Course sumary</th>
-	<th class="govuk-table__header" scope="col">Venue</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Course URL</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Entry requirements</th>
-	<th class="govuk-table__header" scope="col" style="width: 90px">Cost</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Cost description</th>
-	<th class="govuk-table__header" scope="col" style="width: 120px">Duration</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Duration units</th>
-	<th class="govuk-table__header" scope="col" style="width: 140px">Duration description</th>
-	<th class="govuk-table__header" scope="col">Full-time or part-time</th>
-	<th class="govuk-table__header" scope="col">Classroom or online</th>
-	<th class="govuk-table__header" scope="col">Day, night or weekend</th>
-	<th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th>
-	<th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 120px">Qualification level </th>
-	<th class="govuk-table__header" scope="col">Qualification Type</th>
-	<th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th>
-	<th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th>
-	<th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th>
-	<th class="govuk-table__header" scope="col">SSA Tier 2 Description</th>
-	</tr></thead><tbody>
+    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th><th class="govuk-table__header" scope="col" style="width: 140px">Course sumary</th><th class="govuk-table__header" scope="col" style="width: 140px">Course URL</th><th class="govuk-table__header" scope="col" style="width: 140px">Entry requirements</th><th class="govuk-table__header" scope="col" style="width: 90px">Cost</th><th class="govuk-table__header" scope="col" style="width: 140px">Cost description</th><th class="govuk-table__header" scope="col" style="width: 120px">Duration</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration units</th><th class="govuk-table__header" scope="col" style="width: 140px">Duration description</th><th class="govuk-table__header" scope="col">Start date additional information</th><th class="govuk-table__header" scope="col" style="width: 140px">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 120px">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th><th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th><th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
 	
-<tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
-
-	    <td class="govuk-table__cell" style="background-color:#fff;">
-
-            <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
-		
-    </td>
-
-<td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
-
-
-		
-    </td>
-	
-	    <td class="govuk-table__cell">
-
-            <script>
-                var $j = jQuery.noConflict();
-                $j( function() {
-                    $j( "#datepicker" ).datepicker();
-                } );
-            </script>
-<div>
-            <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;
-    top: 10px;color:inherit;background-color: inherit"></div>
-            <i class="far fa-edit" style="    position: relative;
-        left: 90px;
-    top: -15px;"></i>
-        </td>
-
-    <td class="govuk-table__cell" style="padding-left: 20px">
-
-        <!--<div class="govuk-checkboxes__item" style="padding: 0 0 0 22px">
-            <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label>
-        </div>-->
-
-        <button type="submit" class="govuk-button edit-btn open-start-des" style="margin-right: 20px">
-            Edit
-        </button>
-
-    </td>
-		
+<tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
     <td class="govuk-table__cell">
         <button type="button" class="govuk-button edit-btn open-descript" style="margin-right: 20px">
             Edit
         </button>
 
-	
-	    <td class="govuk-table__cell">
 
-            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
-                <option>Matthew Boulton Campus</option>
-                <option>Sutton Coldfield Campus</option>
-                <option>Botanical Gardens</option>
-            </select>
-		
-    </td>
 
 
     </td>
@@ -625,7 +528,7 @@ $j(document).ready(function() {
 	    <td class="govuk-table__cell">
 
 
-            <select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%">
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 50%">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -636,47 +539,9 @@ $j(document).ready(function() {
                 <option>8</option>
                 <option>9</option>
                 <option>10</option>
-				<option>11</option>
-				<option>12</option>
-				<option>13</option>
-				<option>14</option>
-				<option>15</option>
-				<option>16</option>
-				<option>17</option>
-				<option>18</option>
-				<option>19</option>
-				<option>20</option>
-				<option>21</option>
-				<option>22</option>
-				<option>23</option>
-				<option>24</option>
-				<option>25</option>
-				<option>26</option>
-				<option>27</option>
-				<option>28</option>
-				<option>29</option>
-				<option>30</option>
-				<option>31</option>
-				<option>32</option>
-				<option>33</option>
-				<option>34</option>
-				<option>35</option>
-				<option>36</option>
-				<option>37</option>
-				<option>38</option>
-				<option>39</option>
-				<option>40</option>
-				<option>41</option>
-				<option>42</option>
-				<option>43</option>
-				<option>44</option>
-				<option>45</option>
-				<option>46</option>
-				<option>47</option>
-				<option>48</option>
-				<option>49</option>
-				<option>50</option>
-				<option>51</option>     
+                <option>...</option>
+                <option selected="selected">34</option>
+                <option>...</option>
                 <option>52</option>
             </select>
 
@@ -685,12 +550,11 @@ $j(document).ready(function() {
 	
 	    <td class="govuk-table__cell">
 
-            <select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%">
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
 
-                <option value="1">Days</option>
-                <option value="2" selected="selected">Weeks</option>
-                <option value="3">Years</option>
-				<option value="4">Months</option>
+                <option>Days</option>
+                <option selected="selected">Weeks</option>
+                <option>Years</option>
             </select>
 		
     </td>
@@ -703,7 +567,35 @@ $j(document).ready(function() {
     </td>
 	
 
+    <td class="govuk-table__cell" style="padding-left: 20px">
 
+        <!--<div class="govuk-checkboxes__item" style="padding: 0 0 0 22px">
+            <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Start date is flexible</label>
+        </div>-->
+
+        <button type="submit" class="govuk-button edit-btn open-start-des" style="margin-right: 20px">
+            Edit
+        </button>
+
+    </td>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+            <script>
+                var $j = jQuery.noConflict();
+                $j( function() {
+                    $j( "#datepicker" ).datepicker();
+                } );
+            </script>
+<div>
+            <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;
+    top: 10px;color:inherit;background-color: inherit"></div>
+            <i class="far fa-edit" style="    position: relative;
+        left: 90px;
+    top: -15px;"></i>
+        </td>
 	
 	    <td class="govuk-table__cell">
 
@@ -743,7 +635,16 @@ $j(document).ready(function() {
 		
     </td>
 	
+	
+	    <td class="govuk-table__cell">
 
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
+                <option>Matthew Boulton Campus</option>
+                <option>Sutton Coldfield Campus</option>
+                <option>Botanical Gardens</option>
+            </select>
+		
+    </td>
 	
 	    <td class="govuk-table__cell" style="padding-left: 40px">
         
@@ -766,13 +667,12 @@ $j(document).ready(function() {
 		    <td class="govuk-table__cell">
                 <script>
 
-                $("#readmore").click(function(e){
-					e.preventDefault();
+                $("#readmore").click(function(){
                     $("span.showit").show();
                 });
                 </script>
 
-                You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
+                You will be assessed on an on-going basis...<a href="" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
 		
     </td>
 	
