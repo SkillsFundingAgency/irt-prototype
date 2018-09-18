@@ -195,19 +195,19 @@ span{font-size: 14px}
     textarea {width: 500px; font-size: 14px; height: 140px}
 
     .foo123{border: 2px solid hotpink}
-    td:nth-child(1){padding-left: 30px;}
-    td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
-    td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
-    td:nth-child(4){ padding-left: 20px}
+    #main-table td:nth-child(1){padding-left: 30px;}
+    #main-table td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
+    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
+    #main-table td:nth-child(4){ background-color: #bfc1c3;padding-left: 20px}
 
-    td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
 	
 	.tarea {
 		width:40vw;
@@ -266,8 +266,10 @@ $j(document).ready(function() {
             //alert(x);
             if (x == 8){
 
-                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input'>Lars number: 12345678 </td></tr>");
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
                 //alert('NEW ROW CREATED');
+                $j("#add-course-table").toggle();
+
             }
 
             else{
@@ -541,7 +543,7 @@ $j(document).ready(function() {
 		
     </td>
 	
-	    <td class="govuk-table__cell">
+	    <td class="govuk-table__cell" style="padding-left: 10px">
 
             <script>
                 var $j = jQuery.noConflict();
@@ -777,16 +779,20 @@ $j(document).ready(function() {
 
 
 
-<table class="govuk-table" style="font-size: 14px;">
-<tr class="govuk-table__row last"><td class="foo" style="width: 30px; padding-right: 20px; padding-left: 20px">
-    Add new course
-</td><td style=" background-color: white;">
+    <h2 class="govuk-heading-m" style="position: relative;
+    top: 46px;">To add a course search the Lars number</h2>
+<table class="govuk-table" style="font-size: 14px;margin-top: 30px">
+
+<tr class="govuk-table__row last">
+    <td class="foo" style="width: 123px; padding-right: 20px; padding-left: 20px;border-bottom: none">
+    Lars number search
+</td><td style=" background-color: white; border-bottom: none">
     <div class="header-search-content" style="font-size: 14px;">
         <form action="" class="site-search ui-front" id="header-search" method="post">
 
             <div class="search-input-wrapper govuk-form-group--error">
 
-                <div class="govuk-form-group">
+                <div class="govuk-form-group" style="    width: 35%;">
                     <label class="govuk-label" for="address-line-2" style="font-size: 14px">
                     </label>
                     <div class="select-editable">
@@ -811,12 +817,61 @@ $j(document).ready(function() {
 </tr>
 </tbody></table>
 
+    <table id="lars-search-results" class="govuk-table" style="margin-top: 30px; font-size: 14px;margin-bottom: 0">
+        </table>
+
+
+    <table id="add-course-table" class="govuk-table" style=" font-size: 14px; display: none">
+
+    <tbody>
+
+    <tr style="background-color:#fff;"><td class="govuk-table__cell">
+            <button class="govuk-button">Add this course</button>
+    </td>
 
 
 
-    <table id="lars-search-results" class="govuk-table" style="margin-top: 30px">
+    <td class="govuk-table__cell">12345678</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
 
 
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Other regulated
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        NCFE
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Health, Public Services and Care
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Health and Social Care
+
+    </td>
+
+    </tr>
+
+
+
+
+    </tbody>
 
 
     </table>
