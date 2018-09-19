@@ -12,19 +12,19 @@ GOV.UK prototype kit
     <div class="govuk-checkboxes" style="font-size: 14px; padding-top: 100px;padding-left: 20px">
         <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox" value="carcasses">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-1">
-                Search by location
+            <label class="govuk-label govuk-checkboxes__label" for="waste-1" style="    padding: 8px 0px 5px;">
+               Search by location
             </label>
         </div>
         <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2" style="    padding: 8px 0px 5px;">
                 Search Part-time
             </label>
         </div>
         <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-3" style="    padding: 8px 0px 5px;">
                 Show Coventry only
             </label>
         </div>
@@ -76,27 +76,27 @@ GOV.UK prototype kit
         height: 400px;
         width: 100%;
     }
-
-    .enrol-text {
-        position: relative;top: -25px; font-size: 14px;
-    }
-
-    @media all and (max-width: 640px) {
-        .enrol-text {
-            margin-top:12px;
-        }
-        .share-links li {
-            margin:5px !important;
-        }
-    }
-
-    .pnl {
-
-        border:solid 1px #000;
-        padding:20px;
-        margin:5px;
-
-    }
+	
+	.enrol-text {
+		position: relative;top: -25px; font-size: 14px;
+	}
+	
+	@media all and (max-width: 640px) {
+		.enrol-text {
+			margin-top:12px;
+		}
+		.share-links li {
+			margin:5px !important;
+		}
+	}
+	
+	.pnl {
+	
+		border:solid 1px #000;
+		padding:20px;
+		margin:5px;
+	
+	}
     .canvasjs-chart-canvas{font-family: "nta"!important;}
 
     .filter-radio::after {
@@ -180,55 +180,50 @@ GOV.UK prototype kit
         height: 25px;
         background: transparent;
     }
-
-
     table{
         table-layout: fixed;
         width: 200px;
     }
 
-    th, td {
-        width: 215px;
+    th.govuk-table__header, td.govuk-table__cell {
+        width: 193px;
     }
     .govuk-checkboxes__input + .govuk-checkboxes__label::before {
         border: 2px solid  #bfc1c3;
     }
-    span{font-size: 14px}
+span{font-size: 14px}
     textarea {width: 500px; font-size: 14px; height: 140px}
 
     .foo123{border: 2px solid hotpink}
-    td:nth-child(4){background-color: #f9f9f9;padding-left: 10px}
-    td:nth-child(5){background-color: #f9f9f9;}
-    td:nth-child(6){background-color: #f9f9f9;}
-    td:nth-child(7){background-color: #f9f9f9;}
-    td:nth-child(8){background-color: #f9f9f9;}
-    td:nth-child(9){background-color: #f9f9f9;}
-    td:nth-child(10){background-color: #f9f9f9;}
-    td:nth-child(11){background-color: #f9f9f9;}
-    td:nth-child(12){padding-left: 10px}
-    td:nth-child(13){background-color: #f9f9f9;}
-    td:nth-child(14){background-color: #f9f9f9;}
-    td:nth-child(15){background-color: #f9f9f9;}
-    td:nth-child(16){background-color: #f9f9f9;}
-    td:nth-child(17){background-color: #f9f9f9;}
-    td:nth-child(18){background-color: #f9f9f9;}
-    td:nth-child(19){background-color: #f9f9f9;}
-    td:nth-child(20){background-color: #f9f9f9;}
-    td:nth-child(21){background-color: #f9f9f9;}
-    td:nth-child(22){background-color: #f9f9f9;}
-    td:nth-child(23){background-color: #f9f9f9;}
-    td:nth-child(24){background-color: #f9f9f9;}
-    td:nth-child(25){background-color: #f9f9f9;}
-    td:nth-child(26){background-color: #f9f9f9;}
-    td:nth-child(27){background-color: #f9f9f9;}
+    #main-table td:nth-child(1){padding-left: 30px;}
+    #main-table td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
+    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
+    #main-table td:nth-child(4){ background-color: #bfc1c3;padding-left: 20px}
+
+    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+	
+	.tarea {
+		width:40vw;
+		height: 500px;
+		resize:none;
+	}
+
+    .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
 </style>
-
-
 
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 
 <script>
     $(window).on('load', function(){
@@ -236,6 +231,7 @@ GOV.UK prototype kit
         var toggle = false;
 
         $('.btn').click(function() {
+
             toggle = !toggle;
 
             if(toggle){
@@ -246,149 +242,217 @@ GOV.UK prototype kit
             }
 
         });
-
-        //$( "#datepicker" ).datepicker();
-
-
     });
 
 </script>
+
 <script>
-    $(".button").click(function(){
-        $(".editable").addClass("foo123");
-        alert("The paragraph was clicked.");
+var $j = jQuery.noConflict();
+$j(document).ready(function() {
+
+    $j("#readmore").click(function(e){
+        $j("span.showit").toggle();
+    e.preventDefault();
     });
-</script>
 
-<script>
-    jQuery(function(){
+    $j( "#header-search" ).submit(function( event ) {
+        //alert( "Handler for .submit() called." );
+        var miscCharge = $j("#miscCharge").val();
 
-        var minimized_elements = $('td.govuk-table__cell');
+        if(!isNaN(miscCharge))
+        {
+            //do some thing if it's a number  alert('Yeah a number');
+            var x= (miscCharge).length;
+            //alert(x);
+            if (x == 8){
 
-        minimized_elements.each(function(){
-            var t = $(this).html();
-            if(t.length < 10) return;
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
+                //alert('NEW ROW CREATED');
+                $j("#add-course-table").toggle();
 
-            $(this).html(
-                    t.slice(0,10)+'<span>... </span><a href="#" class="more">More</a>'+
-                            '<span style="display:none;">'+ t.slice(10,t.length)+' <a href="#" class="less">Less</a></span>'
-            );
+            }
 
-        });
-
-        $('a.more', minimized_elements).click(function(event){
-            event.preventDefault();
-            $(this).hide().prev().hide();
-            $(this).next().show();
-        });
-
-        $('a.less', minimized_elements).click(function(event){
-            event.preventDefault();
-            $(this).parent().hide().prev().show().prev().show();
-        });
-
-    });
-</script>
+            else{
+                //alert('Error number too short or too long');
+                $j("#number-too-long-error").toggle();
+            }
 
 
-<script>
-    jQuery(function(){
+        }else{
+            //do some thing if it's NOT a number alert('Error not a number');
+            $j("#must-be-a-number-error").toggle();
 
-        var minimized_elements = $('td.govuk-table__cell1');
-
-        minimized_elements.each(function(){
-            var t = $(this).html();
-            if(t.length < 50) return;
-
-            $(this).html(
-                    t.slice(0,50)+'<span>... </span><a href="#" class="more">More</a>'+
-                            '<span style="display:none;">'+ t.slice(50,t.length)+' <a href="#" class="less">Less</a></span>'
-            );
-
-        });
-
-        $('a.more', minimized_elements).click(function(event){
-            event.preventDefault();
-            $(this).hide().prev().hide();
-            $(this).next().show();
-        });
-
-        $('a.less', minimized_elements).click(function(event){
-            event.preventDefault();
-            $(this).parent().hide().prev().show().prev().show();
-        });
-
-    });
-</script>
-<script>
-    jQuery(function(){
-
-        var minimized_elements = $('td.govuk-table__cell2');
-
-        minimized_elements.each(function(){
-            var t = $(this).html();
-            if(t.length < 100) return;
-
-            $(this).html(
-                    t.slice(0,100)+'<span>... </span><a href="#" class="more">More</a>'+
-                            '<span style="display:none;">'+ t.slice(100,t.length)+' <a href="#" class="less">Less</a></span>'
-            );
-
-        });
-
-        $('a.more', minimized_elements).click(function(event){
-            event.preventDefault();
-            $(this).hide().prev().hide();
-            $(this).next().show();
-        });
-
-        $('a.less', minimized_elements).click(function(event){
-            event.preventDefault();
-            $(this).parent().hide().prev().show().prev().show();
-        });
-
-    });
-</script>
-
-<script>
+        }
 
 
 
-    function divClicked() {
-        var divHtml = $(this).html();
-        var editableText = $("<textarea />");
-        editableText.val(divHtml);
-        $(this).replaceWith(editableText);
-        editableText.focus();
-// setup the blur event for this new textarea
-        editableText.blur(editableTextBlurred);
-    }
-
-    function editableTextBlurred() {
-        var html = $(this).val();
-        var viewableText = $("<td>");
-        viewableText.html(html);
-        $(this).replaceWith(viewableText);
-        // setup the click event for this new div
-        viewableText.click(divClicked);
-    }
-
-    $(document).ready(function() {
-        $(".foo123").click(divClicked);
-        // $(".govuk-table__cell2").click(divClicked);
-
-
-
+        event.preventDefault();
     });
 
 
+
+
+    $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring').popup({
+            opacity: 0.999,
+            color:'#fff',
+            transition: 'all 0.3s'
+        });
+   
+	
+	setInterval(function(){
+	
+	$j(".open-descript").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-descript').popup('show');
+		});
+	});
+	
+	$j(".close-descript").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-descript').popup('hide');
+		});
+	});	
+	
+	$j(".open-url").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-url').popup('show');
+		});
+	});
+	
+	$j(".close-url").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-url').popup('hide');
+		});
+	});	
+
+	$j(".open-req").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-req').popup('show');
+		});
+	});
+	
+	$j(".close-req").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-req').popup('hide');
+		});
+	});
+
+	$j(".open-cost").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-cost').popup('show');
+		});
+	});
+	
+	$j(".close-cost").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-cost').popup('hide');
+		});
+	});
+
+	$j(".open-duration").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-duration').popup('show');
+		});
+	});
+	
+	$j(".close-duration").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-duration').popup('hide');
+		});
+	});
+
+
+        $j(".open-dur").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-dur').popup('show');
+            });
+        });
+
+        $j(".close-dur").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-dur').popup('hide');
+            });
+        });
+
+
+        $j(".open-start-des").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-start-des').popup('show');
+            });
+        });
+
+        $j(".close-start-des").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-start-des').popup('hide');
+            });
+        });
+
+
+
+
+        $j(".open-bring").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-bring').popup('show');
+		});
+	});
+	
+	$j(".close-bring").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-bring').popup('hide');
+		});
+	});	
+	
+	}, 500);
+
+	$j("#duplicate").click(function(e) {
+		$j(".check:checkbox:checked").each (function(e) {
+			$j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
+			$j(this).prop('checked', false);
+		});
+	});
+	
+	$j("#delete").click(function(e) {
+		if (confirm('Are you sure you want to delete selected items?')) {
+			$j(".check:checkbox:checked").each (function(e) {
+				$j(this).closest("tr").remove();
+			});
+		}
+	});
+
+		
+	$j("#duration-units").change(function (e) {
+		$j("#duration").empty();
+		var i=0;
+		switch ($j("#duration-units").val()) {
+			case "1":
+				i=31;
+				$j("#duration").append('<option>Less than one day</option>');
+				break;
+			case "2":
+				i=52;
+				break;	
+			case "3":
+				i=6;
+				break;	
+			case "4":
+				i=24;
+				break;					
+		}
+		for (x=1; x<=i; x++) {
+			$j("#duration").append('<option>'+x+'</option>');
+		}
+	});
+
+	
+});
 
 </script>
 
 
 <header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
 
-<div class="govuk-breadcrumbs">
+
+    <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory</a></li>
@@ -397,68 +461,26 @@ GOV.UK prototype kit
     </ol>
 </div>
 
-<div style="float:right;text-align:right;" class="govuk-body">
-    Logged in: <strong>Mr. Appleseed</strong><br/>
-    <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
-    <a href="account-management" class="govuk-link">Your account</a>
-</div>
+    <div style="float:right;text-align:right;" class="govuk-body">
+        Logged in: <strong>Mr. Appleseed</strong><br/>
+        <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
+        <a href="account-management" class="govuk-link">Your account</a>
+    </div>
+
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+           Bulk editor
+        </h1>
 
 
 
 
+	<!--TABS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 
-<h1 class="govuk-heading-l" style="padding-top: 20px;">
-    Bulk editor
-</h1>
+    <!-- Side navigation -->
 
-
-
-
-<!--TABS-->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-
-<!-- Side navigation -->
-
-<style>/* The sidebar menu */
-.sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-}
-
-/* The navigation menu links */
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-/* Style page content */
-.main {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
+<style>
 
 #A, #B {
     position: fixed;
@@ -470,225 +492,765 @@ GOV.UK prototype kit
     background:#ddd;
     left: -400px;
 }
-#B {
-    top: 0px;
-    left: 200px;
-    right: 0;
-    bottom: 0px;
-    background:green;
-}
-
+.hidden,.my_popup_2 {display: none}
+.govuk-button {margin-bottom: 0;}
 </style>
 
-<!--END TABS-->
 
 
-<!--<table class="govuk-table" style="font-size: 12px">-->
-<table class="govuk-table" style="font-size: 14px;">
+
+<table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
-    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col" style="width: 50px">Select rows</th>
-        <th class="govuk-table__header" scope="col" style="width: 80px">LARS</th><th class="govuk-table__header" scope="col" style="width: 300px">Qualification title</th><th class="govuk-table__header" scope="col" style="width: 500px">Course summary</th><th class="govuk-table__header" scope="col">Provider course/opportunity ID</th><th class="govuk-table__header" scope="col">Enrol URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">How you'll be assessed</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Level</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th>
-        <th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">End date</th>
-        <th class="govuk-table__header" scope="col">Full-time /p-t</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night</th><th class="govuk-table__header" scope="col">Venue</th></tr></thead><tbody>
-<tr class="govuk-table__row"><td class="foo">
-    <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div>
-</td><td class="govuk-table__cell ">60171996</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td>
+    <tr class="govuk-table__row">
+	<th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th>
+	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">Course ID</th>
+	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th>
+	<th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Start date</th>
+	<th class="govuk-table__header" scope="col">Start date additional information</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Course sumary</th>
+	<th class="govuk-table__header" scope="col">Venue</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Course URL</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Entry requirements</th>
+	<th class="govuk-table__header" scope="col" style="width: 90px">Cost</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Cost description</th>
+	<th class="govuk-table__header" scope="col" style="width: 120px">Duration</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Duration units</th>
+	<th class="govuk-table__header" scope="col" style="width: 140px">Duration description</th>
+	<th class="govuk-table__header" scope="col">Full-time or part-time</th>
+	<th class="govuk-table__header" scope="col">Classroom or online</th>
+	<th class="govuk-table__header" scope="col">Day, night or weekend</th>
+	<th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th>
+	<th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 120px">Qualification level </th>
+	<th class="govuk-table__header" scope="col">Qualification Type</th>
+	<th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th>
+	<th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th>
+	<th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th>
+	<th class="govuk-table__header" scope="col">SSA Tier 2 Description</th>
+	</tr></thead><tbody>
+	
+<tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
 
-    <!-- <td class="govuk-table__cell ">The course covers Development Through Life Stages, Anatomy and Physiology for Health & Social Care, Sociological Perspectives for Health & Social Care, Psychological Perspectives for Health & Social Care, Safeguarding Adults and Promoting Independence.</td>-->
-    <td class="govuk-table__cell2 editable" style="vertical-align:top;">Who is the course for:<br>
-        This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
+	    <td class="govuk-table__cell" style="background-color:#fff;">
 
-        <br>What you’ll learn:<br>
-        You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
-        effective communication
-        equality
-        diversity and rights
-        anatomy and physiology
-        social sciences
-
-        <br>How you’ll learn<br>
-        Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
-
-
-
-        <br>Where next?<br>
-        If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
-        <button class="button">Edit </button>
+            <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
+		
     </td>
 
-    <td class="govuk-table__cell ">S3SHSCF/SNFHSCFM18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000122775958</td><td class="govuk-table__cell ">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.</td><td class="govuk-table__cell ">You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td>
-    <td>
+<td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
 
 
+		
+    </td>
+	
+	    <td class="govuk-table__cell" style="padding-left: 10px">
 
-        <script>
-            var $j = jQuery.noConflict();
-            $j( function() {
-                $j( "#datepicker" ).datepicker();
-            } );
-        </script>
+            <script>
+                var $j = jQuery.noConflict();
+                $j( function() {
+                    $j( "#datepicker" ).datepicker();
+                } );
+            </script>
+<div>
+            <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;
+    top: 10px;color:inherit;background-color: inherit"></div>
+            <i class="far fa-edit" style="    position: relative;
+        left: 90px;
+    top: -15px;"></i>
+        </td>
 
-        <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;color:inherit;background-color: inherit">
+    <td class="govuk-table__cell" style="padding-left: 20px">
+
+        <button type="submit" class="govuk-button edit-btn open-start-des" style="margin-right: 20px">
+            Edit
+        </button>
+
+    </td>
+		
+    <td class="govuk-table__cell">
+        <button type="button" class="govuk-button edit-btn open-descript" style="margin-right: 20px">
+            Edit
+        </button>
+
+	
+	    <td class="govuk-table__cell">
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
+                <option>Matthew Boulton Campus</option>
+                <option>Sutton Coldfield Campus</option>
+                <option>Botanical Gardens</option>
+            </select>
+		
+    </td>
 
 
     </td>
-    <td class="">    <script>
+    <td class="govuk-table__cell">
+	        <button type="button" class="govuk-button edit-btn open-url" style="margin-right: 20px">
+            Edit
+        </button>
+	</td>
+    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-req" style="margin-right: 20px">
+            Edit
+        </button>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+            <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-cost" style="margin-right: 20px">
+            Edit
+        </button>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+
+            <select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>13</option>
+				<option>14</option>
+				<option>15</option>
+				<option>16</option>
+				<option>17</option>
+				<option>18</option>
+				<option>19</option>
+				<option>20</option>
+				<option>21</option>
+				<option>22</option>
+				<option>23</option>
+				<option>24</option>
+				<option>25</option>
+				<option>26</option>
+				<option>27</option>
+				<option>28</option>
+				<option>29</option>
+				<option>30</option>
+				<option>31</option>
+				<option>32</option>
+				<option>33</option>
+				<option>34</option>
+				<option>35</option>
+				<option>36</option>
+				<option>37</option>
+				<option>38</option>
+				<option>39</option>
+				<option>40</option>
+				<option>41</option>
+				<option>42</option>
+				<option>43</option>
+				<option>44</option>
+				<option>45</option>
+				<option>46</option>
+				<option>47</option>
+				<option>48</option>
+				<option>49</option>
+				<option>50</option>
+				<option>51</option>     
+                <option>52</option>
+            </select>
+
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+            <select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%">
+
+                <option value="1">Days</option>
+                <option value="2" selected="selected">Weeks</option>
+                <option value="3">Years</option>
+				<option value="4">Months</option>
+            </select>
+		
+    </td>
+	
+	    <td class="govuk-table__cell" style="padding-left: 20px">
+
+            <button type="submit" class="govuk-button edit-btn open-dur style="margin-right: 20px">
+                Edit
+            </button>
+    </td>
+	
+
+
+	
+	    <td class="govuk-table__cell">
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                <option>Full-time /p-t</option>
+                <option>Part-time</option>
+                <option>Flexible</option>
+            </select>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                <option>Location/Campus</option>
+                <option>Online</option>
+                <option>Work-based</option>
+            </select>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+            <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                <option>Daytime/working hours</option>
+                <option>Part-time</option>
+                <option>Flexible</option>
+            </select>
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		<button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+            Edit
+        </button>
+		
+    </td>
+	
+
+	
+	    <td class="govuk-table__cell" style="padding-left: 40px">
+        
+		2
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+
+            Other regulated
+		
+    </td>
+	
+	    <td class="govuk-table__cell">
+        
+		NCFE
+		
+    </td>
+
+    <td class="govuk-table__cell">
+
+                You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
+    </td>
+	
+		    <td class="govuk-table__cell">
+
+                Health, Public Services and Care
+		
+    </td>
+	
+		    <td class="govuk-table__cell">
+
+                Health and Social Care
+		
+    </td>
+	
+</tr>
+
+
+
+
+    <!--row two-->
+
+
+
+<tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
+
+<td class="govuk-table__cell" style="background-color:#fff;">
+
+    <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
+
+</td>
+
+<td class="govuk-table__cell">12345678</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td>
+
+
+
+</td>
+
+<td class="govuk-table__cell" style="padding-left: 10px">
+
+    <script>
         var $j = jQuery.noConflict();
         $j( function() {
-            $j( "#datepicker1" ).datepicker();
+            $j( "#datepicker" ).datepicker();
         } );
     </script>
+    <div>
+        <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;
+    top: 10px;color:inherit;background-color: inherit"></div>
+    <i class="far fa-edit" style="    position: relative;
+        left: 90px;
+    top: -15px;"></i>
+</td>
 
-        <input type="text" id="datepicker1" placeholder="21-Jun-19" style="border: none;font-size: 14px;color:inherit;background-color: inherit">
-    </td>
-    <td class=""><select class="govuk-select" id="sort" name="sort" style="font-size: 14px">
+<td class="govuk-table__cell" style="padding-left: 20px">
+
+    <button type="submit" class="govuk-button edit-btn open-start-des" style="margin-right: 20px">
+        Edit
+    </button>
+
+</td>
+
+<td class="govuk-table__cell">
+    <button type="button" class="govuk-button edit-btn open-descript" style="margin-right: 20px">
+        Edit
+    </button>
+
+
+<td class="govuk-table__cell">
+
+    <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
+        <option>Matthew Boulton Campus</option>
+        <option>Sutton Coldfield Campus</option>
+        <option>Botanical Gardens</option>
+    </select>
+
+</td>
+
+
+</td>
+<td class="govuk-table__cell">
+    <button type="button" class="govuk-button edit-btn open-url" style="margin-right: 20px">
+        Edit
+    </button>
+</td>
+<td class="govuk-table__cell">
+
+    <button type="submit" class="govuk-button edit-btn open-req" style="margin-right: 20px">
+        Edit
+    </button>
+
+</td>
+
+<td class="govuk-table__cell">
+
+    <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
+
+</td>
+
+<td class="govuk-table__cell">
+
+    <button type="submit" class="govuk-button edit-btn open-cost" style="margin-right: 20px">
+        Edit
+    </button>
+
+</td>
+
+<td class="govuk-table__cell">
+
+
+    <select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>21</option>
+        <option>22</option>
+        <option>23</option>
+        <option>24</option>
+        <option>25</option>
+        <option>26</option>
+        <option>27</option>
+        <option>28</option>
+        <option>29</option>
+        <option>30</option>
+        <option>31</option>
+        <option>32</option>
+        <option>33</option>
+        <option>34</option>
+        <option>35</option>
+        <option>36</option>
+        <option>37</option>
+        <option>38</option>
+        <option>39</option>
+        <option>40</option>
+        <option>41</option>
+        <option>42</option>
+        <option>43</option>
+        <option>44</option>
+        <option>45</option>
+        <option>46</option>
+        <option>47</option>
+        <option>48</option>
+        <option>49</option>
+        <option>50</option>
+        <option>51</option>
+        <option>52</option>
+    </select>
+
+
+</td>
+
+<td class="govuk-table__cell">
+
+    <select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%">
+
+        <option value="1">Days</option>
+        <option value="2" selected="selected">Weeks</option>
+        <option value="3">Years</option>
+        <option value="4">Months</option>
+    </select>
+
+</td>
+
+<td class="govuk-table__cell" style="padding-left: 20px">
+
+    <button type="submit" class="govuk-button edit-btn open-dur style="margin-right: 20px">
+    Edit
+    </button>
+</td>
+
+
+
+
+<td class="govuk-table__cell">
+
+    <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
         <option>Full-time /p-t</option>
         <option>Part-time</option>
         <option>Flexible</option>
-    </select></td>
-    <td class="">
+    </select>
 
-        <select class="govuk-select" id="sort" name="sort" style="font-size: 14px">
-            <option>Location/Campus</option>
-            <option>Online</option>
-            <option>Work-based</option>
-        </select>
-    </td>
-    <td class="">
-        <select class="govuk-select" id="sort" name="sort" style="font-size: 14px">
-            <option>Daytime/working hours</option>
-            <option>Part-time</option>
-            <option>Flexible</option>
-        </select>
-    </td>
-    <td class="">
-        <select class="govuk-select" id="sort" name="sort" style="font-size: 14px">
-            <option>Matthew Boulton Campus</option>
-            <option>Sutton Coldfield Campus</option>
-            <option>Botanical Gardens</option>
-        </select>
-    </td></tr>
-<tr class="govuk-table__row"><td class="foo">
-    <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60171996</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">The course covers Development Through Life Stages, Anatomy and Physiology for Health & Social Care, Sociological Perspectives for Health & Social Care, Psychological Perspectives for Health & Social Care, Safeguarding Adults and Promoting Independence.</td><td class="govuk-table__cell ">S3SHSCF/SNFHSCFS18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000122775958</td><td class="govuk-table__cell ">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.</td><td class="govuk-table__cell ">You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">32</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">21-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Sutton Coldfield Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">
-    <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60171996</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">The course covers Development Through Life Stages, Anatomy and Physiology for Health & Social Care, Sociological Perspectives for Health & Social Care, Psychological Perspectives for Health & Social Care, Safeguarding Adults and Promoting Independence.</td><td class="govuk-table__cell ">S3SHSCF/SNFHSCFS18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000122775958</td><td class="govuk-table__cell ">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.</td><td class="govuk-table__cell ">You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">21-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Stourbridge Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60171613</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">This course gives students a general introduction to the world of business.  The content allows students the opportunity to investigate different business aspects of the working world. Knowledge learnt and activities and skills involved in the programme will provide students with a sound background when investigating their future employment and career planning.     This qualification gives learners experience of the breadth and depth of the sector that will prepare them for further study or training. This includes the opportunity for learners to choose several topics from a selection of options reflecting the progression pathways in business.  The learning programme covers the following content areas:. business environments. finance. marketing. international business. management.  The optional units have been designed to support progression to business courses in higher education, and to link with relevant occupational areas. They cover content areas such as:. human resources. accounting. marketing. law.</td><td class="govuk-table__cell ">76009916/SNFBUSFM18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000588419916</td><td class="govuk-table__cell ">Entry requirements are a minimum of 5 GCSEs at Grade C/5 including English and Maths at Grade 5. If you are successful in Year 1 you will progress onto the Extended Diploma in Business. The two year programme is approximately equivalent to 3 A levels.</td><td class="govuk-table__cell ">Assessment consists of a mixture of exams and course work.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">21-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Matthew Boulton Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60171613</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">This course gives students a general introduction to the world of business.  The content allows students the opportunity to investigate different business aspects of the working world. Knowledge learnt and activities and skills involved in the programme will provide students with a sound background when investigating their future employment and career planning.     This qualification gives learners experience of the breadth and depth of the sector that will prepare them for further study or training. This includes the opportunity for learners to choose several topics from a selection of options reflecting the progression pathways in business.  The learning programme covers the following content areas:. business environments. finance. marketing. international business. management.  The optional units have been designed to support progression to business courses in higher education, and to link with relevant occupational areas. They cover content areas such as:. human resources. accounting. marketing. law.</td><td class="govuk-table__cell ">76009916/SNFBUSFS18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000588419916</td><td class="govuk-table__cell ">Entry requirements are a minimum of 5 GCSEs at Grade C/5 including English and Maths at Grade 5. If you are successful in Year 1 you will progress onto the Extended Diploma in Business. The two year programme is approximately equivalent to 3 A levels.</td><td class="govuk-table__cell ">Assessment consists of a mixture of exams and course work.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">21-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Sutton Coldfield Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60171613</td><td class="govuk-table__cell1 ">BTEC National Foundation Diploma in Business</td><td class="govuk-table__cell2 ">This course gives students a general introduction to the world of business.  The content allows students the opportunity to investigate different business aspects of the working world. Knowledge learnt and activities and skills involved in the programme will provide students with a sound background when investigating their future employment and career planning.     This qualification gives learners experience of the breadth and depth of the sector that will prepare them for further study or training. This includes the opportunity for learners to choose several topics from a selection of options reflecting the progression pathways in business.  The learning programme covers the following content areas:. business environments. finance. marketing. international business. management.  The optional units have been designed to support progression to business courses in higher education, and to link with relevant occupational areas. They cover content areas such as:. human resources. accounting. marketing. law.</td><td class="govuk-table__cell ">76009916/SNFBUSFH18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000588419916</td><td class="govuk-table__cell ">Entry requirements are a minimum of 5 GCSEs at Grade C/5 including English and Maths at Grade 5. If you are successful in Year 1 you will progress onto the Extended Diploma in Business. The two year programme is approximately equivalent to 3 A levels.</td><td class="govuk-table__cell ">Assessment consists of a mixture of exams and course work.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">21-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Stourbridge Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">50113173</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">If English is your second language and you want to gain confidence then this is the course for you.  This course will help you to improve your spoken English and develop confidence in reading and writing. You will also develop important social and team working skills to help you get a job or continue with your studies.</td><td class="govuk-table__cell ">SLXFEOF/SE1ESOFM18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000129051644</td><td class="govuk-table__cell ">There are no formal entry requirements for this course.  We will assess your skills to ensure you are enrolled onto the most appropriate course for you to succeed.</td><td class="govuk-table__cell ">There are 3 assessments to this course:  reading, writing and speaking and listening. At entry level this course is continual assessment and at level 1 & 2 these are formal tests.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">Entry</td><td class="govuk-table__cell ">City & Guilds of London Institute</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">21-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Matthew Boulton Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60152564</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">A Level Chemistry combines theory with practical experience, encouraging imaginative critical and logical thinking for problem solving. The course requires you to have analytical powers and academic rigour, and is therefore respected in a number of unrelated career paths like law, accountancy and economics where such qualities are valued. The course includes structure and bonding, the periodic table, formulae, equations, energetics, inorganic and organic chemistry. You will learn via practical work, videos, discussions, presentations, group activities and lectures and will need good numeracy skills.</td><td class="govuk-table__cell ">SAGCHMF/SASCHMFS18M</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000122768979</td><td class="govuk-table__cell ">You will need 5 GCSEs at grade C/4 or above however you will need a Grade B/5 in Maths, English and Double Science, or a Grade B/5 in your chosen Single Science subject.</td><td class="govuk-table__cell ">This course is assessed through a series of question papers requiring  either short or extended answers. You will also be assessed on your practical skills.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">3</td><td class="govuk-table__cell ">Oxford Cambridge & RSA Examinations</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">03-Sep-18</td><td class="govuk-table__cell ">28-Jun-19</td><td class="govuk-table__cell ">Full Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Sutton Coldfield Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60132322</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">This is a part time course, one evening per week (3 hours) a week aimed at beginners and people with some experience who wish to obtain a qualification in Floristry. The course is aimed at people who have a love of flowers, might wish to work from home or eventually work in a flower shop.  The course will cover the basic floristry skills including;  Principles and Elements of Design  Colour and Colour Harmonies  Hand Tied Designs  Floral Arrangements  Funeral Designs  Wedding Design</td><td class="govuk-table__cell ">76009101/A2CCCFPS18Q</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000470259101</td><td class="govuk-table__cell ">If you have an interest in floristry you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</td><td class="govuk-table__cell ">You will complete a portfolio of work, which is assessed, for your qualification, along with two other assignments, one written looking at what is currently available in the floristry market place and a presentation on sources of inspiration - guidance for all assignments is given during lessons from your tutor.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">2</td><td class="govuk-table__cell ">NCFE</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">18</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">17-Sep-18</td><td class="govuk-table__cell ">17-Jun-19</td><td class="govuk-table__cell ">Part Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Sutton Coldfield Campus</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60132322</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">This is a part time course, one evening per week (3 hours) a week aimed at beginners and people with some experience who wish to obtain a qualification in Floristry. The course is aimed at people who have a love of flowers, might wish to work from home or eventually work in a flower shop.  The course will cover the basic floristry skills including;  Principles and Elements of Design  Colour and Colour Harmonies  Hand Tied Designs  Floral Arrangements  Funeral Designs  Wedding Design</td><td class="govuk-table__cell ">76009101/A2CCCFPG18Q</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000470259101</td><td class="govuk-table__cell ">If you have an interest in floristry you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</td><td class="govuk-table__cell ">You will complete a portfolio of work, which is assessed, for your qualification, along with two other assignments, one written looking at what is currently available in the floristry market place and a presentation on sources of inspiration - guidance for all assignments is given during lessons from your tutor.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">2</td><td class="govuk-table__cell ">NCFE</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">16</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">05-Sep-18</td><td class="govuk-table__cell ">21-Dec-18</td><td class="govuk-table__cell ">Part Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Botanical Gardens</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60132322</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">This is a part time course, one evening per week (3 hours) a week aimed at beginners and people with some experience who wish to obtain a qualification in Floristry. The course is aimed at people who have a love of flowers, might wish to work from home or eventually work in a flower shop.  The course will cover the basic floristry skills including;  Principles and Elements of Design  Colour and Colour Harmonies  Hand Tied Designs  Floral Arrangements  Funeral Designs  Wedding Design</td><td class="govuk-table__cell ">76009101/A2CCCFPG18Q</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000470259101</td><td class="govuk-table__cell ">If you have an interest in floristry you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</td><td class="govuk-table__cell ">You will complete a portfolio of work, which is assessed, for your qualification, along with two other assignments, one written looking at what is currently available in the floristry market place and a presentation on sources of inspiration - guidance for all assignments is given during lessons from your tutor.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">2</td><td class="govuk-table__cell ">NCFE</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">18</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">14-Jan-19</td><td class="govuk-table__cell ">07-Jun-19</td><td class="govuk-table__cell ">Part Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Botanical Gardens</td></tr>
-<tr class="govuk-table__row"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60125366</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="govuk-table__cell2 ">This course will prepare you to work with children up to the age of seven; you will gain skills and knowledge in all aspects of working with this age group. You will study the following units: Introducing the role of the early year's practitioner, legislation, framework and professional practice, play, development and learning for school, professional development. You will be required to have a placement.</td><td class="govuk-table__cell ">76005316/A2CEYRPM18Q</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000154085316</td><td class="govuk-table__cell ">There are no formal qualifications for this course, however you will require a confirmation letter of 12 hours placement per week for the duration of the course within an early years setting,  You will also require minimum functional skills level 1 in literacy and numeracy.</td><td class="govuk-table__cell ">You will be assessed at your placement, through written assessments and a portfolio you will create.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">2</td><td class="govuk-table__cell ">NCFE</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">35</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">10-Sep-18</td><td class="govuk-table__cell ">28-Jun-19</td><td class="govuk-table__cell ">Part Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Matthew Boulton Campus</td></tr>
-<tr class="govuk-table__row last"><td class="foo">         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell ">60125366</td><td class="govuk-table__cell1 ">Health & Social Care Diploma Level 3</td><td class="foo123">This course will prepare you to work with children up to the age of seven; you will gain skills and knowledge in all aspects of working with this age group. You will study the following units: Introducing the role of the early year's practitioner, legislation, framework and professional practice, play, development and learning for school, professional development. You will be required to have a placement.</td><td class="govuk-table__cell ">76005316/A2CEYRPS18Q</td><td class="govuk-table__cell ">http://www.bmet.ac.uk/courses/76000154085316</td><td class="govuk-table__cell ">There are no formal qualifications for this course, however you will require a confirmation letter of 12 hours placement per week for the duration of the course within an early years setting,  You will also require minimum functional skills level 1 in literacy and numeracy.</td><td class="govuk-table__cell ">You will be assessed at your placement, through written assessments and a portfolio you will create.</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">2</td><td class="govuk-table__cell ">NCFE</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">TBC</td><td class="govuk-table__cell ">34</td><td class="govuk-table__cell ">Weeks</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">&nbsp;</td><td class="govuk-table__cell ">10-Sep-18</td><td class="govuk-table__cell ">28-Jun-19</td><td class="govuk-table__cell ">Part Time</td><td class="govuk-table__cell ">Location/Campus</td><td class="govuk-table__cell ">Daytime/working hours</td><td class="govuk-table__cell ">Sutton Coldfield Campus</td></tr>
-<tr class="govuk-table__row last"><td class="foo">
-    Add new course
-</td><td></td><td colspan="2">
-    <div class="header-search-content" style="font-size: 14px">
+</td>
+
+<td class="govuk-table__cell">
+
+    <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+        <option>Location/Campus</option>
+        <option>Online</option>
+        <option>Work-based</option>
+    </select>
+
+</td>
+
+<td class="govuk-table__cell">
+
+    <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+        <option>Daytime/working hours</option>
+        <option>Part-time</option>
+        <option>Flexible</option>
+    </select>
+
+</td>
+
+<td class="govuk-table__cell">
+
+    <button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
+        Edit
+    </button>
+
+</td>
+
+
+
+<td class="govuk-table__cell" style="padding-left: 40px">
+
+    2
+
+</td>
+
+<td class="govuk-table__cell">
+
+    Other regulated
+
+</td>
+
+<td class="govuk-table__cell">
+
+    NCFE
+
+</td>
+
+<td class="govuk-table__cell">
+
+    You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
+</td>
+
+<td class="govuk-table__cell">
+
+    Health, Public Services and Care
+
+</td>
+
+<td class="govuk-table__cell">
+
+    Health and Social Care
+
+</td>
+
+</tr>
+
+
+
+
+    </tbody></table>
+
+
+
+    <h2 class="govuk-heading-m" style="position: relative;
+    top: 46px;">To add a course search the Lars number</h2>
+<table class="govuk-table" style="font-size: 14px;margin-top: 30px">
+
+<tr class="govuk-table__row last">
+    <td class="foo" style="width: 123px; padding-right: 20px; padding-left: 20px;border-bottom: none">
+    Lars number search
+</td><td style=" background-color: white; border-bottom: none">
+    <div class="header-search-content" style="font-size: 14px;">
         <form action="" class="site-search ui-front" id="header-search" method="post">
 
-            <div class="search-input-wrapper">
+            <div class="search-input-wrapper govuk-form-group--error">
 
-                <div class="govuk-form-group">
+                <div class="govuk-form-group" style="    width: 35%;">
                     <label class="govuk-label" for="address-line-2" style="font-size: 14px">
                     </label>
                     <div class="select-editable">
-                        <ul id="course-list" style="width: 92px;">
+                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
+                    </span>
 
-                        </ul>
-                        <input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter LARS" style="font-size: 14px;float: left;width: 70%">
+                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
+                    </span>
+
+                        <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS" style="font-size: 14px;float: left;width: 70%">
                     </div>
                 </div>
-
+                <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
             </div>
-            <input class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left">
+
         </form>
 
     </div>
 </td>
-    <td colspan="20"></td>
 </tr>
 </tbody></table>
 
+    <table id="lars-search-results" class="govuk-table" style="margin-top: 30px; font-size: 14px;margin-bottom: 0">
+        </table>
+
+
+    <table id="add-course-table" class="govuk-table" style=" font-size: 14px; display: none">
+
+    <tbody>
+
+    <tr style="background-color:#fff;"><td class="govuk-table__cell">
+            <button class="govuk-button">Add this course</button>
+    </td>
+
+
+
+    <td class="govuk-table__cell">12345678</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
+
+
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Other regulated
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        NCFE
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Health, Public Services and Care
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Health and Social Care
+
+    </td>
+
+    </tr>
 
 
 
 
-<button type="submit" class="govuk-button" style="margin-right: 20px">
-    Duplicate row
-</button>
+    </tbody>
 
-<button type="submit" class="govuk-button" style="margin-right: 20px">
-    Delete row
-</button>
 
-<button type="submit" class="govuk-button" style="margin-right: 20px">
-    .CSV download
-</button>
-
-<button type="submit" class="govuk-button" style="margin-right: 20px">
-    Confirm and save
-</button>
+    </table>
 
 
 
 
-<p>FULL NEW TABLE</p>
-
-<table class="govuk-table" style="font-size: 14px;">
-    <thead class="govuk-table__head">
-    <tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Select rows</th><th class="govuk-table__header" scope="col">LARS Number/Name</th><th class="govuk-table__header" scope="col" style="width: 400px">Qualification title</th><th class="govuk-table__header" scope="col">Course description</th><th class="govuk-table__header" scope="col">Course URL</th><th class="govuk-table__header" scope="col">Entry requirements</th><th class="govuk-table__header" scope="col">Cost</th><th class="govuk-table__header" scope="col">Cost description</th><th class="govuk-table__header" scope="col">Duration</th><th class="govuk-table__header" scope="col">Duration units</th><th class="govuk-table__header" scope="col">Duration description</th><th class="govuk-table__header" scope="col">Start date description</th><th class="govuk-table__header" scope="col">Start date</th><th class="govuk-table__header" scope="col">Full-time or part-time</th><th class="govuk-table__header" scope="col">Classroom or online</th><th class="govuk-table__header" scope="col">Day, night or weekend</th><th class="govuk-table__header" scope="col">What you'll need to bring</th><th class="govuk-table__header" scope="col">Venue</th><th class="govuk-table__header" scope="col">Qualification level </th><th class="govuk-table__header" scope="col">Qualification Type</th><th class="govuk-table__header" scope="col">Awarding organisation</th><th class="govuk-table__header" scope="col">How you'll be assessed</th><th class="govuk-table__header" scope="col">SSA Tier1 Description</th><th class="govuk-table__header" scope="col">SSA Tier 2 Description</th></tr></thead><tbody>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60171996</td><td class="govuk-table__cell">BTEC National Foundation Diploma in Health and Social Care</td><td class="govuk-table__cell">The course covers Development Through Life Stages, Anatomy and Physiology for Health & Social Care, Sociological Perspectives for Health & Social Care, Psychological Perspectives for Health & Social Care, Safeguarding Adults and Promoting Independence.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000122775958</td><td class="govuk-table__cell">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">TICKBOX ONLY</td><td class="govuk-table__cell">TICKBOX ONLY</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Matthew Boulton Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell">You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.</td><td class="govuk-table__cell">Health, Public Services and Care</td><td class="govuk-table__cell">Health and Social Care</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60171996</td><td class="govuk-table__cell">BTEC National Foundation Diploma in Health and Social Care</td><td class="govuk-table__cell">The course covers Development Through Life Stages, Anatomy and Physiology for Health & Social Care, Sociological Perspectives for Health & Social Care, Psychological Perspectives for Health & Social Care, Safeguarding Adults and Promoting Independence.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000122775958</td><td class="govuk-table__cell">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">32</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Sutton Coldfield Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell">You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.</td><td class="govuk-table__cell">Health, Public Services and Care</td><td class="govuk-table__cell">Health and Social Care</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60171996</td><td class="govuk-table__cell">BTEC National Foundation Diploma in Health and Social Care</td><td class="govuk-table__cell">The course covers Development Through Life Stages, Anatomy and Physiology for Health & Social Care, Sociological Perspectives for Health & Social Care, Psychological Perspectives for Health & Social Care, Safeguarding Adults and Promoting Independence.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000122775958</td><td class="govuk-table__cell">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Stourbridge Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell">You will be assessed on an on-going basis through a variety of methods including written exams, case studies and presentations.</td><td class="govuk-table__cell">Health, Public Services and Care</td><td class="govuk-table__cell">Health and Social Care</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60171613</td><td class="govuk-table__cell">BTEC National Foundation Diploma in Business</td><td class="govuk-table__cell">This course gives students a general introduction to the world of business. The content allows students the opportunity to investigate different business aspects of the working world. Knowledge learnt and activities and skills involved in the programme will provide students with a sound background when investigating their future employment and career planning. This qualification gives learners experience of the breadth and depth of the sector that will prepare them for further study or training. This includes the opportunity for learners to choose several topics from a selection of options reflecting the progression pathways in business. The learning programme covers the following content areas:. business environments. finance. marketing. international business. management. The optional units have been designed to support progression to business courses in higher education, and to link with relevant occupational areas. They cover content areas such as:. human resources. accounting. marketing. law.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000588419916</td><td class="govuk-table__cell">Entry requirements are a minimum of 5 GCSEs at Grade C/5 including English and Maths at Grade 5. If you are successful in Year 1 you will progress onto the Extended Diploma in Business. The two year programme is approximately equivalent to 3 A levels.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Matthew Boulton Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell">Assessment consists of a mixture of exams and course work.</td><td class="govuk-table__cell">Business, Administration and Law​</td><td class="govuk-table__cell">Business Management</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60171613</td><td class="govuk-table__cell">BTEC National Foundation Diploma in Business</td><td class="govuk-table__cell">This course gives students a general introduction to the world of business. The content allows students the opportunity to investigate different business aspects of the working world. Knowledge learnt and activities and skills involved in the programme will provide students with a sound background when investigating their future employment and career planning. This qualification gives learners experience of the breadth and depth of the sector that will prepare them for further study or training. This includes the opportunity for learners to choose several topics from a selection of options reflecting the progression pathways in business. The learning programme covers the following content areas:. business environments. finance. marketing. international business. management. The optional units have been designed to support progression to business courses in higher education, and to link with relevant occupational areas. They cover content areas such as:. human resources. accounting. marketing. law.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000588419916</td><td class="govuk-table__cell">Entry requirements are a minimum of 5 GCSEs at Grade C/5 including English and Maths at Grade 5. If you are successful in Year 1 you will progress onto the Extended Diploma in Business. The two year programme is approximately equivalent to 3 A levels.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Sutton Coldfield Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell">Assessment consists of a mixture of exams and course work.</td><td class="govuk-table__cell">Business, Administration and Law​</td><td class="govuk-table__cell">Business Management</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60171613</td><td class="govuk-table__cell">BTEC National Foundation Diploma in Business</td><td class="govuk-table__cell">This course gives students a general introduction to the world of business. The content allows students the opportunity to investigate different business aspects of the working world. Knowledge learnt and activities and skills involved in the programme will provide students with a sound background when investigating their future employment and career planning. This qualification gives learners experience of the breadth and depth of the sector that will prepare them for further study or training. This includes the opportunity for learners to choose several topics from a selection of options reflecting the progression pathways in business. The learning programme covers the following content areas:. business environments. finance. marketing. international business. management. The optional units have been designed to support progression to business courses in higher education, and to link with relevant occupational areas. They cover content areas such as:. human resources. accounting. marketing. law.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000588419916</td><td class="govuk-table__cell">Entry requirements are a minimum of 5 GCSEs at Grade C/5 including English and Maths at Grade 5. If you are successful in Year 1 you will progress onto the Extended Diploma in Business. The two year programme is approximately equivalent to 3 A levels.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Stourbridge Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">Pearson Education Ltd (Formerly EDEXCEL)</td><td class="govuk-table__cell">Assessment consists of a mixture of exams and course work.</td><td class="govuk-table__cell">Business, Administration and Law​</td><td class="govuk-table__cell">Business Management</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">50113173</td><td class="govuk-table__cell">Functional Skills qualification in English at Entry 1</td><td class="govuk-table__cell">If English is your second language and you want to gain confidence then this is the course for you. This course will help you to improve your spoken English and develop confidence in reading and writing. You will also develop important social and team working skills to help you get a job or continue with your studies.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000129051644</td><td class="govuk-table__cell">There are no formal entry requirements for this course. We will assess your skills to ensure you are enrolled onto the most appropriate course for you to succeed.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Matthew Boulton Campus</td><td class="govuk-table__cell">Entry</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">City & Guilds of London Institute</td><td class="govuk-table__cell">There are 3 assessments to this course: reading, writing and speaking and listening. At entry level this course is continual assessment and at level 1 & 2 these are formal tests.</td><td class="govuk-table__cell">Preparation for Life and Work​</td><td class="govuk-table__cell">Foundations for Learning and Life</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60152564</td><td class="govuk-table__cell">GCE AS Level in Chemistry A</td><td class="govuk-table__cell">A Level Chemistry combines theory with practical experience, encouraging imaginative critical and logical thinking for problem solving. The course requires you to have analytical powers and academic rigour, and is therefore respected in a number of unrelated career paths like law, accountancy and economics where such qualities are valued. The course includes structure and bonding, the periodic table, formulae, equations, energetics, inorganic and organic chemistry. You will learn via practical work, videos, discussions, presentations, group activities and lectures and will need good numeracy skills.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000122768979</td><td class="govuk-table__cell">You will need 5 GCSEs at grade C/4 or above however you will need a Grade B/5 in Maths, English and Double Science, or a Grade B/5 in your chosen Single Science subject.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">03-Sep-18</td><td class="govuk-table__cell">Full Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Sutton Coldfield Campus</td><td class="govuk-table__cell">3</td><td class="govuk-table__cell">GCE A/AS Level or equivalent</td><td class="govuk-table__cell">Oxford Cambridge & RSA Examinations</td><td class="govuk-table__cell">This course is assessed through a series of question papers requiring either short or extended answers. You will also be assessed on your practical skills.</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">2.1</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60132322</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td><td class="govuk-table__cell">This is a part time course, one evening per week (3 hours) a week aimed at beginners and people with some experience who wish to obtain a qualification in Floristry. The course is aimed at people who have a love of flowers, might wish to work from home or eventually work in a flower shop. The course will cover the basic floristry skills including; Principles and Elements of Design Colour and Colour Harmonies Hand Tied Designs Floral Arrangements Funeral Designs Wedding Design</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000470259101</td><td class="govuk-table__cell">If you have an interest in floristry you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">18</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">17-Sep-18</td><td class="govuk-table__cell">Part Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Sutton Coldfield Campus</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">NCFE</td><td class="govuk-table__cell">You will complete a portfolio of work, which is assessed, for your qualification, along with two other assignments, one written looking at what is currently available in the floristry market place and a presentation on sources of inspiration - guidance for all assignments is given during lessons from your tutor.</td><td class="govuk-table__cell">Arts, Media and Publishing</td><td class="govuk-table__cell">Crafts, Creative Arts and Design</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60132322</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td><td class="govuk-table__cell">This is a part time course, one evening per week (3 hours) a week aimed at beginners and people with some experience who wish to obtain a qualification in Floristry. The course is aimed at people who have a love of flowers, might wish to work from home or eventually work in a flower shop. The course will cover the basic floristry skills including; Principles and Elements of Design Colour and Colour Harmonies Hand Tied Designs Floral Arrangements Funeral Designs Wedding Design</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000470259101</td><td class="govuk-table__cell">If you have an interest in floristry you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">16</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">05-Sep-18</td><td class="govuk-table__cell">Part Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Botanical Gardens</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">NCFE</td><td class="govuk-table__cell">You will complete a portfolio of work, which is assessed, for your qualification, along with two other assignments, one written looking at what is currently available in the floristry market place and a presentation on sources of inspiration - guidance for all assignments is given during lessons from your tutor.</td><td class="govuk-table__cell">Arts, Media and Publishing</td><td class="govuk-table__cell">Crafts, Creative Arts and Design</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60132322</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td><td class="govuk-table__cell">This is a part time course, one evening per week (3 hours) a week aimed at beginners and people with some experience who wish to obtain a qualification in Floristry. The course is aimed at people who have a love of flowers, might wish to work from home or eventually work in a flower shop. The course will cover the basic floristry skills including; Principles and Elements of Design Colour and Colour Harmonies Hand Tied Designs Floral Arrangements Funeral Designs Wedding Design</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000470259101</td><td class="govuk-table__cell">If you have an interest in floristry you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">18</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">14-Jan-19</td><td class="govuk-table__cell">Part Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Botanical Gardens</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">Other regulated/accredited qualification</td><td class="govuk-table__cell">NCFE</td><td class="govuk-table__cell">You will complete a portfolio of work, which is assessed, for your qualification, along with two other assignments, one written looking at what is currently available in the floristry market place and a presentation on sources of inspiration - guidance for all assignments is given during lessons from your tutor.</td><td class="govuk-table__cell">Arts, Media and Publishing</td><td class="govuk-table__cell">Crafts, Creative Arts and Design</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td><td class="govuk-table__cell">This course will prepare you to work with children up to the age of seven; you will gain skills and knowledge in all aspects of working with this age group. You will study the following units: Introducing the role of the early year's practitioner, legislation, framework and professional practice, play, development and learning for school, professional development. You will be required to have a placement.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000154085316</td><td class="govuk-table__cell">There are no formal qualifications for this course, however you will require a confirmation letter of 12 hours placement per week for the duration of the course within an early years setting, You will also require minimum functional skills level 1 in literacy and numeracy.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">35</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">10-Sep-18</td><td class="govuk-table__cell">Part Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Matthew Boulton Campus</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">NCFE</td><td class="govuk-table__cell">You will be assessed at your placement, through written assessments and a portfolio you will create.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td></tr>
-<tr><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td><td class="govuk-table__cell">This course will prepare you to work with children up to the age of seven; you will gain skills and knowledge in all aspects of working with this age group. You will study the following units: Introducing the role of the early year's practitioner, legislation, framework and professional practice, play, development and learning for school, professional development. You will be required to have a placement.</td><td class="govuk-table__cell">http://www.bmet.ac.uk/courses/76000154085316</td><td class="govuk-table__cell">There are no formal qualifications for this course, however you will require a confirmation letter of 12 hours placement per week for the duration of the course within an early years setting, You will also require minimum functional skills level 1 in literacy and numeracy.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">TBC</td><td class="govuk-table__cell">34</td><td class="govuk-table__cell">Weeks</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">10-Sep-18</td><td class="govuk-table__cell">Part Time</td><td class="govuk-table__cell">Location/Campus</td><td class="govuk-table__cell">Daytime/working hours</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">Sutton Coldfield Campus</td><td class="govuk-table__cell">2</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">NCFE</td><td class="govuk-table__cell">You will be assessed at your placement, through written assessments and a portfolio you will create.</td><td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell"></td></tr>
-<tr class="govuk-table__row last"><td class="foo">
-    Add new course
-</td><td class="govuk-table__cell"></td><td colspan="2">
-    <div class="header-search-content" style="font-size: 14px">
-        <form action="" class="site-search ui-front" id="header-search" method="post">
-
-            <div class="search-input-wrapper">
-
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="address-line-2" style="font-size: 14px">
-                    </label>
-                    <div class="select-editable">
-                        <ul id="course-list" style="width: 92px;">
-
-                        </ul>
-                        <input class="govuk-input" type="text" name="course" id="course" value="" placeholder="Enter LARS" style="font-size: 14px;float: left;width: 70%">
-                    </div>
-                </div>
-
-            </div>
-            <input class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left">
-        </form>
-
-    </div>
-</td>
-    <td colspan="20"></td>
-</tr>
-</tbody></table>
 
 
-</header>
+
+    <button type="submit" class="govuk-button" style="margin-right: 20px" id="duplicate">
+        Duplicate row
+    </button>
+
+    <button type="submit" class="govuk-button" style="margin-right: 20px" id="delete">
+        Delete row
+    </button>
+
+    <button type="submit" class="govuk-button" style="margin-right: 20px">
+        .CSV download
+    </button>
+
+    <button type="submit" class="govuk-button" style="margin-right: 20px">
+        Confirm and save
+    </button>
+    <a href="/sprint5/course-details" class="govuk-button" style="margin-right: 20px">
+       Preview
+    </a>
+
+
+	</header>
+	
+	
+	
+        <div id="popup-descript"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px">
+<p class="shade">Who is the course for:</p>
+This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
+                <i class="far fa-edit"></i>
+<p class="shade">What you’ll learn:</p>
+You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
+effective communication
+equality
+diversity and rights
+anatomy and physiology
+social sciences  <i class="far fa-edit"></i>
+
+<p class="shade">How you’ll learn</p>
+Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
+                <i class="far fa-edit"></i>
+<p class="shade">Where next?</p>
+If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
+                <i class="far fa-edit"></i>  </div>
+            <button class="govuk-button close-descript">Close</button>
+
+        </div></div>
+		
+        <div id="popup-url"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">http://www.bmet.ac.uk/courses/76000122775958
+       </textarea>
+            <button class="govuk-button close-url">Close</button>
+
+        </div></div>
+
+		<div id="popup-req"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.
+       </textarea>
+            <button class="govuk-button close-req">Close</button>
+
+        </div></div>
+		
+        <div id="popup-cost"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">TBC
+       </textarea>
+            <button class="govuk-button close-cost">Close</button>
+
+        </div></div>	
+
+		<div id="popup-duration"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Duration additional information
+       </textarea>
+            <button class="govuk-button close-duration">Close</button>
+
+        </div></div>
+		
+        <div id="popup-dur"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Duration description
+       </textarea>
+            <button class="govuk-button close-dur">Close</button>
+
+        </div></div>
+
+
+<div id="popup-start-des"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Start date additional information
+    </textarea>
+    <button class="govuk-button close-start-des">Close</button>
+
+</div></div>
+
+
+
+<div id="popup-bring"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">You need to bring...
+    </textarea>
+    <button class="govuk-button close-bring">Close</button>
+
+</div></div>
+
+
+
+
 {% endblock %}
-
-
-
-
-
 
 
 
