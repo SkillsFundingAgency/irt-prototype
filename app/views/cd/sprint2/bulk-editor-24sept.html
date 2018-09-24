@@ -54,6 +54,7 @@ GOV.UK prototype kit
         color: #0b0c0c;
         text-decoration: none;
         border-bottom: 1px solid #0b0c0c;
+
     }
     .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
         color: #0b0c0c;
@@ -97,6 +98,7 @@ GOV.UK prototype kit
 	
 	}
     .canvasjs-chart-canvas{font-family: "nta"!important;}
+
     .filter-radio::after {
         content: "";
         border: solid;
@@ -182,6 +184,7 @@ GOV.UK prototype kit
         table-layout: fixed;
         width: 200px;
     }
+
     th.govuk-table__header, td.govuk-table__cell {
         width: 193px;
     }
@@ -190,13 +193,13 @@ GOV.UK prototype kit
     }
 span{font-size: 14px}
     textarea {width: 500px; font-size: 14px; height: 140px}
+
     .foo123{border: 2px solid hotpink}
     #main-table td:nth-child(1){padding-left: 30px;}
     #main-table td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
     #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
     #main-table td:nth-child(4){ background-color: #bfc1c3;padding-left: 20px}
-    #main-table td:nth-child(5){ background-color: #bfc1c3;padding-left: 20px}
-    #main-table td:nth-child(6){ background-color: #bfc1c3;padding-left: 20px}
+
     #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
     #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
     #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
@@ -211,6 +214,7 @@ span{font-size: 14px}
 		height: 500px;
 		resize:none;
 	}
+
     .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
 </style>
 
@@ -223,50 +227,72 @@ span{font-size: 14px}
 
 <script>
     $(window).on('load', function(){
+
         var toggle = false;
+
         $('.btn').click(function() {
+
             toggle = !toggle;
+
             if(toggle){
                 $('#A').animate({left: 0});
             }
             else{
                 $('#A').animate({left:-400});
             }
+
         });
     });
+
 </script>
 
 <script>
 var $j = jQuery.noConflict();
 $j(document).ready(function() {
+
     $j("#readmore").click(function(e){
         $j("span.showit").toggle();
     e.preventDefault();
     });
+
     $j( "#header-search" ).submit(function( event ) {
         //alert( "Handler for .submit() called." );
         var miscCharge = $j("#miscCharge").val();
+
         if(!isNaN(miscCharge))
         {
             //do some thing if it's a number  alert('Yeah a number');
             var x= (miscCharge).length;
             //alert(x);
             if (x == 8){
+
                 $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
                 //alert('NEW ROW CREATED');
                 $j("#add-course-table").toggle();
+
             }
+
             else{
                 //alert('Error number too short or too long');
                 $j("#number-too-long-error").toggle();
             }
+
+
         }else{
             //do some thing if it's NOT a number alert('Error not a number');
             $j("#must-be-a-number-error").toggle();
+
         }
+
+
+
         event.preventDefault();
     });
-    $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
+
+
+
+
+    $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring').popup({
             opacity: 0.999,
             color:'#fff',
             transition: 'all 0.3s'
@@ -298,6 +324,7 @@ $j(document).ready(function() {
 			$j('#popup-url').popup('hide');
 		});
 	});	
+
 	$j(".open-req").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-req').popup('show');
@@ -309,6 +336,7 @@ $j(document).ready(function() {
 			$j('#popup-req').popup('hide');
 		});
 	});
+
 	$j(".open-cost").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-cost').popup('show');
@@ -320,6 +348,7 @@ $j(document).ready(function() {
 			$j('#popup-cost').popup('hide');
 		});
 	});
+
 	$j(".open-duration").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-duration').popup('show');
@@ -331,42 +360,50 @@ $j(document).ready(function() {
 			$j('#popup-duration').popup('hide');
 		});
 	});
-	
-	$j(".open-flat").each(function (e) {
-		$j(this).click(function (e) {
-			$j('#popup-flat').popup('show');
-		});
-	});
-	
-	$j(".close-flat").each(function (e) {
-		$j(this).click(function (e) {
-			$j('#popup-flat').popup('hide');
-		});
-	});
-	
+
+
         $j(".open-dur").each(function (e) {
             $j(this).click(function (e) {
                 $j('#popup-dur').popup('show');
             });
         });
+
         $j(".close-dur").each(function (e) {
             $j(this).click(function (e) {
                 $j('#popup-dur').popup('hide');
             });
         });
+
+
         $j(".open-start-des").each(function (e) {
             $j(this).click(function (e) {
                 $j('#popup-start-des').popup('show');
             });
         });
+
         $j(".close-start-des").each(function (e) {
             $j(this).click(function (e) {
                 $j('#popup-start-des').popup('hide');
             });
         });
+
+
+
+
+        $j(".open-bring").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-bring').popup('show');
+		});
+	});
+	
+	$j(".close-bring").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-bring').popup('hide');
+		});
+	});	
 	
 	}, 500);
-	
+
 	$j("#duplicate").click(function(e) {
 		$j(".check:checkbox:checked").each (function(e) {
 			$j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
@@ -381,6 +418,7 @@ $j(document).ready(function() {
 			});
 		}
 	});
+
 		
 	$j("#duration-units").change(function (e) {
 		$j("#duration").empty();
@@ -404,8 +442,10 @@ $j(document).ready(function() {
 			$j("#duration").append('<option>'+x+'</option>');
 		}
 	});
+
 	
 });
+
 </script>
 
 
@@ -441,6 +481,7 @@ $j(document).ready(function() {
     <!-- Side navigation -->
 
 <style>
+
 #A, #B {
     position: fixed;
 }
@@ -458,15 +499,13 @@ $j(document).ready(function() {
 
 
 
-<table class="govuk-table" style="font-size: 14px;margin-bottom:0; margin-right: 40px" id="main-table">
+<table class="govuk-table" style="font-size: 14px;margin-bottom:0;" id="main-table">
     <thead class="govuk-table__head">
     <tr class="govuk-table__row">
 	<th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th>
 	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">Course ID</th>
-        <th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th>
-        <th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th>
-	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">&nbsp;</th>
-	<!--<th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th>-->
+	<th class="govuk-table__header" scope="col" style="padding-left: 20px;    width: 133px;">LARS Number/Name</th>
+	<th class="govuk-table__header" scope="col" style="width:215px; padding-left: 20px">Qualification title</th>
 	<th class="govuk-table__header" scope="col" style="width: 140px">Start date</th>
 	<th class="govuk-table__header" scope="col">Start date additional information</th>
 	<th class="govuk-table__header" scope="col" style="width: 140px">Course sumary</th>
@@ -481,13 +520,13 @@ $j(document).ready(function() {
 	<th class="govuk-table__header" scope="col">Full-time or part-time</th>
 	<th class="govuk-table__header" scope="col">Classroom or online</th>
 	<th class="govuk-table__header" scope="col">Day, night or weekend</th>
-	<!--<th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th>
+	<th class="govuk-table__header" scope="col" style="width: 158px">What you'll need to bring</th>
 	<th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 120px">Qualification level </th>
-	<!--<th class="govuk-table__header" scope="col">Qualification Type</th>-->
-	<!--<th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th>-->
-	<!--<th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th>-->
-	<!--<th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th>-->
-	<!--<th class="govuk-table__header" scope="col">SSA Tier 2 Description</th>-->
+	<th class="govuk-table__header" scope="col">Qualification Type</th>
+	<th class="govuk-table__header" scope="col" style="width: 160px">Awarding organisation</th>
+	<th class="govuk-table__header" scope="col" style="width: 350px">How you'll be assessed</th>
+	<th class="govuk-table__header" scope="col" style="width: 220px">SSA Tier1 Description</th>
+	<th class="govuk-table__header" scope="col">SSA Tier 2 Description</th>
 	</tr></thead><tbody>
 	
 <tr style="background-color:#fff;"><td class="govuk-table__cell"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
@@ -498,24 +537,13 @@ $j(document).ready(function() {
 		
     </td>
 
-
-<td class="govuk-table__cell">60125366</td>
-<td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
-
-
-	<td class="govuk-table__cell" style="padding-left: 20px">
-	   <button type="submit" class="govuk-button edit-btn open-flat" style="margin-right: 20px;">
-            Show more
-        </button>
-	</td>
-	
-<!--<td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>-->
+<td class="govuk-table__cell">60125366</td><td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)</td>
 
 
 		
-
+    </td>
 	
-	    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;">
+	    <td class="govuk-table__cell" style="padding-left: 10px">
 
             <script>
                 var $j = jQuery.noConflict();
@@ -556,6 +584,7 @@ $j(document).ready(function() {
     </td>
 
 
+    </td>
     <td class="govuk-table__cell">
 	        <button type="button" class="govuk-button edit-btn open-url" style="margin-right: 20px">
             Edit
@@ -696,7 +725,7 @@ $j(document).ready(function() {
 		
     </td>
 	
-	    <!--<td class="govuk-table__cell">
+	    <td class="govuk-table__cell">
         
 		<button type="submit" class="govuk-button edit-btn open-bring" style="margin-right: 20px">
             Edit
@@ -712,34 +741,34 @@ $j(document).ready(function() {
 		
     </td>
 	
-	   <!-- <td class="govuk-table__cell">
+	    <td class="govuk-table__cell">
 
             Other regulated
 		
-    </td>-->
+    </td>
 	
-	    <!--<td class="govuk-table__cell">
+	    <td class="govuk-table__cell">
         
 		NCFE
 		
-    </td>-->
+    </td>
 
-    <!--<td class="govuk-table__cell">
+    <td class="govuk-table__cell">
 
                 You will be assessed on an on-going basis...<a href="#" id="readmore">read more</a>   <span class="showit" style="display: none">through a variety of methods including written exams, case studies and presentations.</span>
-    </td>-->
+    </td>
 	
-		    <!--<td class="govuk-table__cell">
+		    <td class="govuk-table__cell">
 
                 Health, Public Services and Care
 		
-    </td>-->
+    </td>
 	
-		    <!--<td class="govuk-table__cell">
+		    <td class="govuk-table__cell">
 
                 Health and Social Care
 		
-    </td>-->
+    </td>
 	
 </tr>
 
@@ -806,6 +835,7 @@ $j(document).ready(function() {
 
 
 
+    </td>
 
     <td class="govuk-table__cell">
 
@@ -879,7 +909,7 @@ $j(document).ready(function() {
         <div id="popup-descript"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
             <button class="my_popup_close govuk-button">Spell check</button>
-			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;">
+			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px">
 <p class="shade">Who is the course for:</p>
 This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
                 <i class="far fa-edit"></i>
@@ -894,19 +924,9 @@ social sciences  <i class="far fa-edit"></i>
 <p class="shade">How you’ll learn</p>
 Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
                 <i class="far fa-edit"></i>
-				
 <p class="shade">Where next?</p>
 If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
-                <i class="far fa-edit"></i>  
-				
-<p class="shade">What you need to bring?</p>
-What you need to bring.
-                <i class="far fa-edit"></i> 
-
-<p class="shade">How will you be assessed?</p>
-How will you be assessed?
-                <i class="far fa-edit"></i>  </div>				
-				</div>
+                <i class="far fa-edit"></i>  </div>
             <button class="govuk-button close-descript">Close</button>
 
         </div></div>
@@ -936,7 +956,7 @@ How will you be assessed?
        </textarea>
             <button class="govuk-button close-cost">Close</button>
 
-        </div></div>
+        </div></div>	
 
 		<div id="popup-duration"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
@@ -956,27 +976,6 @@ How will you be assessed?
 
         </div></div>
 
-		        <div id="popup-flat"><div style="padding:0;width:100%;">
-            <button class="my_popup_close govuk-button">Insert bullets</button>
-            <button class="my_popup_close govuk-button">Spell check</button>
-			<div  class="govuk-textarea tarea" style="font-size: 14px;">
-
-                <p class="shade">Level</p> 2 <i class="far fa-edit"></i>
-
-<p class="shade">Qualification Type</p>Other regulated <i class="far fa-edit"></i>
-				
-<p class="shade">Awarding organisation</p>NCFE  <i class="far fa-edit"></i>
-				
-<p class="shade">SSA Tier1 Description</p>Health, Public Services and Care <i class="far fa-edit"></i>
-
-<p class="shade">SSA Tier 2 Description</p>Health and Social Care <i class="far fa-edit"></i>
-
-
-				</div>
-            <button class="govuk-button close-flat" style="clear:both;display:block;margin-top:20px;">Close</button>
-
-        </div></div>
-		
 
 <div id="popup-start-des"><div style="padding:0;width:100%;">
     <button class="my_popup_close govuk-button">Insert bullets</button>
@@ -989,7 +988,20 @@ How will you be assessed?
 
 
 
+<div id="popup-bring"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">You need to bring...
+    </textarea>
+    <button class="govuk-button close-bring">Close</button>
+
+</div></div>
+
 
 
 
 {% endblock %}
+
+
+
+
