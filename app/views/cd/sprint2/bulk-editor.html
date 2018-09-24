@@ -262,7 +262,9 @@ $j(document).ready(function() {
             }
         }else{
             //do some thing if it's NOT a number alert('Error not a number');
-            $j("#must-be-a-number-error").toggle();
+           // $j("#must-be-a-number-error").toggle();
+            $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your search result for course subject Biology:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'><div class='govuk-form-group'><label class='govuk-label' for='level'>Select course level </label><select class='govuk-select' id='level' name='level'><option value='1'>Level 1</option><option value='2'>Level 2</option><option value='3' selected=''>Level 3</option><option value='4'>Level 4</option><option value='5'>Level 5</option><option value='5'>Level 6</option><option value='5'>Level 7</option><option value='5'>Level 8</option></select></div><div class='govuk-form-group'><label>Select qualification type<br></label><select class='govuk-select' style='width: 50%'><option>A level</option><option>AS level</option><option>Btech</option></select></div></td></tr>");
+            $j("#add-course-table").toggle();
         }
         event.preventDefault();
     });
@@ -428,10 +430,27 @@ $j(document).ready(function() {
     </div>
 
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-           Bulk editor
+           Your courses
         </h1>
 
+    <ul class="govuk-tabs__list" style="border-bottom: none">
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#approved" style="font-size: 14px">
+                Live
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#drafts" style="font-size: 14px">
+                Drafts
+            </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#archived" style="font-size: 14px">
+                Archived
+            </a>
+        </li>
 
+    </ul>
 
 
 	<!--TABS-->
@@ -458,7 +477,7 @@ $j(document).ready(function() {
 
 
 
-<table class="govuk-table" style="font-size: 14px;margin-bottom:0; margin-right: 40px" id="main-table">
+<table class="govuk-table" style="font-size: 14px;margin-bottom:0; margin-right: 40px;border-top: 1px solid #ddd" id="main-table">
     <thead class="govuk-table__head">
     <tr class="govuk-table__row">
 	<th class="govuk-table__header" scope="col" style="width: 77px">Select rows</th>
@@ -693,14 +712,12 @@ $j(document).ready(function() {
 
 
 
-    <h2 class="govuk-heading-m" style="position: relative;
-    top: 46px;">To add a course search the Lars number</h2>
+    <h2 class="govuk-heading-m" style="position: relative;font-weight: 300;
+    top: 46px;">To add a course enter <strong>the Lars number</strong> or <strong>course subject</strong></h2>
 <table class="govuk-table" style="font-size: 14px;margin-top: 30px">
 
 <tr class="govuk-table__row last">
-    <td class="foo" style="width: 123px; padding-right: 20px; padding-left: 20px;border-bottom: none">
-    Lars number search
-</td><td style=" background-color: white; border-bottom: none">
+   <td style=" background-color: white; border-bottom: none">
     <div class="header-search-content" style="font-size: 14px;">
         <form action="" class="site-search ui-front" id="header-search" method="post">
 
@@ -718,7 +735,7 @@ $j(document).ready(function() {
                          Wrong Lars number. Valid Lars number has 8 digits and no letters.
                     </span>
 
-                        <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS" style="font-size: 14px;float: left;width: 70%">
+                        <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;float: left;width: 70%">
                     </div>
                 </div>
                 <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
@@ -808,7 +825,10 @@ $j(document).ready(function() {
     </button>
 
     <button type="submit" class="govuk-button" style="margin-right: 20px">
-        Confirm and save
+        Save as a Draft
+    </button>
+    <button type="submit" class="govuk-button" style="margin-right: 20px">
+        Archive
     </button>
     <a href="/sprint5/course-details" class="govuk-button" style="margin-right: 20px">
        Preview
@@ -900,19 +920,16 @@ How will you be assessed?
         </div></div>-->
 
 		        <div id="popup-flat"><div style="padding:0;width:100%;">
-            <button class="my_popup_close govuk-button">Insert bullets</button>
-            <button class="my_popup_close govuk-button">Spell check</button>
 			<div  class="govuk-textarea tarea" style="font-size: 14px;">
 
-                <p class="shade">Qualification level</p> 2 <i class="far fa-edit"></i>
+                <p class="shade">Qualification level</p> 2
 
-<p class="shade">Qualification Type</p>Other regulated <i class="far fa-edit"></i>
+<p class="shade">Qualification Type</p>Other regulated
 				
-<p class="shade">Awarding organisation</p>NCFE  <i class="far fa-edit"></i>
-				
-<p class="shade">SSA Tier1 Description</p>Health, Public Services and Care <i class="far fa-edit"></i>
+<p class="shade">Awarding organisation</p>NCFE
+<p class="shade">SSA Tier1 Description</p>Health, Public Services and Care
 
-<p class="shade">SSA Tier 2 Description</p>Health and Social Care <i class="far fa-edit"></i>
+<p class="shade">SSA Tier 2 Description</p>Health and Social Care
 
 
 				</div>
