@@ -1,0 +1,326 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+	
+	.enrol-text {
+		position: relative;top: -25px; font-size: 14px;
+	}
+	
+	@media all and (max-width: 640px) {
+		.enrol-text {
+			margin-top:12px;
+		}
+		.share-links li {
+			margin:5px !important;
+		}
+	}
+
+    .pnl {
+        border: 1px solid #bfc1c3;
+        padding: 30px 0px 0px 32px;
+        margin: 20px 0px 0px 15px;
+    }
+    .pnl:nth-child(2) {
+        margin-left: 0;
+    }
+
+	
+	h3 {
+		width:100%;
+		margin-bottom:20px;
+		clear:both;
+	}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory courses</a></li>
+
+
+    </ol>
+</div>
+
+<div style="float:right;text-align:right;" class="govuk-body">
+Logged in: <strong>Mr. Appleseed</strong><br/>
+<a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
+<a href="account-management" class="govuk-link">Your account</a>
+</div>
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Your courses
+        </h1>
+	</div>	
+
+    <div class="govuk-grid-column-full">
+	
+	
+	
+	<!--TABS-->
+	
+	<div class="govuk-tabs" data-module="tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#approved">
+        Live
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#drafts">
+        Drafts
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#archived">
+        Archived
+      </a>
+    </li>
+
+  </ul>
+
+  <section class="govuk-tabs__panel" id="approved">
+				
+			  <div class="form-group govuk-checkboxes" style="height:70px;">
+				<input class="govuk-input" id="search" name="search" type="text" placeholder="Search..." style="width:40%;float:left;">	
+				<a class="govuk-link" href="#" style="float:right;">Show all</a>
+			  </div>
+				
+			   <h3>ESOL Level 3</h3>		
+			
+              <div class="form-group govuk-checkboxes" style="margin-bottom:40px;height:170px;">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input" checked>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" style="width:70%; float:left;padding-top:0;">Level 2 Diploma in Plumbing studies<br/>
+						  Part-time | Classroom based | Normal working hours<br/>
+						  Venue: Welfare road Straford Greater London E15 4HT<br/>
+						  Start date: 10 September 2018<br/>
+						  Duration: 35 weeks<br/>
+						  Cost: &pound;250
+						  </label>
+						  <a href="#" style="float:right;">Edit &gt;</a>
+						  <a href="#" style="float:right;margin-right:15px;">Hide</a>
+                      </div> 
+
+              </div>
+			  
+			   <h3>City & Guilds Intermediate Diploma in Plumbing</h3>		
+			
+              <div class="form-group govuk-checkboxes" style="margin-bottom:40px;height:170px;">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input" checked>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" style="width:70%; float:left;padding-top:0;">Level 2 Diploma in Plumbing studies<br/>
+						  Part-time | Classroom based | Normal working hours<br/>
+						  Venue: Welfare road Straford Greater London E15 4HT<br/>
+						  Start date: 10 September 2018<br/>
+						  Duration: 35 weeks<br/>
+						  Cost: &pound;250
+						  </label>
+						  <a href="#" style="float:right;">Edit &gt;</a>
+						  <a href="#" style="float:right;margin-right:15px;">Hide</a>
+                      </div> 
+
+              </div>	
+
+			  <h3>ESOL Level 4</h3>		
+			
+              <div class="form-group govuk-checkboxes" style="margin-bottom:40px;height:170px;">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input" checked>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" style="width:70%; float:left;padding-top:0;">Level 2 Diploma in Plumbing studies<br/>
+						  Part-time | Classroom based | Normal working hours<br/>
+						  Venue: Welfare road Straford Greater London E15 4HT<br/>
+						  Start date: 10 September 2018<br/>
+						  Duration: 35 weeks<br/>
+						  Cost: &pound;250
+						  </label>
+						  <a href="#" style="float:right;">Edit &gt;</a>
+						  <a href="#" style="float:right;margin-right:15px;">Hide</a>
+                      </div> 
+
+              </div>
+			  
+			  <h3>Spanish Intermediate</h3>		
+			
+              <div class="form-group govuk-checkboxes" style="margin-bottom:40px;height:80px;">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input" checked>
+						  <label class="govuk-label govuk-checkboxes__label" for="study0">&nbsp;</label>
+                          <a href="#" style="float:right;">Edit &gt;</a>
+						  <a href="#" style="float:right;margin-right:15px;">Show</a>
+                      </div> 
+
+              </div>
+
+			<h3>City & Guilds Intermediate Diploma in Plumbing Level 5</h3>		
+			
+              <div class="form-group govuk-checkboxes" style="margin-bottom:40px;height:80px;">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input" checked>
+						  <label class="govuk-label govuk-checkboxes__label" for="study0">&nbsp;</label>
+                          <a href="#" style="float:right;">Edit &gt;</a>
+						  <a href="#" style="float:right;margin-right:15px;">Show</a>
+                      </div> 
+
+              </div>
+			  
+			<h3>ESOL Level 4</h3>		
+			
+              <div class="form-group govuk-checkboxes" style="margin-bottom:40px;height:80px;">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input" checked>
+						  <label class="govuk-label govuk-checkboxes__label" for="study0">&nbsp;</label>
+                          <a href="#" style="float:right;">Edit &gt;</a>
+						  <a href="#" style="float:right;margin-right:15px;">Show</a>
+                      </div> 
+
+              </div>			  
+			  
+			
+		<div class="govuk-form-group" style="margin-top:30px;">
+		<a href="#">Change start date</a>&nbsp;&nbsp;&nbsp;<a href="#">Archive</a>&nbsp;&nbsp;&nbsp;<a href="#">Duplicate</a>
+		</div>	
+			
+		<div class="govuk-form-group" style="margin-top:30px;">
+		<a href="add-a-course" role="button" class="govuk-button govuk-button--start">
+		  + Add a new course
+		</a>
+		</div>			   
+
+
+  </section>
+  
+  
+  <section class="govuk-tabs__panel" id="drafts">
+    <h2 class="govuk-heading-s">Drafts </h2>
+
+
+  </section>
+  <section class="govuk-tabs__panel" id="archived">
+    <h2 class="govuk-heading-s">Archived </h2>
+
+
+  </section>
+
+</div>
+
+<!--END TABS-->
+	
+
+	</div>	
+	
+	<div class="govuk-grid-row">
+	
+	    <div class="govuk-grid-column-one-third">
+
+		<div class="pnl">
+		
+		<h3 class="govuk-heading-s">Venues</h3>
+		
+		 <ul class="govuk-list">
+		  <li>
+			<a class="govuk-link" href="your-venues">View venues</a>
+		  </li>
+		  <li>
+			<a class="govuk-link" href="your-venues">Update venues</a>
+		  </li>
+		  	<li>
+			<a class="govuk-link" href="#">Add venues</a>
+		  </li>
+		</ul>
+	
+		<div class="govuk-form-group">
+		<a href="your-venues" role="button" class="govuk-button govuk-button--start">
+		  Start now
+		</a>
+		</div>
+	
+		</div>
+		
+		</div>
+		
+		 <div class="govuk-grid-column-one-third">
+		
+				<div class="pnl">
+				
+				<h3 class="govuk-heading-s">Bulk upload</h3>
+	
+		<div class="govuk-form-group">
+		<a href="bulk-upload" role="button" class="govuk-button govuk-button--start">
+		  Start now
+		</a>
+		</div>
+	
+		</div>
+		
+	</div>	
+
+
+
+
+</main>
+{% endblock %}

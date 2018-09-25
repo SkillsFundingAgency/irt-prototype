@@ -117,7 +117,7 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
             Add a course
         </h1>
 		
-		<!--<div class="govuk-form-group">
+		<div class="govuk-form-group">
 		  <label class="govuk-label" for="level">
 			Course level
 		  </label>
@@ -151,33 +151,34 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
 		  </label>
 		  <input class="govuk-input" id="sub" name="sub" type="text" style="width:85%;float:left;"/>
 		  <input class="submit govuk-button" type="submit" value="Search" style="width:12%;float:right;"/>
-		</div>-->
+		</div>
 		
 		
 		<div class="govuk-form-group" style="clear:both;margin-top:80px;">
 		  <label class="govuk-label">
 			Course title
 		  </label>
-		  <p class="govuk-heading-s"> Matehmatics with Further Mathematics A level</p>
+		  <p class="govuk-heading-s"> Matehmatics with Further Mathematics A level <a href="#" style="margin-left: 15px;"><i class="far fa-edit"></i> Edit</a></p>
 		</div>
 	
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Qualification sub-title
-            </label>
-            <input class="govuk-input" id="sub" name="sub" type="text"/>
+		
+		<h3 class="govuk-heading-m">Select course venue</h3>
+		
+		<div class="govuk-form-group" style="margin-bottom:100px;">
+		  <label class="govuk-label" for="sub">
+			
+		  </label>
+		 <select class="govuk-select" id="level" name="level" style="float:left;width:85%;">
+			<option value="1">Newham College</option>
+			<option value="1">Newham College</option>
+			<option value="1">Newham College</option>
+			<option value="1">Newham College</option>
 
-        </div>
+		  </select>
+		  <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:12%;float:right;height: 39px"/>Add venue</a>
+		</div>
 
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Course ID
-            </label>
-            <input class="govuk-input" id="sub" name="sub" type="text"/>
-
-        </div>
-
-        <div class="govuk-form-group" style="clear:both;">
+		<div class="govuk-form-group" style="clear:both;">
 		  <label class="govuk-label" for="sub">
 			Entry requirements
 		  </label>
@@ -189,17 +190,12 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
 		  <label class="govuk-label" for="sub">
 			Cost
 		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text" style=""/>
-		</div>
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Cost description
-            </label>
-            <input class="govuk-input" id="sub" name="sub" type="text" style=""/>
-        </div>
-
-        <div class="govuk-form-group">
+		  <input class="govuk-input" id="sub" name="sub" type="text" style="margin-bottom:20px;"/>
+		  <input class="govuk-input" id="sub" name="sub" type="text"/>
+		</div>	
+		
+		
+			<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			Start date
 		  </label>
@@ -240,15 +236,6 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
                     <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
                             <label class="govuk-label govuk-date-input__label" for="dob-month">
-                               Week(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-month">
                                 Month(s)
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
@@ -277,6 +264,7 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
             <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Full-time</button>
             <button id="venues-show" class="govuk-button govuk-colour" value="Search" type="submit" style="background:#2b8cc4	;color: #000000; border:2px solid black">Part-time</button>
             <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Flexible</button>
+            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Online</button>
         </div>
 
 
@@ -286,69 +274,55 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
 			Day, night or weekend
 		  </label>
 		  <select class="govuk-select" id="level" name="level">
-              <option>Daytime/working hours</option>
-              <option>Part-time</option>
-              <option>Flexible</option>
+			<option value="1" selected>Normal working hours</option>
+			<option value="2">Day</option>
+			<option value="3">Night</option>
 		  </select>
 		</div>
+		
+				<div class="govuk-form-group">
+		  <label class="govuk-label" for="level">
+			Classroom or online
+		  </label>
+		  <select class="govuk-select" id="level" name="level">
+			<option value="1" selected>Classroom based</option>
+			<option value="2">Online</option>
+		  </select>
+		</div>	
 
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			Enrol now URL
 		  </label>
 		  <input class="govuk-input" id="sub" name="sub" type="text"/>
-		</div>
-
-
-        <h3 class="govuk-heading-m">Select course venue</h3>
-
-        <div class="govuk-form-group" style="margin-bottom:100px;">
-            <label class="govuk-label" for="sub">
-
-            </label>
-            <select class="govuk-select" id="level" name="level" style="float:left;width:85%;">
-                <option value="1">Newham College</option>
-                <option value="1">Oxham College</option>
-                <option value="1">Durham College</option>
-                <option value="1">Baconsham College</option>
-
-            </select>
-            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:12%;float:right;height: 39px"/>Add venue</a>
-        </div>
-
-
-
-        <h3 class="govuk-heading-m">Course description</h3>
+		</div>	
+		
+		
+		<h3 class="govuk-heading-m">Course description</h3>
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
-              Who is the course for:
+			What is the course about and what does it cover?
 		  </label>
 		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
 		</div>
 
 				<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
-              What you’ll learn:
+			How is the course structured?
 		  </label>
 		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
 		</div>	
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
-              How you’ll learn
+			What will your learn?
 		  </label>
 		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
-		</div>
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Where next?
-            </label>
-            <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea>
-        </div>
-
-        <div class="govuk-form-group">
+		</div>	
+				
+		
+		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			What you'll need to bring
 		  </label>
@@ -364,11 +338,11 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
 		</div>	
 		
 				<div class="govuk-form-group">
-<a href="/sprint5/course-details" role="button" class="govuk-button govuk-button--start">
+<a href="#" role="button" class="govuk-button govuk-button--start">
   Preview
 </a>
 
-<a href="your-courses" role="button" class="govuk-button govuk-button--start">
+<a href="#" role="button" class="govuk-button govuk-button--start">
   Save
 </a>
 		</div>
@@ -377,7 +351,22 @@ Logged in: <strong>Mr. Appleseed</strong><br/>
 
 </div>
 
-
+	<div class="govuk-grid-row">
+	
+		
+		 <div class="govuk-grid-column-one-third">
+		
+				<div class="pnl">
+				
+				<h3 class="govuk-heading-s">Bulk upload</h3>
+	
+		<div class="govuk-form-group">
+		<a href="bulk-upload" role="button" class="govuk-button govuk-button--start">
+		  Start now
+		</a>
+		</div>
+	
+		</div>
 		
 	</div>	
 
