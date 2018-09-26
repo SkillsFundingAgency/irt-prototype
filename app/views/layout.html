@@ -31,14 +31,39 @@
 {% endblock %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
+<header class="govuk-header " role="banner" data-module="header">
+<div class="header-wrapper">
+    <div class="header-proposition">
+        <div class="content">
+            <a class="js-header-toggle menu" href="#proposition-links">Menu</a>
+            <nav id="proposition-menu">
+                <a href="https://nationalcareersservice.direct.gov.uk/" id="proposition-name">National Careers Service</a>
+                <ul id="proposition-links">
+
+                    <li>
+                        <a href="https://nationalcareersservice.direct.gov.uk/skills-health-check" id="nav-SHC" target="_self">Skills health check</a>
+                    </li>
+                    <li class="active">
+
+
+
+                        <a href="/" id="nav-EC" target="_self">Find a course <span class="phase-tag">ALPHA</span></a>
+                    </li>
+                    <li>
+                        <a href="https://nationalcareersservice.direct.gov.uk/contact-an-adviser" id="nav-CA" target="_self">Contact an adviser</a>
+                    </li>
+                    <li>
+                        <a href="https://nationalcareersservice.direct.gov.uk/about-us" id="nav-AU" target="_self">About us</a>
+                    </li>
+                    <li>
+                        <a href="https://nationalcareersservice.direct.gov.uk/get-a-job" id="nav-HTG" target="_self">Help to get a job</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+    </header>
 {% endblock %}
 
 {% if useAutoStoreData %}
