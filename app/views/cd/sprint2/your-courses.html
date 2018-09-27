@@ -273,7 +273,7 @@ $j(document).ready(function() {
 	
 });
 </script>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <nav class="side-nav">
     <ul>
@@ -282,10 +282,10 @@ $j(document).ready(function() {
             <a href="#">Your courses<span class="counter">8</span></a>
         </li>
         <li class="side-nav__item ">
-            <a href="/drafts">Drafts<span class="counter">12</span></a>
+            <a href="/drafts">Draft courses<span class="counter">12</span></a>
         </li>
         <li class="side-nav__item ">
-            <a href="/archived">Archived<span class="counter">2</span></a>
+            <a href="/archived">Archived courses<span class="counter">2</span></a>
         </li>
         <li class="side-nav__item ">
             <a href="bulk-upload">Upload CSV</a>
@@ -330,14 +330,36 @@ $j(document).ready(function() {
         <div class="search-box__options">
 
     </div>
+
+
+        <div class="pagination">
+            <p>Showing 1-50 of <span class="result-count">438</span> courses</p>
+            <ul style="margin-left: 20px">
+                <li>1</li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li>...</li>
+                <li><a href="">10</a></li>
+                <li><a href="">Next</a></li>
+            </ul>
+        </div>
+
+        <div class="results-per-page">
+            <p>Results per page:</p>
+            <ul>
+                <li>10</li>
+                <li><a href="">25</a></li>
+                <li><a href="">100</a></li>
+            </ul>
+        </div>
+
     </div>
+
+
 
 </header>
 
-
-
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 
 
@@ -346,7 +368,7 @@ $j(document).ready(function() {
 <table class="" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;" id="main-table">
     <thead class="govuk-table__head">
     <tr class="govuk-table__row" style="border-bottom: solid 2px #dee0e2">
-	<th class="govuk-table__header" scope="col" style="width: 69px">Select rows</th>
+	<th class="govuk-table__header" scope="col" style="width: 69px">Select course(s)</th>
 	<th class="govuk-table__header" scope="col" style="width: 70px">Course ID</th>
     <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 254px">Qualification title</th>
 	<th class="govuk-table__header" scope="col" style="padding-left: 20px">Qualification<br> sub-title</th>
@@ -658,21 +680,21 @@ $j(document).ready(function() {
 
 
 
-<div class="gov-btns" style="margin-bottom: 50px">
+<div class="gov-btns" style="margin-bottom: 50px;    font-size: 18px;">
 
     <a href="#" type="submit" class="" style="margin-right: 20px" id="duplicate">
-        Duplicate row
+        Duplicate a course
     </a>
 
     <a href="#"  type="submit" class="" style="margin-right: 20px" id="delete">
-        Delete row
+        Delete a course
     </a>
 
     <a href="#"  type="submit" class="" style="margin-right: 20px">
-        Save as a Draft
+        Save as a draft
     </a>
     <a href="#"  type="submit" class="" style="margin-right: 20px">
-        Archive
+        Archive a course
     </a>
     <a href="/sprint5/course-details" class="" style="margin-right: 20px">
        Preview

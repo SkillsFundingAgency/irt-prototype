@@ -787,7 +787,7 @@ strong{font-weight: bold}
 }
 
 .search-box-container {
-  padding: 20px;
+  padding: 20px;    background: #f8f8f8;
 }
 
 .search-box {
@@ -840,4 +840,34 @@ strong{font-weight: bold}
 }
 .inline-search-wrapper {
   position: relative;
+}
+.results-per-page, .pagination {
+  margin-bottom: 10px;
+}
+.results-per-page p, .results-per-page ul, .results-per-page li, .pagination p, .pagination ul, .pagination li {
+  display: inline; font-size: 16px;
+}
+.results-per-page ul, .pagination ul {
+  margin: 0;
+  padding: 0;
+}
+.results-per-page p, .results-per-page ul, .results-per-page li, .pagination p, .pagination ul, .pagination li {
+  display: inline;
+}
+.results-per-page li, .pagination li {
+  margin-left: 5px;
+}
+.pagination {
+  margin-top: 15px;
+}
+.pagination ul {
+  margin: 0;
+  padding: 0;
+}
+.pagination li {
+  margin-left: 5px; display: inline;
+}
+.result-count {
+  font-weight: bold;
+  font-size: 21px;
 }
