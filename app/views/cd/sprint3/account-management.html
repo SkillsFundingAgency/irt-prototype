@@ -1,0 +1,252 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+	
+	.enrol-text {
+		position: relative;top: -25px; font-size: 14px;
+	}
+	
+	@media all and (max-width: 640px) {
+		.enrol-text {
+			margin-top:12px;
+		}
+		.share-links li {
+			margin:5px !important;
+		}
+	}
+	
+	.pnl {
+	
+		border:solid 1px #000;
+		padding:20px;
+		margin:5px;
+	
+	}
+    .canvasjs-chart-canvas{font-family: "nta"!important;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory</a></li>
+
+
+    </ol>
+</div>
+
+    <div style="float:right;text-align:right;" class="govuk-body">
+        Logged in: <strong>Mr. Appleseed</strong><br/>
+        <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
+        <a href="account-management" class="govuk-link">Your account</a>
+    </div>
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Manage your account
+        </h1>
+	</div>	
+
+
+	
+	
+	<!--TABS--> <div class="govuk-grid-column-full">
+	
+	<div class="govuk-tabs" data-module="tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#approved">
+        Organisation
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#drafts">
+        Reports
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#archived">
+        Manage users
+      </a>
+    </li>
+
+  </ul>
+
+  <section class="govuk-tabs__panel" id="approved">
+
+     <p> City Of London Academy Shoreditch Park Audrey Street</p>
+      <p>  London</p>
+      <p>  E2 8QH</p>
+      <p>  Your term start date: 1 September</p>
+
+
+  </section>
+  
+  
+  <section class="govuk-tabs__panel" id="drafts">
+    <h2 class="govuk-heading-s">Monthly performance report</h2>
+
+
+
+      <script type="text/javascript">
+          window.onload = function () {
+
+              var chart = new CanvasJS.Chart("chartContainer", {
+                  theme: "light1", // "light2", "dark1", "dark2"
+                  animationEnabled: true, // change to true
+                  title:{
+                      text: ""
+                  },
+                  data: [
+                      {
+                          // Change type to "bar", "area", "spline", "pie",etc.
+                          type: "column",
+                          dataPoints: [
+                              { label: "EAST LONDON ADVANCED TECHNOLOGY TRAINING",  y: 10  },
+                              { label: "CROMWELL COLLEGE OF IT & MANAGEMENT LIMITED", y: 15  },
+                              { label: "EASTEND TRAINING LTD", y: 25  },
+                              { label: "ELECT CARE CONSULTANTS LIMITED",  y: 30  },
+                              { label: "GARNISH ENT. LTD",  y: 28  }
+                          ]
+                      }
+                  ]
+              });
+              chart.render();
+
+          }
+      </script>
+      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+
+
+
+
+  </section>
+  <section class="govuk-tabs__panel" id="archived">
+    <h2 class="govuk-heading-s">Manage users </h2>
+
+
+
+      <div class="form-group govuk-checkboxes">
+
+          <div class="govuk-checkboxes__item">
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >John Appleseed &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">john@nehamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >Mary English  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">mary@nehamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >Phillip Knight  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">phillip@nehamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+          </div>
+
+      </div>
+
+
+
+  </section>
+
+</div>
+
+<!--END TABS--></div>
+	
+
+
+	
+	
+	<!--
+	    <div class="govuk-grid-column-full" style="margin-top:30px ">
+
+
+				<div class="govuk-grid-column-one-half pnl" style="margin: 0; border: none">
+				
+                            <h3 class="govuk-heading-s">Your venues</h3>
+
+                     <ul class="govuk-list" style="padding-left:20px;padding-top:20px;">
+                      <li>
+                        <a class="govuk-link" href="#">View your venues</a>
+                      </li>
+                      <li>
+                        <a class="govuk-link" href="#">Update venues</a>
+                      </li>
+                        <li>
+                        <a class="govuk-link" href="#">Add venues</a>
+                      </li>
+                    </ul>
+
+                    <div class="govuk-form-group">
+                    <a href="your-venues" role="button" class="govuk-button govuk-button--start">
+                      Start now
+                    </a>
+                    </div>
+	
+	        	</div>
+
+
+	</div>	-->
+
+
+
+
+
+</div>
+
+</main>
+{% endblock %}

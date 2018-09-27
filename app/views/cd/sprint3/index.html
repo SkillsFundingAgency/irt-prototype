@@ -61,6 +61,7 @@ GOV.UK prototype kit
 			margin:5px !important;
 		}
 	}
+
 	
 	.pnl {
 	
@@ -69,7 +70,7 @@ GOV.UK prototype kit
 		margin:5px;
 	
 	}
-    .canvasjs-chart-canvas{font-family: "nta"!important;}
+	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <main id="content" role="main">
@@ -77,76 +78,76 @@ GOV.UK prototype kit
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory login</a></li>
 
 
     </ol>
 </div>
 
-    <div style="float:right;text-align:right;" class="govuk-body">
-        Logged in: <strong>Mr. Appleseed</strong><br/>
-        <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
-        <a href="account-management" class="govuk-link">Your account</a>
-        <a href="account-management" class="govuk-link">Your account</a>
-    </div>
 
 
 
-
-    <div class="govuk-grid-row">
+<div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-           Upload your courses
+            Course directory login
         </h1>
 	</div>	
 
-
+    <div class="govuk-grid-column-full">
 	
+		<div class="pnl">
 	
-	<!--TABS--> <div class="govuk-grid-column-two-thirds">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <p>
 
-  <div class="pnl" style="position: relative; height: 300px">
-      <p>Drag your file here</p>
-<script>document.getElementById('get_file').onclick = function() {
-    document.getElementById('my_file').click();
-};</script><script>document.getElementById('get_file1').onclick = function() {
-    document.getElementById('my_file1').click();
-};</script>
 
-      <a href="#" download id="get_file">
-          <input type="file" id="my_file" style="display: none
-         ">
-      <i class="fas fa-plus-circle"  style="font-size: 65px; color: #989898;position: absolute;transform: translateX(-50%) translateY(-50%);
-    top: 50%;
-    left: 50%;"></i></a>
-
-      <p style="position: absolute;
-   bottom: 0;
-   left: 20px;">Or <a href="#" download id="get_file1">Browse<input type="file" id="my_file1" style="display: none
-         "></a> </p>
-  </div>
-
-        <div class="govuk-form-group" style="margin-top:35px;margin-left: 5px">
-            <a href="your-courses" role="button" class="govuk-button govuk-button--start">
-                Upload your courses
-            </a>
-        </div>
-
-<!--END TABS--></div>
+            Login to upload and update details of your qualifications and courses, course dates and centres. This covers all accredited courses offered in England.
+        </p>
+		
+		<div class="govuk-form-group">
+		  <label class="govuk-label" for="username">
+			Username
+		  </label>
+		  <input class="govuk-input" id="username" name="username" type="text" />
+		</div>
+		
+		<div class="govuk-form-group">
+		  <label class="govuk-label" for="username">
+			Password
+		  </label>
+		  <input class="govuk-input" id="password" name="password" type="password" />
+		</div>		
+		
+		<div class="govuk-form-group">
+<a href="home" role="button" class="govuk-button govuk-button--start">
+  Sign in
+</a>
+		</div>
 	
-
-
-	
-	
-	
-
-
-
-
-
+		
+		<ul class="govuk-list">
+		  <li>
+			<a class="govuk-link" href="#">Forgot your password?</a>
+		  </li>
+		</ul>
+		
+		
+	</div>	
 </div>
+    </div>
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+	
+	<div class="pnl">
+
+	        <p>
+                If you don't know your log in details or you need further information please visit the help pages, contact the Course Directory Support Team on 0844 811 5073 or <a href>support@coursedirectoryproviderportal.org.uk</a>. For help with your course data you can contact an information officer at <a href>support@coursedirectoryproviderportal.org.uk</a>.</p>
+	</div>
+</div>
+
 
 </main>
 {% endblock %}
