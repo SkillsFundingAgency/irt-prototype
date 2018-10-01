@@ -271,10 +271,6 @@ $j(document).ready(function() {
 		}
 	});
 	
-    $j( function() {
-		$j( ".datepicker" ).datepicker();
-    } );	
-	
 	
 	//IMPORT CSV
 	// The event listener for the file upload
@@ -387,11 +383,9 @@ $j(document).ready(function() {
 				
 				for(var i=1; i<data.length-1; i++){
 					
-					$j("#main-table").append('<tr style="background-color:#fff;"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%"></td><td class="govuk-table__cell">'+data[i][1]+'<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td><td class="govuk-table__cell"><div class="govuk-form-group" style="margin: 0"><label class="govuk-label" for="name"></label><input class="govuk-input" id="name" name="name" type="text" style="" value="'+data[i][2]+'"/></div></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" id="datepicker" class="datepicker" placeholder="03-Sep-18" value="'+data[i][3]+'" style="border: none;font-size: 14px;position: relative;width: 97px;top: 10px;color:inherit;background-color: inherit; float: left"></div><div class="govuk-checkboxes" style="float: left;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px;padding-left: 0">Flexible start date</label> </div> </div></td><td class="govuk-table__cell"><a class=" edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%"><option>Matthew Boulton Campus</option><option>Sutton Coldfield Campus</option><option>Botanical Gardens</option></select></td><td class="govuk-table__cell"><a class="  edit-btn open-url" style="margin-left: 20px" href="#">Edit</a></td><td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="'+data[i][7]+'"></td><td class="govuk-table__cell"><a class=" edit-btn open-cost" style="margin-left: 20px" href="#">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][9]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%"><option value="1">'+data[i][10]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][11]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][12]+'</option></select></td></tr>');
+					$j("#main-table").append('<tr style="background-color:#fff;"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%"></td><td class="govuk-table__cell">'+data[i][1]+'<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td><td class="govuk-table__cell"><div class="govuk-form-group" style="margin: 0"><label class="govuk-label" for="name"></label><input class="govuk-input" id="name" name="name" type="text" style="" value="'+data[i][2]+'"/></div></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" id="datepicker" placeholder="03-Sep-18" value="'+data[i][3]+'" style="border: none;font-size: 14px;position: relative;width: 97px;top: 10px;color:inherit;background-color: inherit; float: left"></div><div class="govuk-checkboxes" style="float: left;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px;padding-left: 0">Flexible start date</label> </div> </div></td><td class="govuk-table__cell"><a class=" edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%"><option>Matthew Boulton Campus</option><option>Sutton Coldfield Campus</option><option>Botanical Gardens</option></select></td><td class="govuk-table__cell"><a class="  edit-btn open-url" style="margin-left: 20px" href="#">Edit</a></td><td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="'+data[i][7]+'"></td><td class="govuk-table__cell"><a class=" edit-btn open-cost" style="margin-left: 20px" href="#">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][9]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%"><option value="1">'+data[i][10]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][11]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][12]+'</option></select></td></tr>');
 					
 				}
-				
-				$j( ".datepicker" ).datepicker();
             };
             reader.onerror = function() {
                 alert('Unable to read ' + file.fileName);
@@ -547,10 +541,15 @@ $j(document).ready(function() {
 
                             <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;">
 
-                             
+                                <script>
+                                    var $j = jQuery.noConflict();
+                                    $j( function() {
+                                        $j( "#datepicker" ).datepicker();
+                                    } );
+                                </script>
                     <div>
                                 <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;width: 97px;
-                        top: 10px;color:inherit;background-color: inherit; float: left" class="datepicker"></div>
+                        top: 10px;color:inherit;background-color: inherit; float: left"></div>
 
 
                                 <div class="govuk-checkboxes" style="float: left;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px;padding-left: 0">Flexible start date</label> </div> </div>
