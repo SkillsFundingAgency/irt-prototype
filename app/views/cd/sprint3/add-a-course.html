@@ -5,6 +5,9 @@ GOV.UK prototype kit
 {% endblock %}
 
 {% block content %}
+
+
+
 <style xmlns="http://www.w3.org/1999/html">
     .govuk-related-items {
         margin-top: 30px;
@@ -26,7 +29,6 @@ GOV.UK prototype kit
         color: #0b0c0c;
         text-decoration: none;
         border-bottom: 1px solid #0b0c0c;
-
     }
     .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
         color: #0b0c0c;
@@ -48,338 +50,594 @@ GOV.UK prototype kit
         height: 400px;
         width: 100%;
     }
-	
-	.enrol-text {
-		position: relative;top: -25px; font-size: 14px;
-	}
-	
-	@media all and (max-width: 640px) {
-		.enrol-text {
-			margin-top:12px;
-		}
-		.share-links li {
-			margin:5px !important;
-		}
-	}
-	
-	.pnl {
-	
-		border:solid 1px #000;
-		padding:20px;
-		margin:5px;
-	
-	}
-	
-	h3 {
-		width:100%;
-		margin-bottom:20px;
-		clear:both;
-	}
-    .govuk-date-input__item {
-        width: 60px;
-        margin-right: 40px;
-    }
-    .govuk-input--width-4 {
-        width: 9ex;
+
+    .enrol-text {
+        position: relative;top: -25px; font-size: 14px;
     }
 
+    @media all and (max-width: 640px) {
+        .enrol-text {
+            margin-top:12px;
+        }
+        .share-links li {
+            margin:5px !important;
+        }
+    }
+
+    .pnl {
+
+        border:solid 1px #000;
+        padding:20px;
+        margin:5px;
+
+    }
+    .canvasjs-chart-canvas{font-family: "nta"!important;}
+    .filter-radio::after {
+        content: "";
+        border: solid;
+        border-width: 0 0 2px 2px;
+        background: transparent;
+        width: 8px;
+        height: 3px;
+        /* position: absolute; */
+        top: 12px;
+        left: 9px;
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        zoom: 1;
+        filter: alpha(opacity=0);
+        opacity: 0;
+    }
+    .filter-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        zoom: 1;
+        filter: alpha(opacity=0);
+        opacity: 0;
+    }
+    .filter-radio {
+        display: -moz-inline-stack;
+        display: inline-block;
+        padding: 7px 0 7px 30px;
+        width: 95%;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .filter-radio::before {
+        content: "";
+        border: 2px solid;
+        background: transparent;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 8px;
+        left: 6px;
+    }
+    .filter-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+    .child-option-toggle {
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: relative;
+        float: right;
+        right: 5px;
+        top: 0;
+    }
+    .child-option-toggle:after {
+        content: "";
+        background-image: url(/public/assets/images/option-select-toggle-child-sprite.png);
+        background-repeat: no-repeat;
+        background-position: 50% 100%;
+        background-size: 28px auto;
+        width: 20px;
+        height: 20px;
+        display: block;}
+    .foo, .govuk-table__cell1,.govuk-table__cell2, .foo123, td {
+        border-bottom: 1px solid #bfc1c3;
+    }
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before  {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+    table{
+        table-layout: fixed;
+        width: 200px;
+    }
+    th.govuk-table__header, td.govuk-table__cell {
+        width: 193px;
+    }
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        border: 2px solid  #bfc1c3;
+    }
+    span{font-size: 14px}
+    textarea {width: 500px; font-size: 14px; height: 140px}
+    .foo123{border: 2px solid hotpink}
+    #main-table td:nth-child(1){padding-left: 30px;}
+    #main-table td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
+    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
+    #main-table td:nth-child(4){ background-color: #bfc1c3;padding-left: 20px}
+    #main-table td:nth-child(5){ background-color: #bfc1c3;padding-left: 20px}
+    #main-table td:nth-child(6){padding-left: 20px}
+    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+
+    .tarea {
+        width:40vw;
+        height: 500px;
+        resize:none;
+    }
+    .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
 </style>
+
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+
+<script>
+    $(window).on('load', function(){
+        var toggle = false;
+        $('.btn').click(function() {
+            toggle = !toggle;
+            if(toggle){
+                $('#A').animate({left: 0});
+            }
+            else{
+                $('#A').animate({left:-400});
+            }
+        });
+    });
+</script>
+
+<script>
+    var $j = jQuery.noConflict();
+    $j(document).ready(function() {
+        $j("#readmore").click(function(e){
+            $j("span.showit").toggle();
+            e.preventDefault();
+        });
+        $j( "#header-search" ).submit(function( event ) {
+            //alert( "Handler for .submit() called." );
+            var miscCharge = $j("#miscCharge").val();
+            if(!isNaN(miscCharge))
+            {
+                //do some thing if it's a number  alert('Yeah a number');
+                var x= (miscCharge).length;
+                //alert(x);
+                if (x == 8){
+                    $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
+                    //alert('NEW ROW CREATED');
+                    $j("#add-course-table").toggle();
+                }
+                else{
+                    //alert('Error number too short or too long');
+                    $j("#number-too-long-error").toggle();
+                }
+            }else{
+                //do some thing if it's NOT a number alert('Error not a number');
+                // $j("#must-be-a-number-error").toggle();
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your search result for course subject Biology:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'><div class='govuk-form-group'><label class='govuk-label' for='level'>Select course level </label><select class='govuk-select' id='level' name='level'><option value='1'>Level 1</option><option value='2'>Level 2</option><option value='3' selected=''>Level 3</option><option value='4'>Level 4</option><option value='5'>Level 5</option><option value='5'>Level 6</option><option value='5'>Level 7</option><option value='5'>Level 8</option></select></div><div class='govuk-form-group'><label>Select qualification type<br></label><select class='govuk-select' style='width: 50%'><option>A level</option><option>AS level</option><option>Btech</option></select></div></td></tr>");
+                $j("#add-course-table").toggle();
+            }
+            event.preventDefault();
+        });
+        $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
+            opacity: 0.999,
+            color:'#fff',
+            transition: 'all 0.3s'
+        });
 
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-<main id="content" role="main">
+        setInterval(function(){
+
+            $j(".open-descript").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-descript').popup('show');
+                });
+            });
+
+            $j(".close-descript").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-descript').popup('hide');
+                });
+            });
+
+            $j(".open-url").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-url').popup('show');
+                });
+            });
+
+            $j(".close-url").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-url').popup('hide');
+                });
+            });
+            $j(".open-req").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-req').popup('show');
+                });
+            });
+
+            $j(".close-req").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-req').popup('hide');
+                });
+            });
+            $j(".open-cost").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-cost').popup('show');
+                });
+            });
+
+            $j(".close-cost").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-cost').popup('hide');
+                });
+            });
+            $j(".open-duration").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-duration').popup('show');
+                });
+            });
+
+            $j(".close-duration").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-duration').popup('hide');
+                });
+            });
+
+            $j(".open-flat").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-flat').popup('show');
+                });
+            });
+
+            $j(".close-flat").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-flat').popup('hide');
+                });
+            });
+
+            $j(".open-dur").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-dur').popup('show');
+                });
+            });
+            $j(".close-dur").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-dur').popup('hide');
+                });
+            });
+            $j(".open-start-des").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-start-des').popup('show');
+                });
+            });
+            $j(".close-start-des").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-start-des').popup('hide');
+                });
+            });
+
+        }, 500);
+
+        $j("#duplicate").click(function(e) {
+            $j(".check:checkbox:checked").each (function(e) {
+                $j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
+                $j(this).prop('checked', false);
+            });
+        });
+
+        $j("#delete").click(function(e) {
+            if (confirm('Are you sure you want to delete selected items?')) {
+                $j(".check:checkbox:checked").each (function(e) {
+                    $j(this).closest("tr").remove();
+                });
+            }
+        });
+
+        $j("#duration-units").change(function (e) {
+            $j("#duration").empty();
+            var i=0;
+            switch ($j("#duration-units").val()) {
+                case "1":
+                    i=31;
+                    $j("#duration").append('<option>Less than one day</option>');
+                    break;
+                case "2":
+                    i=52;
+                    break;
+                case "3":
+                    i=6;
+                    break;
+                case "4":
+                    i=24;
+                    break;
+            }
+            for (x=1; x<=i; x++) {
+                $j("#duration").append('<option>'+x+'</option>');
+            }
+        });
+
+    });
+</script>
+
+
+<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
+
 
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory add course</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="index">Course directory</a></li>
 
 
     </ol>
 </div>
 
 <div style="float:right;text-align:right;" class="govuk-body">
-Logged in: <strong>Mr. Appleseed</strong><br/>
-<a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
-<a href="account-management" class="govuk-link">Your account</a>
+    Logged in: <strong>Mr. Appleseed</strong><br/>
+    <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
+    <a href="account-management" class="govuk-link">Your account</a>
 </div>
 
-
-
-<div class="govuk-grid-row">
-
-    <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add a course
-        </h1>
-		
-		<!--<div class="govuk-form-group">
-		  <label class="govuk-label" for="level">
-			Course level
-		  </label>
-		  <select class="govuk-select" id="level" name="level">
-			<option value="1">Level 1</option>
-			<option value="2">Level 2</option>
-			<option value="3" selected>Level 3</option>
-			<option value="4">Level 4</option>
-			<option value="5">Level 5</option>
-			<option value="5">Level 6</option>
-			<option value="5">Level 7</option>
-			<option value="5">Level 8</option>
-		  </select>
-		</div>
-		
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="type">
-			Qualification type
-		  </label>
-		  <select class="govuk-select" id="type" name="type">
-			<option value="A" select>A level</option>
-			<option value="B">AS level</option>
-			<option value="C">Btech</option>
-
-		  </select>
-		</div>
-
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Course subject
-		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text" style="width:85%;float:left;"/>
-		  <input class="submit govuk-button" type="submit" value="Search" style="width:12%;float:right;"/>
-		</div>-->
-		
-		
-		<div class="govuk-form-group" style="clear:both;margin-top:80px;">
-		  <label class="govuk-label">
-			Course title
-		  </label>
-		  <p class="govuk-heading-s"> Matehmatics with Further Mathematics A level</p>
-		</div>
-	
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Qualification sub-title
-            </label>
-            <input class="govuk-input" id="sub" name="sub" type="text"/>
-
-        </div>
-
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Course ID
-            </label>
-            <input class="govuk-input" id="sub" name="sub" type="text"/>
-
-        </div>
-
-        <div class="govuk-form-group" style="clear:both;">
-		  <label class="govuk-label" for="sub">
-			Entry requirements
-		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text"/>
-		  
-		</div>	
-
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Cost
-		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text" style=""/>
-		</div>
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Cost description
-            </label>
-            <input class="govuk-input" id="sub" name="sub" type="text" style=""/>
-        </div>
-
-        <div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Start date
-		  </label>
+<h1 class="govuk-heading-l" style="padding-top: 20px;">
+    Add a course
+</h1>
 
 
 
-                <script>
-                    var $j = jQuery.noConflict();
-                    $j( function() {
-                        $j( "#datepicker" ).datepicker();
-                    } );
-                </script>
-                </head>
-                <body>
 
-                <p>Date: <input type="text" id="datepicker"></p>
+<!--TABS-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 
 
-		</div>	
-		
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
-                <label class="govuk-label" for="sub">
-                    Duration
-                </label>
-                <div class="govuk-date-input" id="dob">
 
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-day">
-                                Day(s)
+
+
+
+
+<h2 class="govuk-heading-m" style="position: relative;font-weight: 300;
+    top: 46px;">To add a course enter <strong>the Lars number</strong> or <strong>course subject</strong></h2>
+<table class="govuk-table" style="font-size: 14px;margin-top: 30px">
+
+    <tr class="govuk-table__row last">
+        <td style=" background-color: white; border-bottom: none">
+            <div class="header-search-content" style="font-size: 14px;">
+                <form action="" class="site-search ui-front" id="header-search" method="post">
+
+                    <div class="search-input-wrapper govuk-form-group--error">
+
+                        <div class="govuk-form-group" style="    width: 35%;">
+                            <label class="govuk-label" for="address-line-2" style="font-size: 14px">
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
+                            <div class="select-editable">
+                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
+                    </span>
+
+                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
+                    </span>
+
+                                <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;float: left;width: 70%">
+                            </div>
                         </div>
+                        <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
                     </div>
 
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-month">
-                               Week(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
+                </form>
 
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-month">
-                                Month(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
+            </div>
+        </td>
+    </tr>
+    </tbody></table>
 
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-year">
-                                Year(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4 " id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
+<table id="lars-search-results" class="govuk-table" style="margin-top: 30px; font-size: 14px;margin-bottom: 0">
+</table>
 
 
-                </div>
-            </fieldset>
-        </div>
+<table id="add-course-table" class="govuk-table" style=" font-size: 14px; display: none">
+
+    <tbody>
+
+    <tr style="background-color:#fff;"><td class="govuk-table__cell">
+        <a class="govuk-button" href="add-a-course-form">Add this course</a>
+    </td>
+
+
+
+        <td class="govuk-table__cell">12345678</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td>
 
 
 
 
-        <div class="btn-gr">
-            <label class="govuk-label">Full time or part time</label>
-            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Full-time</button>
-            <button id="venues-show" class="govuk-button govuk-colour" value="Search" type="submit" style="background:#2b8cc4	;color: #000000; border:2px solid black">Part-time</button>
-            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Flexible</button>
-        </div>
+        <td class="govuk-table__cell">
+
+            Other regulated
+
+        </td>
+
+        <td class="govuk-table__cell">
+
+            NCFE
+
+        </td>
+
+        <td class="govuk-table__cell">
+            If you have an interest in floristry...
+            <a href="#" id="readmore" style="display: none">read more</a>   <span class="showit" style="display: none">you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</span>
+        </td>
+
+        <td class="govuk-table__cell">
+
+            Health, Public Services and Care
+
+        </td>
+
+        <td class="govuk-table__cell">
+
+            Health and Social Care
+
+        </td>
+
+    </tr>
 
 
 
-				<div class="govuk-form-group">
-		  <label class="govuk-label" for="level">
-			Day, night or weekend
-		  </label>
-		  <select class="govuk-select" id="level" name="level">
-              <option>Daytime/working hours</option>
-              <option>Part-time</option>
-              <option>Flexible</option>
-		  </select>
-		</div>
 
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Enrol now URL
-		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text"/>
-		</div>
+    </tbody>
 
 
-        <h3 class="govuk-heading-m">Select course venue</h3>
-
-        <div class="govuk-form-group" style="margin-bottom:100px;">
-            <label class="govuk-label" for="sub">
-
-            </label>
-            <select class="govuk-select" id="level" name="level" style="float:left;width:85%;">
-                <option value="1">Newham College</option>
-                <option value="1">Oxham College</option>
-                <option value="1">Durham College</option>
-                <option value="1">Baconsham College</option>
-
-            </select>
-            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:12%;float:right;height: 39px"/>Add venue</a>
-        </div>
+</table>
 
 
 
-        <h3 class="govuk-heading-m">Course description</h3>
-		
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-              Who is the course for:
-		  </label>
-		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
-		</div>
-
-				<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-              What you’ll learn:
-		  </label>
-		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
-		</div>	
-		
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-              How you’ll learn
-		  </label>
-		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
-		</div>
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Where next?
-            </label>
-            <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea>
-        </div>
-
-        <div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			What you'll need to bring
-		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text"/>
-		</div>	
 
 
-				<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			How you'll be assessed
-		  </label>
-		  <input class="govuk-input" id="sub" name="sub" type="text"/>
-		</div>	
-		
-				<div class="govuk-form-group">
-<a href="/sprint5/course-details" role="button" class="govuk-button govuk-button--start">
-  Preview
-</a>
 
-<a href="your-courses" role="button" class="govuk-button govuk-button--start">
-  Save
-</a>
-		</div>
-		
-	</div>	
+</header>
+
+
+
+<div id="popup-descript"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;">
+        <p class="shade">Who is the course for:</p>
+        This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
+        <i class="far fa-edit"></i>
+        <p class="shade">What you’ll learn:</p>
+        You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
+        effective communication
+        equality
+        diversity and rights
+        anatomy and physiology
+        social sciences  <i class="far fa-edit"></i>
+
+        <p class="shade">How you’ll learn</p>
+        Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
+        <i class="far fa-edit"></i>
+
+        <p class="shade">Where next?</p>
+        If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
+        <i class="far fa-edit"></i>
+
+        <p class="shade">What you need to bring?</p>
+        What you need to bring.
+        <i class="far fa-edit"></i>
+
+        <p class="shade">How will you be assessed?</p>
+        How will you be assessed?
+        <i class="far fa-edit"></i>  </div>
+</div>
+    <button class="govuk-button close-descript">Close</button>
 
 </div>
 
+<div id="popup-url"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">http://www.bmet.ac.uk/courses/76000122775958
+    </textarea>
+    <button class="govuk-button close-url">Close</button>
 
-		
-	</div>	
+</div></div>
 
-</main>
+<div id="popup-req"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.
+    </textarea>
+    <button class="govuk-button close-req">Close</button>
+
+</div></div>
+
+<div id="popup-cost"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">TBC
+    </textarea>
+    <button class="govuk-button close-cost">Close</button>
+
+</div></div>
+
+<div id="popup-duration"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Duration additional information
+    </textarea>
+    <button class="govuk-button close-duration">Close</button>
+
+</div></div>
+
+<!--<div id="popup-dur"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Duration description
+</textarea>
+    <button class="govuk-button close-dur">Close</button>
+
+</div></div>-->
+
+<div id="popup-flat"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <div  class="govuk-textarea tarea" style="font-size: 14px;">
+
+        <p class="shade">Qualification level</p> 2 <i class="far fa-edit"></i>
+
+        <p class="shade">Qualification Type</p>Other regulated <i class="far fa-edit"></i>
+
+        <p class="shade">Awarding organisation</p>NCFE  <i class="far fa-edit"></i>
+
+        <p class="shade">SSA Tier1 Description</p>Health, Public Services and Care <i class="far fa-edit"></i>
+
+        <p class="shade">SSA Tier 2 Description</p>Health and Social Care <i class="far fa-edit"></i>
+
+
+    </div>
+    <button class="govuk-button close-flat" style="clear:both;display:block;margin-top:20px;">Close</button>
+
+</div></div>
+
+
+<div id="popup-start-des"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Start date additional information
+    </textarea>
+    <button class="govuk-button close-start-des">Close</button>
+
+</div></div>
+
+
+
+
+
+
 {% endblock %}
