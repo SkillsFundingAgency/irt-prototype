@@ -76,15 +76,6 @@ span{font-size: 14px}
     }
 
     .hidden,.my_popup_2 {display: none}
-	
-	#edit-url, #edit-cost, .save-cost, .save-url {
-		display:none;
-	}
-	
-	#edit-url td, #edit-cost td {
-		border-bottom:none;
-	}
-	
 </style>
 
 
@@ -111,56 +102,6 @@ span{font-size: 14px}
 
 <script>
 var $j = jQuery.noConflict();
-
-
-function initPicker() {
-	//$j( ".datepicker" ).datepicker();
-
-	/*$j(".datepicker").datepicker({
-		showButtonPanel: true,
-		beforeShow: function( input ) {
-			setTimeout(function() {
-				var buttonPane = $j( input )
-					.datepicker( "widget" )
-					.find( ".ui-datepicker-buttonpane" );
-
-				$j( "<button>", {
-					text: "Flexible start date",
-					click: function() {
-						alert($j(this).closest(".datepicker").val())
-					}
-				}).appendTo( buttonPane ).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
-			}, 1 );
-		}
-	});*/
-	
-$j(".datepicker").each(function () {
-    $j(this).datepicker({
-	
-	showButtonPanel: true,
-    beforeShow: function (input) {
-        setTimeout(function () {
-            var buttonPane = $j(input)
-                .datepicker("widget")
-                .find(".ui-datepicker-buttonpane");
-
-            var btn = $j('<button class="ui-state-default ui-priority-primary ui-corner-all" type="button">Flexible start date</button>');
-            btn.unbind("click")
-            .bind("click", function () {
-                //$j(input).datepicker("hide");
-                $j(input).val("Flexible start date");
-            });
-
-            btn.appendTo(buttonPane);
-			$j(input).datepicker("widget").find(".ui-datepicker-current").hide();
-			
-        }, 1);
-    }
-});	
-});	
-}
-
-
 $j(document).ready(function() {
     $j("#readmore").click(function(e){
         $j("span.showit").toggle();
@@ -191,7 +132,7 @@ $j(document).ready(function() {
         }
         event.preventDefault();
     });
-    $j('#popup-descript, #popup-req, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
+    $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
             opacity: 0.999,
             color:'#fff',
             transition: 'all 0.3s'
@@ -212,7 +153,7 @@ $j(document).ready(function() {
 		});
 	});	
 	
-	/*$j(".open-url").each(function (e) {
+	$j(".open-url").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-url').popup('show');
 		});
@@ -222,10 +163,7 @@ $j(document).ready(function() {
 		$j(this).click(function (e) {
 			$j('#popup-url').popup('hide');
 		});
-	});	*/
-	
-	
-	
+	});	
 	$j(".open-req").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-req').popup('show');
@@ -237,12 +175,22 @@ $j(document).ready(function() {
 			$j('#popup-req').popup('hide');
 		});
 	});
+	$j(".open-cost").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-cost').popup('show');
+		});
+	});
+	
+	$j(".close-cost").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-cost').popup('hide');
+		});
+	});
 	$j(".open-duration").each(function (e) {
 		$j(this).click(function (e) {
 			$j('#popup-duration').popup('show');
 		});
 	});
-
 	
 	$j(".close-duration").each(function (e) {
 		$j(this).click(function (e) {
@@ -323,7 +271,9 @@ $j(document).ready(function() {
 		}
 	});
 	
-   initPicker();	
+    $j( function() {
+		$j( ".datepicker" ).datepicker();
+    } );	
 	
 	
 	//IMPORT CSV
@@ -437,120 +387,18 @@ $j(document).ready(function() {
 				
 				for(var i=1; i<data.length-1; i++){
 					
-					$j("#main-table").append('<tr style="background-color:#fff;" id="tr_'+i+'"></tr>');
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>'); //#1
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" style="background-color:#fff;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%"></td>'); //#2
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell">'+data[i][1]+'<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td>'); //#3
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><div class="govuk-form-group" style="margin: 0"><label class="govuk-label" for="name"></label><input class="govuk-input" id="name" name="name" type="text" value="'+data[i][2]+'"/></div></td>'); //#4
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input" placeholder="03-Sep-18" value="'+data[i][3]+'" style="border: none;font-size: 14px;position: relative;width: 180px;top: 3px;color:inherit;background-color: inherit; float: left"></div></td>'); //#5
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%"><option>'+data[i][5]+'</option></select></td>'); //#6
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="'+data[i][6]+'">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td>'); //#7
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="'+data[i][7]+'" /></td>'); //#8
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="'+data[i][8]+'">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td>'); //#9
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][9]+'</option></select></td>'); //#10
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%"><option value="1">'+data[i][10]+'</option></select></td>'); //#11
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][11]+'</option></select></td>'); //#12
-					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][12]+'</option></select></td>'); //#13
+					$j("#main-table").append('<tr style="background-color:#fff;"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%"></td><td class="govuk-table__cell">'+data[i][1]+'<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td><td class="govuk-table__cell"><div class="govuk-form-group" style="margin: 0"><label class="govuk-label" for="name"></label><input class="govuk-input" id="name" name="name" type="text" style="" value="'+data[i][2]+'"/></div></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" id="datepicker" class="datepicker" placeholder="03-Sep-18" value="'+data[i][3]+'" style="border: none;font-size: 14px;position: relative;width: 97px;top: 10px;color:inherit;background-color: inherit; float: left"></div><div class="govuk-checkboxes" style="float: left;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px;padding-left: 0">Flexible start date</label> </div> </div></td><td class="govuk-table__cell"><a class=" edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%"><option>Matthew Boulton Campus</option><option>Sutton Coldfield Campus</option><option>Botanical Gardens</option></select></td><td class="govuk-table__cell"><a class="  edit-btn open-url" style="margin-left: 20px" href="#">Edit</a></td><td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="'+data[i][7]+'"></td><td class="govuk-table__cell"><a class=" edit-btn open-cost" style="margin-left: 20px" href="#">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][9]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%"><option value="1">'+data[i][10]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][11]+'</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][12]+'</option></select></td></tr>');
 					
 				}
 				
-				initPicker();
-				initCommands();
-				$j("#edit-url").hide();
-				$j("#edit-course").hide();
+				$j( ".datepicker" ).datepicker();
             };
             reader.onerror = function() {
                 alert('Unable to read ' + file.fileName);
 
             };
         }
-    }
-	
-	$j("#upload_csv").click(function (e) {
-		e.preventDefault();
-		$j("#csv").click();
-		$j(this).blur();
-	});
-
-
-	//quick edit
-	initCommands();
-	function initCommands() {
-		$j("#cancel-cost").click(function (e) {
-			e.preventDefault();
-			$j("#edit-cost").hide();
-			$j(this).parent().parent().parent().prev("tr").find(".save-cost").hide();
-			$j(this).parent().parent().parent().prev("tr").find(".open-cost").show();
-			e.preventDefault();
-		});
-		
-		$j(".open-cost").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				var elem=$j("#edit-cost");
-				$("#edit-cost").remove();
-				elem.insertAfter($(this).closest('tr'));
-				$j("#input-cost").val($j(this).attr("data-cost"));
-				$j(this).hide();
-				$j(this).parent().find(".save-cost").show();
-				$j("#edit-url").hide();
-				elem.show();
-			});
-		});
-		
-		$j(".save-cost").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				$j(this).closest("tr").find(".open-cost").attr("data-cost", $j("#input-cost").val()).show();
-				$j("#edit-cost").hide();
-				$j(this).hide();
-			});
-		});		
-		
-		$j("#cancel-url").click(function (e) {
-			e.preventDefault();
-			$j("#edit-url").hide();
-			$j(this).parent().parent().parent().prev("tr").find(".save-url").hide();
-			$j(this).parent().parent().parent().prev("tr").find(".open-url").show();
-			e.preventDefault();
-		});
-		
-		$j(".open-url").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				var elem=$j("#edit-url");
-				$("#edit-url").remove();
-				elem.insertAfter($(this).closest('tr'));
-				$j("#input-url").val($j(this).attr("data-url"));
-				$j(this).hide();
-				$j(this).parent().find(".save-url").show();
-				$j("#edit-cost").hide();
-				elem.show();
-			});
-		});
-		
-		$j(".save-url").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				$j(this).closest("tr").find(".open-url").attr("data-url", $j("#input-url").val()).show();
-				$j("#edit-url").hide();
-				$j(this).hide();
-			});
-		});	
-	}
+    }	
 	
 });
 </script>
@@ -569,7 +417,7 @@ $j(document).ready(function() {
             <a href="#archived">Archived courses<span class="counter">2</span></a>
         </li>
         <li class="side-nav__item ">
-            <a href="#" id="upload_csv">Upload CSV</a>
+            <a href="bulk-upload">Upload CSV</a>
         </li>
         <li class="side-nav__item ">
             <a href="#">Download CSV</a>
@@ -656,7 +504,7 @@ $j(document).ready(function() {
 	<th class="govuk-table__header" scope="col" style="width: 70px">Course ID</th>
     <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 254px">Qualification title</th>
 	<th class="govuk-table__header" scope="col" style="padding-left: 20px">Qualification<br> sub-title</th>
-    <th class="govuk-table__header" scope="col" style="padding-left: 15px;width: 200px;">Start date</th>
+    <th class="govuk-table__header" scope="col" style="padding-left: 15px;width: 292px;">Start date</th>
 	<th class="govuk-table__header" scope="col" style="">Course information</th>
 	<th class="govuk-table__header" scope="col" style="">Venue</th>
 	<th class="govuk-table__header" scope="col" style="">Course URL</th>
@@ -701,8 +549,14 @@ $j(document).ready(function() {
 
                              
                     <div>
-                                <input type="text" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;width: 180px;
-                        top: 3px;color:inherit;background-color: inherit; float: left" class="datepicker govuk-input"></div>
+                                <input type="text" id="datepicker" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;width: 97px;
+                        top: 10px;color:inherit;background-color: inherit; float: left" class="datepicker"></div>
+
+
+                                <div class="govuk-checkboxes" style="float: left;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px;padding-left: 0">Flexible start date</label> </div> </div>
+
+
+
                             </td>
 
 
@@ -724,23 +578,21 @@ $j(document).ready(function() {
 
 
                         <td class="govuk-table__cell">
-                                <a class="  edit-btn open-url" style="" href="#" data-url="URL">
+                                <a class="  edit-btn open-url" style="margin-left: 20px" href="#">
                                 Edit
                             </a>
-							<a class="edit-btn save-url" style="" href="#">Update</a>
-                        </td>
-
-                            <td class="govuk-table__cell">
-<input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="" />
-                                
-
                         </td>
 
                             <td class="govuk-table__cell">
 
-                            <a class="edit-btn open-cost" style="margin-right: 20px" href="#" data-cost="Cost description">Edit</a>
-							<a class="edit-btn save-cost" style="margin-right: 20px" href="#">Update</a>
-                             
+                                <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
+
+                        </td>
+
+                            <td class="govuk-table__cell">
+
+                            <a class=" edit-btn open-cost" style="margin-left: 20px" href="#">
+                                Edit
                             </a>
 
                         </td>
@@ -841,25 +693,8 @@ $j(document).ready(function() {
 	
 </tr>
 
-<tr id="edit-cost" style="background-color:#fff;border-bottom:0;">
-	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
-	<td class="govuk-table__cell" colspan="5">
-		<div class="govuk-form-group" style="margin: 0">
-            <input class="govuk-input" id="input-cost" name="input-cost" type="text" style="margin-bottom:10px;">
-			<a href="#" id="cancel-cost">Cancel</a>	
-		</div>
-     </td>
-</tr>
 
-<tr id="edit-url" style="background-color:#fff;border-bottom:0;">
-	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td>
-	<td class="govuk-table__cell" colspan="5">
-		<div class="govuk-form-group" style="margin: 0">
-            <input class="govuk-input" id="input-url" name="input-url" type="text" style="margin-bottom:10px;">
-			<a href="#" id="cancel-url">Cancel</a>			
-		</div>
-     </td>
-</tr>	 
+
 </tbody></table>
 
 <!--   NEW PAGE !!!!!
@@ -985,7 +820,7 @@ $j(document).ready(function() {
        Preview
     </a>
 	
-	<label>Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
+	<label>Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;"/>
 
 </div>
 	<!--</header>-->
@@ -1028,7 +863,14 @@ How will you be assessed?
 
         </div>
 		
+        <div id="popup-url"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">http://www.bmet.ac.uk/courses/76000122775958
+       </textarea>
+            <button class="govuk-button close-url">Close</button>
 
+        </div></div>
 
 		<div id="popup-req"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
@@ -1039,7 +881,14 @@ How will you be assessed?
 
         </div></div>
 		
+        <div id="popup-cost"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">TBC
+       </textarea>
+            <button class="govuk-button close-cost">Close</button>
 
+        </div></div>
 
 		<div id="popup-duration"><div style="padding:0;width:100%;">
             <button class="my_popup_close govuk-button">Insert bullets</button>
