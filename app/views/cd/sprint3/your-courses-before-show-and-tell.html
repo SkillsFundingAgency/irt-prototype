@@ -79,38 +79,14 @@ span{font-size: 14px}
 
     .hidden,.my_popup_2 {display: none}
 	
-	#edit-url, #edit-cost, #edit-subtitle, .save-cost, .save-url, .save-subtitle {
+	#edit-url, #edit-cost, .save-cost, .save-url {
 		display:none;
 	}
 	
-	#edit-url td, #edit-cost td, #edit-subtitle td  {
+	#edit-url td, #edit-cost td {
 		border-bottom:none;
 	}
 	
-	#main-table td {
-		background-color: #fff !important;
-		border-bottom: none;
-	}
-	
-	#main-table tr {
-		border-bottom: solid 1px #ccc;
-	}	
-	
-	.input-symbol-gbp {
-		position: relative;
-	}
-	.input-symbol-gbp input {
-		padding-left:22px;
-	}
-	.input-symbol-gbp:before {
-		position: absolute;
-		top: -3px;
-		left:4px;
-		content:"£";
-		left: 5px;
-	}	
-	.govuk-input{font-size:14px;color:#0b0c0c!important;opacity: 1}
-    ::placeholder{font-size:14px;color:#0b0c0c!important;opacity: 1}
 </style>
 
 
@@ -136,16 +112,6 @@ span{font-size: 14px}
 </script>
 
 <script>
-
-//number of records
-var recs=1;
-
-//default select values
-var venues=["Matthew Boulton Campus", "Sutton Coldfield Campus", "Botanical Gardens"];
-var units=["Days", "Weeks", "Months", "Years"];
-var time=["Full-time", "Part-time", "Flexible"];
-var when=["Daytime", "Part-time", "Flexible", "Customised"];
-
 var $j = jQuery.noConflict();
 
 
@@ -174,8 +140,7 @@ $j(".datepicker").each(function () {
     $j(this).datepicker({
 	
 	showButtonPanel: true,
-		showOn: 'both',
-		beforeShow: function (input) {
+    beforeShow: function (input) {
         setTimeout(function () {
             var buttonPane = $j(input)
                 .datepicker("widget")
@@ -191,21 +156,14 @@ $j(".datepicker").each(function () {
             btn.appendTo(buttonPane);
 			$j(input).datepicker("widget").find(".ui-datepicker-current").hide();
 			
-				}, 1);
-			}
-		});	
-}).next('button').button({
-    icons: {
-        primary: 'ui-icon-calendar'
-    }, text:false
+        }, 1);
+    }
+});	
 });	
 }
 
 
 $j(document).ready(function() {
-
-	$j("#recs").text(recs);
-
     $j("#readmore").click(function(e){
         $j("span.showit").toggle();
     e.preventDefault();
@@ -329,39 +287,19 @@ $j(document).ready(function() {
 	
 	}, 500);
 	
-	$j(".duplicaterows").each(function(e) {
-		$j(this).click(function(e) {
-			var count=0;
-			if ($j(".check:checkbox:checked").length!=0) {
-				$j(".check:checkbox:checked").each (function(e) {
-					$j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
-					$j(this).prop('checked', false);
-					count++;
-				});
-				recs+=count;
-				$j("#recs").text(recs);
-			} else {
-				alert("Please select at least one course.");
-			}
+	$j("#duplicate").click(function(e) {
+		$j(".check:checkbox:checked").each (function(e) {
+			$j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
+			$j(this).prop('checked', false);
 		});
 	});
 	
-	$j(".deleterows").each(function(e) {
-		$j(this).click(function(e) {
-			if ($j(".check:checkbox:checked").length!=0) {
-				if (confirm('Are you sure you want to delete selected items?')) {
-					var count=0;
-					$j(".check:checkbox:checked").each (function(e) {
-						$j(this).closest("tr").remove();
-						count++;
-					});
-					recs-=count;
-					$j("#recs").text(recs);
-				}
-			} else {
-				alert("Please select at least one course.");
-			}
-		});
+	$j("#delete").click(function(e) {
+		if (confirm('Are you sure you want to delete selected items?')) {
+			$j(".check:checkbox:checked").each (function(e) {
+				$j(this).closest("tr").remove();
+			});
+		}
 	});
 		
 	$j("#duration-units").change(function (e) {
@@ -485,6 +423,7 @@ $j(document).ready(function() {
         // Return the parsed data.
         return( arrData );
     }	
+
     // Method that reads and processes the selected file
     function upload(evt) {
     if (!browserSupportFileUpload()) {
@@ -497,7 +436,6 @@ $j(document).ready(function() {
             reader.onload = function(event) {
                 var csvData = event.target.result;
                 var data = CSVToArray(csvData, ";");
-				var count=0;
 				
 				for(var i=1; i<data.length-1; i++){
 					
@@ -505,80 +443,29 @@ $j(document).ready(function() {
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>'); //#1
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>'); //#2
+					$j("#tr_"+i).append('<td class="govuk-table__cell" style="background-color:#fff;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%"></td>'); //#2
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" >'+data[i][2]+'&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td>'); //#3
+					$j("#tr_"+i).append('<td class="govuk-table__cell">'+data[i][1]+'<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td>'); //#3
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="'+data[i][3]+'">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td>'); //#4a
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><div class="govuk-form-group" style="margin: 0"><label class="govuk-label" for="name"></label><input class="govuk-input" id="name" name="name" type="text" value="'+data[i][2]+'"/></div></td>'); //#4
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input" placeholder="03-Sep-18" value="'+data[i][4]+'" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left"></div></td>'); //#5
+					$j("#tr_"+i).append('<td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input" placeholder="03-Sep-18" value="'+data[i][3]+'" style="border: none;font-size: 14px;position: relative;width: 180px;top: 3px;color:inherit;background-color: inherit; float: left"></div></td>'); //#5
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a>');
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a><td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%"><option>'+data[i][5]+'</option></select></td>'); //#6
 					
-					//Venue
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="venue_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
-					var exists=false;
-					for(var k=0; k<venues.length; k++){
-						$j("#venue_"+i).append('<option value="'+venues[k]+'">'+venues[k]+'</option>');
-						if (venues[k]==data[i][7]) exists=true;
-					}
-					if (!exists) $j("#venue_"+i).append('<option value="'+data[i][7]+'">'+data[i][7]+'</option>');
-					$j("#venue_"+i).val(data[i][7]);
-					//End Venue
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="'+data[i][6]+'">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td>'); //#7
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="'+data[i][8]+'">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td>'); //#7
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="'+data[i][7]+'" /></td>'); //#8
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="'+data[i][9]+'" /></span></td>'); //#8
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="'+data[i][8]+'">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td>'); //#9
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="'+data[i][10]+'">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td>'); //#9
-
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][9]+'</option></select></td>'); //#10
 					
-					//Duration
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="duration_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
-					$j("#duration_"+i).append('<option value="Less than one day">Less than one day</option>');
-					for(var k=1; k<=52; k++){
-						$j("#duration_"+i).append('<option value="'+k+'">'+k+'</option>');
-					}
-					$j("#duration_"+i).val(data[i][11]);
-					//End Duration
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%"><option value="1">'+data[i][10]+'</option></select></td>'); //#11
 					
-				
-					//Units
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="units_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
-					var exists=false;
-					for(var k=0; k<units.length; k++){
-						$j("#units_"+i).append('<option value="'+units[k]+'">'+units[k]+'</option>');
-						if (units[k]==data[i][12]) exists=true;
-					}
-					if (!exists) $j("#units_"+i).append('<option value="'+data[i][12]+'">'+data[i][12]+'</option>');
-					$j("#units_"+i).val(data[i][12]);
-					//End units
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][11]+'</option></select></td>'); //#12
 					
-					
-					//Time
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="time_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
-					var exists=false;
-					for(var k=0; k<time.length; k++){
-						$j("#time_"+i).append('<option value="'+time[k]+'">'+time[k]+'</option>');
-						if (time[k]==data[i][13]) exists=true;
-					}
-					if (!exists) $j("#time_"+i).append('<option value="'+data[i][13]+'">'+data[i][13]+'</option>');
-					$j("#time_"+i).val(data[i][13]);
-					//End time					
-					
-					//When
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="when_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
-					var exists=false;
-					for(var k=0; k<when.length; k++){
-						$j("#when_"+i).append('<option value="'+when[k]+'">'+when[k]+'</option>');
-						if (when[k]==data[i][14]) exists=true;
-					}
-					if (!exists) $j("#when_"+i).append('<option value="'+data[i][14]+'">'+data[i][14]+'</option>');
-					$j("#when_"+i).val(data[i][14]);
-					//End when						
-					
-					
-					count++;
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%"><option>'+data[i][12]+'</option></select></td>'); //#13
 					
 				}
 				
@@ -586,8 +473,6 @@ $j(document).ready(function() {
 				initCommands();
 				$j("#edit-url").hide();
 				$j("#edit-course").hide();
-				recs+=count;
-				$j("#recs").text(recs);
             };
             reader.onerror = function() {
                 alert('Unable to read ' + file.fileName);
@@ -609,7 +494,6 @@ $j(document).ready(function() {
 		$j("#cancel-cost").click(function (e) {
 			e.preventDefault();
 			$j("#edit-cost").hide();
-			$j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
 			$j(this).parent().parent().parent().prev("tr").find(".save-cost").hide();
 			$j(this).parent().parent().parent().prev("tr").find(".open-cost").show();
 			e.preventDefault();
@@ -618,15 +502,13 @@ $j(document).ready(function() {
 		$j(".open-cost").each(function (e) {
 			$j(this).click(function (e) {
 				e.preventDefault();
-				$j("#cancel-url").click();
-				$j("#cancel-subtitle").click();
 				var elem=$j("#edit-cost");
 				$("#edit-cost").remove();
 				elem.insertAfter($(this).closest('tr'));
 				$j("#input-cost").val($j(this).attr("data-cost"));
-				$j(this).parent().parent().css("border-bottom", "none");
 				$j(this).hide();
 				$j(this).parent().find(".save-cost").show();
+				$j("#edit-url").hide();
 				elem.show();
 			});
 		});
@@ -635,7 +517,6 @@ $j(document).ready(function() {
 			$j(this).click(function (e) {
 				e.preventDefault();
 				$j(this).closest("tr").find(".open-cost").attr("data-cost", $j("#input-cost").val()).show();
-				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
 				$j("#edit-cost").hide();
 				$j(this).hide();
 			});
@@ -644,7 +525,6 @@ $j(document).ready(function() {
 		$j("#cancel-url").click(function (e) {
 			e.preventDefault();
 			$j("#edit-url").hide();
-			$j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
 			$j(this).parent().parent().parent().prev("tr").find(".save-url").hide();
 			$j(this).parent().parent().parent().prev("tr").find(".open-url").show();
 			e.preventDefault();
@@ -653,13 +533,10 @@ $j(document).ready(function() {
 		$j(".open-url").each(function (e) {
 			$j(this).click(function (e) {
 				e.preventDefault();
-				$j("#cancel-cost").click();
-				$j("#cancel-subtitle").click();
 				var elem=$j("#edit-url");
 				$("#edit-url").remove();
 				elem.insertAfter($(this).closest('tr'));
 				$j("#input-url").val($j(this).attr("data-url"));
-				$j(this).parent().parent().css("border-bottom", "none");
 				$j(this).hide();
 				$j(this).parent().find(".save-url").show();
 				$j("#edit-cost").hide();
@@ -675,41 +552,6 @@ $j(document).ready(function() {
 				$j(this).hide();
 			});
 		});	
-		
-		$j("#cancel-subtitle").click(function (e) {
-			e.preventDefault();
-			$j("#edit-subtitle").hide();
-			$j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
-			$j(this).parent().parent().parent().prev("tr").find(".save-subtitle").hide();
-			$j(this).parent().parent().parent().prev("tr").find(".open-subtitle").show();
-			e.preventDefault();
-		});
-		
-		$j(".open-subtitle").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				$j("#cancel-cost").click();
-				$j("#cancel-url").click();
-				var elem=$j("#edit-subtitle");
-				$("#edit-subtitle").remove();
-				elem.insertAfter($(this).closest('tr'));
-				$j("#input-subtitle").val($j(this).attr("data-subtitle"));
-				$j(this).parent().parent().css("border-bottom", "none");
-				$j(this).hide();
-				$j(this).parent().find(".save-subtitle").show();
-				elem.show();
-			});
-		});
-		
-		$j(".save-subtitle").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				$j(this).closest("tr").find(".open-subtitle").attr("data-subtitle", $j("#input-subtitle").val()).show();
-				$j("#edit-subtitle").hide();
-				$j(this).hide();
-			});
-		});		
-		
 	}
 	
 });
@@ -720,7 +562,7 @@ $j(document).ready(function() {
     <ul>
 
         <li class="side-nav__item active">
-            <a href="#">Your courses<span class="counter" id="recs">0</span></a>
+            <a href="#">Your courses<span class="counter">8</span></a>
         </li>
         <li class="side-nav__item ">
             <a href="#drafts">Draft courses<span class="counter">12</span></a>
@@ -798,41 +640,6 @@ $j(document).ready(function() {
             </ul>
         </div>
 
-
-
-
-
-
-
-    </div>
-
-
-
-    <div class="" style="margin-top: 40px;">
-
-    <div class="gov-btns" style="font-size: 18px;">
-
-        <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px; font-size: 18px;text-decoration: none;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px" id="duplicate">
-            Duplicate a course
-        </a>
-
-        <a href="#"  type="submit" class="deleterows" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px" id="delete">
-            Delete a course
-        </a>
-
-        <a href="#"  type="submit" class="" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">
-            Save as a draft
-        </a>
-        <a href="#"  type="submit" class="" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">
-            Archive a course
-        </a>
-        <a href="/sprint5/course-details" class="" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">
-            Preview
-        </a>
-
-        <label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
-
-    </div>
     </div>
 
 
@@ -849,13 +656,13 @@ $j(document).ready(function() {
     <tr class="govuk-table__row" style="border-bottom: solid 2px #dee0e2">
 	<th class="govuk-table__header" scope="col" style="width: 69px">Select courses</th>
 	<th class="govuk-table__header" scope="col" style="width: 70px">Course ID</th>
-    <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 254px">Qualification description</th>
+    <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 254px">Qualification title</th>
 	<th class="govuk-table__header" scope="col" style="padding-left: 20px">Qualification<br> sub-title</th>
-    <th class="govuk-table__header" scope="col" style="padding-left: 15px;width:180px;">Start date</th>
+    <th class="govuk-table__header" scope="col" style="padding-left: 15px;">Start date</th>
 	<th class="govuk-table__header" scope="col" style="">Course information</th>
 	<th class="govuk-table__header" scope="col" style="">Venue</th>
 	<th class="govuk-table__header" scope="col" style="">Course URL</th>
-	<th class="govuk-table__header" scope="col" style="width:120px;">Cost</th>
+	<th class="govuk-table__header" scope="col" style="">Cost</th>
 	<th class="govuk-table__header" scope="col" style="">Cost description</th>
 	<th class="govuk-table__header" scope="col" style="">Duration</th>
 	<th class="govuk-table__header" scope="col" style="">Duration units</th>
@@ -865,56 +672,29 @@ $j(document).ready(function() {
  </thead>
  <tbody>
 
- <!--<tr style="background-color:#fff;">
-   <td class="govuk-table__cell" colspan="14" style="height:50px;padding-top:10px;padding-bottom:10px;">
 
-<div class="gov-btns" style="font-size: 18px;">
 
-   <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px" id="duplicate">
-       Duplicate a course
-   </a>
-
-   <a href="#"  type="submit" class="deleterows" style="margin-right: 20px" id="delete">
-       Delete a course
-   </a>
-
-   <a href="#"  type="submit" class="" style="margin-right: 20px">
-       Save as a draft
-   </a>
-   <a href="#"  type="submit" class="" style="margin-right: 20px">
-       Archive a course
-   </a>
-   <a href="/sprint5/course-details" class="" style="margin-right: 20px">
-      Preview
-   </a>
-
-   <label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
-
-</div>
-
-</td></tr>-->
 
 <tr style="background-color:#fff;">
     <td class="govuk-table__cell" style="width:69px">
         <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div>
     </td>
 
-                            <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;">
+                            <td class="govuk-table__cell" style="background-color:#fff;">
 
-                                <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;">
+                                <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%">
 
                         </td>
 
 
-                    <td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">
+                    <td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)  &nbsp; <a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">
                         Show more
                     </a></td>
 
                       <td class="govuk-table__cell">
-                          <a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="Qualification sub-title">
-                                Edit
-                            </a>
-							<a class="edit-btn save-subtitle" style="" href="#">Update</a>
+                          <div class="govuk-form-group" style="margin: 0">
+                              <input class="govuk-input" id="name" name="name" type="text" style="">
+                          </div>
                       </td>
 
                             <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;">
@@ -951,7 +731,7 @@ $j(document).ready(function() {
                         </td>
 
                             <td class="govuk-table__cell">
-<span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="" /></td>
+<input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%" value="" />
                                 
 
                         </td>
@@ -1061,36 +841,25 @@ $j(document).ready(function() {
 	
 </tr>
 
-<tr id="edit-cost" style="background-color:#fff;">
+<tr id="edit-cost" style="background-color:#fff;border-bottom:0;">
 	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
 	<td class="govuk-table__cell" colspan="5">
-		<div class="govuk-form-group" style="margin: 0;">
+		<div class="govuk-form-group" style="margin: 0">
             <input class="govuk-input" id="input-cost" name="input-cost" type="text" style="margin-bottom:10px;">
 			<a href="#" id="cancel-cost">Cancel</a>	
 		</div>
      </td>
 </tr>
 
-<tr id="edit-url" style="background-color:#fff;">
+<tr id="edit-url" style="background-color:#fff;border-bottom:0;">
 	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td>
-	<td class="govuk-table__cell" colspan="5" style="">
-		<div class="govuk-form-group" style="margin: 0;">
+	<td class="govuk-table__cell" colspan="5">
+		<div class="govuk-form-group" style="margin: 0">
             <input class="govuk-input" id="input-url" name="input-url" type="text" style="margin-bottom:10px;">
 			<a href="#" id="cancel-url">Cancel</a>			
 		</div>
      </td>
-</tr>	
-
-<tr id="edit-subtitle" style="background-color:#fff;">
-	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td>
-	<td class="govuk-table__cell" colspan="7" style="">
-		<div class="govuk-form-group" style="margin: 0;">
-            <input class="govuk-input" id="input-subtitle" name="input-subtitle" type="text" style="margin-bottom:10px;">
-			<a href="#" id="cancel-subtitle">Cancel</a>			
-		</div>
-     </td>
-</tr>	
- 
+</tr>	 
 </tbody></table>
 
 <!--   NEW PAGE !!!!!
@@ -1192,17 +961,17 @@ $j(document).ready(function() {
 
     </table>
 
+-->
 
 
 
+<div class="gov-btns" style="margin-bottom: 50px;    font-size: 18px;">
 
-<div class="gov-btns" style="margin-bottom: 50px;margin-left:10px;font-size: 18px;">
-
-    <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px" id="duplicate">
+    <a href="#" type="submit" class="" style="margin-right: 20px" id="duplicate">
         Duplicate a course
     </a>
 
-    <a href="#"  type="submit" class="deleterows" style="margin-right: 20px" id="delete">
+    <a href="#"  type="submit" class="" style="margin-right: 20px" id="delete">
         Delete a course
     </a>
 
@@ -1230,10 +999,10 @@ $j(document).ready(function() {
             <a href="#" class="my_popup_close" style="font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Spell check</a>
 			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;margin-top:10px">
                 <h2>Certificate in an Introduction to Early Years Education and Care (QCF)</h2>
-<p class="shade">Who is the course for</p>
+<p class="shade">Who is the course for:</p>
 This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
                 <i class="far fa-edit"></i>
-<p class="shade">What you’ll learn</p>
+<p class="shade">What you’ll learn:</p>
 You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
 effective communication
 equality
@@ -1245,15 +1014,15 @@ social sciences  <i class="far fa-edit"></i>
 Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
                 <i class="far fa-edit"></i>
 				
-<p class="shade">Where next</p>
+<p class="shade">Where next?</p>
 If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
                 <i class="far fa-edit"></i>  
 				
-<p class="shade">What you need to bring</p>
+<p class="shade">What you need to bring?</p>
 What you need to bring.
                 <i class="far fa-edit"></i> 
 
-<p class="shade">How you'll be assessed</p>
+<p class="shade">How will you be assessed?</p>
 How will you be assessed?
                 <i class="far fa-edit"></i>  </div>				
 				</div>
