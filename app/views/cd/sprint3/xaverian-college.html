@@ -150,25 +150,6 @@ var $j = jQuery.noConflict();
 
 
 function initPicker() {
-	//$j( ".datepicker" ).datepicker();
-
-	/*$j(".datepicker").datepicker({
-		showButtonPanel: true,
-		beforeShow: function( input ) {
-			setTimeout(function() {
-				var buttonPane = $j( input )
-					.datepicker( "widget" )
-					.find( ".ui-datepicker-buttonpane" );
-
-				$j( "<button>", {
-					text: "Flexible start date",
-					click: function() {
-						alert($j(this).closest(".datepicker").val())
-					}
-				}).appendTo( buttonPane ).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
-			}, 1 );
-		}
-	});*/
 	
 $j(".datepicker").each(function () {
     $j(this).datepicker({
@@ -203,7 +184,6 @@ $j(".datepicker").each(function () {
 
 
 $j(document).ready(function() {
-
 	$j("#recs").text(recs);
 
     $j("#readmore").click(function(e){
@@ -246,6 +226,8 @@ $j(document).ready(function() {
 	
 	$j(".open-descript").each(function (e) {
 		$j(this).click(function (e) {
+			$j("#q_descript").text($j(this).attr("data-descript"));
+			$j("#q_title").text($j(this).attr("data-title"));
 			$j('#popup-descript').popup('show');
 		});
 	});
@@ -296,6 +278,13 @@ $j(document).ready(function() {
 	
 	$j(".open-flat").each(function (e) {
 		$j(this).click(function (e) {
+			$j("#q_lars").text($j(this).attr("data-lars"));
+			$j("#q_level").text($j(this).attr("data-level"));
+			$j("#q_type").text($j(this).attr("data-type"));
+			$j("#q_award").text($j(this).attr("data-award"));
+			$j("#q_tier1").text($j(this).attr("data-tier1"));
+			$j("#q_tier2").text($j(this).attr("data-tier2"));
+			$j("#q_title_flat").text($j(this).attr("data-title"));
 			$j('#popup-flat').popup('show');
 		});
 	});
@@ -507,13 +496,13 @@ $j(document).ready(function() {
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>'); //#2
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" >'+data[i][2]+'&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td>'); //#3
+					$j("#tr_"+i).append('<td class="govuk-table__cell" >'+data[i][2]+'&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#" data-lars="'+data[i][1]+'" data-level="'+data[i][15]+'" data-type="'+data[i][16]+'" data-award="'+data[i][17]+'" data-tier1="'+data[i][18]+'" data-tier2="'+data[i][19]+'" data-title="'+data[i][2]+'">Show more</a></td>'); //#3
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="'+data[i][3]+'">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td>'); //#4a
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input" placeholder="03-Sep-18" value="'+data[i][4]+'" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left"></div></td>'); //#5
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a>');
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="'+data[i][6]+'" data-title="'+data[i][2]+'">Edit</a>');
 					
 					//Venue
 					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="venue_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
@@ -523,7 +512,8 @@ $j(document).ready(function() {
 						if (venues[k]==data[i][7]) exists=true;
 					}
 					if (!exists) $j("#venue_"+i).append('<option value="'+data[i][7]+'">'+data[i][7]+'</option>');
-					$j("#venue_"+i).val(data[i][7]);
+					//$j("#venue_"+i).val(data[i][7]);
+					$("#venue_"+i+" option[value='"+data[i][7]+"']").attr("selected","selected");
 					//End Venue
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="'+data[i][8]+'">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td>'); //#7
@@ -539,7 +529,8 @@ $j(document).ready(function() {
 					for(var k=1; k<=52; k++){
 						$j("#duration_"+i).append('<option value="'+k+'">'+k+'</option>');
 					}
-					$j("#duration_"+i).val(data[i][11]);
+					//$j("#duration_"+i).val(data[i][11]);
+					$("#duration_"+i+" option[value='"+data[i][11]+"']").attr("selected","selected");
 					//End Duration
 					
 				
@@ -551,7 +542,8 @@ $j(document).ready(function() {
 						if (units[k]==data[i][12]) exists=true;
 					}
 					if (!exists) $j("#units_"+i).append('<option value="'+data[i][12]+'">'+data[i][12]+'</option>');
-					$j("#units_"+i).val(data[i][12]);
+					//$j("#units_"+i).val(data[i][12]);
+					$("#units_"+i+" option[value='"+data[i][12]+"']").attr("selected","selected");
 					//End units
 					
 					
@@ -563,7 +555,8 @@ $j(document).ready(function() {
 						if (time[k]==data[i][13]) exists=true;
 					}
 					if (!exists) $j("#time_"+i).append('<option value="'+data[i][13]+'">'+data[i][13]+'</option>');
-					$j("#time_"+i).val(data[i][13]);
+					//$j("#time_"+i).val(data[i][13]);
+					$("#time_"+i+" option[value='"+data[i][13]+"']").attr("selected","selected");
 					//End time					
 					
 					//When
@@ -574,7 +567,8 @@ $j(document).ready(function() {
 						if (when[k]==data[i][14]) exists=true;
 					}
 					if (!exists) $j("#when_"+i).append('<option value="'+data[i][14]+'">'+data[i][14]+'</option>');
-					$j("#when_"+i).val(data[i][14]);
+					//$j("#when_"+i).val(data[i][14]);
+					$("#when_"+i+" option[value='"+data[i][14]+"']").attr("selected","selected");
 					//End when						
 					
 					
@@ -671,6 +665,7 @@ $j(document).ready(function() {
 			$j(this).click(function (e) {
 				e.preventDefault();
 				$j(this).closest("tr").find(".open-url").attr("data-url", $j("#input-url").val()).show();
+				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
 				$j("#edit-url").hide();
 				$j(this).hide();
 			});
@@ -705,6 +700,7 @@ $j(document).ready(function() {
 			$j(this).click(function (e) {
 				e.preventDefault();
 				$j(this).closest("tr").find(".open-subtitle").attr("data-subtitle", $j("#input-subtitle").val()).show();
+				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
 				$j("#edit-subtitle").hide();
 				$j(this).hide();
 			});
@@ -894,172 +890,82 @@ $j(document).ready(function() {
 
 </td></tr>-->
 
-<tr style="background-color:#fff;">
-    <td class="govuk-table__cell" style="width:69px">
-        <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div>
-    </td>
+<tbody>
 
-                            <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;">
+ <!--<tr style="background-color:#fff;">
+   <td class="govuk-table__cell" colspan="14" style="height:50px;padding-top:10px;padding-bottom:10px;">
 
-                                <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;">
+<div class="gov-btns" style="font-size: 18px;">
 
-                        </td>
+   <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px" id="duplicate">
+       Duplicate a course
+   </a>
 
+   <a href="#"  type="submit" class="deleterows" style="margin-right: 20px" id="delete">
+       Delete a course
+   </a>
 
-                    <td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">
-                        Show more
-                    </a></td>
+   <a href="#"  type="submit" class="" style="margin-right: 20px">
+       Save as a draft
+   </a>
+   <a href="#"  type="submit" class="" style="margin-right: 20px">
+       Archive a course
+   </a>
+   <a href="/sprint5/course-details" class="" style="margin-right: 20px">
+      Preview
+   </a>
 
-                      <td class="govuk-table__cell">
-                          <a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="Qualification sub-title">
-                                Edit
-                            </a>
-							<a class="edit-btn save-subtitle" style="" href="#">Update</a>
-                      </td>
+   <label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
 
-                            <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;">
+</div>
 
-                             
-                    <div>
-                                <input type="text" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;width: 130px;
-                        top: 3px;color:inherit;background-color: inherit; float: left" class="datepicker govuk-input"></div>
-                            </td>
-
-
-                        <td class="govuk-table__cell">
-                            <a class=" edit-btn open-descript" style="margin-right: 20px" href="#">
-                                Edit
-                            </a>
+</td></tr>-->
 
 
-                            <td class="govuk-table__cell">
 
-                                <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
-                                    <option>Matthew Boulton Campus</option>
-                                    <option>Sutton Coldfield Campus</option>
-                                    <option>Botanical Gardens</option>
-                                </select>
-
-                        </td>
-
-
-                        <td class="govuk-table__cell">
-                                <a class="  edit-btn open-url" style="" href="#" data-url="URL">
-                                Edit
-                            </a>
-							<a class="edit-btn save-url" style="" href="#">Update</a>
-                        </td>
-
-                            <td class="govuk-table__cell">
-<span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="" /></td>
-                                
-
-                        </td>
-
-                            <td class="govuk-table__cell">
-
-                            <a class="edit-btn open-cost" style="margin-right: 20px" href="#" data-cost="Cost description">Edit</a>
-							<a class="edit-btn save-cost" style="margin-right: 20px" href="#">Update</a>
-                             
-                            </a>
-
-                        </td>
-
-                            <td class="govuk-table__cell">
-
-
-                                <select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
-                                    <option>16</option>
-                                    <option>17</option>
-                                    <option>18</option>
-                                    <option>19</option>
-                                    <option>20</option>
-                                    <option>21</option>
-                                    <option>22</option>
-                                    <option>23</option>
-                                    <option>24</option>
-                                    <option>25</option>
-                                    <option>26</option>
-                                    <option>27</option>
-                                    <option>28</option>
-                                    <option>29</option>
-                                    <option>30</option>
-                                    <option>31</option>
-                                    <option>32</option>
-                                    <option>33</option>
-                                    <option>34</option>
-                                    <option>35</option>
-                                    <option>36</option>
-                                    <option>37</option>
-                                    <option>38</option>
-                                    <option>39</option>
-                                    <option>40</option>
-                                    <option>41</option>
-                                    <option>42</option>
-                                    <option>43</option>
-                                    <option>44</option>
-                                    <option>45</option>
-                                    <option>46</option>
-                                    <option>47</option>
-                                    <option>48</option>
-                                    <option>49</option>
-                                    <option>50</option>
-                                    <option>51</option>
-                                    <option>52</option>
-                                </select>
-
-
-                        </td>
-
-                            <td class="govuk-table__cell">
-
-                                <select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%">
-
-                                    <option value="1">Days</option>
-                                    <option value="2" selected="selected">Weeks</option>
-                                    <option value="3">Years</option>
-                                    <option value="4">Months</option>
-                                </select>
-
-                        </td>
-
-                            <td class="govuk-table__cell">
-
-                                <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
-                                    <option>Full-time /p-t</option>
-                                    <option>Part-time</option>
-                                    <option>Flexible</option>
-                                </select>
-
-                        </td>
-
-
-                            <td class="govuk-table__cell">
-
-                                <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
-                                    <option>Daytime/working hours</option>
-                                    <option>Part-time</option>
-                                    <option>Flexible</option>
-                                </select>
-
-                        </td>
-	
+<tr id="edit-cost" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+	<td class="govuk-table__cell" colspan="5">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-cost" name="input-cost" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-cost">Cancel</a>	
+		</div>
+     </td>
 </tr>
+
+<tr id="edit-url" style="background-color: rgb(255, 255, 255); display: none;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td>
+	<td class="govuk-table__cell" colspan="5" style="">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-url" name="input-url" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-url">Cancel</a>			
+		</div>
+     </td>
+</tr>	
+
+<tr id="edit-subtitle" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td>
+	<td class="govuk-table__cell" colspan="7" style="">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-subtitle" name="input-subtitle" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-subtitle">Cancel</a>			
+		</div>
+     </td>
+</tr>	
+
+
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Accounting&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60309209" data-level="3" data-type="GCE A level" data-award="Assessment &amp; Qualifications Alliance" data-tier1="Business, Administration and Law?" data-tier2="Accounting and Finance" data-title="GCE A Level in Accounting">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal. 
+" data-title="GCE A Level in Accounting">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_2"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Ancient History&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60308059" data-level="3" data-type="GCE A level" data-award="Oxford Cambridge &amp; RSA Examinations" data-tier1="History, Philosophy and Theology?" data-tier2="History" data-title="GCE A Level in Ancient History">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130391"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="You will learn about the societies of Greece and Rome, with particular emphasis on the study of ancient source material. At A2 Level you further develop your studies on the Greek and Roman Empires by focusing on Greece and Persia 499 - 449 BC and The invention of Imperial Rome 31 BC - AD 96.
+" data-title="GCE A Level in Ancient History">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_2" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/ancient_history/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_2" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_2" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_2" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_2" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_3"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Art and Design&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60144567" data-level="3" data-type="GCE A level" data-award="Assessment &amp; Qualifications Alliance" data-tier1="Arts, Media and Publishing?" data-tier2="Crafts, Creative Arts and Design" data-title="GCE A Level in Art and Design">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130392"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="You will further develop personal expression through observation and analysis, imagination, experimentation, sensitivity, conceptual thinking and practical skills. At A2 level you will undertake a personal investigation/project.
+" data-title="GCE A Level in Art and Design">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_3" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/art/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_3" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_3" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_3" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_3" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_4"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Biology&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60146254" data-level="3" data-type="GCE A level" data-award="Assessment &amp; Qualifications Alliance" data-tier1="Science and Mathematics?" data-tier2="Science" data-title="GCE A Level in Biology">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130393"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="You will build on your first year of study into a wide range of exciting and challenging topics all at the cutting edge of present-day scientific research. A few of these topics include stem cells, drugs and their effects, the study of ecosystems and the effect of man on the environment.
+" data-title="GCE A Level in Biology">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_4" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/biology/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_4" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_4" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_4" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_4" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_5"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">BTEC First Certificate in Business&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60068152" data-level="2" data-type="First Certificate" data-award="Pearson Education Ltd (Formerly EDEXCEL)" data-tier1="Business, Administration and Law?" data-tier2="Business Management" data-title="BTEC First Certificate in Business">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130394"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This introductory course is for students who wish to gain an understanding of the skills and knowledge relevant to the business sector. You will complete a number of assignments focusing on financial and human resources aspects of business organisations. " data-title="BTEC First Certificate in Business">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_5" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/applied-business-btec/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_5" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_5" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_5" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_5" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_6"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">BTEC Diploma in Business (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="50067473" data-level="3" data-type="Diploma" data-award="Pearson Education Ltd (Formerly EDEXCEL)" data-tier1="Business, Administration and Law?" data-tier2="Business Management" data-title="BTEC Diploma in Business (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130395"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="The New BTEC National Diploma is for learners who are interested in learning about the business sector alongside other fields of study, with a view to progressing to a wide range of higher education courses, not necessarily in business-related subjects.
+" data-title="BTEC Diploma in Business (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_6" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/btec_business/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_6" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_6" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_6" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_6" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_7"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">BTEC Extended Diploma in Business (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="50067461" data-level="3" data-type="Diploma" data-award="Pearson Education Ltd (Formerly EDEXCEL)" data-tier1="Business, Administration and Law?" data-tier2="Business Management" data-title="BTEC Extended Diploma in Business (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130396"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="The New BTEC National Extended Diploma is a full-time course that meets entry requirements in its own right for learners who want to progress to higher education courses in business areas before entering employment. It consists of 7 Mandatory Units and 6 Optional Units.
+" data-title="BTEC Extended Diploma in Business (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_7" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/btec_business/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_7" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_7" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_7" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_7" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_8"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Business&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60143368" data-level="3" data-type="GCE A level" data-award="Assessment &amp; Qualifications Alliance" data-tier1="Business, Administration and Law?" data-tier2="Business Management" data-title="GCE A Level in Business">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130397"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="You will study key contemporary developments such as digital technology and business ethics, and globalisation is covered throughout the topics. At A2 Level you will be studying and analysing business strategy, strategic methods and the management of change.
+" data-title="GCE A Level in Business">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_8" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/business-studies/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_8" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_8" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_8" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_8" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_9"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Chemistry&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60157318" data-level="3" data-type="GCE A level" data-award="Assessment &amp; Qualifications Alliance" data-tier1="Science and Mathematics?" data-tier2="Science" data-title="GCE A Level in Chemistry">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130398"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="You will learn about how we live in a chemical world – the air we breathe, the ground we walk on, the food we eat, the clothes we wear, the buildings we live and work in – and our bodies are all made of chemicals.&nbsp;You will study Physical Chemistry, Inorganic and Organic Chemistry as well as having the opportunity to attend external presentations and lectures.  The chemistry syllabus ensures an understanding of how chemistry is in our everyday lives and is an opportunity to develop broader skills.  It is a stepping stone for Further Education study of the sciences.
+" data-title="GCE A Level in Chemistry">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_9" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/chemistry/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_9" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_9" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_9" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_9" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_10"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">GCE A Level in Classical Civilisation&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60307262" data-level="3" data-type="GCE A level" data-award="Oxford Cambridge &amp; RSA Examinations" data-tier1="Languages, Literature and Culture" data-tier2="Other Languages, Literature and Culture" data-title="GCE A Level in Classical Civilisation">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130399"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon ui-icon ui-icon-calendar"></span><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Ancient Greek civilization is relevant to all as much of our own culture is based around that of the Ancient Greeks. You will develop a variety of skills associated with Classical Civilsation eg analysis and evaluation through observation, reading and discussion. We also supplement our classes with trips to important sites of the Ancient World.
+" data-title="GCE A Level in Classical Civilisation">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_10" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/classical-civilisation/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_10" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_10" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_10" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_10" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr>
+
+
 
 <tr id="edit-cost" style="background-color:#fff;">
 	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -1229,32 +1135,26 @@ $j(document).ready(function() {
             <a href="#" class="my_popup_close" style="font-size: 18px;margin-left: 5px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Insert bullet point</a>
             <a href="#" class="my_popup_close" style="font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Spell check</a>
 			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;margin-top:10px">
-                <h2>Certificate in an Introduction to Early Years Education and Care (QCF)</h2>
-<p class="shade">Who is the course for</p>
-This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
+                <h2 id="q_title"></h2>
+<p class="shade">Who is the course for</p><span id="q_descript"></span>
                 <i class="far fa-edit"></i>
 <p class="shade">What you’ll learn</p>
-You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
-effective communication
-equality
-diversity and rights
-anatomy and physiology
-social sciences  <i class="far fa-edit"></i>
+ <i class="far fa-edit"></i>
 
 <p class="shade">How you’ll learn</p>
-Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
+
                 <i class="far fa-edit"></i>
 				
 <p class="shade">Where next</p>
-If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
+
                 <i class="far fa-edit"></i>  
 				
 <p class="shade">What you need to bring</p>
-What you need to bring.
+
                 <i class="far fa-edit"></i> 
 
 <p class="shade">How you'll be assessed</p>
-How will you be assessed?
+
                 <i class="far fa-edit"></i>  </div>				
 				</div>
 
@@ -1311,16 +1211,16 @@ How will you be assessed?
 				 <a href="#"class="close-flat" style="clear:both;display:block;margin-top:20px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 				
 			<div  class="govuk-textarea tarea" style="font-size: 14px;display:block;clear:both;border:none;height:auto;margin:0;padding:0 30px 30px;">
-<h2>Certificate in an Introduction to Early Years Education and Care (QCF)</h2>
-                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Lars number</p> 21239876
-                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification level</p> 2
+<h2 id="q_title_flat"></h2>
+                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Lars number</p><span id="q_lars"></span>
+                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification level</p><span id="q_level"></span>
 
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification Type</p>Other regulated
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification Type</p><span id="q_type"></span>
 				
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Awarding organisation</p>NCFE
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier1 Description</p>Health, Public Services and Care
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Awarding organisation</p><span id="q_award"></span>
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier1 Description</p><span id="q_tier1"></span>
 
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier 2 Description</p>Health and Social Care
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier 2 Description</p><span id="q_tier2"></span>
 
 
 				</div>

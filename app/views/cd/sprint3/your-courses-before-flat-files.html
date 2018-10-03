@@ -246,8 +246,6 @@ $j(document).ready(function() {
 	
 	$j(".open-descript").each(function (e) {
 		$j(this).click(function (e) {
-			$j("#q_descript").text($j(this).attr("data-descript"));
-			$j("#q_title").text($j(this).attr("data-title"));
 			$j('#popup-descript').popup('show');
 		});
 	});
@@ -298,13 +296,6 @@ $j(document).ready(function() {
 	
 	$j(".open-flat").each(function (e) {
 		$j(this).click(function (e) {
-			$j("#q_lars").text($j(this).attr("data-lars"));
-			$j("#q_level").text($j(this).attr("data-level"));
-			$j("#q_type").text($j(this).attr("data-type"));
-			$j("#q_award").text($j(this).attr("data-award"));
-			$j("#q_tier1").text($j(this).attr("data-tier1"));
-			$j("#q_tier2").text($j(this).attr("data-tier2"));
-			$j("#q_title_flat").text($j(this).attr("data-title"));
 			$j('#popup-flat').popup('show');
 		});
 	});
@@ -516,13 +507,13 @@ $j(document).ready(function() {
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>'); //#2
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell" >'+data[i][2]+'&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#" data-lars="'+data[i][1]+'" data-level="'+data[i][15]+'" data-type="'+data[i][16]+'" data-award="'+data[i][17]+'" data-tier1="'+data[i][18]+'" data-tier2="'+data[i][19]+'" data-title="'+data[i][2]+'">Show more</a></td>'); //#3
+					$j("#tr_"+i).append('<td class="govuk-table__cell" >'+data[i][2]+'&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">Show more</a></td>'); //#3
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="'+data[i][3]+'">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td>'); //#4a
 					
 					$j("#tr_"+i).append('<td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input" placeholder="03-Sep-18" value="'+data[i][4]+'" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left"></div></td>'); //#5
 					
-					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="'+data[i][6]+'" data-title="'+data[i][2]+'">Edit</a>');
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#">Edit</a>');
 					
 					//Venue
 					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="venue_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
@@ -680,7 +671,6 @@ $j(document).ready(function() {
 			$j(this).click(function (e) {
 				e.preventDefault();
 				$j(this).closest("tr").find(".open-url").attr("data-url", $j("#input-url").val()).show();
-				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
 				$j("#edit-url").hide();
 				$j(this).hide();
 			});
@@ -715,7 +705,6 @@ $j(document).ready(function() {
 			$j(this).click(function (e) {
 				e.preventDefault();
 				$j(this).closest("tr").find(".open-subtitle").attr("data-subtitle", $j("#input-subtitle").val()).show();
-				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
 				$j("#edit-subtitle").hide();
 				$j(this).hide();
 			});
@@ -905,7 +894,172 @@ $j(document).ready(function() {
 
 </td></tr>-->
 
+<tr style="background-color:#fff;">
+    <td class="govuk-table__cell" style="width:69px">
+        <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div>
+    </td>
 
+                            <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;">
+
+                                <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;">
+
+                        </td>
+
+
+                    <td class="govuk-table__cell">Certificate in an Introduction to Early Years Education and Care (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#">
+                        Show more
+                    </a></td>
+
+                      <td class="govuk-table__cell">
+                          <a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="Qualification sub-title">
+                                Edit
+                            </a>
+							<a class="edit-btn save-subtitle" style="" href="#">Update</a>
+                      </td>
+
+                            <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;">
+
+                             
+                    <div>
+                                <input type="text" placeholder="03-Sep-18" style="border: none;font-size: 14px;position: relative;width: 130px;
+                        top: 3px;color:inherit;background-color: inherit; float: left" class="datepicker govuk-input"></div>
+                            </td>
+
+
+                        <td class="govuk-table__cell">
+                            <a class=" edit-btn open-descript" style="margin-right: 20px" href="#">
+                                Edit
+                            </a>
+
+
+                            <td class="govuk-table__cell">
+
+                                <select class="govuk-select" id="sort" name="sort" style="font-size: 14px;width: 90%">
+                                    <option>Matthew Boulton Campus</option>
+                                    <option>Sutton Coldfield Campus</option>
+                                    <option>Botanical Gardens</option>
+                                </select>
+
+                        </td>
+
+
+                        <td class="govuk-table__cell">
+                                <a class="  edit-btn open-url" style="" href="#" data-url="URL">
+                                Edit
+                            </a>
+							<a class="edit-btn save-url" style="" href="#">Update</a>
+                        </td>
+
+                            <td class="govuk-table__cell">
+<span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="" /></td>
+                                
+
+                        </td>
+
+                            <td class="govuk-table__cell">
+
+                            <a class="edit-btn open-cost" style="margin-right: 20px" href="#" data-cost="Cost description">Edit</a>
+							<a class="edit-btn save-cost" style="margin-right: 20px" href="#">Update</a>
+                             
+                            </a>
+
+                        </td>
+
+                            <td class="govuk-table__cell">
+
+
+                                <select class="govuk-select" id="duration" name="sort" style="font-size: 14px; width: 90%">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                    <option>13</option>
+                                    <option>14</option>
+                                    <option>15</option>
+                                    <option>16</option>
+                                    <option>17</option>
+                                    <option>18</option>
+                                    <option>19</option>
+                                    <option>20</option>
+                                    <option>21</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                    <option>32</option>
+                                    <option>33</option>
+                                    <option>34</option>
+                                    <option>35</option>
+                                    <option>36</option>
+                                    <option>37</option>
+                                    <option>38</option>
+                                    <option>39</option>
+                                    <option>40</option>
+                                    <option>41</option>
+                                    <option>42</option>
+                                    <option>43</option>
+                                    <option>44</option>
+                                    <option>45</option>
+                                    <option>46</option>
+                                    <option>47</option>
+                                    <option>48</option>
+                                    <option>49</option>
+                                    <option>50</option>
+                                    <option>51</option>
+                                    <option>52</option>
+                                </select>
+
+
+                        </td>
+
+                            <td class="govuk-table__cell">
+
+                                <select class="govuk-select" id="duration-units" name="sort" style="font-size: 14px;width: 90%">
+
+                                    <option value="1">Days</option>
+                                    <option value="2" selected="selected">Weeks</option>
+                                    <option value="3">Years</option>
+                                    <option value="4">Months</option>
+                                </select>
+
+                        </td>
+
+                            <td class="govuk-table__cell">
+
+                                <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                                    <option>Full-time /p-t</option>
+                                    <option>Part-time</option>
+                                    <option>Flexible</option>
+                                </select>
+
+                        </td>
+
+
+                            <td class="govuk-table__cell">
+
+                                <select class="govuk-select" id="sort" name="sort" style="font-size: 14px; width: 90%">
+                                    <option>Daytime/working hours</option>
+                                    <option>Part-time</option>
+                                    <option>Flexible</option>
+                                </select>
+
+                        </td>
+	
+</tr>
 
 <tr id="edit-cost" style="background-color:#fff;">
 	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -1075,26 +1229,32 @@ $j(document).ready(function() {
             <a href="#" class="my_popup_close" style="font-size: 18px;margin-left: 5px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Insert bullet point</a>
             <a href="#" class="my_popup_close" style="font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Spell check</a>
 			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;margin-top:10px">
-                <h2 id="q_title"></h2>
-<p class="shade">Who is the course for</p><span id="q_descript"></span>
+                <h2>Certificate in an Introduction to Early Years Education and Care (QCF)</h2>
+<p class="shade">Who is the course for</p>
+This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in health and social care. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
                 <i class="far fa-edit"></i>
 <p class="shade">What you’ll learn</p>
- <i class="far fa-edit"></i>
+You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
+effective communication
+equality
+diversity and rights
+anatomy and physiology
+social sciences  <i class="far fa-edit"></i>
 
 <p class="shade">How you’ll learn</p>
-
+Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
                 <i class="far fa-edit"></i>
 				
 <p class="shade">Where next</p>
-
+If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
                 <i class="far fa-edit"></i>  
 				
 <p class="shade">What you need to bring</p>
-
+What you need to bring.
                 <i class="far fa-edit"></i> 
 
 <p class="shade">How you'll be assessed</p>
-
+How will you be assessed?
                 <i class="far fa-edit"></i>  </div>				
 				</div>
 
@@ -1151,16 +1311,16 @@ $j(document).ready(function() {
 				 <a href="#"class="close-flat" style="clear:both;display:block;margin-top:20px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 				
 			<div  class="govuk-textarea tarea" style="font-size: 14px;display:block;clear:both;border:none;height:auto;margin:0;padding:0 30px 30px;">
-<h2 id="q_title_flat"></h2>
-                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Lars number</p><span id="q_lars"></span>
-                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification level</p><span id="q_level"></span>
+<h2>Certificate in an Introduction to Early Years Education and Care (QCF)</h2>
+                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Lars number</p> 21239876
+                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification level</p> 2
 
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification Type</p><span id="q_type"></span>
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification Type</p>Other regulated
 				
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Awarding organisation</p><span id="q_award"></span>
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier1 Description</p><span id="q_tier1"></span>
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Awarding organisation</p>NCFE
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier1 Description</p>Health, Public Services and Care
 
-<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier 2 Description</p><span id="q_tier2"></span>
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier 2 Description</p>Health and Social Care
 
 
 				</div>
