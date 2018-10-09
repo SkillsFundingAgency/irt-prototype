@@ -72,6 +72,15 @@ GOV.UK prototype kit
     .canvasjs-chart-canvas{font-family: "nta"!important;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: relative;
+    top: -88px;
+    padding-left: 80%;">
+    <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a>
+    <a href="index" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
+</div>
+
 <main id="content" role="main">
 
 <div class="govuk-breadcrumbs">
@@ -83,12 +92,6 @@ GOV.UK prototype kit
     </ol>
 </div>
 
-    <div style="float:right;text-align:right;" class="govuk-body">
-        Logged in: <strong>Mr. Appleseed</strong><br/>
-        <a href="#" class="govuk-link">Help</a>&nbsp;&nbsp;&nbsp;
-        <a href="account-management" class="govuk-link">Your account</a>
-    </div>
-
 
 
 <div class="govuk-grid-row">
@@ -97,10 +100,19 @@ GOV.UK prototype kit
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
             Manage your account
         </h1>
-	</div>	
+	</div>
 
 
-	
+
+    <div class="btn-gr" style="margin-left:20px">
+        <label class="govuk-label">Select default view:</label>
+        <button id="venues-show" class="govuk-button govuk-colour" value="Search" type="submit" style="background:#2b8cc4	;color: #000000; border:2px solid black">Courses</button>
+
+        <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Apprenticeship training</button>
+
+        <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Both</button>
+    </div>
+
 	
 	<!--TABS--> <div class="govuk-grid-column-full">
 	
@@ -115,9 +127,15 @@ GOV.UK prototype kit
         Organisation
       </a>
     </li>
+
+      <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#reports">
+              View reports
+          </a>
+      </li>
     <li class="govuk-tabs__list-item">
       <a class="govuk-tabs__tab" href="#drafts">
-        Reports
+        Performance analytics
       </a>
     </li>
     <li class="govuk-tabs__list-item">
@@ -125,6 +143,8 @@ GOV.UK prototype kit
         Manage users
       </a>
     </li>
+
+
 
   </ul>
 
@@ -137,10 +157,42 @@ GOV.UK prototype kit
 
 
   </section>
+
+
+
+        <section class="govuk-tabs__panel" id="reports">
+
+
+            <h3 class="govuk-heading-s">Course status</h3>
+
+            <ul class="govuk-list" style="padding-left:20px; padding-top:20px;">
+                <li>
+                    <a class="govuk-link" href="expired-learning-aims" style="">Expired learning aims (1)</a>
+                </li>
+            </ul>
+            <h3 class="govuk-heading-s">Apprenticeship training status</h3>
+
+            <ul class="govuk-list" style="padding-left:20px; padding-top:20px;">
+                <li>
+                    <a class="govuk-link" href="#" style="">Out of date courses (1)</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#" style="">No learning aims (2) </a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#" style="">Expired learning aims (1)</a>
+                </li>
+            </ul>
+            <div class="pnl">
+
+                <img src="/public/images/chart.png" alt="Chart" style="width:100%;height:auto;">
+            </div>
+
+        </section>
   
   
   <section class="govuk-tabs__panel" id="drafts">
-    <h2 class="govuk-heading-s">Monthly performance report</h2>
+    <h2 class="govuk-heading-s">Monthly performance analytics</h2>
 
 
 
@@ -186,15 +238,20 @@ GOV.UK prototype kit
       <div class="form-group govuk-checkboxes">
 
           <div class="govuk-checkboxes__item">
-              <label class="govuk-label govuk-checkboxes__label" for="study0" >John Appleseed &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">john@nehamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >Emir Appleseed &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">emir@newhamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+          </div>
+
+
+          <div class="govuk-checkboxes__item">
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >John Appleseed &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">john@newhamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
           </div>
 
           <div class="govuk-checkboxes__item">
-              <label class="govuk-label govuk-checkboxes__label" for="study0" >Mary English  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">mary@nehamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >Mary English  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">mary@newhamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
           </div>
 
           <div class="govuk-checkboxes__item">
-              <label class="govuk-label govuk-checkboxes__label" for="study0" >Phillip Knight  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">phillip@nehamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
+              <label class="govuk-label govuk-checkboxes__label" for="study0" >Phillip Knight  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#">phillip@newhamcollege.co.uk</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></label>
           </div>
 
       </div>
@@ -202,6 +259,10 @@ GOV.UK prototype kit
 
 
   </section>
+
+
+
+
 
 </div>
 
