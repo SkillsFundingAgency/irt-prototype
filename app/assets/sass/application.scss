@@ -871,3 +871,8 @@ strong{font-weight: bold}
   font-weight: bold;
   font-size: 21px;
 }
+
+.blue {background: #1754B9}
+.blue.govuk-button {margin-bottom: 0}
+.blue.govuk-button:focus {background: #318dc2}
+.blue.govuk-button:hover {background: #318dc2}
