@@ -82,52 +82,6 @@ GOV.UK prototype kit
     .govuk-input--width-4 {
         width: 9ex;
     }
-	
-	/*progress*/
-	.prog-container {
-		float:right;
-		width:100%;
-		height:auto;
-		position:sticky;
-	}
-	
-	.prog-point {
-		width:40px;
-		height:40px;
-		border: solid 1px #ccc;
-		border-radius:40px;
-		clear:both;
-		color:#ccc;
-		font-size:22px;
-		text-align:center;
-		line-height:40px;
-		margin:0 auto;
-	}
-	
-	.prog-point-cont {
-		width:140px;
-		text-align:center;
-	}
-
-	.prog-point-descript {
-		width:100%;
-		text-align:center;
-		margin-top:10px;
-	}	
-	
-	.prog-point.active {
-		border: solid 1px #36D900;
-		background-color: #36D900;
-		color:#fff;
-	}	
-	
-	.prog-line {
-		width:1px;
-		height: 100px;
-		margin:10px 0 10px 70px;
-		border-left: solid 1px #ccc;
-		clear:both;
-	}
 
 </style>
 
@@ -161,7 +115,7 @@ GOV.UK prototype kit
 
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
             Add a course
         </h1>
@@ -214,7 +168,7 @@ GOV.UK prototype kit
             <label class="govuk-label" for="sub">
                 Qualification sub-title
             </label>
-            <input class="govuk-input details" id="sub" name="sub" type="text"/>
+            <input class="govuk-input" id="sub" name="sub" type="text"/>
 
         </div>
 
@@ -222,7 +176,7 @@ GOV.UK prototype kit
             <label class="govuk-label" for="sub">
                 Course ID
             </label>
-            <input class="govuk-input details" id="sub2" name="sub" type="text"/>
+            <input class="govuk-input" id="sub" name="sub" type="text"/>
 
         </div>
 
@@ -230,7 +184,7 @@ GOV.UK prototype kit
 		  <label class="govuk-label" for="sub">
 			Entry requirements
 		  </label>
-		  <input class="govuk-input details" id="sub3" name="sub" type="text"/>
+		  <input class="govuk-input" id="sub" name="sub" type="text"/>
 		  
 		</div>	
 
@@ -238,14 +192,14 @@ GOV.UK prototype kit
 		  <label class="govuk-label" for="sub">
 			Cost
 		  </label>
-		  <input class="govuk-input details" id="sub4" name="sub" type="text" style=""/>
+		  <input class="govuk-input" id="sub" name="sub" type="text" style=""/>
 		</div>
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Cost description
             </label>
-            <input class="govuk-input details" id="sub5" name="sub" type="text" style=""/>
+            <input class="govuk-input" id="sub" name="sub" type="text" style=""/>
         </div>
 
         <div class="govuk-form-group">
@@ -258,21 +212,13 @@ GOV.UK prototype kit
                 <script>
                     var $j = jQuery.noConflict();
                     $j( function() {
-                        $j( "#datepicker" ).datepicker({
-						onSelect: function(selected,evnt) {
-							if (check(".details")) {
-								$j("#pr_1").addClass("active");
-							} else {
-								$j("#pr_1").removeClass("active");
-							}
-						}
-						});
+                        $j( "#datepicker" ).datepicker();
                     } );
                 </script>
                 </head>
                 <body>
 
-                <p>Date: <input type="text" id="datepicker" class="details"></p>
+                <p>Date: <input type="text" id="datepicker"></p>
 
 
 
@@ -290,7 +236,7 @@ GOV.UK prototype kit
                             <label class="govuk-label govuk-date-input__label" for="dob-day">
                                 Day(s)
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
                         </div>
                     </div>
 
@@ -299,7 +245,7 @@ GOV.UK prototype kit
                             <label class="govuk-label govuk-date-input__label" for="dob-month">
                                Week(s)
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
                         </div>
                     </div>
 
@@ -308,7 +254,7 @@ GOV.UK prototype kit
                             <label class="govuk-label govuk-date-input__label" for="dob-month">
                                 Month(s)
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 " id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
                         </div>
                     </div>
 
@@ -317,7 +263,7 @@ GOV.UK prototype kit
                             <label class="govuk-label govuk-date-input__label" for="dob-year">
                                 Year(s)
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4 " id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
                         </div>
                     </div>
 
@@ -353,27 +299,27 @@ GOV.UK prototype kit
 		  <label class="govuk-label" for="sub">
 			Enrol now URL
 		  </label>
-		  <input class="govuk-input details" id="sub7" name="sub" type="text"/>
+		  <input class="govuk-input" id="sub" name="sub" type="text"/>
 		</div>
 
 
         <h3 class="govuk-heading-m">Select course venue</h3>
 
         <div class="govuk-form-group" style="margin-bottom:100px;">
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
             Newham College
         </label> </div> </div>
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 Oxham College
             </label> </div> </div>
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 Durham College
             </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 Baconsham College
         </label> </div> </div>
 
-            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:120px;height: 39px;"/>Add venue</a>
+            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:12%;height: 39px;"/>Add venue</a>
         </div>
 
 
@@ -384,35 +330,35 @@ GOV.UK prototype kit
 		  <label class="govuk-label" for="sub">
               Who is the course for:
 		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
+		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
 		</div>
 
 				<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
               What you’ll learn:
 		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
+		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
 		</div>	
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
               How you’ll learn
 		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
+		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
 		</div>
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Where next?
             </label>
-            <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea>
+            <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea>
         </div>
 
         <div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			What you'll need to bring
 		  </label>
-		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+		  <input class="govuk-input" id="sub" name="sub" type="text"/>
 		</div>	
 
 
@@ -420,7 +366,7 @@ GOV.UK prototype kit
 		  <label class="govuk-label" for="sub">
 			How you'll be assessed
 		  </label>
-		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+		  <input class="govuk-input" id="sub" name="sub" type="text"/>
 		</div>	
 		
 				<div class="govuk-form-group">
@@ -435,78 +381,11 @@ GOV.UK prototype kit
 		
 	</div>	
 
-
-
-<div class="govuk-grid-column-one-third" style="position:relative;display:block;;">
-
-	<div class="prog-container">
-		<div class="prog-point-cont"><div class="prog-point" id="pr_1">1</div><div class="prog-point-descript">Course details</div></div>
-		<div class="prog-line">&nbsp;</div>
-		<div class="prog-point-cont"><div class="prog-point" id="pr_2">2</div><div class="prog-point-descript">Select venue</div></div>
-		<div class="prog-line">&nbsp;</div>
-		<div class="prog-point-cont"><div class="prog-point" id="pr_3">3</div><div class="prog-point-descript">Course description</div></div>
-		<div class="prog-line">&nbsp;</div>
-		<div class="prog-point-cont"><div class="prog-point" id="pr_4">4</div><div class="prog-point-descript">Confirmation</div></div>
-	</div>
-
 </div>
+
 
 		
 	</div>	
-</div>
+
 </main>
-
-<script>
-
-var $j = jQuery.noConflict();
-
-function check(classs) {
-	var ok=true;
-	$j(classs).each(function (e) {
-		if ($j(this).val().trim()=="") ok=false;
-	});
-	return ok;
-}
-
-$j(document).ready(function (e) {
-
-	$j(".venue").each(function (e) {
-		$j(this).change(function (e) {
-			if ($j(".venue:checked").length==0) {
-				$j("#pr_2").removeClass("active");
-			} else {
-				$j("#pr_2").addClass("active");
-			}
-		});
-	});
-	
-	$j(".details").each(function (e) {
-		$j(this).keyup(function (e) {
-			if (check(".details")) {
-				$j("#pr_1").addClass("active");
-			} else {
-				$j("#pr_1").removeClass("active");
-			}
-		});
-	});
-	
-	$j(".descript").each(function (e) {
-		$j(this).keyup(function (e) {
-			if (check(".descript")) {
-				$j("#pr_3").addClass("active");
-			} else {
-				$j("#pr_3").removeClass("active");
-			}
-		});
-	});	
-	
-	$j(document).scroll(function (e) {
-		$j(".prog-container").css("margin-top", $j(window).scrollTop()-140+"px");
-		if ($j(window).scrollTop()<100) $j(".prog-container").css("margin-top", "0");
-	});
-
-});
-
-</script>
-
 {% endblock %}
