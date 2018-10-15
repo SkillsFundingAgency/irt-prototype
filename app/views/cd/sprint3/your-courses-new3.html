@@ -126,6 +126,32 @@ span{font-size: 14px}
 		overflow-x:none;
 	}
 	
+	.scrollerr {
+		width:100%;
+		margin: 10px;
+		height:10px;
+		position:fixed;
+		bottom:0;
+		left:0;
+		overflow-x:scroll;
+	}
+	
+	#main-content {
+		position:relative !important;
+		display:block;
+		height:2000px;
+	}
+	
+	body {
+		height:2000px;
+		overflow-x:hidden;
+	}
+	
+	.scroller-content {
+		width:3000px;
+		height:10px;
+	}		
+	
 	div::-webkit-scrollbar {
 	  width: 18px;
 	  height: 10px;
@@ -346,7 +372,7 @@ $j(document).ready(function() {
 
 	$(".fa-arrow-up").each(function (e) {
 		$j(this).click(function (e) {
-			$j(this).parent().parent().parent().parent().parent().css("height","105px");
+			$j(this).parent().parent().parent().parent().parent().css("height","60px");
 			$j(this).parent().parent().parent().parent().parent().css("overflow","hidden");
 			$j(this).removeClass("fa-arrow-up");
 			$j(this).addClass("fa-arrow-down");
@@ -356,7 +382,7 @@ $j(document).ready(function() {
 	$(".fa-arrow-down").each(function (e) {
 		$j(this).click(function (e) {
 			$j(this).parent().parent().parent().parent().parent().css("height","auto");
-			//$j(this).parent().parent().parent().parent().parent().css("overflow-x","scroll");
+			$j(this).parent().parent().parent().parent().parent().css("overflow-x","scroll");
 			$j(this).removeClass("fa-arrow-down");
 			$j(this).addClass("fa-arrow-up");
 		});
@@ -616,24 +642,9 @@ $j(document).ready(function() {
 
 
 
-
 </header>
 
-<div style="margin-top: 10px;margin-bottom: 20px">
 
-<button type="submit" class="govuk-button blue duplicaterows" style="margin-right: 20px">
-    Duplicate rows
-</button>
-
-<button type="submit" class="govuk-button blue" style="margin-right: 20px">
-    Save as a draf
-</button>
-
-<button type="submit" class="govuk-button blue" style="margin-right: 20px">
-    Archive a course
-</button>
-
-</div>
 
 <!-- TABLE 1 -->
 
@@ -677,6 +688,30 @@ $j(document).ready(function() {
 	<th class="govuk-table__header" scope="col">&nbsp;</th>
 	</tr>
  </thead>
+ 
+  <tr class="govuk-table__row">
+		<td class="govuk-table__cell" colspan="15"  style="padding-top:20px;padding-bottom:20px;padding-left:5px;">
+		        <button type="submit" class="govuk-button blue duplicaterows" style="margin-right: 20px">
+            Duplicate rows
+        </button>
+
+        <button type="submit" class="govuk-button blue deleterows" style="margin-right: 20px">
+            Delete rows
+        </button>
+
+        <button type="submit" class="govuk-button blue" style="margin-right: 20px">
+            Save as a draf
+        </button>
+
+        <button type="submit" class="govuk-button blue" style="margin-right: 20px">
+            Archive a course
+        </button>
+        <a href="/sprint5/course-details" class="govuk-button blue" style="margin-right: 20px">
+            Preview
+        </a>
+		
+		</td>
+  </tr>
  
  <tr>
  <td class="govuk-table__cell" style="width:69px;padding-left:5px;"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check table-check" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
@@ -752,7 +787,7 @@ At Level 3 you should be able to use your knowledge, skills and judgement to ini
 		<td class="govuk-table__cell" colspan="15"  style="padding-top:40px;padding-bottom:10px;border-bottom:solid 1px #000;">
 <i class="fa fa-arrow-up" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
 			<h2 style="margin:0;width:auto;margin-left:10px;float:left;">GCE A/AS Level</h2>
-
+			
 		</td>
  
 	
@@ -784,7 +819,29 @@ At Level 3 you should be able to use your knowledge, skills and judgement to ini
 	</tr>
  </thead>
  
+  <tr class="govuk-table__row">
+		<td class="govuk-table__cell" colspan="15"  style="padding-top:20px;padding-bottom:20px;padding-left:5px;">
+		        <button type="submit" class="govuk-button blue duplicaterows" style="margin-right: 20px">
+            Duplicate rows
+        </button>
 
+        <button type="submit" class="govuk-button blue deleterows" style="margin-right: 20px">
+            Delete rows
+        </button>
+
+        <button type="submit" class="govuk-button blue" style="margin-right: 20px">
+            Save as a draf
+        </button>
+
+        <button type="submit" class="govuk-button blue" style="margin-right: 20px">
+            Archive a course
+        </button>
+        <a href="/sprint5/course-details" class="govuk-button blue" style="margin-right: 20px">
+            Preview
+        </a>
+		
+		</td>
+  </tr>
  
  <tr>
  <td class="govuk-table__cell" style="width:69px;padding-left:5px;"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check table-check" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
@@ -892,7 +949,29 @@ At Level 3 you should be able to use your knowledge, skills and judgement to ini
 	</tr>
  </thead>
  
+  <tr class="govuk-table__row">
+		<td class="govuk-table__cell" colspan="15"  style="padding-top:20px;padding-bottom:20px;padding-left:5px;">
+		        <button type="submit" class="govuk-button blue duplicaterows" style="margin-right: 20px">
+            Duplicate rows
+        </button>
 
+        <button type="submit" class="govuk-button blue deleterows" style="margin-right: 20px">
+            Delete rows
+        </button>
+
+        <button type="submit" class="govuk-button blue" style="margin-right: 20px">
+            Save as a draf
+        </button>
+
+        <button type="submit" class="govuk-button blue" style="margin-right: 20px">
+            Archive a course
+        </button>
+        <a href="/sprint5/course-details" class="govuk-button blue" style="margin-right: 20px">
+            Preview
+        </a>
+		
+		</td>
+  </tr>
  
  <tr>
  <td class="govuk-table__cell" style="width:69px;padding-left:5px;"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check table-check" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>
@@ -1031,8 +1110,10 @@ At Level 3 you should be able to use your knowledge, skills and judgement to ini
             <a href="#" class="close-startdate" style="clear:both;display:block;position: relative; top:-40px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 			
 			<div style="border:solid 1px #000;padding:40px;"><span style="font-size:16px;">You can change all your start dates in your <a href="account-management">account settings</a>.</span></div>
-        </div>		
+        </div>	</div>	
 
+		
+	<div class="scrollerr"><div class="scroller-content"></div></div>	
 <style>
 #popup-flat.popup_content, #popup-descript {
 	border: solid 1px #000 !important;
