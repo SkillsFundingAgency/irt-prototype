@@ -74,6 +74,7 @@ GOV.UK prototype kit
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+
 <div class="govuk-body" style="color: white;font-size: 16px;
     position: relative;
     top: -88px;
@@ -270,33 +271,6 @@ GOV.UK prototype kit
 <!--END TABS--></div>
 
 
-    <h2 class="govuk-heading-m" style="margin: 30px 0 0 60px">Change the start date for all your courses</h2>
-
-    <div class="govuk-form-group">
-        <label class="govuk-label" for="sub">
-            Start date
-        </label>
-
-
-
-        <script>
-            var $j = jQuery.noConflict();
-            $j( function() {
-                $j( "#datepicker" ).datepicker({
-                    onSelect: function(selected,evnt) {
-                        if (check(".details")) {
-                            $j("#pr_1").addClass("active");
-                        } else {
-                            $j("#pr_1").removeClass("active");
-                        }
-                    }
-                });
-            } );
-        </script>
-
-
-
-        <p>Date: <input type="text" id="datepicker" class="details hasDatepicker"></p>
 
 
 
@@ -337,11 +311,33 @@ GOV.UK prototype kit
 
 	</div>	-->
 
+<h2 class="govuk-heading-m" style="margin-top: 30px;margin-left:20px">Change the start date for all your courses</h2>
+
+
+<script>
+    var $j = jQuery.noConflict();
+    $j( function() {
+        $j( "#datepicker" ).datepicker();
+    } );
+</script>
+<div>
+    <input type="text" id="datepicker" placeholder="" style="border: none;font-size: 14px;position: relative;
+    top: 10px;color:inherit;background-color: inherit;left: 20px" class="hasDatepicker"></div>
+<i class="far fa-edit" style="    position: relative;
+        left: 90px;
+    top: -15px;"></i>
+
+
+
+<p style="margin-left: 20px">Date: <input type="text" id="datepicker" class="details hasDatepicker"></p>
 
 
 
 
 </div>
+
+
+
 
 </main>
 {% endblock %}
