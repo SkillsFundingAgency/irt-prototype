@@ -237,6 +237,15 @@ $j(document).ready(function() {
 
 
 
+
+
+
+
+
+
+
+
+
     var allCells = $j("td.govuk-table__cell");
 
     allCells
@@ -558,6 +567,31 @@ $j(document).ready(function() {
                 $j(this).hide();
             });
         });
+
+
+
+
+
+        $j(".based").each(function (e) {
+            $j(this).change(function (e) {
+                if ($j(this).val()=="online" || $j(this).val()=="work") {
+                    $j(this).parent().parent().find(".times").hide();
+                    $j(this).parent().parent().find(".when").hide();
+                    $j(this).parent().parent().find("#venue_1").hide();
+                    $j(this).parent().parent().find(".datepicker").hide();
+                    $j(this).parent().parent().find(".ui-datepicker-trigger").hide();
+                } else {
+                    $j(this).parent().parent().find(".times").show();
+                    $j(this).parent().parent().find(".when").show();
+                    $j(this).parent().parent().find("#ßvenue_1").show();
+                    $j(this).parent().parent().find(".datepicker").show();
+                    $j(this).parent().parent().find(".ui-datepicker-trigger").show();
+                }
+            });
+        });
+
+
+
 
     }
 
