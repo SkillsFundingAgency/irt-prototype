@@ -169,6 +169,15 @@ GOV.UK prototype kit
         background-color: #f2f2f2;
     }
     */
+
+    .menu-button {
+        font-size: 35px !important;
+        position: absolute;
+        top: 76px;
+        cursor: pointer;
+        left: 12px;
+    }
+
 </style>
 
 
@@ -241,7 +250,19 @@ $j(document).ready(function() {
                 allCells.removeClass("hover");
             });
 
+    $j(".menu-button1.active").click(function (e) {
+        //$j(this).removeClass("active");
+        //$j(this).addClass("collapsed");
+        $j(".side-nav").hide();
+        $j(".menu-button").show();
+    });
 
+    $j(".menu-button.collapsed").click(function (e) {
+        $j(this).addClass("active");
+        $j(this).removeClass("collapsed");
+        $j(".side-nav").show();
+        $j(".menu-button").hide();
+    });
 
 
 
@@ -545,13 +566,16 @@ $j(document).ready(function() {
 
 
 
+
+
+
 </script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<nav class="side-nav">
+<nav class="side-nav" style="display: none">
     <ul>
         <li class="side-nav__item ">
-            <i class="fas fa-times" style="font-size: 46px;cursor: pointer;
+            <i class="fas fa-times menu-button1 active" style="font-size: 46px;cursor: pointer;
     margin-left: 256px;"></i>
         </li>
         <li class="side-nav__item active">
@@ -586,6 +610,7 @@ $j(document).ready(function() {
 <!--<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">-->
 <main role="main" id="adminContent" class="govuk-main-wrapper">
 
+<i class="fa fa-bars menu-button collapsed" style="    color: #1754B9;"></i>
 
 <header class="admin-page-header">
 
@@ -698,7 +723,7 @@ $j(document).ready(function() {
 
 <div class="table-cont" style="">
 
-<table class="main-table" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;width:2000px;position: relative;top:-55px" id="table_1">
+<table class="main-table" style="font-size: 14px;margin-bottom:0px; margin-right: 40px;width:2000px;position: relative;top:-55px" id="table_1">
 
 <thead class="govuk-table__head">
 
@@ -773,7 +798,7 @@ $j(document).ready(function() {
 
         <a href="#" class="open-inline-menu">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
         </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 120px">
+        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
             <a href="#">Copy course</a><br>
             <a href="#">Archive course</a><br>
             <a href="#">Unpublish course</a>
@@ -1139,7 +1164,7 @@ $j(document).ready(function() {
 
 <div class="table-cont">
 
-<table class="main-table" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;width:2000px;" id="table_2">
+<table class="main-table" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;width:2000px;position: relative;top:-25px" id="table_2">
 
 <thead class="govuk-table__head">
 
