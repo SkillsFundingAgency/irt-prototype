@@ -177,10 +177,6 @@ GOV.UK prototype kit
         cursor: pointer;
         left: 12px;
     }
-	
-	.gray-back {
-		background-color:#eee !important;
-	}
 
 </style>
 
@@ -238,6 +234,17 @@ function initPicker() {
 
 
 $j(document).ready(function() {
+
+
+
+
+
+
+
+
+
+
+
 
     var allCells = $j("td.govuk-table__cell");
 
@@ -378,47 +385,26 @@ $j(document).ready(function() {
             });
         });
 
-	$(".fa-angle-up").each(function (e) {
-		$j(this).click(function (e) {
-			//$j(this).parent().parent().parent().parent().parent().css("height","145px");
-			$j(this).parent().parent().parent().parent().parent().find(".roww").css("display","none");
-			//$j(this).parent().parent().parent().parent().parent().css("overflow","hidden");
-			$j(this).removeClass("fa-angle-up");
-			$j(this).addClass("fa-angle-down");
-		});
-	});	
-	
-	$(".fa-angle-down").each(function (e) {
-		$j(this).click(function (e) {
-			$j(this).parent().parent().parent().parent().parent().find(".roww").css("display","");
-			//$j(this).parent().parent().parent().parent().parent().css("overflow-x","scroll");
-			$j(this).removeClass("fa-angle-down");
-			$j(this).addClass("fa-angle-up");
-		});
-	});
-	
-    $j(".open-inline-menu.collapsed").each(function (e) {
-           $j(this).click(function (e) {
-            e.preventDefault();
-            $j(this).next(".inline-menu").show();
-			$j(this).removeClass("collapsed");
-			$j(this).addClass("active");
-			$j(this).blur();
+        $(".fa-angle-up").each(function (e) {
+            $j(this).click(function (e) {
+                $j(this).parent().parent().parent().parent().parent().css("height","145px");
+                $j(this).parent().parent().parent().parent().parent().css("overflow","hidden");
+                $j(this).removeClass("fa-angle-up");
+                $j(this).addClass("fa-angle-down");
+            });
         });
-    });	
-		
-    $j(".open-inline-menu.active").each(function (e) {
-        $j(this).click(function (e) {
-            e.preventDefault();
-            $j(this).next(".inline-menu").hide();
-			$j(this).removeClass("active");
-			$j(this).addClass("collapsed");
-			$j(this).blur();
-        });
-    });		
 
-    }, 200);
-	
+        $(".fa-angle-down").each(function (e) {
+            $j(this).click(function (e) {
+                $j(this).parent().parent().parent().parent().parent().css("height","auto");
+                //$j(this).parent().parent().parent().parent().parent().css("overflow-x","scroll");
+                $j(this).removeClass("fa-angle-down");
+                $j(this).addClass("fa-angle-up");
+            });
+        });
+
+    }, 500);
+
     $j(".duplicaterows").each(function(e) {
         $j(this).click(function(e) {
             var count=0;
@@ -562,6 +548,16 @@ $j(document).ready(function() {
             });
         });
 
+
+
+        $j(".open-inline-menu").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(".inline-menu").show();
+            });
+        });
+
+
         $j(".save-subtitle").each(function (e) {
             $j(this).click(function (e) {
                 e.preventDefault();
@@ -599,65 +595,6 @@ $j(document).ready(function() {
 
     }
 
-	function initRows() {
-		$j(".copy-course").each(function (e) {
-			$j(this).off();
-			$j(this).click(function (e) {
-				e.preventDefault();
-				var elem=$j(this).closest("tr");
-				$j('<tr class="roww">'+elem.html()+'</tr>').insertAfter(elem);
-				var neww=elem.next("tr");
-				neww.addClass("gray-back");
-				neww.find(".inline-menu").hide();
-				neww.find(".pub-status").html("Unpublished");
-				initRows();
-			});
-		});
-
-		$j(".archive-course").each(function (e) {
-			$j(this).off();
-			$j(this).click(function (e) {
-				e.preventDefault();
-				var elem=$j(this).closest("tr");
-				elem.find(".inline-menu").hide();
-				elem.remove();
-				initRows();
-			});
-		});	
-		
-		$j(".unpublish-course").each(function (e) {
-			$j(this).off();
-			$j(this).click(function (e) {
-				e.preventDefault();
-				var elem=$j(this).closest("tr");
-				elem.find(".inline-menu").hide();
-				elem.addClass("gray-back");
-				elem.find(".pub-status").html("Unpublished");
-				$(this).html("Publish course");
-				$(this).addClass("publish-course");
-				$(this).removeClass("unpublish-course");
-				initRows();
-			});
-		});
-
-		$j(".publish-course").each(function (e) {
-			$j(this).off();
-			$j(this).click(function (e) {
-				e.preventDefault();
-				var elem=$j(this).closest("tr");
-				elem.find(".inline-menu").hide();
-				elem.removeClass("gray-back");
-				elem.find(".pub-status").html("Published");
-				$(this).html("Unpublish course");
-				$(this).addClass("unpublish-course");
-				$(this).removeClass("pupublish-course");
-				initRows();
-			});
-		});	
-	}
-	
-	initRows();
-	
 });
 
 
@@ -676,7 +613,7 @@ $j(document).ready(function() {
     margin-left: 256px;"></i>
         </li>
         <li class="side-nav__item active">
-            <a href="#">Your courses<span class="counter" id="recs">12</span></a>
+            <a href="#">Your courses<span class="counter" id="recs">0</span></a>
         </li>
         <li class="side-nav__item ">
             <a href="#archived">Archived courses<span class="counter">2</span></a>
@@ -711,7 +648,7 @@ $j(document).ready(function() {
 
 <header class="admin-page-header">
 
-    <h1 class="govuk-heading-l" style="display: inline-block;">Your courses</h1><p class="count">(12)</p>
+    <h1 class="govuk-heading-l" style="display: inline-block;">Your courses</h1><p class="count">8</p>
     <div class="search-box-container">
         <form action="" class="search-box">
             <div class="inline-search-wrapper">
@@ -799,7 +736,7 @@ $j(document).ready(function() {
 
         <th class="govuk-table__header" scope="col" style="padding-left: 15px;width:180px;">Start date&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a></th>
         <th class="govuk-table__header" scope="col">Course information</th>
-        <th class="govuk-table__header" scope="col" style="width:120px;">Venue</th>
+        <th class="govuk-table__header" scope="col">Venue</th>
         <th class="govuk-table__header" scope="col">Course URL</th>
         <th class="govuk-table__header" scope="col" style="width:120px;">Cost</th>
         <th class="govuk-table__header" scope="col">Cost description</th>
@@ -840,7 +777,7 @@ $j(document).ready(function() {
 
     <th class="govuk-table__header" scope="col" style="padding-left: 15px;width:180px;">Start date&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a></th>
     <th class="govuk-table__header" scope="col">Course information</th>
-    <th class="govuk-table__header" scope="col" style="width:120px;">Venue</th>
+    <th class="govuk-table__header" scope="col">Venue</th>
     <th class="govuk-table__header" scope="col">Course URL</th>
     <th class="govuk-table__header" scope="col" style="width:120px;">Cost</th>
     <th class="govuk-table__header" scope="col">Cost description</th>
@@ -887,39 +824,39 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww">
+<tr style="background-color:#fff;" id="tr_1">
 
 
     <td class="govuk-table__cell" style="width:69px">
 
 
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+        <a href="#" class="open-inline-menu">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
         </a>
         <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
+            <a href="#">Copy course</a><br>
+            <a href="#">Archive course</a><br>
+            <a href="#">Unpublish course</a>
         </div>
 
         <!--<div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div>-->
     </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
 
     <td class="govuk-table__cell">
         <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Accounting A Level">
     </td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
 
     </div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell" style="width:190px;"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -930,26 +867,19 @@ $j(document).ready(function() {
 
 <!-- duplicates -->
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
-
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
 
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
 
 
     <td class="govuk-table__cell">
         <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Accounting A Level">
     </td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
 
 
@@ -959,7 +889,7 @@ $j(document).ready(function() {
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
 
     </div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
 " data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Botanical Gardens">Botanical Gardens</option><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
@@ -970,32 +900,27 @@ $j(document).ready(function() {
 </tr>
 
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
 
     <td class="govuk-table__cell">
         <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Accounting A Level">
     </td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
 
     </div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customised </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+" data-title="GCE A Level in Accounting">Customised </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1020,21 +945,16 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
 
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
 
     <td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Ancient History A Level"></td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
@@ -1043,8 +963,8 @@ $j(document).ready(function() {
 
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
+" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1067,28 +987,23 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
 
     <td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Fine Art A Level"></td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
+" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1109,27 +1024,22 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
     <td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Biology A Level"></td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customise</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
+" data-title="GCE A Level in Accounting">Customise</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1151,32 +1061,27 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
     <td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Business A Level"></td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td>
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td>
 
     <td class="govuk-table__cell">
         <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
 " data-title="GCE A Level in Accounting">Customise</a>
     </td>
-    <td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+    <td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1197,27 +1102,22 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
 
 
 
     <td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Chemistry A Level"></td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
-    </td><td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+    </td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
+" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1239,26 +1139,21 @@ $j(document).ready(function() {
 
 </thead>
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
     <td class="govuk-table__cell"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel"  value="Classical Civilisation A Level"></td>
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="Winston College" selected="selected">Winston College</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390"><button type="button" class="ui-datepicker-trigger ui-button ui-corner-all ui-widget ui-button-icon-only" title="..."><span class="ui-button-icon-space"> </span>...</button></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
+" data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="XAVERIAN COLLEGE" selected="selected">XAVERIAN COLLEGE</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
 
     <td class="govuk-table__cell"><a href="/sprint5/course-details">Preview</a></td>
@@ -1370,16 +1265,11 @@ $j(document).ready(function() {
 
 
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a>
 </td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
     <td class="govuk-table__cell">
 
 
@@ -1388,14 +1278,14 @@ $j(document).ready(function() {
 
 
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
     </div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
 " data-title="GCE A Level in Accounting">Customise</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
@@ -1418,28 +1308,23 @@ $j(document).ready(function() {
 
 
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div></td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a></td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
     <td class="govuk-table__cell">
 
         <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" value="Business BTEC Level 3 Diploma 2-Yr (2 Blocks)">
     </td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
     </div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
 " data-title="GCE A Level in Accounting">Customise</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
@@ -1465,28 +1350,23 @@ $j(document).ready(function() {
 
 
 
-<tr style="background-color:#fff;"  class="roww"><td class="govuk-table__cell" style="width:69px">
-        <a href="#" class="open-inline-menu collapsed">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
-        </a>
-        <div class="inline-menu" style="display:none;padding: 10px;background: white;font-size: 16px;width: 122px">
-            <a href="#" class="copy-course">Copy course</a><br>
-            <a href="#" class="archive-course">Archive course</a><br>
-            <a href="#" class="unpublish-course">Unpublish course</a>
-        </div></td>
-    <td class="govuk-table__cell pub-status" style="width:69px">Published</td>
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px">
+    <a href="#">  <i class="fas fa-plus" style="color: #1754B9; font-size: 20px"></i>
+    </a></td>
+    <td class="govuk-table__cell" style="width:69px">Published</td>
     <td class="govuk-table__cell">
 
         <input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" value="Business BTEC Level 3 Extended Diploma 2-Yr (3 Block)">
     </td>
 
-    <td class="govuk-table__cell" style="padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
+    <td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>
 
     <td class="govuk-table__cell">
         <select class="govuk-select based" style="font-size: 14px;width: 90%"><option value="work">Work based</option><option value="classroom" selected="">Classroom based</option><option value="online">Online</option></select>
     </td>
 
 
-    <td class="govuk-table__cell" style="padding-left: 10px;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
+    <td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input  hasDatepicker" placeholder="03-Sep-18" value="01.08.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586130390">
     </div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
 " data-title="GCE A Level in Accounting">Customise </a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.xaverian.ac.uk/course/accounting/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This is a fully funded Course">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years" selected="selected">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time" selected="selected">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td>
 
