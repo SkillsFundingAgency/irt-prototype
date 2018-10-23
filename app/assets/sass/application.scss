@@ -722,7 +722,7 @@ strong{font-weight: bold}
   }
   }
 #adminContent {
-  width: calc(100% - 300px);
+  width: calc(100% - 29%);
   padding: 0px 60px;
 }
 }
@@ -876,3 +876,12 @@ strong{font-weight: bold}
 .blue.govuk-button {margin-bottom: 0}
 .blue.govuk-button:focus {background: #318dc2}
 .blue.govuk-button:hover {background: #318dc2}
+
+td .open-inline-menu i{    position: relative;
+  left: 10px;}
+td.govuk-table__cell span .govuk-checkboxes{display: inline-block;margin-left: 3px}
+td.govuk-table__cell span .govuk-checkboxes .govuk-checkboxes__item{min-height: 19px;padding: 3px}
+
+#proposition-menu {
+  margin-left: 27px;
+}

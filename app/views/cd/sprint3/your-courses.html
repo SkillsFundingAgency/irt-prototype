@@ -230,6 +230,24 @@ function initPicker() {
 			dateFormat: 'dd/mm/yy',
             showButtonPanel: true,
             //showOn: 'both',
+			beforeShow: function (input) {
+                setTimeout(function () {
+                    var buttonPane = $j(input)
+                            .datepicker("widget")
+                            .find(".ui-datepicker-buttonpane");
+
+                    var btn = $j('<button class="ui-state-default ui-priority-primary ui-corner-all" type="button">Flexible start date</button>');
+                    btn.unbind("click")
+                            .bind("click", function () {
+                                //$j(input).datepicker("hide");
+                                $j(input).val("Flexible start date");
+                            });
+
+                    btn.appendTo(buttonPane);
+                    $j(input).datepicker("widget").find(".ui-datepicker-current").hide();
+
+                }, 1);
+            }
 		});
     });
 }
@@ -380,13 +398,15 @@ $j(document).ready(function() {
         $j(".based").each(function (e) {
             $j(this).change(function (e) {
                 if ($j(this).val()=="online" || $j(this).val()=="work") {
-                    $j(this).parent().parent().find(".times").val("");
-                    $j(this).parent().parent().find(".when").val("");
-                    $j(this).parent().parent().find(".venue").val("");
-                    $j(this).parent().parent().find(".datepicker").val("");
-                    $j(this).parent().parent().find(".datepicker").attr("placeholder","");
+                    $j(this).parent().parent().find(".coursetime").hide();
+                    $j(this).parent().parent().find(".coursewhen").hide();
+                    $j(this).parent().parent().find(".venue").hide();
+                    $j(this).parent().parent().find(".datepicker").hide();
                 } else {
-                    $j(this).parent().parent().find(".datepicker").attr("placeholder","03-Sept-18");
+                    $j(this).parent().parent().find(".coursetime").show();
+                    $j(this).parent().parent().find(".coursewhen").show();
+                    $j(this).parent().parent().find(".venue").show();
+                    $j(this).parent().parent().find(".datepicker").show();
                 }
             });
         });
@@ -593,21 +613,7 @@ $j(document).ready(function() {
 
 
 
-        $j(".based").each(function (e) {
-            $j(this).change(function (e) {
-                if ($j(this).val()=="online" || $j(this).val()=="work") {
-                    $j(this).parent().parent().find(".coursetime").hide();
-                    $j(this).parent().parent().find(".coursewhen").hide();
-                    $j(this).parent().parent().find(".venue").hide();
-                    $j(this).parent().parent().find(".datepicker").hide();
-                } else {
-                    $j(this).parent().parent().find(".coursetime").show();
-                    $j(this).parent().parent().find(".coursewhen").show();
-                    $j(this).parent().parent().find(".venue").show();
-                    $j(this).parent().parent().find(".datepicker").show();
-                }
-            });
-        });
+
 
 
 
@@ -615,19 +621,60 @@ $j(document).ready(function() {
     }
 
 	function initRows() {
+	
+		$j(".publish-copy").each(function(e) {
+			$j(this).off();
+			$j(this).click(function (e) {
+				e.preventDefault();
+				
+				$("input[data-old], select[data-old]").each(function(e) {
+					$j(this).attr("data-old", $j(this).val());
+				});
+				
+				$(".open-url").each(function(e) {
+					$j(this).attr("data-old", $j(this).attr("data-url"));
+				});
+				
+				$(".open-course").each(function(e) {
+					$j(this).attr("data-old", $j(this).attr("data-url"));
+				});				
+				
+				$j(this).closest("tr").find(".pub-status").html("Published");
+				
+				$j(this).closest("tr").removeClass("gray-back");
+				
+				$j("#edit-cost").hide();
+				$j("#edit-url").hide();
+				$j(this).closest("tr").find(".open-inline-menu").removeClass("active").addClass("collapsed");				
+				$j(this).closest(".inline-menu").html('<a href="#" class="copy-course">Copy course</a><br><a href="#" class="archive-course">Archive course</a><br>').hide();
+
+				initRows();
+			});
+		});
+	
 		$j(".copy-course").each(function (e) {
 			$j(this).off();
 			$j(this).click(function (e) {
 				e.preventDefault();
 				var elem=$j(this).closest("tr");
+				elem.closest("tr").find(".inline-menu").hide();
+				elem.closest("tr").find(".open-inline-menu").removeClass("active").addClass("collapsed");
 				$j('<tr class="roww">'+elem.html()+'</tr>').insertAfter(elem);
 				var neww=elem.next("tr");
-				//neww.addClass("gray-back");
+				neww.addClass("gray-back");
 				neww.find(".inline-menu").hide();
-				//neww.find(".pub-status").html("Unpublished");
+				neww.find(".pub-status").html("Unpublished");
+				var html='<div style="padding:5px;" class="editborder"><a href="#" class="publish-copy">Publish</a><br/><a href="#" class="archive-course">Discard</a></div>';
+				neww.closest("tr").find(".inline-menu").html(html);
+				neww.closest("tr").find(".inline-menu").show();
+				neww.closest("tr").find(".open-inline-menu").removeClass("collapsed").addClass("active");
 				initRows();
 				initPicker();
 				initCommands();
+				
+				neww.closest("tr").find(".based, .venue, .coursedur, .courseunits, .coursetime, .coursewhen,.coursename, .courseid, .coursecost, .datepicker").off();
+							
+				
 			});
 		});
 
@@ -679,8 +726,7 @@ $j(document).ready(function() {
 				initEdit();
 			});
 		});
-		
-		
+
 		
 	}
 	
@@ -731,7 +777,6 @@ $j(document).ready(function() {
 				e.preventDefault();
 				
 				$("input[data-old], select[data-old]").each(function(e) {
-					$j(this).val($j(this).attr("data-old"));
 					$j(this).attr("data-old", $j(this).val());
 				});
 				
@@ -794,7 +839,6 @@ $j(document).ready(function() {
 	initRows();
 	initEdit();
 });
-
 
 
 
@@ -1015,7 +1059,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Accounting, <span style="font-weight: 300">Level 3, Assessment & Qualifications Alliance, Lars: 60309209,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1140,7 +1184,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Ancient History, <span style="font-weight: 300">Level 3, Oxford Cambridge & RSA Examinations, Lars: 603080,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1185,7 +1229,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Art and Design, <span style="font-weight: 300">Level 3, Assessment & Qualifications Alliance, Lars: 60308059,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1225,7 +1269,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Biology, <span style="font-weight: 300">Level 3, Assessment & Qualifications Alliance, Lars: 60146254,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1265,7 +1309,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Business, <span style="font-weight: 300">Level 3, Pearson Education Ltd (Formerly EDEXCEL), Lars: 50067461,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1306,7 +1350,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Chemistry, <span style="font-weight: 300">Level 3, Assessment & Qualifications Alliance, Lars: 60157318,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1346,7 +1390,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         GCE A Level in Classical Civilisation, <span style="font-weight: 300">Level 3, Oxford Cambridge & RSA Examinations, Lars: 60307262,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1475,7 +1519,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         BTEC First Certificate in Business, <span style="font-weight: 300">Level 3, Pearson Education Ltd (Formerly EDEXCEL), Lars: 60068152,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1523,7 +1567,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         BTEC Diploma in Business (QCF), <span style="font-weight: 300">Level 3, Pearson Education Ltd (Formerly EDEXCEL), Lars: 50067473,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
@@ -1565,7 +1609,7 @@ $j(document).ready(function() {
 <tr class="govuk-table__row heading-row">
     <td class="govuk-table__cell" colspan="15"  style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
         BTEC Extended Diploma in Business (QCF), <span style="font-weight: 300">Level 3, Pearson Education Ltd (Formerly EDEXCEL), Lars: 50067461,  <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a></span>
+" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div> </span>
     </td>
 </tr>
 
