@@ -9,47 +9,6 @@ GOV.UK prototype kit
 
 
 <style xmlns="http://www.w3.org/1999/html">
-    .govuk-related-items {
-        margin-top: 30px;
-        border-top: 10px solid #005ea5;
-        padding-top: 5px;
-    }
-    .link-back {
-        display: -moz-inline-stack;
-        display: inline-block;
-        position: relative;
-        font-family: "nta", Arial, sans-serif;
-        font-size: 14px;
-        line-height: 1.1428571429;
-        font-weight: 400;
-        text-transform: none;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        padding-left: 14px;
-        color: #0b0c0c;
-        text-decoration: none;
-        border-bottom: 1px solid #0b0c0c;
-    }
-    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
-        color: #0b0c0c;
-    }
-    .link-back::before {
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        border-top: 5px solid transparent;
-        border-right: 6px solid #0b0c0c;
-        border-bottom: 5px solid transparent;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        margin-top: -6px;
-    }
-    #map {
-        height: 400px;
-        width: 100%;
-    }
 
     .enrol-text {
         position: relative;top: -25px; font-size: 14px;
@@ -64,84 +23,6 @@ GOV.UK prototype kit
         }
     }
 
-    .pnl {
-
-        border:solid 1px #000;
-        padding:20px;
-        margin:5px;
-
-    }
-    .canvasjs-chart-canvas{font-family: "nta"!important;}
-    .filter-radio::after {
-        content: "";
-        border: solid;
-        border-width: 0 0 2px 2px;
-        background: transparent;
-        width: 8px;
-        height: 3px;
-        /* position: absolute; */
-        top: 12px;
-        left: 9px;
-        -moz-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        zoom: 1;
-        filter: alpha(opacity=0);
-        opacity: 0;
-    }
-    .filter-input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        zoom: 1;
-        filter: alpha(opacity=0);
-        opacity: 0;
-    }
-    .filter-radio {
-        display: -moz-inline-stack;
-        display: inline-block;
-        padding: 7px 0 7px 30px;
-        width: 95%;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .filter-radio::before {
-        content: "";
-        border: 2px solid;
-        background: transparent;
-        width: 12px;
-        height: 12px;
-        position: absolute;
-        top: 8px;
-        left: 6px;
-    }
-    .filter-wrapper {
-        position: relative;
-        overflow: hidden;
-    }
-    .child-option-toggle {
-        display: block;
-        width: 20px;
-        height: 20px;
-        position: relative;
-        float: right;
-        right: 5px;
-        top: 0;
-    }
-    .child-option-toggle:after {
-        content: "";
-        background-image: url(/public/assets/images/option-select-toggle-child-sprite.png);
-        background-repeat: no-repeat;
-        background-position: 50% 100%;
-        background-size: 28px auto;
-        width: 20px;
-        height: 20px;
-        display: block;}
-    .foo, .govuk-table__cell1,.govuk-table__cell2, .foo123, td {
-        border-bottom: 1px solid #bfc1c3;
-    }
     .govuk-checkboxes__input + .govuk-checkboxes__label::before  {
         content: "";
         -webkit-box-sizing: border-box;
@@ -152,10 +33,6 @@ GOV.UK prototype kit
         width: 25px;
         height: 25px;
         background: transparent;
-    }
-    table{
-        table-layout: fixed;
-        width: 200px;
     }
     th.govuk-table__header, td.govuk-table__cell {
         width: 193px;
@@ -192,7 +69,15 @@ GOV.UK prototype kit
     .govuk-form-group--error {
         border-left: none;
     }
-
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 8px 15px 5px 0;}
+    .govuk-checkboxes{margin-left: 25px;}
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 0px;
+        padding-top: 10px;
+    }
 </style>
 
 
@@ -244,7 +129,7 @@ GOV.UK prototype kit
             }else{
                 //do some thing if it's NOT a number alert('Error not a number');
                 // $j("#must-be-a-number-error").toggle();
-                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your search result for course subject Biology:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'><div class='govuk-form-group'><label class='govuk-label' for='level'>Select course level </label><select class='govuk-select' id='level' name='level'><option value='1'>Level 1</option><option value='2'>Level 2</option><option value='3' selected=''>Level 3</option><option value='4'>Level 4</option><option value='5'>Level 5</option><option value='5'>Level 6</option><option value='5'>Level 7</option><option value='5'>Level 8</option></select></div><div class='govuk-form-group'><label>Select qualification type<br></label><select class='govuk-select' style='width: 50%'><option>A level</option><option>AS level</option><option>Btech</option></select></div></td></tr>");
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your search result for course subject Biology:</h2>");
                 $j("#add-course-table").toggle();
             }
             event.preventDefault();
@@ -412,7 +297,7 @@ GOV.UK prototype kit
 </div>
 
 
-<h1 class="govuk-heading-l" style="padding-top: 20px;">
+<h1 class="govuk-heading-l" style="padding-top: 20px;margin-bottom: 60px">
     Add a qualification
 </h1>
 
@@ -429,18 +314,17 @@ GOV.UK prototype kit
 
 
 
-<h2 class="govuk-heading-m" style="position: relative;font-weight: 300;
-    top: 46px;">To add a qualification enter <strong>the Lars number</strong> or <strong>course subject</strong></h2>
-<table class="govuk-table" style="font-size: 14px;margin-top: 30px">
+<h2 class="govuk-heading-m" style="font-weight: 300;
+    ">To add a qualification enter <strong>the Lars number</strong> or <strong>course subject</strong></h2>
+<section class="govuk-table" style="font-size: 14px;margin-top: 30px">
 
-    <tr class="govuk-table__row last">
-        <td style=" background-color: white; border-bottom: none">
+
             <div class="header-search-content" style="font-size: 14px;">
                 <form action="" class="site-search ui-front" id="header-search" method="post">
 
                     <div class="search-input-wrapper govuk-form-group--error">
 
-                        <div class="govuk-form-group" style="    width: 35%;">
+                        <div class="govuk-form-group">
                             <label class="govuk-label" for="address-line-2" style="font-size: 14px">
                             </label>
                             <div class="select-editable">
@@ -451,7 +335,7 @@ GOV.UK prototype kit
                         <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
                          Wrong Lars number. Valid Lars number has 8 digits and no letters.
                     </span>
-                                <section class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; margin-top: 20px;float: left">
+                                <section class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: left;width: 20%;padding-right:5px">
                                     <select class="govuk-select" id="radius" name="radius">
 
 
@@ -469,25 +353,20 @@ GOV.UK prototype kit
 
                                     </select>
                                 </section>
-                                <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 70%;float: left">
+                                <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 30%;float: left;margin-right: 5px">
+                                <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Search for awarding organisation" style="font-size: 14px;width: 30%;float: left;margin-right: 5px">
                             </div>
                         </div>
                         <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
                     </div>
 
                 </form>
+                <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">Community learning</label> </div> </div>
 
             </div>
-        </td>
-    </tr>
-    </tbody></table>
-
-Level<br>
-
-    Search for awarding organisation<br>
 
 
-    Community learning
+</section>
 
 
     <table id="lars-search-results" class="govuk-table" style="margin-top: 30px; font-size: 14px;margin-bottom: 0">
@@ -497,49 +376,61 @@ Level<br>
 <table id="add-course-table" class="govuk-table" style=" font-size: 14px; display: none">
 
     <tbody>
+<tr>
+    <td class="govuk-table__cell" colspan="15" style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
+        GCE A Level in Art and Design, <span style="font-weight: 300">Level 3, Assessment &amp; Qualifications Alliance, Lars: 60308059
 
-    <tr style="background-color:#fff;"><td class="govuk-table__cell">
-        <a class="govuk-button" href="add-a-course-form">Add this qualification</a>
+
+
+
+    </span>
     </td>
 
 
 
-        <td class="govuk-table__cell">12345678</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td>
-
-
-
-
         <td class="govuk-table__cell">
+        <a class="" href="add-a-course-form">Add this qualification</a>
+    </td>
 
-            Other regulated
 
-        </td>
+</tr>
 
-        <td class="govuk-table__cell">
+<tr>
+    <td class="govuk-table__cell" colspan="15" style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
+        GCE A Level in Ancient History, <span style="font-weight: 300">Level 3, Assessment &amp; Qualifications Alliance, Lars: 60308059
 
-            NCFE
 
-        </td>
 
-        <td class="govuk-table__cell">
-            If you have an interest in floristry...
-            <a href="#" id="readmore" style="display: none">read more</a>   <span class="showit" style="display: none">you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</span>
-        </td>
 
-        <td class="govuk-table__cell">
+    </span>
+    </td>
 
-            Health, Public Services and Care
 
-        </td>
 
-        <td class="govuk-table__cell">
+    <td class="govuk-table__cell">
+        <a class="" href="add-a-course-form">Add this qualification</a>
+    </td>
 
-            Health and Social Care
 
-        </td>
+</tr>
+<tr>
+    <td class="govuk-table__cell" colspan="15" style="padding-top:10px;border-bottom:none;font-size:16px;font-weight:bold;    border-bottom: 1px solid #bfc1c3;">
+        GCE A Level in Biology, <span style="font-weight: 300">Level 3, Assessment &amp; Qualifications Alliance, Lars: 60308059
 
-    </tr>
 
+
+
+    </span>
+    </td>
+
+
+
+    <td class="govuk-table__cell">
+        <a class="" href="add-a-course-form">Add this qualification</a>
+    </td>
+
+
+</tr>
 
 
 
