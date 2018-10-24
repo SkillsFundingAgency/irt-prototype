@@ -1,0 +1,187 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+
+
+<style xmlns="http://www.w3.org/1999/html">
+
+    .enrol-text {
+        position: relative;top: -25px; font-size: 14px;
+    }
+
+    @media all and (max-width: 640px) {
+        .enrol-text {
+            margin-top:12px;
+        }
+        .share-links li {
+            margin:5px !important;
+        }
+    }
+
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before  {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+    th.govuk-table__header, td.govuk-table__cell {
+        width: 193px;
+    }
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        border: 2px solid  #bfc1c3;
+    }
+    span{font-size: 14px}
+    textarea {width: 500px; font-size: 14px; height: 140px}
+    .foo123{border: 2px solid hotpink}
+    #main-table td:nth-child(1){padding-left: 30px;}
+    #main-table td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
+    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
+    #main-table td:nth-child(4){ background-color: #bfc1c3;padding-left: 20px}
+    #main-table td:nth-child(5){ background-color: #bfc1c3;padding-left: 20px}
+    #main-table td:nth-child(6){padding-left: 20px}
+    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+
+    .tarea {
+        width:40vw;
+        height: 500px;
+        resize:none;
+    }
+    .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
+
+
+    .govuk-form-group--error {
+        border-left: none;
+    }
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 8px 15px 5px 0;}
+    .govuk-checkboxes{margin-left: 25px;}
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 0px;
+        padding-top: 10px;
+    }
+</style>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+
+
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: relative;
+    top: -88px;
+    padding-left: 80%;">
+    <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a>
+    <a href="/" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
+</div>
+
+<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
+
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Course directory</a></li>
+
+
+    </ol>
+</div>
+
+
+<h1 class="govuk-heading-l" style="padding-top: 20px;margin-bottom: 60px">
+    Add a qualification
+</h1>
+
+
+
+
+<!--TABS-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+<h2 class="govuk-heading-m" style="font-weight: 300;
+    ">To add a qualification enter <strong>the Lars number</strong> or <strong>course subject</strong></h2>
+<section class="govuk-table" style="font-size: 14px;margin-top: 30px">
+
+
+            <div class="header-search-content" style="font-size: 14px;">
+                <form action="add-qualification1" class="site-search ui-front" id="header-search" method="post">
+
+                    <div class="search-input-wrapper govuk-form-group--error">
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="address-line-2" style="font-size: 14px">
+                            </label>
+                            <div class="select-editable">
+                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
+                    </span>
+
+                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
+                    </span>
+                                <!--<section class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: left;width: 20%;padding-right:5px">
+                                    <select class="govuk-select" id="radius" name="radius">
+
+
+                                        <option value="0" selected="">Select level</option>
+                                        <option value="LV1">Entry level - Skills for Life</option>
+                                        <option value="LV1">Level 1 - First certificate </option>
+                                        <option value="LV2">Level 2 - GCSE/O level</option>
+                                        <option value="LV3">Level 3 - A level/Access to higher education diploma</option>
+                                        <option value="LV4">Level 4 - Certificate of higher education/HNC</option>
+                                        <option value="LV5">Level 5 - Foundation degree/HND</option>
+                                        <option value="LV6">Level 6 - Degree/Graduate diploma</option>
+                                        <option value="LV7">Level 7 - Masters Degree/Postgraduate diploma</option>
+                                        <option value="LV8">Level 8 - Doctorate/PhD</option>
+
+                                    </select>
+                                </section>-->
+                                <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 40%;float: left;">
+                            </div>
+                        </div>
+                        <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
+                    </div>
+
+                </form>
+
+            </div>
+
+
+</section>
+
+</header>
+</div>
+
+
+
+
+{% endblock %}
