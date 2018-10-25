@@ -7,6 +7,28 @@ GOV.UK prototype kit
 {% block content %}
 <style xmlns="http://www.w3.org/1999/html">
 
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 8px 15px 5px 0;}
+    .govuk-checkboxes{margin-left: 25px;}
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 0px;
+        padding-top: 10px;
+    }
+
     .govuk-related-items {
         margin-top: 30px;
         border-top: 10px solid #005ea5;
@@ -153,11 +175,12 @@ GOV.UK prototype kit
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Course directory add course</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Complete your qualification details</a></li>
 
 
     </ol>
 </div>
+    <a class="link-back mt" href="add-qualification1">Back to qualification search</a>
 
 
 <div class="govuk-grid-row">
@@ -167,199 +190,64 @@ GOV.UK prototype kit
             Complete your qualification details
         </h1>
 
-        <p>Qualification added: GCE A Level in Biology, Level 3, Assessment & Qualifications Alliance, Lars: 60146254 </p>
-
-
-        <div class="govuk-form-group" style="clear:both;margin-top:80px;">
-		  <label class="govuk-label">
-			Course title
-		  </label>
-		  <p class="govuk-heading-s"> Matehmatics with Further Mathematics A level</p>
-		</div>
-	
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Qualification sub-title
-            </label>
-            <input class="govuk-input details" id="sub" name="sub" type="text"/>
-
-        </div>
-
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Course ID
-            </label>
-            <input class="govuk-input details" id="sub2" name="sub" type="text"/>
-
-        </div>
-
-        <div class="govuk-form-group" style="clear:both;">
-		  <label class="govuk-label" for="sub">
-			Entry requirements
-		  </label>
-		  <input class="govuk-input details" id="sub3" name="sub" type="text"/>
-		  
-		</div>	
-
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Cost
-		  </label>
-		  <input class="govuk-input details" id="sub4" name="sub" type="text" style=""/>
-		</div>
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Cost description
-            </label>
-            <input class="govuk-input details" id="sub5" name="sub" type="text" style=""/>
-        </div>
-
-        <div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Start date
-		  </label>
-
-
-
-                <script>
-                    var $j = jQuery.noConflict();
-                    $j( function() {
-                        $j( "#datepicker" ).datepicker({
-						onSelect: function(selected,evnt) {
-							if (check(".details")) {
-								$j("#pr_1").addClass("active");
-							} else {
-								$j("#pr_1").removeClass("active");
-							}
-						}
-						});
-                    } );
-                </script>
-                </head>
-                <body>
-
-                <p>Date: <input type="text" id="datepicker" class="details"></p>
-
-
-
-		</div>	
-		
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
-                <label class="govuk-label" for="sub">
-                    Duration
-                </label>
-                <div class="govuk-date-input" id="dob">
-
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-day">
-                                Day(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-month">
-                               Week(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-month">
-                                Month(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-year">
-                                Year(s)
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-
-
-                </div>
-            </fieldset>
-        </div>
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c">Qualification added: GCE A Level in Biology, Level 3,<br> Assessment & Qualifications Alliance, Lars: 60146254 </p>
 
 
 
 
-        <div class="btn-gr">
-            <label class="govuk-label">Full time or part time</label>
-            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Full-time</button>
-            <button id="venues-show" class="govuk-button govuk-colour" value="Search" type="submit" style="background:#2b8cc4	;color: #000000; border:2px solid black">Part-time</button>
-            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Flexible</button>
-        </div>
-
-
-
-				<div class="govuk-form-group">
-		  <label class="govuk-label" for="level">
-			Day, night or weekend
-		  </label>
-		  <select class="govuk-select" id="level" name="level">
-              <option>Daytime/working hours</option>
-              <option>Part-time</option>
-              <option>Flexible</option>
-		  </select>
-		</div>
-
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Enrol now URL
-		  </label>
-		  <input class="govuk-input details" id="sub7" name="sub" type="text"/>
-		</div>
-
-
-        <h3 class="govuk-heading-m">Select course venue</h3>
-
-        <div class="govuk-form-group" style="margin-bottom:100px;">
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-            Newham College
-        </label> </div> </div>
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-                Oxham College
-            </label> </div> </div>
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-                Durham College
-            </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-                Baconsham College
-        </label> </div> </div>
-            <p>--->-->-->NOTE - IDEA add venue popup to keep user on 1 page</p>
-            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:120px;height: 39px;"/>Add venue</a>
-        </div>
 
 
 
         <h3 class="govuk-heading-m">Course description</h3>
-		
-		<div class="govuk-form-group">
+
+        <!--<p><i class="fas fa-info-circle"></i> We have provided template description you can overwrite below.</p>-->
+        <p><i class="fas fa-info-circle"></i> We’ve written some suggested text to get you started, but you can change it or add to it – just click in the box to edit.</p>
+
+		<div class="govuk-form-group" style="margin-bottom: 0;padding-bottom: 0">
 		  <label class="govuk-label" for="sub">
-              Who is the course for:
+              Who is the course for?
 		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
-		</div>
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6" style="margin-bottom: 0">This qualification is a basic craft introduction to the plumbing industry. It gives you the knowledge and skills to enable you to achieve a recognised plumbing trade qualification which could lead to a job (for example, as a plumber’s mate) or an apprenticeship. You will need to do another course to become a fully qualified plumber and work on a building site.</textarea>
+
+            <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the defaukt text.</label> </div> </div>
+
+
+
+        </div>
+
+
+
 
 				<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
-              What you’ll learn:
+              What you’ll learn
 		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
-		</div>	
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="7" style="margin-bottom: 0">
+              •health & safety training
+              •scientific principles of plumbing
+              •electrical principles and processes
+              •hot & cold water systems
+              •central heating systems
+              •sanitation and drainage
+              •basic installation techniques of plumbing appliances
+          </textarea>
+
+                    <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the defaukt text.</label> </div> </div>
+
+
+                </div>
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Where next?
+            </label>
+            <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6" style="margin-bottom: 0">When you’ve completed the course, you will be recognised as a plumbers’ mate, which can lead to better employment opportunities. You can go straight into work, take a Level 3 NVQ Diploma in Plumbing and Heating, or a Level 3 Diploma in Plumbing Studies.</textarea>
+            <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the defaukt text.</label> </div> </div>
+
+
+
+        </div>
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
@@ -368,12 +256,7 @@ GOV.UK prototype kit
 		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
 		</div>
 
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Where next?
-            </label>
-            <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea>
-        </div>
+
 
         <div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
@@ -388,22 +271,45 @@ GOV.UK prototype kit
 			How you'll be assessed
 		  </label>
 		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
-		</div>	
-		
-				<div class="govuk-form-group">
-<a href="/sprint5/course-details" role="button" class="govuk-button govuk-button--start">
-  Preview
-</a>
+		</div>
 
-<a href="your-courses" role="button" class="govuk-button govuk-button--start">
-  Save
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Entry requirements
+            </label>
+            <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+        </div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Advanced learner loan
+            </label>
+            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
+        </div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Course ID
+            </label>
+            <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+        </div>
+
+
+
+        <div class="govuk-form-group">
+
+
+<a href="add-a-course-form1" role="button" class="govuk-button govuk-button--start">
+  Next
 </a>
 		</div>
 		
 	</div>	
 
 
-
+<!--
 <div class="govuk-grid-column-one-third" style="position:relative;display:block;;">
 
 	<div class="prog-container" style="font-family: nta, Arial, sans-serif">
@@ -416,7 +322,7 @@ GOV.UK prototype kit
 		<div class="prog-point-cont"><div class="prog-point" id="pr_4">4</div><div class="prog-point-descript">Confirmation</div></div>
 	</div>
 
-</div>
+</div>-->
 
 		
 	</div>	

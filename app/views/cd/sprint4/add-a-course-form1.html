@@ -158,47 +158,87 @@ GOV.UK prototype kit
 
     </ol>
 </div>
-
+<a class="link-back mt" href="add-a-course-form">Back</a>
 
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Complete your qualification details
+            Add your first course
         </h1>
-		
-		<div class="govuk-form-group" style="clear:both;margin-top:80px;">
-		  <label class="govuk-label">
-			Course title
-		  </label>
-		  <p class="govuk-heading-s"> Matehmatics with Further Mathematics A level</p>
-		</div>
-	
+
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c">Qualification added: GCE A Level in Biology, Level 3,<br> Assessment & Qualifications Alliance, Lars: 60146254 </p>
+
         <div class="govuk-form-group" style="clear:both;">
             <label class="govuk-label" for="sub">
-                Qualification sub-title
+                Provider course name
             </label>
             <input class="govuk-input details" id="sub" name="sub" type="text"/>
 
         </div>
 
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Course ID
-            </label>
-            <input class="govuk-input details" id="sub2" name="sub" type="text"/>
 
+        <div class="btn-gr">
+            <label class="govuk-label">Classroom or online</label>
+            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Classroom based</button>
+            <button id="venues-show" class="govuk-button govuk-colour" value="Search" type="submit" style="background:#2b8cc4	;color: #000000; border:2px solid black">Online</button>
+            <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Work based</button>
         </div>
 
-        <div class="govuk-form-group" style="clear:both;">
-		  <label class="govuk-label" for="sub">
-			Entry requirements
-		  </label>
-		  <input class="govuk-input details" id="sub3" name="sub" type="text"/>
-		  
-		</div>	
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Start date
+            </label>
 
-		<div class="govuk-form-group">
+
+
+            <script>
+                var $j = jQuery.noConflict();
+                $j( function() {
+                    $j( "#datepicker" ).datepicker({
+                        onSelect: function(selected,evnt) {
+                            if (check(".details")) {
+                                $j("#pr_1").addClass("active");
+                            } else {
+                                $j("#pr_1").removeClass("active");
+                            }
+                        }
+                    });
+                } );
+            </script>
+
+            <p>Date: <input type="text" id="datepicker" class="details"></p>
+        </div>
+
+        <h3 class="govuk-heading-m">Select course venue</h3>
+
+        <div class="govuk-form-group" style="margin-bottom:10px;">
+            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                Newham College
+            </label> </div> </div>
+            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                Oxham College
+            </label> </div> </div>
+            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                Durham College
+            </label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                Baconsham College
+            </label> </div> </div>
+            <p>TOD.O.--->-->-->add venue popup to keep user on this page</p>
+            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:120px;height: 39px;"/>Add venue</a>
+        </div>
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Enrol now URL
+            </label>
+            <input class="govuk-input details" id="sub7" name="sub" type="text"/>
+        </div>
+
+
+        <div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			Cost
 		  </label>
@@ -212,36 +252,7 @@ GOV.UK prototype kit
             <input class="govuk-input details" id="sub5" name="sub" type="text" style=""/>
         </div>
 
-        <div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Start date
-		  </label>
 
-
-
-                <script>
-                    var $j = jQuery.noConflict();
-                    $j( function() {
-                        $j( "#datepicker" ).datepicker({
-						onSelect: function(selected,evnt) {
-							if (check(".details")) {
-								$j("#pr_1").addClass("active");
-							} else {
-								$j("#pr_1").removeClass("active");
-							}
-						}
-						});
-                    } );
-                </script>
-                </head>
-                <body>
-
-                <p>Date: <input type="text" id="datepicker" class="details"></p>
-
-
-
-		</div>	
-		
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
                 <label class="govuk-label" for="sub">
@@ -313,107 +324,24 @@ GOV.UK prototype kit
 		  </select>
 		</div>
 
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			Enrol now URL
-		  </label>
-		  <input class="govuk-input details" id="sub7" name="sub" type="text"/>
-		</div>
-
-
-        <h3 class="govuk-heading-m">Select course venue</h3>
-
-        <div class="govuk-form-group" style="margin-bottom:100px;">
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-            Newham College
-        </label> </div> </div>
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-                Oxham College
-            </label> </div> </div>
-            <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-                Durham College
-            </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
-                Baconsham College
-        </label> </div> </div>
-            <p>--->-->-->NOTE - IDEA add venue popup to keep user on 1 page</p>
-            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:120px;height: 39px;"/>Add venue</a>
-        </div>
 
 
 
-        <h3 class="govuk-heading-m">Course description</h3>
-		
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-              Who is the course for:
-		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
-		</div>
-
-				<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-              What you’ll learn:
-		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
-		</div>	
-		
-		<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-              How you’ll learn
-		  </label>
-		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
-		</div>
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Where next?
-            </label>
-            <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea>
-        </div>
-
-        <div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			What you'll need to bring
-		  </label>
-		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
-		</div>	
 
 
-				<div class="govuk-form-group">
-		  <label class="govuk-label" for="sub">
-			How you'll be assessed
-		  </label>
-		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
-		</div>	
+
 		
 				<div class="govuk-form-group">
-<a href="/sprint5/course-details" role="button" class="govuk-button govuk-button--start">
-  Preview
-</a>
 
+<p>TODO--->pop up with course preview</p>
 <a href="your-courses" role="button" class="govuk-button govuk-button--start">
-  Save
+    Preview & Publish
 </a>
 		</div>
 		
 	</div>	
 
 
-
-<div class="govuk-grid-column-one-third" style="position:relative;display:block;;">
-
-	<div class="prog-container" style="font-family: nta, Arial, sans-serif">
-		<div class="prog-point-cont"><div class="prog-point" id="pr_1">1</div><div class="prog-point-descript">Course details</div></div>
-		<div class="prog-line">&nbsp;</div>
-		<div class="prog-point-cont"><div class="prog-point" id="pr_2">2</div><div class="prog-point-descript">Select venue</div></div>
-		<div class="prog-line">&nbsp;</div>
-		<div class="prog-point-cont"><div class="prog-point" id="pr_3">3</div><div class="prog-point-descript">Course description</div></div>
-		<div class="prog-line">&nbsp;</div>
-		<div class="prog-point-cont"><div class="prog-point" id="pr_4">4</div><div class="prog-point-descript">Confirmation</div></div>
-	</div>
-
-</div>
 
 		
 	</div>	
