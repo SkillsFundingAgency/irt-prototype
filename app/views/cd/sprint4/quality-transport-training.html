@@ -1,0 +1,1254 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .foo, .govuk-table__cell1,.govuk-table__cell2, .foo123, td {
+        border-bottom: 1px solid #bfc1c3;
+    }
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before  {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+
+    th.govuk-table__header,td.govuk-table__cell{
+        width: 100px;
+    }
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        border: 2px solid  #bfc1c3;
+    }
+span{font-size: 14px}
+    textarea {width: 500px; font-size: 14px; height: 140px}
+    .foo123{border: 2px solid hotpink}
+    #main-table td:nth-child(1){position: relative;left:10px}
+    #main-table td:nth-child(2){background-color: #bfc1c3; padding-right: 10px}
+    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
+    #main-table td:nth-child(4){padding-left: 20px}
+    #main-table td:nth-child(5){padding-left: 20px}
+    #main-table td:nth-child(6){padding-left: 20px}
+    #main-table td:nth-child(8){padding-left: 20px}
+    #main-table td:nth-child(10){padding-left: 20px}
+    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+
+	.tarea {
+		width:40vw;
+		height: 500px;
+		resize:none;
+	}
+    .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
+
+    .gov-btns .govuk-button{background-color: white; color: #1754B9; border-bottom: 1px solid  #1754B9}
+.header-wrapper, footer,.govuk-width-container{max-width: 2300px;width: 2300px}
+    #proposition-menu{margin-left: 14.333%}
+    footer{display: none}
+    .govuk-main-wrapper{padding: 0}
+    .govuk-header{border-bottom: 0}
+
+    table {
+        font-family: "nta", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.25;
+        color: #0b0c0c;
+
+        margin-bottom: 20px;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+    .hidden,.my_popup_2 {display: none}
+	
+	#edit-url, #edit-cost, #edit-subtitle, .save-cost, .save-url, .save-subtitle {
+		display:none;
+	}
+	
+	#edit-url td, #edit-cost td, #edit-subtitle td  {
+		border-bottom:none;
+	}
+	
+	#main-table td {
+		background-color: #fff !important;
+		border-bottom: none;
+	}
+	
+	#main-table tr {
+		border-bottom: solid 1px #ccc;
+	}	
+	
+	.input-symbol-gbp {
+		position: relative;
+	}
+	.input-symbol-gbp input {
+		padding-left:22px;
+	}
+	.input-symbol-gbp:before {
+		position: absolute;
+		top: -3px;
+		left:4px;
+		content:"£";
+		left: 5px;
+	}	
+	.govuk-input{font-size:14px;color:#0b0c0c!important;opacity: 1}
+    ::placeholder{font-size:14px;color:#0b0c0c!important;opacity: 1}
+</style>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+
+<script>
+    $(window).on('load', function(){
+        var toggle = false;
+        $('.btn').click(function() {
+            toggle = !toggle;
+            if(toggle){
+                $('#A').animate({left: 0});
+            }
+            else{
+                $('#A').animate({left:-400});
+            }
+        });
+    });
+</script>
+
+<script>
+
+//number of records
+var recs=1;
+
+//default select values
+var venues=["Matthew Boulton Campus", "Sutton Coldfield Campus", "Botanical Gardens"];
+var units=["Days", "Weeks", "Months", "Years"];
+var time=["Full-time", "Part-time", "Flexible"];
+var when=["Daytime", "Part-time", "Flexible", "Customised"];
+
+var $j = jQuery.noConflict();
+
+
+function initPicker() {
+	
+$j(".datepicker").each(function () {
+    $j(this).datepicker({
+	
+	showButtonPanel: true,
+		showOn: 'both',
+		beforeShow: function (input) {
+        setTimeout(function () {
+            var buttonPane = $j(input)
+                .datepicker("widget")
+                .find(".ui-datepicker-buttonpane");
+
+            var btn = $j('<button class="ui-state-default ui-priority-primary ui-corner-all" type="button">Flexible start date</button>');
+            btn.unbind("click")
+            .bind("click", function () {
+                //$j(input).datepicker("hide");
+                $j(input).val("Flexible start date");
+            });
+
+            btn.appendTo(buttonPane);
+			$j(input).datepicker("widget").find(".ui-datepicker-current").hide();
+			
+				}, 1);
+			}
+		});	
+}).next('button').button({
+    icons: {
+        primary: 'ui-icon-calendar'
+    }, text:false
+});	
+}
+
+
+$j(document).ready(function() {
+	$j("#recs").text(recs);
+
+    $j("#readmore").click(function(e){
+        $j("span.showit").toggle();
+    e.preventDefault();
+    });
+    $j( "#header-search" ).submit(function( event ) {
+        //alert( "Handler for .submit() called." );
+        var miscCharge = $j("#miscCharge").val();
+        if(!isNaN(miscCharge))
+        {
+            //do some thing if it's a number  alert('Yeah a number');
+            var x= (miscCharge).length;
+            //alert(x);
+            if (x == 8){
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
+                //alert('NEW ROW CREATED');
+                $j("#add-course-table").toggle();
+            }
+            else{
+                //alert('Error number too short or too long');
+                $j("#number-too-long-error").toggle();
+            }
+        }else{
+            //do some thing if it's NOT a number alert('Error not a number');
+           // $j("#must-be-a-number-error").toggle();
+            $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your search result for course subject Biology:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'><div class='govuk-form-group'><label class='govuk-label' for='level'>Select course level </label><select class='govuk-select' id='level' name='level'><option value='1'>Level 1</option><option value='2'>Level 2</option><option value='3' selected=''>Level 3</option><option value='4'>Level 4</option><option value='5'>Level 5</option><option value='5'>Level 6</option><option value='5'>Level 7</option><option value='5'>Level 8</option></select></div><div class='govuk-form-group'><label>Select qualification type<br></label><select class='govuk-select' style='width: 50%'><option>A level</option><option>AS level</option><option>Btech</option></select></div></td></tr>");
+            $j("#add-course-table").toggle();
+        }
+        event.preventDefault();
+    });
+    $j('#popup-descript, #popup-req, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
+            opacity: 0.999,
+            color:'#fff',
+            transition: 'all 0.3s'
+        });
+   
+	
+	setInterval(function(){
+	
+	$j(".open-descript").each(function (e) {
+		$j(this).click(function (e) {
+			$j("#q_descript").text($j(this).attr("data-descript"));
+			$j("#q_title").text($j(this).attr("data-title"));
+			$j('#popup-descript').popup('show');
+		});
+	});
+	
+	$j(".close-descript").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-descript').popup('hide');
+		});
+	});	
+	
+	/*$j(".open-url").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-url').popup('show');
+		});
+	});
+	
+	$j(".close-url").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-url').popup('hide');
+		});
+	});	*/
+	
+	
+	
+	$j(".open-req").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-req').popup('show');
+		});
+	});
+	
+	$j(".close-req").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-req').popup('hide');
+		});
+	});
+	$j(".open-duration").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-duration').popup('show');
+		});
+	});
+
+	
+	$j(".close-duration").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-duration').popup('hide');
+		});
+	});
+	
+	$j(".open-flat").each(function (e) {
+		$j(this).click(function (e) {
+			$j("#q_lars").text($j(this).attr("data-lars"));
+			$j("#q_level").text($j(this).attr("data-level"));
+			$j("#q_type").text($j(this).attr("data-type"));
+			$j("#q_award").text($j(this).attr("data-award"));
+			$j("#q_tier1").text($j(this).attr("data-tier1"));
+			$j("#q_tier2").text($j(this).attr("data-tier2"));
+			$j("#q_title_flat").text($j(this).attr("data-title"));
+			$j('#popup-flat').popup('show');
+		});
+	});
+	
+	$j(".close-flat").each(function (e) {
+		$j(this).click(function (e) {
+			$j('#popup-flat').popup('hide');
+		});
+	});
+	
+        $j(".open-dur").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-dur').popup('show');
+            });
+        });
+        $j(".close-dur").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-dur').popup('hide');
+            });
+        });
+        $j(".open-start-des").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-start-des').popup('show');
+            });
+        });
+        $j(".close-start-des").each(function (e) {
+            $j(this).click(function (e) {
+                $j('#popup-start-des').popup('hide');
+            });
+        });
+	
+	}, 500);
+	
+	$j(".duplicaterows").each(function(e) {
+		$j(this).click(function(e) {
+			var count=0;
+			if ($j(".check:checkbox:checked").length!=0) {
+				$j(".check:checkbox:checked").each (function(e) {
+					$j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
+					$j(this).prop('checked', false);
+					count++;
+				});
+				recs+=count;
+				$j("#recs").text(recs);
+			} else {
+				alert("Please select at least one course.");
+			}
+		});
+	});
+	
+	$j(".deleterows").each(function(e) {
+		$j(this).click(function(e) {
+			if ($j(".check:checkbox:checked").length!=0) {
+				if (confirm('Are you sure you want to delete selected items?')) {
+					var count=0;
+					$j(".check:checkbox:checked").each (function(e) {
+						$j(this).closest("tr").remove();
+						count++;
+					});
+					recs-=count;
+					$j("#recs").text(recs);
+				}
+			} else {
+				alert("Please select at least one course.");
+			}
+		});
+	});
+		
+	$j("#duration-units").change(function (e) {
+		$j("#duration").empty();
+		var i=0;
+		switch ($j("#duration-units").val()) {
+			case "1":
+				i=31;
+				$j("#duration").append('<option>Less than one day</option>');
+				break;
+			case "2":
+				i=52;
+				break;	
+			case "3":
+				i=6;
+				break;	
+			case "4":
+				i=24;
+				break;					
+		}
+		for (x=1; x<=i; x++) {
+			$j("#duration").append('<option>'+x+'</option>');
+		}
+	});
+	
+   initPicker();	
+	
+	
+	//IMPORT CSV
+	// The event listener for the file upload
+    document.getElementById('csv').addEventListener('change', upload, false);
+
+    // Method that checks that the browser supports the HTML5 File API
+    function browserSupportFileUpload() {
+        var isCompatible = false;
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+        isCompatible = true;
+        }
+        return isCompatible;
+    }
+	
+    function CSVToArray( strData, strDelimiter ){
+        // Check to see if the delimiter is defined. If not,
+        // then default to comma.
+        strDelimiter = (strDelimiter || ",");
+
+        // Create a regular expression to parse the CSV values.
+        var objPattern = new RegExp(
+            (
+                // Delimiters.
+                "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+
+                // Quoted fields.
+                "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+
+                // Standard fields.
+                "([^\"\\" + strDelimiter + "\\r\\n]*))"
+            ),
+            "gi"
+            );
+
+
+        // Create an array to hold our data. Give the array
+        // a default empty first row.
+        var arrData = [[]];
+
+        // Create an array to hold our individual pattern
+        // matching groups.
+        var arrMatches = null;
+
+
+        // Keep looping over the regular expression matches
+        // until we can no longer find a match.
+        while (arrMatches = objPattern.exec( strData )){
+
+            // Get the delimiter that was found.
+            var strMatchedDelimiter = arrMatches[ 1 ];
+
+            // Check to see if the given delimiter has a length
+            // (is not the start of string) and if it matches
+            // field delimiter. If id does not, then we know
+            // that this delimiter is a row delimiter.
+            if (
+                strMatchedDelimiter.length &&
+                strMatchedDelimiter !== strDelimiter
+                ){
+
+                // Since we have reached a new row of data,
+                // add an empty row to our data array.
+                arrData.push( [] );
+
+            }
+
+            var strMatchedValue;
+
+            // Now that we have our delimiter out of the way,
+            // let's check to see which kind of value we
+            // captured (quoted or unquoted).
+            if (arrMatches[ 2 ]){
+
+                // We found a quoted value. When we capture
+                // this value, unescape any double quotes.
+                strMatchedValue = arrMatches[ 2 ].replace(
+                    new RegExp( "\"\"", "g" ),
+                    "\""
+                    );
+
+            } else {
+
+                // We found a non-quoted value.
+                strMatchedValue = arrMatches[ 3 ];
+
+            }
+
+
+            // Now that we have our value string, let's add
+            // it to the data array.
+            arrData[ arrData.length - 1 ].push( strMatchedValue );
+        }
+
+        // Return the parsed data.
+        return( arrData );
+    }	
+    // Method that reads and processes the selected file
+    function upload(evt) {
+    if (!browserSupportFileUpload()) {
+        alert('The File APIs are not fully supported in this browser!');
+        } else {
+            var data = null;
+            var file = evt.target.files[0];
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function(event) {
+                var csvData = event.target.result;
+                var data = CSVToArray(csvData, ";");
+				var count=0;
+				
+				for(var i=1; i<data.length-1; i++){
+					
+					$j("#main-table").append('<tr style="background-color:#fff;" id="tr_'+i+'"></tr>');
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td>'); //#1
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td>'); //#2
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell" >'+data[i][2]+'&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;"href="#" data-lars="'+data[i][1]+'" data-level="'+data[i][15]+'" data-type="'+data[i][16]+'" data-award="'+data[i][17]+'" data-tier1="'+data[i][18]+'" data-tier2="'+data[i][19]+'" data-title="'+data[i][2]+'">Show more</a></td>'); //#3
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="'+data[i][3]+'">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td>'); //#4a
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input" placeholder="03-Sep-18" value="'+data[i][4]+'" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left"></div></td>'); //#5
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="'+data[i][6]+'" data-title="'+data[i][2]+'">Edit</a>');
+					
+					//Venue
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="venue_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
+					var exists=false;
+					for(var k=0; k<venues.length; k++){
+						$j("#venue_"+i).append('<option value="'+venues[k]+'">'+venues[k]+'</option>');
+						if (venues[k]==data[i][7]) exists=true;
+					}
+					if (!exists) $j("#venue_"+i).append('<option value="'+data[i][7]+'">'+data[i][7]+'</option>');
+					//$j("#venue_"+i).val(data[i][7]);
+					$("#venue_"+i+" option[value='"+data[i][7]+"']").attr("selected","selected");
+					//End Venue
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="'+data[i][8]+'">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td>'); //#7
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="'+data[i][9]+'" /></span></td>'); //#8
+					
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="'+data[i][10]+'">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td>'); //#9
+
+					
+					//Duration
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="duration_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
+					$j("#duration_"+i).append('<option value="Less than one day">Less than one day</option>');
+					for(var k=1; k<=52; k++){
+						$j("#duration_"+i).append('<option value="'+k+'">'+k+'</option>');
+					}
+					//$j("#duration_"+i).val(data[i][11]);
+					$("#duration_"+i+" option[value='"+data[i][11]+"']").attr("selected","selected");
+					//End Duration
+					
+				
+					//Units
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="units_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
+					var exists=false;
+					for(var k=0; k<units.length; k++){
+						$j("#units_"+i).append('<option value="'+units[k]+'">'+units[k]+'</option>');
+						if (units[k]==data[i][12]) exists=true;
+					}
+					if (!exists) $j("#units_"+i).append('<option value="'+data[i][12]+'">'+data[i][12]+'</option>');
+					//$j("#units_"+i).val(data[i][12]);
+					$("#units_"+i+" option[value='"+data[i][12]+"']").attr("selected","selected");
+					//End units
+					
+					
+					//Time
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="time_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
+					var exists=false;
+					for(var k=0; k<time.length; k++){
+						$j("#time_"+i).append('<option value="'+time[k]+'">'+time[k]+'</option>');
+						if (time[k]==data[i][13]) exists=true;
+					}
+					if (!exists) $j("#time_"+i).append('<option value="'+data[i][13]+'">'+data[i][13]+'</option>');
+					//$j("#time_"+i).val(data[i][13]);
+					$("#time_"+i+" option[value='"+data[i][13]+"']").attr("selected","selected");
+					//End time					
+					
+					//When
+					$j("#tr_"+i).append('<td class="govuk-table__cell"><select class="govuk-select" id="when_'+i+'" name="sort" style="font-size: 14px;width: 90%"></select></td>'); //#6
+					var exists=false;
+					for(var k=0; k<when.length; k++){
+						$j("#when_"+i).append('<option value="'+when[k]+'">'+when[k]+'</option>');
+						if (when[k]==data[i][14]) exists=true;
+					}
+					if (!exists) $j("#when_"+i).append('<option value="'+data[i][14]+'">'+data[i][14]+'</option>');
+					//$j("#when_"+i).val(data[i][14]);
+					$("#when_"+i+" option[value='"+data[i][14]+"']").attr("selected","selected");
+					//End when						
+					
+					
+					count++;
+					
+				}
+				
+				initPicker();
+				initCommands();
+				$j("#edit-url").hide();
+				$j("#edit-course").hide();
+				recs+=count;
+				$j("#recs").text(recs);
+            };
+            reader.onerror = function() {
+                alert('Unable to read ' + file.fileName);
+
+            };
+        }
+    }
+	
+	$j("#upload_csv").click(function (e) {
+		e.preventDefault();
+		$j("#csv").click();
+		$j(this).blur();
+	});
+
+
+	//quick edit
+	initCommands();
+	function initCommands() {
+		$j("#cancel-cost").click(function (e) {
+			e.preventDefault();
+			$j("#edit-cost").hide();
+			$j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
+			$j(this).parent().parent().parent().prev("tr").find(".save-cost").hide();
+			$j(this).parent().parent().parent().prev("tr").find(".open-cost").show();
+			e.preventDefault();
+		});
+		
+		$j(".open-cost").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j("#cancel-url").click();
+				$j("#cancel-subtitle").click();
+				var elem=$j("#edit-cost");
+				$("#edit-cost").remove();
+				elem.insertAfter($(this).closest('tr'));
+				$j("#input-cost").val($j(this).attr("data-cost"));
+				$j(this).parent().parent().css("border-bottom", "none");
+				$j(this).hide();
+				$j(this).parent().find(".save-cost").show();
+				elem.show();
+			});
+		});
+		
+		$j(".save-cost").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j(this).closest("tr").find(".open-cost").attr("data-cost", $j("#input-cost").val()).show();
+				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
+				$j("#edit-cost").hide();
+				$j(this).hide();
+			});
+		});		
+		
+		$j("#cancel-url").click(function (e) {
+			e.preventDefault();
+			$j("#edit-url").hide();
+			$j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
+			$j(this).parent().parent().parent().prev("tr").find(".save-url").hide();
+			$j(this).parent().parent().parent().prev("tr").find(".open-url").show();
+			e.preventDefault();
+		});
+		
+		$j(".open-url").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j("#cancel-cost").click();
+				$j("#cancel-subtitle").click();
+				var elem=$j("#edit-url");
+				$("#edit-url").remove();
+				elem.insertAfter($(this).closest('tr'));
+				$j("#input-url").val($j(this).attr("data-url"));
+				$j(this).parent().parent().css("border-bottom", "none");
+				$j(this).hide();
+				$j(this).parent().find(".save-url").show();
+				$j("#edit-cost").hide();
+				elem.show();
+			});
+		});
+		
+		$j(".save-url").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j(this).closest("tr").find(".open-url").attr("data-url", $j("#input-url").val()).show();
+				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
+				$j("#edit-url").hide();
+				$j(this).hide();
+			});
+		});	
+		
+		$j("#cancel-subtitle").click(function (e) {
+			e.preventDefault();
+			$j("#edit-subtitle").hide();
+			$j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
+			$j(this).parent().parent().parent().prev("tr").find(".save-subtitle").hide();
+			$j(this).parent().parent().parent().prev("tr").find(".open-subtitle").show();
+			e.preventDefault();
+		});
+		
+		$j(".open-subtitle").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j("#cancel-cost").click();
+				$j("#cancel-url").click();
+				var elem=$j("#edit-subtitle");
+				$("#edit-subtitle").remove();
+				elem.insertAfter($(this).closest('tr'));
+				$j("#input-subtitle").val($j(this).attr("data-subtitle"));
+				$j(this).parent().parent().css("border-bottom", "none");
+				$j(this).hide();
+				$j(this).parent().find(".save-subtitle").show();
+				elem.show();
+			});
+		});
+		
+		$j(".save-subtitle").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j(this).closest("tr").find(".open-subtitle").attr("data-subtitle", $j("#input-subtitle").val()).show();
+				$j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
+				$j("#edit-subtitle").hide();
+				$j(this).hide();
+			});
+		});		
+		
+	}
+	
+});
+</script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<nav class="side-nav">
+    <ul>
+
+        <li class="side-nav__item active">
+            <a href="#">Your courses<span class="counter" id="recs">0</span></a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="#drafts">Draft courses<span class="counter">12</span></a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="#archived">Archived courses<span class="counter">2</span></a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="#" id="upload_csv">Upload CSV</a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="#">Download CSV</a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="your-venues">Manage my venues</a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="account-management">View my details</a>
+        </li>
+        <li class="side-nav__item ">
+            <a href="add-a-course"><i class="fas fa-plus" style="font-size: 20px"></i> Add a course</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: relative;
+    top: -48px;
+    padding-left: 57%;">
+    Emir Appleseed
+    <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
+</div>
+
+<!--<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">-->
+<main role="main" id="adminContent" class="govuk-main-wrapper">
+
+
+<header class="admin-page-header">
+
+    <h1 class="govuk-heading-l" style="display: inline-block;">Your courses</h1><p class="count">8</p>
+    <div class="search-box-container">
+        <form action="" class="search-box">
+            <div class="inline-search-wrapper">
+                <input class="search-box__input" type="text" name="search-box" placeholder="Search" value="">
+                <button type="submit" class="inline-search-button">
+                    <span class="govuk-visually-hidden">Search</span>
+                </button>
+            </div>
+
+        </form>
+        <div class="search-box__options">
+
+    </div>
+
+
+        <div class="pagination">
+            <p>Showing 1-50 of <span class="result-count">438</span> courses</p>
+            <ul style="margin-left: 20px">
+                <li>1</li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li>...</li>
+                <li><a href="">10</a></li>
+                <li><a href="">Next</a></li>
+            </ul>
+        </div>
+
+        <div class="results-per-page">
+            <p>Results per page:</p>
+            <ul>
+                <li>10</li>
+                <li><a href="">25</a></li>
+                <li><a href="">100</a></li>
+            </ul>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="" style="margin-top: 40px;">
+
+    <div class="gov-btns" style="font-size: 18px;">
+
+        <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px; font-size: 18px;text-decoration: none;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px" id="duplicate">
+            Duplicate a course
+        </a>
+
+        <a href="#"  type="submit" class="deleterows" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px" id="delete">
+            Delete a course
+        </a>
+
+        <a href="#"  type="submit" class="" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">
+            Save as a draft
+        </a>
+        <a href="#"  type="submit" class="" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">
+            Archive a course
+        </a>
+        <a href="/sprint5/course-details" class="" style="margin-right: 20px;font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">
+            Preview
+        </a>
+
+        <label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
+
+    </div>
+    </div>
+
+
+
+</header>
+
+
+
+
+
+
+<table class="" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;" id="main-table">
+    <thead class="govuk-table__head">
+    <tr class="govuk-table__row" style="border-bottom: solid 2px #dee0e2">
+	<th class="govuk-table__header" scope="col" style="width: 69px">Select courses</th>
+	<th class="govuk-table__header" scope="col" style="width: 70px">Course ID</th>
+    <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 254px">Qualification description</th>
+	<th class="govuk-table__header" scope="col" style="padding-left: 20px">Qualification<br> sub-title</th>
+    <th class="govuk-table__header" scope="col" style="padding-left: 15px;width:180px;">Start date</th>
+	<th class="govuk-table__header" scope="col" style="">Course information</th>
+	<th class="govuk-table__header" scope="col" style="">Venue</th>
+	<th class="govuk-table__header" scope="col" style="">Course URL</th>
+	<th class="govuk-table__header" scope="col" style="width:120px;">Cost</th>
+	<th class="govuk-table__header" scope="col" style="">Cost description</th>
+	<th class="govuk-table__header" scope="col" style="">Duration</th>
+	<th class="govuk-table__header" scope="col" style="">Duration units</th>
+	<th class="govuk-table__header" scope="col" style="">Full-time or part-time</th>
+	<th class="govuk-table__header" scope="col" style="">Day, night or weekend</th>
+	</tr>
+ </thead>
+ <tbody>
+
+ <!--<tr style="background-color:#fff;">
+   <td class="govuk-table__cell" colspan="14" style="height:50px;padding-top:10px;padding-bottom:10px;">
+
+<div class="gov-btns" style="font-size: 18px;">
+
+   <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px" id="duplicate">
+       Duplicate a course
+   </a>
+
+   <a href="#"  type="submit" class="deleterows" style="margin-right: 20px" id="delete">
+       Delete a course
+   </a>
+
+   <a href="#"  type="submit" class="" style="margin-right: 20px">
+       Save as a draft
+   </a>
+   <a href="#"  type="submit" class="" style="margin-right: 20px">
+       Archive a course
+   </a>
+   <a href="/sprint5/course-details" class="" style="margin-right: 20px">
+      Preview
+   </a>
+
+   <label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
+
+</div>
+
+</td></tr>-->
+
+<tbody>
+
+ <!--<tr style="background-color:#fff;">
+   <td class="govuk-table__cell" colspan="14" style="height:50px;padding-top:10px;padding-bottom:10px;">
+
+<div class="gov-btns" style="font-size: 18px;">
+
+   <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px" id="duplicate">
+       Duplicate a course
+   </a>
+
+   <a href="#"  type="submit" class="deleterows" style="margin-right: 20px" id="delete">
+       Delete a course
+   </a>
+
+   <a href="#"  type="submit" class="" style="margin-right: 20px">
+       Save as a draft
+   </a>
+   <a href="#"  type="submit" class="" style="margin-right: 20px">
+       Archive a course
+   </a>
+   <a href="/sprint5/course-details" class="" style="margin-right: 20px">
+      Preview
+   </a>
+
+   <label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
+
+</div>
+
+</td></tr>-->
+
+
+
+<tr id="edit-cost" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+	<td class="govuk-table__cell" colspan="5">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-cost" name="input-cost" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-cost">Cancel</a>	
+		</div>
+     </td>
+</tr>
+
+<tr id="edit-url" style="background-color: rgb(255, 255, 255); display: none;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td>
+	<td class="govuk-table__cell" colspan="5" style="">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-url" name="input-url" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-url">Cancel</a>			
+		</div>
+     </td>
+</tr>	
+
+<tr id="edit-subtitle" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td>
+	<td class="govuk-table__cell" colspan="7" style="">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-subtitle" name="input-subtitle" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-subtitle">Cancel</a>			
+		</div>
+     </td>
+</tr>	
+
+
+<tr style="background-color:#fff;" id="tr_1"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Hospitality and Catering Principles (Hospitality Services) (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60008362" data-level="2" data-type="Certificate" data-award="Education Development International plc" data-tier1="Retail and Commercial Enterprise?" data-tier2="Hospitality and Catering" data-title="Certificate in Hospitality and Catering Principles (Hospitality Services) (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045228"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification is aimed at those working or who are seeking to start a career in hospitality.
+It covers the breadth of hospitality functions including all main career paths available within this diverse industry.
+To achieve the EDI Level 2 Certificate in Hospitality and Catering Principles (Hospitality Services) learners must achieve 15 credits.
+Units include:
+The Importance and Benefits of Teamwork in Hospitality
+Maintaining Hospitality Areas through thorough Cleaning and Monitoring
+Understanding Safe, Hygienic and Secure Working Environments within the Hospitality Umbrella" data-title="Certificate in Hospitality and Catering Principles (Hospitality Services) (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_1" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/pre-employment/hospitality-and-catering-services-level-2/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Funding is available for this course dependent on eligibility">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_1" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_1" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years">Years</option><option value="" selected="selected"></option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_1" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible" selected="selected">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_1" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised" selected="selected">Customised</option></select></td></tr><tr style="background-color:#fff;" id="tr_2"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Customer Service (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="50092352" data-level="2" data-type="Certificate" data-award="Education Development International plc" data-tier1="Business, Administration and Law" data-tier2="Administration" data-title="Certificate in Customer Service (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045229"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification will provide the knowledge and understanding which underpins customer service skills and performance.
+It will be relevant to all occupational areas in which customer service is provided, so may be suitable for learners who are working in, or interested in working in a range of different roles.
+To achieve the qualification learners must complete the following mandatory units:
+Delivery of Effective Customer Service
+Supporting the Customer Service Environment" data-title="Certificate in Customer Service (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_2" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/pre-employment/customer-service/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Funded if eligibility criteria is met">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_2" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_2" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years">Years</option><option value="" selected="selected"></option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_2" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible" selected="selected">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_2" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised" selected="selected">Customised</option></select></td></tr><tr style="background-color:#fff;" id="tr_3"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">BTEC Certificate in Warehousing and Storage Principles&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="50077077" data-level="2" data-type="Certificate" data-award="Pearson Education Ltd (Formerly EDEXCEL)" data-tier1="Retail and Commercial Enterprise?" data-tier2="Warehousing and Distribution" data-title="BTEC Certificate in Warehousing and Storage Principles">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045230"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This course is designed for those who are looking for employment within a warehouse environment, and is an ideal starting point to prepare you if you have no experience, or whether you may just be looking to refresh your knowledge.
+To complete the qualification, you must achieve the following five learning outcomes:
+Understand how to receive and store goods and materials
+Understand how to process orders and dispatch goods
+Understand how to deliver effective customer service
+Understand health, safety, security and legislation
+Understand how to be an effective team worker
+You will be expected to complete a workbook to satisfy the assessment requirements." data-title="BTEC Certificate in Warehousing and Storage Principles">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_3" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/warehousing-and-storage/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="This course is funded dependent on meeting the eligibility criteria">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_3" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_3" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years">Years</option><option value="" selected="selected"></option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_3" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible" selected="selected">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_3" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised" selected="selected">Customised</option></select></td></tr><tr style="background-color:#fff;" id="tr_4"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Warehousing and Storage (RQF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60033113" data-level="2" data-type="Certificate" data-award="Highfield Qualifications" data-tier1="Retail and Commercial Enterprise?" data-tier2="Warehousing and Distribution" data-title="Certificate in Warehousing and Storage (RQF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045231"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification has been designed for those working, or seeking work in Warehousing and Storage. The aim of the qualification is to contribute to the skills, knowledge and overall performance of the logistics industry." data-title="Certificate in Warehousing and Storage (RQF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_4" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/nvqwarehousing-and-storage/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_4" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected="selected">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_4" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks" selected="selected">Weeks</option><option value="Months">Months</option><option value="Years">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_4" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time" selected="selected">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_4" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_5"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Warehousing and Storage (RQF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60033113" data-level="2" data-type="Certificate" data-award="Highfield Qualifications" data-tier1="Retail and Commercial Enterprise?" data-tier2="Warehousing and Distribution" data-title="Certificate in Warehousing and Storage (RQF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045232"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification has been designed for those working, or seeking work in Warehousing and Storage. The aim of the qualification is to contribute to the skills, knowledge and overall performance of the logistics industry." data-title="Certificate in Warehousing and Storage (RQF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_5" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/nvqwarehousing-and-storage/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Funded depending on meeting eligibility criteria">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_5" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected="selected">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_5" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks" selected="selected">Weeks</option><option value="Months">Months</option><option value="Years">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_5" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time" selected="selected">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_5" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_6"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Warehousing and Storage (RQF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60033113" data-level="2" data-type="Certificate" data-award="Highfield Qualifications" data-tier1="Retail and Commercial Enterprise?" data-tier2="Warehousing and Distribution" data-title="Certificate in Warehousing and Storage (RQF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045233"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification has been designed for those working, or seeking work in Warehousing and Storage. The aim of the qualification is to contribute to the skills, knowledge and overall performance of the logistics industry." data-title="Certificate in Warehousing and Storage (RQF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_6" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/nvqwarehousing-and-storage/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_6" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected="selected">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_6" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks" selected="selected">Weeks</option><option value="Months">Months</option><option value="Years">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_6" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time" selected="selected">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_6" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_7"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Warehousing and Storage (RQF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60033113" data-level="2" data-type="Certificate" data-award="Highfield Qualifications" data-tier1="Retail and Commercial Enterprise?" data-tier2="Warehousing and Distribution" data-title="Certificate in Warehousing and Storage (RQF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="30.08.2016" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045234"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification has been designed for those working, or seeking work in Warehousing and Storage. The aim of the qualification is to contribute to the skills, knowledge and overall performance of the logistics industry." data-title="Certificate in Warehousing and Storage (RQF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_7" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/nvqwarehousing-and-storage/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="0"></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_7" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected="selected">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_7" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks" selected="selected">Weeks</option><option value="Months">Months</option><option value="Years">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_7" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time" selected="selected">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_7" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_8"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Certificate in Warehousing and Storage (RQF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60033113" data-level="2" data-type="Certificate" data-award="Highfield Qualifications" data-tier1="Retail and Commercial Enterprise?" data-tier2="Warehousing and Distribution" data-title="Certificate in Warehousing and Storage (RQF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="01.10.2018" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045235"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification has been designed for those working, or seeking work in Warehousing and Storage. The aim of the qualification is to contribute to the skills, knowledge and overall performance of the logistics industry." data-title="Certificate in Warehousing and Storage (RQF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_8" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="http://www.qtt.org.uk/nvqwarehousing-and-storage/">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value="0"></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Fully-funded providing certain eligibility criteria is met.">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_8" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected="selected">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_8" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks" selected="selected">Weeks</option><option value="Months">Months</option><option value="Years">Years</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_8" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time" selected="selected">Part-time</option><option value="Flexible">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_8" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_9"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">NVQ Diploma in Performing Manufacturing Operations (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="6012684X" data-level="2" data-type="Diploma" data-award="Highfield Qualifications" data-tier1="Engineering and Manufacturing Technologies?" data-tier2="Manufacturing Technologies" data-title="NVQ Diploma in Performing Manufacturing Operations (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045236"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This regulated qualification is designed for those learners working within a range of manufacturing industries and enables individuals to demonstrate competence in their job roles and to develop the essential work-based skills required to work effectively in the manufacturing industry. Topics include: Complying with statutory regulations and organisational safety requirements; Promoting Effective Working Relationships; Preparing and concluding manufacturing operations; Recording and reporting inspection and test results and Producing Products." data-title="NVQ Diploma in Performing Manufacturing Operations (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_9" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="https://www.highfieldabc.com/PerformingManufacturingOperations/L2PerformingManufacturingOperations.aspx">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Funded depending on meeting eligibility criteria">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_9" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_9" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years">Years</option><option value="" selected="selected"></option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_9" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible" selected="selected">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_9" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_10"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Award in Health and Safety for Construction (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60150750" data-level="1" data-type="Award" data-award="Highfield Qualifications" data-tier1="Construction, Planning and the Built Environment?" data-tier2="Building and Construction" data-title="Award in Health and Safety for Construction (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045237"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification is designed for learners working in, or aspiring to work in, the construction industry. It will give learners the knowledge to undertake their jobs safely. Successful learners who also complete the CITB Operatives Health, Safety and Environment knowledge test will fulfil the requirements to apply for the CSCS Labourer's card (Green Card)." data-title="Award in Health and Safety for Construction (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_10" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="https://www.highfieldabc.com/HealthAndSafety/Level1Construction.aspx">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Depending on meeting eligibility criteria, the qualification is fully funded">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_10" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_10" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years">Years</option><option value="" selected="selected"></option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_10" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible" selected="selected">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_10" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr><tr style="background-color:#fff;" id="tr_11"><td class="govuk-table__cell" style="width:69px"><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div></td><td class="govuk-table__cell" style="background-color:#fff;padding-left:15px;"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 60%;"></td><td class="govuk-table__cell">Award in Health and Safety for Construction (QCF)&nbsp;&nbsp;<a type="submit" class=" edit-btn open-flat" style="margin-right: 20px;" href="#" data-lars="60150750" data-level="1" data-type="Award" data-award="Highfield Qualifications" data-tier1="Construction, Planning and the Built Environment?" data-tier2="Building and Construction" data-title="Award in Health and Safety for Construction (QCF)">Show more</a></td><td class="govuk-table__cell"><a class="  edit-btn open-subtitle" style="" href="#" data-subtitle="">Edit</a><a class="edit-btn save-subtitle" style="" href="#">Update</a></td><td class="govuk-table__cell" style="padding-left: 10px;background-color:#fff;"><div><input type="text" class="datepicker govuk-input " placeholder="03-Sep-18" value="" style="border: none;font-size: 14px;position: relative;width: 130px;top: 3px;color:inherit;background-color: inherit; float: left" id="dp1538586045238"></div></td><td class="govuk-table__cell"><a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="This qualification is designed for learners working in, or aspiring to work in, the construction industry. It will give learners the knowledge to undertake their jobs safely. Successful learners who also complete the CITB Operatives Health, Safety and Environment knowledge test will fulfil the requirements to apply for the CSCS Labourer's card (Green Card)." data-title="Award in Health and Safety for Construction (QCF)">Edit</a></td><td class="govuk-table__cell"><select class="govuk-select" id="venue_11" name="sort" style="font-size: 14px;width: 90%"><option value="Matthew Boulton Campus">Matthew Boulton Campus</option><option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option><option value="Botanical Gardens">Botanical Gardens</option><option value="QTT TRAINING ACADEMY" selected="selected">QTT TRAINING ACADEMY</option></select></td><td class="govuk-table__cell"><a class="edit-btn open-url" style="" href="#" data-url="https://www.highfieldabc.com/HealthAndSafety/Level1Construction.aspx">Edit</a><a class="edit-btn save-url" style="" href="#">Update</a></td><td class="govuk-table__cell"><span class="input-symbol-gbp"><input class="govuk-input" id="contact-by-phone" name="contact-by-phone" type="tel" style="width: 90%" value=""></span></td><td class="govuk-table__cell"><a class="edit-btn open-cost" style="" href="#" data-cost="Funded depending on eligibility criteria">Edit</a><a class="edit-btn save-cost" style="" href="#">Update</a></td><td class="govuk-table__cell"><select class="govuk-select" id="duration_11" name="sort" style="font-size: 14px;width: 90%"><option value="Less than one day">Less than one day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="units_11" name="sort" style="font-size: 14px;width: 90%"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option><option value="Years">Years</option><option value="" selected="selected"></option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="time_11" name="sort" style="font-size: 14px;width: 90%"><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Flexible" selected="selected">Flexible</option></select></td><td class="govuk-table__cell"><select class="govuk-select" id="when_11" name="sort" style="font-size: 14px;width: 90%"><option value="Daytime">Daytime</option><option value="Part-time">Part-time</option><option value="Flexible">Flexible</option><option value="Customised">Customised</option><option value="Daytime/working hours" selected="selected">Daytime/working hours</option></select></td></tr>
+
+
+
+<tr id="edit-cost" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+	<td class="govuk-table__cell" colspan="5">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-cost" name="input-cost" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-cost">Cancel</a>	
+		</div>
+     </td>
+</tr>
+
+<tr id="edit-url" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td><td></td><td></td><td></td><td></td>
+	<td class="govuk-table__cell" colspan="5" style="">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-url" name="input-url" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-url">Cancel</a>			
+		</div>
+     </td>
+</tr>	
+
+<tr id="edit-subtitle" style="background-color:#fff;">
+	<td></td><td style="background-color:#fff;"></td><td style="background-color:#fff;"></td>
+	<td class="govuk-table__cell" colspan="7" style="">
+		<div class="govuk-form-group" style="margin: 0;">
+            <input class="govuk-input" id="input-subtitle" name="input-subtitle" type="text" style="margin-bottom:10px;">
+			<a href="#" id="cancel-subtitle">Cancel</a>			
+		</div>
+     </td>
+</tr>	
+ 
+</tbody></table>
+
+<!--   NEW PAGE !!!!!
+
+    <h2 class="govuk-heading-m" style="position: relative;font-weight: 300;
+    top: 46px;">To add a course enter <strong>the Lars number</strong> or <strong>course subject</strong></h2>
+<table class="govuk-table" style="font-size: 14px;margin-top: 30px">
+
+<tr class="govuk-table__row last">
+   <td style=" background-color: white; border-bottom: none">
+    <div class="header-search-content" style="font-size: 14px;">
+        <form action="" class="site-search ui-front" id="header-search" method="post">
+
+            <div class="search-input-wrapper govuk-form-group--error">
+
+                <div class="govuk-form-group" style="    width: 35%;">
+                    <label class="govuk-label" for="address-line-2" style="font-size: 14px">
+                    </label>
+                    <div class="select-editable">
+                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
+                    </span>
+
+                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
+                    </span>
+
+                        <input class="govuk-input" type="text" name="course" id="miscCharge" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;float: left;width: 70%">
+                    </div>
+                </div>
+                <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
+            </div>
+
+        </form>
+
+    </div>
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+    <table id="lars-search-results" class="govuk-table" style="margin-top: 30px; font-size: 14px;margin-bottom: 0">
+        </table>
+
+
+    <table id="add-course-table" class="govuk-table" style=" font-size: 14px; display: none">
+
+    <tbody>
+
+    <tr style="background-color:#fff;"><td class="govuk-table__cell">
+            <a class="govuk-button" href="add-a-course">Add this course</a>
+    </td>
+
+
+
+    <td class="govuk-table__cell">12345678</td><td class="govuk-table__cell">Certificate in Creative Craft (QCF)</td>
+
+
+
+
+    <td class="govuk-table__cell">
+
+        Other regulated
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        NCFE
+
+    </td>
+
+    <td class="govuk-table__cell">
+        If you have an interest in floristry...
+        <a href="#" id="readmore" style="display: none">read more</a>   <span class="showit" style="display: none">you can study this course without qualifications, however, a functional skills test for literacy and numeracy will need to be achieved.</span>
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Health, Public Services and Care
+
+    </td>
+
+    <td class="govuk-table__cell">
+
+        Health and Social Care
+
+    </td>
+
+    </tr>
+
+
+
+
+    </tbody>
+
+
+    </table>
+
+
+
+
+
+<div class="gov-btns" style="margin-bottom: 50px;margin-left:10px;font-size: 18px;">
+
+    <a href="#" type="submit" class="duplicaterows" style="margin-right: 20px" id="duplicate">
+        Duplicate a course
+    </a>
+
+    <a href="#"  type="submit" class="deleterows" style="margin-right: 20px" id="delete">
+        Delete a course
+    </a>
+
+    <a href="#"  type="submit" class="" style="margin-right: 20px">
+        Save as a draft
+    </a>
+    <a href="#"  type="submit" class="" style="margin-right: 20px">
+        Archive a course
+    </a>
+    <a href="/sprint5/course-details" class="" style="margin-right: 20px">
+       Preview
+    </a>
+	
+	<label style="display: none">Import CSV:</label><input type="file" name="csv" id="csv" style="margin-left:20px;display:none;"/>
+
+</div>
+	<!--</header>-->
+    </main>
+	
+	
+	
+        <div id="popup-descript"><div style="padding:0;width:100%;">
+            <a href="#" class="close-descript" style="clear:both;display:block;position: relative; top:-20px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+            <a href="#" class="my_popup_close" style="font-size: 18px;margin-left: 5px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Insert bullet point</a>
+            <a href="#" class="my_popup_close" style="font-size: 18px;text-decoration: none;margin-left: 10px;text-decoration: none; border:2px solid #f2f2f2;padding:5px 10px">Spell check</a>
+			<div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;margin-top:10px">
+                <h2 id="q_title"></h2>
+<p class="shade">Who is the course for</p><span id="q_descript"></span>
+                <i class="far fa-edit"></i>
+<p class="shade">What you’ll learn</p>
+ <i class="far fa-edit"></i>
+
+<p class="shade">How you’ll learn</p>
+
+                <i class="far fa-edit"></i>
+				
+<p class="shade">Where next</p>
+
+                <i class="far fa-edit"></i>  
+				
+<p class="shade">What you need to bring</p>
+
+                <i class="far fa-edit"></i> 
+
+<p class="shade">How you'll be assessed</p>
+
+                <i class="far fa-edit"></i>  </div>				
+				</div>
+
+        </div>
+		
+
+
+		<div id="popup-req"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.
+       </textarea>
+            <button class="govuk-button close-req">Close</button>
+
+        </div></div>
+		
+
+
+		<div id="popup-duration"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Duration additional information
+       </textarea>
+            <button class="govuk-button close-duration">Close</button>
+
+        </div></div>
+		
+        <!--<div id="popup-dur"><div style="padding:0;width:100%;">
+            <button class="my_popup_close govuk-button">Insert bullets</button>
+            <button class="my_popup_close govuk-button">Spell check</button>
+			<textarea class="govuk-textarea tarea">Duration description
+       </textarea>
+            <button class="govuk-button close-dur">Close</button>
+
+        </div></div>-->
+<style>
+#popup-flat.popup_content, #popup-descript {
+	border: solid 1px #000 !important;
+}
+#popup-flat_background,#popup-descript {
+	background-color: rgba(255,255,255,.6) !important;
+}
+
+#popup-flat,#popup-descript {
+	background-color: #fff;
+	height:auto;
+}
+#popup-descript .govuk-textarea{border: none}
+    #popup-descript{padding: 40px}
+    #popup-descript .shade{padding: 10px;}
+</style>
+		        <div id="popup-flat"><div style="padding:0;width:100%;">
+				
+				 <a href="#"class="close-flat" style="clear:both;display:block;margin-top:20px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+				
+			<div  class="govuk-textarea tarea" style="font-size: 14px;display:block;clear:both;border:none;height:auto;margin:0;padding:0 30px 30px;">
+<h2 id="q_title_flat"></h2>
+                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Lars number</p><span id="q_lars"></span>
+                <p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification level</p><span id="q_level"></span>
+
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Qualification Type</p><span id="q_type"></span>
+				
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">Awarding organisation</p><span id="q_award"></span>
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier1 Description</p><span id="q_tier1"></span>
+
+<p style="margin-bottom:10px;margin-top:20px;font-weight:bold;">SSA Tier 2 Description</p><span id="q_tier2"></span>
+
+
+				</div>
+           
+
+        </div></div>
+		
+
+<div id="popup-start-des"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Start date additional information
+    </textarea>
+    <button class="govuk-button close-start-des">Close</button>
+
+</div></div>
+
+
+
+
+
+
+{% endblock %}
