@@ -133,11 +133,50 @@ GOV.UK prototype kit
 </style>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 
+<script>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+var $j = jQuery.noConflict();
+
+$j(document).ready(function (e) {
+
+    $j('#popup-venue, #popup-preview').popup({
+        opacity: 0.999,
+        color:'#fff',
+        transition: 'all 0.3s'
+    });
+	
+	$j("#addvenue").click(function (e) {
+		e.preventDefault();
+		$j('#popup-venue').popup('show'); 
+	});
+	
+	$j("#close-venue, #save-venue").click(function (e) {
+		e.preventDefault();
+		$j('#popup-venue').popup('hide'); 
+	});	
+	
+	$j("#preview").click(function (e) {
+		e.preventDefault();
+		$("html, body").css("overflow","hidden");
+		$j('#popup-preview').popup('show'); 
+	});
+	
+	$j("#close-preview").click(function (e) {
+		e.preventDefault();
+		$("html, body").css("overflow","auto");
+		$j('#popup-preview').popup('hide'); 
+	});		
+
+});
+
+</script>
+
 
 <div class="govuk-body" style="color: white;font-size: 16px;
     position: relative;
@@ -225,8 +264,7 @@ GOV.UK prototype kit
             <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 Baconsham College
             </label> </div> </div>
-            <p>TOD.O.--->-->-->add venue popup to keep user on this page</p>
-            <a href="your-venues" class="submit govuk-button" type="submit" value="Add venue" style="width:120px;height: 39px;"/>Add venue</a>
+            <a href="#" class="submit govuk-button" type="submit" value="Add venue" id="addvenue" style="width:120px;height: 39px;"/>Add venue</a>
         </div>
 
 
@@ -333,8 +371,7 @@ GOV.UK prototype kit
 		
 				<div class="govuk-form-group">
 
-<p>TODO--->pop up with course preview</p>
-<a href="your-courses" role="button" class="govuk-button govuk-button--start">
+<a href="#" role="button" id="preview" class="govuk-button govuk-button--start">
     Preview & Publish
 </a>
 		</div>
@@ -348,9 +385,294 @@ GOV.UK prototype kit
 </div>
 </main>
 
+<div id="popup-venue" style="padding:40px;width:70%;"><div style="padding:40px;width:100%;">
+    <a href="#" id="close-venue" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+
+	<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Add a venue
+        </h1>
+		
+		
+	
+	
+        <div class="govuk-form-group" style="clear:both;">
+            <label class="govuk-label" for="sub">
+                Venue name
+            </label>
+            <input class="govuk-input" id="name" name="name" type="text"/>
+
+        </div>
+
+      
+		
+		<div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+              Venue description
+		  </label>
+		  <textarea class="govuk-textarea" id="sub" name="sub" rows="6"></textarea> 
+		</div>
+		
+		<div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+              Venue status
+		  </label>
+		  <select class="govuk-select">
+			<option value="1" selected>Live</option>
+			<option value="2">Draft</option>
+			<option value="3">Archived</option>
+		  </select>
+		</div>
+		
+
+
+		
+				<div class="govuk-form-group">
+
+
+<a href="#" role="button" id="save-venue" class="govuk-button govuk-button--start">
+  Save
+</a>
+		</div>
+		
+	</div>	
+
+</div>
+   
+</div>
+</div>
+
+
+<div id="popup-preview" style="padding:40px;width:70%;"><div style="padding:40px;width:100%;">
+    <a href="#" id="close-preview" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+   
+   <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            City & Guilds Intermediate Diploma in Plumbing
+        </h1>
+        <section id="1">
+
+
+            <table class="govuk-table" role="presentation">
+                <tbody class="govuk-table__body">
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Qualification name</td>
+                    <td class="govuk-table__cell">Level 2 Diploma in Plumbing Studies</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Entry requirements</td>
+                    <td class="govuk-table__cell">
+
+                        Plumbing L1, or working in the trade, or previous experience.
+
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Cost</td>
+                    <td class="govuk-table__cell">The course fee is £1275 (Plus £125 Exam Fee).<!-- <br>For those aged 16 to 18, courses are government funded--><br><a href="https://www.gov.uk/advanced-learner-loan/overview" target="_blank">Advanced Learner Loans maybe available</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Start date</td>
+                    <td class="govuk-table__cell">10 September 2018</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Duration</td>
+                    <td class="govuk-table__cell">35 weeks </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Full-time or part-time</td>
+                    <td class="govuk-table__cell">Part-time</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Day, night or weekend</td>
+                    <td class="govuk-table__cell">Normal working hours</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Classroom or online</td>
+                    <td class="govuk-table__cell">Classroom-based</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <a target="_blank" href="https://www.newham.ac.uk/course-listing/city-guilds-intermediate-diploma-in-plumbing.html" role="button" class="govuk-button govuk-button--start">
+                Enrol now
+            </a>
+            <p class="enrol-text">on the provider’s website</p>
+
+        </section>
+
+
+
+        <section id="2">
+            <h2 class="govuk-heading-m">Course description</h2>
+
+            <p class="govuk-body govuk-!-font-size-19">
+                The qualification covers many areas within plumbing and domestic heating, such as hot and cold water supplies, sanitation and understanding health and safety within Building Services Engineering. Candidates will be assessed by on-demand multiple choice tests (available through the City & Guilds assessment platform e-volve) and practical assignments.
+            </p>
+            <p class="govuk-heading-s">What you’ll need to bring</p>
+            <p class="govuk-body govuk-!-font-size-19">
+                No equipment required
+            </p>
+            <p class="govuk-heading-s">How you’ll be assessed</p>
+            <p class="govuk-body govuk-!-font-size-19">Exam & Course work based
+            </p>
+        </section>
+
+
+
+        <div class="icons-buttons" style="margin-top: 80px">
+            <h3 class="govuk-heading-m">Share this page</h3>
+            <ul class="share-links">
+                <li>
+                    <a target="_blank" href="https://twitter.com/intent/tweet?original_referer&amp;url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F&amp;text=GOV.UK+social+sharing+buttons%3A+the+first+10+weeks" class="twitter">Twitter</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="facebook">Facebook</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="linkedin">LinkedIn</a>
+                </li>
+                <li>
+                    <a href="mailto:?subject=I wanted to share this post with you from Inside GOV.UK&amp;body=GOV.UK social sharing buttons: the first 10 weeks https://insidegovuk.blog.gov.uk/2014/02/20/gov-uk-social-sharing-buttons-the-first-10-weeks/" class="email">Email</a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+
+
+       <!-- <hr>
+
+        <h2 class="govuk-heading-m" style="padding-top:10px ">Speak to a National Careers adviser</h2>
+        <p class="govuk-body govuk-!-font-size-19" style="margin-bottom: 0px;"><span class="govuk-bold-s">Call </span>0800 100 900 or <a class="govuk-link" style="white-space: nowrap;" href="https://cxdirect.serco.com/visitor/EntryPage.htm" rel="external">use webchat</a></p>
+        <p class="govuk-body govuk-!-font-size-19 govuk-gray">8am to 10pm, 7 days a week</p>
+-->
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+
+        <section id="6">
+            <aside class="govuk-related-items" role="complementary">
+                <h2 class="govuk-heading-s" style="margin-top: 10px">Provider</h2>
+                <p class="govuk-body-s">Newham College of Further Education</p>
+                <hr>
+                <h2 class="govuk-heading-s" style="margin-top: 10px;padding-top: 10px">Venue</h2>
+
+                <table class="govuk-table" role="presentation">
+                    <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Name</td>
+                        <td class="govuk-table__cell govuk-body-s">	Stratford campus</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Address</td>
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                            Welfare Road<br>
+                            Stratford<br>
+                            Greater London<br>
+                            E15 4HT<br>
+                            <a class="govuk-link" target="_blank" href="https://www.google.com/maps?q=51.540288,0.009541">Find on Google maps</a>
+                        </td>
+                    </tr><tr class="govuk-table__row">
+                        <td class="govuk-table__cell" colspan="2">     <details>
+
+                            <summary>
+
+                                <span style="color:#005ea5"> Journey time</span></summary>
+                            <div class="panel">
+
+                                <select class="form-control valid select-mode" name="" aria-invalid="false">
+
+                                    <option value="TRANSIT" aria-live="polite">Bus/Train</option>
+                                    <option value="WALKING" aria-live="polite">Walking</option>
+                                    <option value="BICYCLING" aria-live="polite">Cycling</option>
+                                    <option value="DRIVING" aria-live="polite">Driving</option>
+                                </select>
+
+                                <span class="journey-time" aria-live="polite">5 mins</span>
+                            </div>
+                        </details></td>
+
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Website</td>
+                        <td class="govuk-table__cell">
+                            <a class="govuk-link govuk-body-s" target="_blank" href="http://www.newham.ac.uk" style="word-break: break-all;">http://www.newham.ac.uk</a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Email</td>
+                        <td class="govuk-table__cell govuk-body-s"><a href="mailto:	externalenquiries@newham.ac.uk" style="word-break: break-all;">	externalenquiries@newham.ac.uk</a> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Phone</td>
+                        <td class="govuk-table__cell govuk-body-s">020 8257 4446</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <details>
+
+                    <summary style="position: relative;top:-10px">
+                        <span style="color:#005ea5;">Other dates and venues</span>
+                    </summary>
+                    <div class="panel">
+                        <table class="govuk-table">
+                            <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__header govuk-body-s" scope="col">Venue</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Start date</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Options</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s">Clarence Street</td>
+                                <td class="govuk-table__cell govuk-body-s">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Boswall Street</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+
+                <hr>
+
+
+            </aside>
+        </section>
+
+
+
+
+    </div>
+</div>
+   
+</div>
+
+
 <script>
 
-var $j = jQuery.noConflict();
+
 
 function check(classs) {
 	var ok=true;

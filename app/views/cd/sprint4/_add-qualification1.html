@@ -127,83 +127,6 @@ GOV.UK prototype kit
         padding: 0px;
         padding-top: 10px;
     }
-	
-/*SEARCH*/
-
- .select-editable {
-     position:relative;
-     background-color:white;
-     border:solid #eee 2px;
-     width:500px;
-     height:40px;
-	 overflow:visible;
-	 float:left;
- }
- .select-editable ul {
-	font-family: Arial, sans-sherif;
-     position:absolute;
-     top:44px;
-     left:0px;
-     width:500px;
-	 max-width:100vw;
-     margin:0;
-	 display:none;
-	 height:auto;
-	 max-height:400px;
-	 z-index:10001;
-	 font-size:17px !important;
-	 cursor:pointer;
-	 padding:0;
-	 border-top:none;
-	 border-right: solid 1px #ccc;
-	 border-left: solid 1px #ccc;
-	 border-bottom: solid 1px #ccc;	 
-	 list-style-type: none;
-	 background-color:#fff;
-	 overflow-y: scroll;
-	 overflow-x: hidden;
- }
- 
-  .select-editable li:hover {
-    background-color:#ccc !important;
- }
- 
-  .select-editable li {
-     padding: 8px;
-	 height:auto;
- }
-  
-  
-  .select-editable li:nth-child(even) {
-     background-color: #eee;
- }
- 
- .select-editable input {
-     position:absolute;
-     top:0px;
-     left:0px;
-     width:100px;
-     padding:1px;
-	 padding-left:8px;
-     font-size:17px !important;
-     border:none;
- }
- 
-  .select-editable input:focus {
-     outline: 3px solid #FFBF47;
- }
- 
- 
-.select-editable .govuk-input {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-right: 40px;
-    margin-right: -40px;
-    float: left;
-    width: 100%;
-}
-		
 </style>
 
 
@@ -212,53 +135,6 @@ GOV.UK prototype kit
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-
-<script>
-
-$(document).ready(function (e) {
-	var json = [];
-	
-	$.getJSON("json.html", function(result){
-        $.each(result, function(i, field){
-            json.push(field);
-        });
-    });
-	
-	$("#search").keyup(function(e) {
-		if ($(this).val().length>2) doSearch($(this).val(), json);
-	});
-	
-	$("#course-list").click(function (e) {
-		$("#search").val($("li:hover").text());
-		$(this).hide();
-		$("#search").focus();
-	});		
-	
-});
-
-function doSearch(text, json) {
-	
-	text=text.toLowerCase();
-	$("#course-list li").remove();
-	
-	$.each(json, function(i, value) {
-		
-		var val=value[0].toLowerCase()+" "+value[1].toLowerCase();
-		if (val.indexOf(text)>-1) {
-			$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
-		}
-
-	}); 
-	
-	if ($("#course-list").children('li').length>0) {
-		$("#course-list").show();
-	} else {
-		$("#course-list").hide();
-	}	
-
-}
-
-</script>
 
 <script>
     $(window).on('load', function(){
@@ -518,12 +394,7 @@ function doSearch(text, json) {
 
                                     </select>
                                 </section>-->
-                                	<div class="select-editable">
-										<ul id="course-list">
-										
-										</ul>
-										<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject"/>
-									</div>
+                                <input class="govuk-input" type="text" name="course" id="miscCharge" value="Biology" placeholder="" style="font-size: 14px;width: 40%;float: left;">
                             </div>
                         </div>
                         <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
