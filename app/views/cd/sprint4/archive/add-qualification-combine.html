@@ -254,8 +254,7 @@ $(document).ready(function (e) {
 		e.preventDefault();
 		if ($("#search1").val().length>2) {
 			$("#search-cont").hide();	
-			$("#results-cont").show();
-			$("#search").val($("#search1").val());			
+			$("#results-cont").show();	
 			doSearch($("#search1").val(), json);
 		}
 	});
@@ -287,16 +286,14 @@ function doSearch(text, json) {
 		if (val.indexOf(text)>-1) {
 			//$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
 			
-			if (count<20)$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
+			$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
 			
 			count++;
-			
+			if (count>=20) return false;
 			
 		}
 
 	}); 
-	
-	$("#count").text(count);
 	
 	if (count==0) {
 		$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox"><h2 style="font-family:Arial, sans-sherif;">There are no search results for your query.</h2></li>');
@@ -607,7 +604,7 @@ function doSearch(text, json) {
 <div id="results-cont" class="govuk-width-container" style="margin-top: -80px;margin-left: auto;margin-right: auto;display:none;">
 <h1 class="govuk-heading-l" style="padding-bottom: 0;margin-bottom: 0;font-size: 24px;position: relative;
     top: 21px;
-    ">Search results (<b id="count"></b>) for</h1>
+    ">Search results (8) for</h1>
 <section class="govuk-grid-row" style="font-size: 14px;margin-bottom: 0">
 
 

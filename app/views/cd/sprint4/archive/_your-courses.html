@@ -200,20 +200,6 @@ GOV.UK prototype kit
 	.open-url, .open-cost {
 		padding:5px;
 	}
-	
-	.head-table1 {
-		position:fixed;
-		display:none;
-		top:0;
-		background-color:#fff;
-		z-index:100000;
-		left:60px;
-		background-color:#ddd;
-	}
-	
-	.head-table {
-		background-color:#ddd;
-	}
 
 	
 </style>
@@ -269,7 +255,7 @@ function initPicker() {
 $j(document).ready(function() {
 
     var allCells = $j("td.govuk-table__cell");
-	
+
     allCells
             .on("mouseover", function() {
                 var el = $j(this),
@@ -286,7 +272,6 @@ $j(document).ready(function() {
         //$j(this).addClass("collapsed");
         $j(".side-nav").hide();
         $j(".menu-button").show();
-		$j(".head-table1").css("margin-left","0");
     });
 
     $j(".menu-button.collapsed").click(function (e) {
@@ -294,20 +279,9 @@ $j(document).ready(function() {
         $j(this).removeClass("collapsed");
         $j(".side-nav").show();
         $j(".menu-button").hide();
-		$j(".head-table1").css("margin-left","300px");
-		console.log("kkk");
     });
 
 
-	$j(window).scroll(function (e) {
-		if ($j(".head-table").offset().top-$j(window).scrollTop()<=0) {	
-			$j(".head-table1").show();
-		} else {
-			$j(".head-table1").hide();
-		}
-		$j(".head-table1").css("left",(0-$j(window).scrollLeft()+60)+"px");
-	});
-	
 
     //number of records
     var recs=$j(".table-check").length;
@@ -873,30 +847,6 @@ $j(document).ready(function() {
 </script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<table class="main-table head-table1" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;width:2050px" id="table_1">
-
-    <tr class="govuk-table__row" style="border-bottom: solid 2px #dee0e2;">
-        <th class="govuk-table__header hdr-cell" style="width:70px;"></th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Status</th>
-		<th class="govuk-table__header hdr-cell" style="width:170px;">Provider course name</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Course ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>		
-		<th class="govuk-table__header hdr-cell" style="width: 180px;">Classroom or online</th>
-		<th class="govuk-table__header hdr-cell" style="width:200px">Start date<!--&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a>--></th>
-		<th class="govuk-table__header hdr-cell" style="width:170px;">Venue</th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Course URL</th>
-		<th class="govuk-table__header hdr-cell" style="width:90px;">Cost</th>
-		<th class="govuk-table__header hdr-cell" style="width:140px;">Cost description</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Duration</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Duration units</th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Full-time or part-time</th>
-        <th class="govuk-table__header hdr-cell" style="width:120px;">Day, night or weekend</th>
-        <th class="govuk-table__header hdr-cell" style="width:210px;">&nbsp;</th>
-		
-		
-    </tr>
-
-</table>
-
 <nav class="side-nav" style="display: none">
     <ul>
         <li class="side-nav__item ">
@@ -1017,7 +967,7 @@ $j(document).ready(function() {
     height: 1000px; /* or any value */
     overflow-y: auto;
     overflow-x: hidden;
-   
+    width: 2000px;
 }</style>
 
 <table class="main-table head-table" style="font-size: 14px;margin-bottom:20px; margin-right: 40px;width:2050px" id="table_1">
@@ -1045,7 +995,7 @@ $j(document).ready(function() {
 </table>
 
 
-<div class="">
+<div class="scrollable">
 
 
 <!-- TABLE 1 -->
