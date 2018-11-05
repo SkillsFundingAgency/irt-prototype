@@ -254,6 +254,41 @@ $(document).ready(function (e) {
 				});
 			}
 		});
+		
+		$("#lars").click(function (e) {
+			if ($(this).is(':checked')) {
+				$(".lars").each(function (e) {
+					$(this).prop("checked",true);
+				});
+			} else {
+				$(".lars").each(function (e) {
+					$(this).prop("checked",false);
+				});
+			}
+		});		
+		
+		$(".level, .lars").each(function (e) {
+			$(this).change(function (e) {
+				$("#table .roww").hide();
+				$("#table .roww").each(function (e) {
+					var level=$(this).attr("data-level");
+					var lars=$(this).attr("data-lars");
+					if ($('.level[value="'+level+'"]').is(":checked") && $('.lars[value="'+lars+'"]').is(":checked")) {
+						$(this).show();
+					}
+				});
+				if ($(".level").length>$(".level:checked").length) {
+					$("#level").prop("checked",false);
+				} else {
+					$("#level").prop("checked",true);
+				}
+				if ($(".lars").length>$(".lars:checked").length) {
+					$("#lars").prop("checked",false);
+				} else {
+					$("#lars").prop("checked",true);
+				}				
+			})
+		});		
 	
 });
 
@@ -331,23 +366,23 @@ $(document).ready(function (e) {
             <div class="panel-body">
                 <div class="link-list list-group" style="border: none">
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" id="level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">All</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">All</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Entry level</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="0"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Entry level</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 1</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="1"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 1</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 2</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="2"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 2</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 3</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="3"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 3</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 4</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="4"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 4</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 5</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="5"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 5</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 6</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="6"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 6</label> </div>
 				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">Level 7</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="7"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 7</label> </div>
 												
 								
 				
@@ -370,17 +405,18 @@ $(document).ready(function (e) {
         <div class="panel-collapse collapse in" id="organisationname">
             <div class="panel-body">
                 <div class="link-list list-group" style="border: none">
-				
-				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">A - Adult Skills</label> </div>
-				
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">B - Adult Skills (English, Maths, ESOL)</label> </div>
 
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">E - Non Adult Skills or Community Learning</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">All</label> </div>				
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="A"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">A - Adult Skills</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="B"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">B - Adult Skills (English, Maths, ESOL)</label> </div>
+
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="E"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">E - Non Adult Skills or Community Learning</label> </div>
 								
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">F - Community Learning</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="F"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">F - Community Learning</label> </div>
 
-				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;padding-left:5px;">G - Non Adult Skills (English, Maths, ESOL)</label> </div>
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="G"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">G - Non Adult Skills (English, Maths, ESOL)</label> </div>
 				
 												
 	
@@ -390,52 +426,6 @@ $(document).ready(function (e) {
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-    <div class="filter mobilecollapse panel panel-default collapsable" style="border: solid 2px #ddd;margin-top:20px;">
-        <div class="panel-heading govuk-option-select">
-
-            <div class="option-select-label" style="color: inherit;text-decoration: none;"><p style="font-weight: 600;padding-left: 5px;margin-top: 10px;margin-bottom: 3px">Guided learning hours</p></div>
-            <a data-toggle="collapse" href="#organisationname" aria-expanded="true" aria-controls="organisationname" class="clearfix"> <span class="glyphicon glyphicon-chevron-up pull-right"></span>
-                <span class="glyphicon glyphicon-chevron-down pull-right"></span>
-            </a>
-        </div>
-        <div class="panel-collapse collapse in" id="organisationname">
-            <div class="panel-body">
-                <div class="link-list list-group" style="border: none">
-
-
-                    <select class="govuk-select" id="radius" name="radius">
-
-
-                        <option value="0" selected="">13 hours</option>
-                        <!-- <option value="" >The level you want to study at.</option>-->
-                        <option value="LV1">14 hours</option>
-                        <option value="LV1">15 hours</option>
-                        <option value="LV1">16 hours</option>
-                        <option value="LV1">17 hours</option>
-                        <option value="LV1">18 hours</option>
-                        <option value="LV1">19 hours</option>
-                        <option value="LV1">20 hours</option>
-
-                    </select>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-
 
 
 </div>
@@ -459,11 +449,11 @@ $(document).ready(function (e) {
 
 	<div class="govuk-grid-column-full" style="margin-top:20px;">   
 	
-		<table  class="govuk-table" style="font-size:15px;">
+		<table  class="govuk-table" style="font-size:15px;" id="table">
 		<thead class="govuk-table__head">
 		<tr class="govuk-table__row">
 			<td class="govuk-table__header" scope="col" style="width:60px;">LARS Ref</td>
-			<td class="govuk-table__header" scope="col" style="width: calc(100% - 180px);">Learning Aim Title</td>
+			<td class="govuk-table__header" scope="col" style="width: calc(100% - 180px);">Qualification Title</td>
 			<td class="govuk-table__header" scope="col" style="width:60px;">Level</td>
 			<td class="govuk-table__header" scope="col" style="width:60px;">&nbsp;</td>
 		</tr>
@@ -471,40 +461,61 @@ $(document).ready(function (e) {
 		
 		<tbody class="govuk-table__body">
 		
-		<tr class="govuk-table__row">
+		<tr class="govuk-table__row roww" data-lars="A" data-level="0" style="display:none;">
 			<td class="govuk-table__cell" style="width:60px;">Z0003071</td>
 			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Entry Level: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
 			<td class="govuk-table__cell" style="width:60px;">E</td>
-			<td class="govuk-table__cell" style="width:60px;"><a href="#">Select</a></td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
 		</tr>	
 		
-		<tr class="govuk-table__row">
+		<tr class="govuk-table__row roww" data-lars="B" data-level="1" style="display:none;">
 			<td class="govuk-table__cell" style="width:60px;">Z0003077</td>
 			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 1: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
 			<td class="govuk-table__cell" style="width:60px;">1</td>
-			<td class="govuk-table__cell" style="width:60px;"><a href="#">Select</a></td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
 		</tr>	
 
 		
-		<tr class="govuk-table__row">
+		<tr class="govuk-table__row roww" data-lars="E" data-level="2" style="display:none;">
 			<td class="govuk-table__cell" style="width:60px;">Z0003083</td>
 			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 2: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
 			<td class="govuk-table__cell" style="width:60px;">2</td>
-			<td class="govuk-table__cell" style="width:60px;"><a href="#">Select</a></td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
 		</tr>	
 		
-		<tr class="govuk-table__row">
+		<tr class="govuk-table__row roww"  data-lars="F" data-level="3" style="display:none;">
 			<td class="govuk-table__cell" style="width:60px;">Z0003089</td>
 			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 3: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
 			<td class="govuk-table__cell" style="width:60px;">3</td>
-			<td class="govuk-table__cell" style="width:60px;"><a href="#">Select</a></td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
 		</tr>	
 
-				<tr class="govuk-table__row">
+		<tr class="govuk-table__row roww" data-lars="G" data-level="4" style="display:none;">
 			<td class="govuk-table__cell" style="width:60px;">Z0003007</td>
 			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 4: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
 			<td class="govuk-table__cell" style="width:60px;">4</td>
-			<td class="govuk-table__cell" style="width:60px;"><a href="#">Select</a></td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>
+
+		<tr class="govuk-table__row roww" data-lars="G" data-level="5" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003022</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 5: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">5</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+
+		<tr class="govuk-table__row roww" data-lars="A" data-level="6" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003009</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 6: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">6</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+
+				<tr class="govuk-table__row roww" data-lars="B" data-level="7" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003008</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 7: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">7</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
 		</tr>	
 		
 		</tbody>
@@ -513,13 +524,10 @@ $(document).ready(function (e) {
 </table>	
 	
 	</div>
-
-
-
-
-
-
+   
 </div>
+
+
 
 
 
@@ -532,11 +540,6 @@ $(document).ready(function (e) {
 </header>
 
 
-
-
-<hr>
-<h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;
-    ">Alternatively search for <strong><a href="add-qualification">Lars number or subject</a> </strong>.</h2>
 
 
 
