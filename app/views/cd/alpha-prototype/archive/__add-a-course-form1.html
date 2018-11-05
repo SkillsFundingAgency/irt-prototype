@@ -129,25 +129,6 @@ GOV.UK prototype kit
 		border-left: solid 1px #ccc;
 		clear:both;
 	}
-	
-	#popup-preview  {
-		background-color:#fff;
-		border:solid 1px #000;
-		height:70%;
-		width: 70%;
-		overflow-x:hidden;
-		overflow-y:scroll;
-	}
-	
-	#popup-venue  {
-		background-color:#fff;
-		border:solid 1px #000;
-		height:70%;
-		width: 70%;
-		overflow-x:hidden;
-		overflow-y:visible;
-	}	
-	
 
 </style>
 
@@ -164,12 +145,11 @@ var $j = jQuery.noConflict();
 
 $j(document).ready(function (e) {
 
-    $j('#popup-venue,#popup-preview').popup({
-        opacity: 0.5,
-        color:'#666',
+    $j('#popup-venue, #popup-preview').popup({
+        opacity: 0.999,
+        color:'#fff',
         transition: 'all 0.3s'
     });
-	
 	
 	$j("#addvenue").click(function (e) {
 		e.preventDefault();
@@ -191,8 +171,7 @@ $j(document).ready(function (e) {
 		e.preventDefault();
 		$("html, body").css("overflow","auto");
 		$j('#popup-preview').popup('hide'); 
-	});	
-
+	});		
 
 });
 
@@ -238,15 +217,6 @@ $j(document).ready(function (e) {
         </div>
 
 
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Course ID
-            </label>
-            <input class="govuk-input descript" id="sub" name="sub" type="text"/>
-        </div>
-
-
-
         <div class="btn-gr">
             <label class="govuk-label">Classroom or online</label>
             <button id="venues-show" class="govuk-button" value="Search" type="submit" style="background: white;color: #000000; border:2px solid black">Classroom based</button>
@@ -256,7 +226,7 @@ $j(document).ready(function (e) {
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                Start date:
+                Start date
             </label>
 
 
@@ -276,7 +246,7 @@ $j(document).ready(function (e) {
                 } );
             </script>
 
-            <p> <input type="text" id="datepicker" class="details"></p>
+            <p>Date: <input type="text" id="datepicker" class="details"></p>
         </div>
 
         <h3 class="govuk-heading-m">Select course venue</h3>
@@ -294,7 +264,7 @@ $j(document).ready(function (e) {
             <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 Baconsham College
             </label> </div> </div>
-            <a href="#" class="submit govuk-button" type="submit" value="Add a new venue" id="addvenue" style="width:200px;height: 39px;"/>Add a new venue</a>
+            <a href="#" class="submit govuk-button" type="submit" value="Add venue" id="addvenue" style="width:120px;height: 39px;"/>Add venue</a>
         </div>
 
 
@@ -419,7 +389,7 @@ $j(document).ready(function (e) {
 </div>
 </main>
 
-<div id="popup-venue"><div style="padding:40px;width:calc(100% - 80px);">
+<div id="popup-venue" style="padding:40px;width:70%;"><div style="padding:40px;width:100%;">
     <a href="#" id="close-venue" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 
 	<div class="govuk-grid-row">
@@ -479,7 +449,7 @@ $j(document).ready(function (e) {
 </div>
 
 
-<div id="popup-preview" style="padding:40px;width:70%;"><div style="padding:40px;width:calc(100% - 80px);">
+<div id="popup-preview" style="padding:40px;width:70%;"><div style="padding:40px;width:100%;">
     <a href="#" id="close-preview" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
    
    <div class="govuk-grid-row">

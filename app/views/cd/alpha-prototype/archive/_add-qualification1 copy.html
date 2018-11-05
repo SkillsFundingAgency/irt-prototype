@@ -249,19 +249,8 @@ $(document).ready(function (e) {
             json.push(field);
         });
     });
-
-	$("#submit1").click(function(e) {
-		e.preventDefault();
-		if ($("#search1").val().length>2) {
-			$("#search-cont").hide();	
-			$("#results-cont").show();
-			$("#search").val($("#search1").val());			
-			doSearch($("#search1").val(), json);
-		}
-	});
 	
 	$("#submit").click(function(e) {
-		e.preventDefault();
 		if ($("#search").val().length>2) doSearch($("#search").val(), json);
 	});
 	
@@ -287,16 +276,14 @@ function doSearch(text, json) {
 		if (val.indexOf(text)>-1) {
 			//$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
 			
-			if (count<20)$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
+			$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
 			
 			count++;
-			
+			if (count>=20) return false;
 			
 		}
 
 	}); 
-	
-	$("#count").text(count);
 	
 	if (count==0) {
 		$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox"><h2 style="font-family:Arial, sans-sherif;">There are no search results for your query.</h2></li>');
@@ -528,91 +515,12 @@ function doSearch(text, json) {
 <!--TABS-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<div id="search-cont" class="govuk-width-container" style="margin-top: 20px;margin-left: 0;margin-right: 0;">
-
-<h1 class="govuk-heading-l" style="padding-top: 20px;margin-bottom: 60px">
-    Add a qualification
-</h1>
 
 
-<h2 class="govuk-heading-m" style="font-weight: 300;
-    ">To add a qualification enter <strong>the Lars number</strong> or <strong>course subject</strong>.</h2>
-
-
-
-
-<section class="govuk-table" style="font-size: 14px;margin-top: 30px">
-
-
-            <div class="header-search-content" style="font-size: 14px;">
-                <form action="add-qualification1" class="site-search ui-front" id="header-search" method="post">
-
-                    <div class="search-input-wrapper govuk-form-group--error">
-
-                        <div class="govuk-form-group" style="height:40px;">
-                            <label class="govuk-label" for="address-line-2" style="font-size: 14px">
-                            </label>
-                            <div class="select-editable">
-                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
-                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
-                    </span>
-
-                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
-                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
-                    </span>
-                                <!--<section class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: left;width: 20%;padding-right:5px">
-                                    <select class="govuk-select" id="radius" name="radius">
-
-
-                                        <option value="0" selected="">Select level</option>
-                                        <option value="LV1">Entry level - Skills for Life</option>
-                                        <option value="LV1">Level 1 - First certificate </option>
-                                        <option value="LV2">Level 2 - GCSE/O level</option>
-                                        <option value="LV3">Level 3 - A level/Access to higher education diploma</option>
-                                        <option value="LV4">Level 4 - Certificate of higher education/HNC</option>
-                                        <option value="LV5">Level 5 - Foundation degree/HND</option>
-                                        <option value="LV6">Level 6 - Degree/Graduate diploma</option>
-                                        <option value="LV7">Level 7 - Masters Degree/Postgraduate diploma</option>
-                                        <option value="LV8">Level 8 - Doctorate/PhD</option>
-
-                                    </select>
-                                </section>-->
-                                <!--<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 40%;float: left;">-->
-								
-				
-										<input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;"/>
-									
-                            </div>
-                        </div>
-						<div class="govuk-form-group">
-                        <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-bottom: 30px;clear:both;margin-top:20px;">
-                    </div>
-
-                </form>
-
-            </div>
-
-    <hr>
-    <h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;
-    ">Alternatively search for <strong><a href="non-regulated-provision">Non regulated provision</a> </strong>(including community learning).</h2>
-
-
-
-</section>
-
-
-
-</header>
-</div>
-
-</div>
-
-<!--SPLIT-->
-
-<div id="results-cont" class="govuk-width-container" style="margin-top: -80px;margin-left: auto;margin-right: auto;display:none;">
+<div class="govuk-width-container" style="margin-top: 20px;margin-left: 0;margin-right: 0">
 <h1 class="govuk-heading-l" style="padding-bottom: 0;margin-bottom: 0;font-size: 24px;position: relative;
     top: 21px;
-    ">Search results (<b id="count"></b>) for</h1>
+    ">Search results (8) for</h1>
 <section class="govuk-grid-row" style="font-size: 14px;margin-bottom: 0">
 
 
@@ -649,8 +557,12 @@ function doSearch(text, json) {
 
                                     </select>
                                 </section>-->
+                                	<div class="select-editable">
+										<ul id="course-list">
+										
+										</ul>
 										<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject"/>
-								
+									</div>
                             </div>
                         </div>
                         <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
@@ -750,14 +662,14 @@ function doSearch(text, json) {
             <span style="font-weight: 600">Sort by:</span>
         </li>
         <li class="sort-list-item">
-            <a href="#">
+            <a href="/Search?category=Qualifications&amp;sort=relevance-Descending">
                 Relevance
                 <span class="glyphicon glyphicon-triangle-bottom"></span>
 
             </a>
         </li>
         <li class="sort-list-item">
-            <a href="#">
+            <a href="/Search?category=Qualifications&amp;sort=key-Ascending">
                 Lars Number
 
             </a>

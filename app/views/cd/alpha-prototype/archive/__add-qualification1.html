@@ -9,19 +9,6 @@ GOV.UK prototype kit
 
 
 <style xmlns="http://www.w3.org/1999/html">
-
-
-    .panel-collapse ::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 7px;
-    }
-    .panel-collapse ::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background-color: rgba(0,0,0,.5);
-        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-    }
-
-
     .list-inline,#searchResults{padding: 0}
     .details p {
         margin-bottom: 0;
@@ -216,20 +203,7 @@ GOV.UK prototype kit
     float: left;
     width: 100%;
 }
-
-#searchResultsList {
-	padding-left:5px;
-}
-
-
-    .check-b .list-group-item {
-
-        padding: 0px 15px 0px;
-
-    }
-
-
-
+		
 </style>
 
 
@@ -249,27 +223,16 @@ $(document).ready(function (e) {
             json.push(field);
         });
     });
-
-	$("#submit1").click(function(e) {
-		e.preventDefault();
-		if ($("#search1").val().length>2) {
-			$("#search-cont").hide();	
-			$("#results-cont").show();
-			$("#search").val($("#search1").val());			
-			doSearch($("#search1").val(), json);
-		}
+	
+	$("#search").keyup(function(e) {
+		if ($(this).val().length>2) doSearch($(this).val(), json);
 	});
 	
-	$("#submit").click(function(e) {
-		e.preventDefault();
-		if ($("#search").val().length>2) doSearch($("#search").val(), json);
-	});
-	
-	/*$("#course-list").click(function (e) {
+	$("#course-list").click(function (e) {
 		$("#search").val($("li:hover").text());
 		$(this).hide();
 		$("#search").focus();
-	});	*/	
+	});		
 	
 });
 
@@ -278,35 +241,20 @@ function doSearch(text, json) {
 	text=text.toLowerCase();
 	$("#course-list li").remove();
 	
-	var count=0;
-	$("#searchResultsList").empty();
-	
 	$.each(json, function(i, value) {
 		
 		var val=value[0].toLowerCase()+" "+value[1].toLowerCase();
 		if (val.indexOf(text)>-1) {
-			//$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
-			
-			if (count<20)$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
-			
-			count++;
-			
-			
+			$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
 		}
 
 	}); 
 	
-	$("#count").text(count);
-	
-	if (count==0) {
-		$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox"><h2 style="font-family:Arial, sans-sherif;">There are no search results for your query.</h2></li>');
-	}
-	
-	/*if ($("#course-list").children('li').length>0) {
+	if ($("#course-list").children('li').length>0) {
 		$("#course-list").show();
 	} else {
 		$("#course-list").hide();
-	}	*/
+	}	
 
 }
 
@@ -336,7 +284,7 @@ function doSearch(text, json) {
         });
         $j( "#header-search" ).submit(function( event ) {
             //alert( "Handler for .submit() called." );
-            /*var miscCharge = $j("#miscCharge").val();
+            var miscCharge = $j("#miscCharge").val();
             if(!isNaN(miscCharge))
             {
                 //do some thing if it's a number  alert('Yeah a number');
@@ -356,7 +304,7 @@ function doSearch(text, json) {
                 // $j("#must-be-a-number-error").toggle();
                 $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Search results (40816) for </h2>");
                 $j("#add-course-table").toggle();
-            }*/
+            }
             event.preventDefault();
         });
         $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
@@ -528,91 +476,12 @@ function doSearch(text, json) {
 <!--TABS-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<div id="search-cont" class="govuk-width-container" style="margin-top: 20px;margin-left: 0;margin-right: 0;">
-
-<h1 class="govuk-heading-l" style="padding-top: 20px;margin-bottom: 60px">
-    Add a qualification
-</h1>
 
 
-<h2 class="govuk-heading-m" style="font-weight: 300;
-    ">To add a qualification enter <strong>the Lars number</strong> or <strong>course subject</strong>.</h2>
-
-
-
-
-<section class="govuk-table" style="font-size: 14px;margin-top: 30px">
-
-
-            <div class="header-search-content" style="font-size: 14px;">
-                <form action="add-qualification1" class="site-search ui-front" id="header-search" method="post">
-
-                    <div class="search-input-wrapper govuk-form-group--error">
-
-                        <div class="govuk-form-group" style="height:40px;">
-                            <label class="govuk-label" for="address-line-2" style="font-size: 14px">
-                            </label>
-                            <div class="select-editable">
-                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
-                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
-                    </span>
-
-                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
-                         Wrong Lars number. Valid Lars number has 8 digits and no letters.
-                    </span>
-                                <!--<section class="govuk-form-group govuk-grid-column-one-half" style="padding-left: 0; float: left;width: 20%;padding-right:5px">
-                                    <select class="govuk-select" id="radius" name="radius">
-
-
-                                        <option value="0" selected="">Select level</option>
-                                        <option value="LV1">Entry level - Skills for Life</option>
-                                        <option value="LV1">Level 1 - First certificate </option>
-                                        <option value="LV2">Level 2 - GCSE/O level</option>
-                                        <option value="LV3">Level 3 - A level/Access to higher education diploma</option>
-                                        <option value="LV4">Level 4 - Certificate of higher education/HNC</option>
-                                        <option value="LV5">Level 5 - Foundation degree/HND</option>
-                                        <option value="LV6">Level 6 - Degree/Graduate diploma</option>
-                                        <option value="LV7">Level 7 - Masters Degree/Postgraduate diploma</option>
-                                        <option value="LV8">Level 8 - Doctorate/PhD</option>
-
-                                    </select>
-                                </section>-->
-                                <!--<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 40%;float: left;">-->
-								
-				
-										<input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;"/>
-									
-                            </div>
-                        </div>
-						<div class="govuk-form-group">
-                        <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-bottom: 30px;clear:both;margin-top:20px;">
-                    </div>
-
-                </form>
-
-            </div>
-
-    <hr>
-    <h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;
-    ">Alternatively search for <strong><a href="non-regulated-provision">Non regulated provision</a> </strong>(including community learning).</h2>
-
-
-
-</section>
-
-
-
-</header>
-</div>
-
-</div>
-
-<!--SPLIT-->
-
-<div id="results-cont" class="govuk-width-container" style="margin-top: -80px;margin-left: auto;margin-right: auto;display:none;">
+<div class="govuk-width-container" style="margin-top: 20px;margin-left: 0;margin-right: 0">
 <h1 class="govuk-heading-l" style="padding-bottom: 0;margin-bottom: 0;font-size: 24px;position: relative;
     top: 21px;
-    ">Search results (<b id="count"></b>) for</h1>
+    ">Search results (8) for</h1>
 <section class="govuk-grid-row" style="font-size: 14px;margin-bottom: 0">
 
 
@@ -649,8 +518,12 @@ function doSearch(text, json) {
 
                                     </select>
                                 </section>-->
+                                	<div class="select-editable">
+										<ul id="course-list">
+										
+										</ul>
 										<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject"/>
-								
+									</div>
                             </div>
                         </div>
                         <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
@@ -659,9 +532,9 @@ function doSearch(text, json) {
                 </form>
 
             </div>
-<!--
+
     <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Community learning</label> </div> </div>
--->
+
 
 
 </section>
@@ -673,15 +546,32 @@ function doSearch(text, json) {
 <div class="govuk-grid-row">
 
 
-
-
-
-
-
 <div class="govuk-grid-column-one-third">
-
-
     <div class="filter mobilecollapse panel panel-default collapsable">
+        <div class="panel-heading govuk-option-select">
+
+                    <div class="option-select-label" style="color: inherit;text-decoration: none;"><p style="font-weight: 600;padding-left: 5px;margin-top: 10px;margin-bottom: 3px">Awarding organisation</p></div>
+                <a data-toggle="collapse" href="#organisationname" aria-expanded="true" aria-controls="organisationname" class="clearfix"> <span class="glyphicon glyphicon-chevron-up pull-right"></span>
+                    <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                </a>
+        </div>
+        <div class="panel-collapse collapse in" id="organisationname">
+            <div class="panel-body">
+                <div class="link-list list-group">
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BNCFE">NCFE (6)</a>
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BBIIAB">BIIAB (3)</a>
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BFocus%20Awards%20Limited">Focus Awards Limited (2)</a>
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BPearson%20Education%20Ltd">Pearson Education Ltd (1)</a>
+                    <a class="list-group-item more-link text-right" href="javascript:void(0)" style="text-align: right">
+                        Show more
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="filter mobilecollapse panel panel-default collapsable" style="margin-top: 20px">
         <div class="panel-heading govuk-option-select">
 
             <div class="option-select-label" style="color: inherit;text-decoration: none;"><p style="font-weight: 600;padding-left: 5px;margin-top: 10px;margin-bottom: 3px">Level</p></div>
@@ -705,42 +595,6 @@ function doSearch(text, json) {
 
 
 
-    <div class="filter mobilecollapse panel panel-default collapsable" style="margin-top: 20px">
-        <div class="panel-heading govuk-option-select">
-
-                    <div class="option-select-label" style="color: inherit;text-decoration: none;"><p style="font-weight: 600;padding-left: 5px;margin-top: 10px;margin-bottom: 3px">Awarding organisation</p></div>
-                <a data-toggle="collapse" href="#organisationname" aria-expanded="true" aria-controls="organisationname" class="clearfix"> <span class="glyphicon glyphicon-chevron-up pull-right"></span>
-                    <span class="glyphicon glyphicon-chevron-down pull-right"></span>
-                </a>
-        </div>
-        <div class="panel-collapse collapse in" id="organisationname">
-            <div class="panel-body">
-                <div class="link-list list-group check-b" style="height: 280px;overflow-y: scroll; ">
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">City and Guilds of London Institute (5682)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Pearson Education Ltd (4694)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">OCR (2589)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">NCFE (1460)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">VTCT (1142)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">ABC Awards (1111)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">NOCN (1079)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">WJEC-CBAC (1016)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">AQA Education (1015)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Pearson EDI (944)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">AIM Awards (943)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Ascentis (935)</label> </div> </a>
-                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Excellence, Achievement &amp; Learning Limited (710)</label> </div> </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
 </div>
 
 
@@ -750,14 +604,14 @@ function doSearch(text, json) {
             <span style="font-weight: 600">Sort by:</span>
         </li>
         <li class="sort-list-item">
-            <a href="#">
+            <a href="/Search?category=Qualifications&amp;sort=relevance-Descending">
                 Relevance
                 <span class="glyphicon glyphicon-triangle-bottom"></span>
 
             </a>
         </li>
         <li class="sort-list-item">
-            <a href="#">
+            <a href="/Search?category=Qualifications&amp;sort=key-Ascending">
                 Lars Number
 
             </a>
@@ -777,11 +631,648 @@ function doSearch(text, json) {
     </ul>
 
 
-<ul id="searchResultsList" class="list-group search-results">
+<ul id="searchResults" class="list-group search-results">
+<br>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="9761">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/9761?category=qualifications">EAL Level 4 NVQ in Radio Production</a>
+                </h3>
+            </div>
 
 
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    1002184X
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 4
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    City and Guilds of London Institute
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>0
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="20854">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/20854?category=qualifications">Pearson Edexcel Level 3 Award in Understanding the Principles and Practices of Learning and Development (QCF)</a>
+                </h3>
+            </div>
 
 
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60019827
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 3
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    NCFE
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-c036181c-f8ad-4e66-987b-23c48ed3fc59">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>6
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>True
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-c036181c-f8ad-4e66-987b-23c48ed3fc59">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="19621">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/19621?category=qualifications">IAM Level 3 Certificate in Principles of Business and Administration (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60004344
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 3
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    Focus Awards Limited
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-e8854444-e442-4529-af06-3701fd39f1d0">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>17
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>True
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-e8854444-e442-4529-af06-3701fd39f1d0">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="32194">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/32194?category=qualifications">Skillsfirst Level 2 Certificate in Principles of Working in Mental Health (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60127831
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 2
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    Focus Awards Limited
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-c1300944-5d06-4899-ba78-47b30d4d4faa">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>17
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-c1300944-5d06-4899-ba78-47b30d4d4faa">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="33867">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/33867?category=qualifications">CCNQ Level 1 Award In The Introduction to Powerboat Techniques (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60142583
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 1
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    City and Guilds of London Institute
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-10910ee9-de32-4db3-a9cf-d7db9ad5fca8">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>1
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-10910ee9-de32-4db3-a9cf-d7db9ad5fca8">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="4641">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/4641?category=qualifications">Skillsfirst Level 1 NVQ Certificate in Customer Service (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    50090082
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 1
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    Focus Awards Limited
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-79e45723-3420-4f43-ac55-4acd59c43a82">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>22
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-79e45723-3420-4f43-ac55-4acd59c43a82">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="32644">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/32644?category=qualifications">SFEDI Awards Level 5 Award In Logistics and Transport (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60132073
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 5
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    City and Guilds of London Institute
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-a010f226-2ba1-4fa3-97b6-76dcd439f588">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>10
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-a010f226-2ba1-4fa3-97b6-76dcd439f588">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="32851">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/32851?category=qualifications">SFEDI Awards Level 4 Certificate In Managing Logistics Operations</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    6013303X
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 4
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    City and Guilds of London Institute
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-eb3726ba-be81-4905-a258-8156fcbce7a6">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>32
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Guided Learning Hours: </span>320
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Total Qualification Time: </span>320
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-eb3726ba-be81-4905-a258-8156fcbce7a6">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="33311">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/33311?category=qualifications">Agored Cymru Level 5 Certificate in Professional Craft Practice (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60139614
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 5
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    City and Guilds of London Institute
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-c1ad3a37-403a-4885-8ff0-92534ce203c2">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>29
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-c1ad3a37-403a-4885-8ff0-92534ce203c2">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
+
+<li class="list-group-item search-result clearfix checkbox" data-list-id="33504">
+    <div class="table collapsable">
+        <div class="details">
+            <div>
+                <h3 class="title">
+                    <a href="/Detail/Index/33504?category=qualifications">IAT Level 4 Diploma In Laboratory Animal Science and Technology (QCF)</a>
+                </h3>
+            </div>
+
+
+            <div>
+                <p>
+                        <span class="item-label">
+                            Lars Number:
+                        </span>
+                    60141517
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Level:
+                        </span>
+                    Level 4
+                </p>
+            </div>
+            <div>
+                <p>
+                        <span class="item-label">
+                            Awarding organisation:
+                        </span>
+                    City and Guilds of London Institute
+                </p>
+            </div>
+        </div>
+        <div class="details moredetails collapse" id="moredetails-4fa597c2-671c-479d-8e84-cac013057f15">
+            <div>
+                <p>
+                    <span class="item-label">Total Credits: </span>120
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="item-label">Regulated By CCEA Regulation: </span>False
+                </p>
+            </div>
+
+        </div>
+        <a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-4fa597c2-671c-479d-8e84-cac013057f15">
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+            Add this qualification
+        </a>
+        <a href="javascript:void(0)" class="remove-compare" title="Remove item">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+
+        <label class="select-compare">
+            <input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared">
+        </label>
+    </div>
+</li>
 </ul>
 
     <div class="pagination page-bottom"><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=1" class="pagination-item current">1</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=2" class="pagination-item">2</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=3" class="pagination-item">3</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=4" class="pagination-item">4</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=5" class="pagination-item">5</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=6" class="pagination-item">6</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=7" class="pagination-item">7</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=8" class="pagination-item">8</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=9" class="pagination-item">9</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=10" class="pagination-item">10</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=2" class="pagination-item pagination-next">Next</a></div>
