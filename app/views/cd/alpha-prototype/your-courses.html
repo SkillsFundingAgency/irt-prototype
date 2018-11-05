@@ -897,6 +897,17 @@ $j(document).ready(function() {
 
 </table>
 
+<script type="text/javascript">
+    function performClick(elemId) {
+        var elem = document.getElementById(elemId);
+        if(elem && document.createEvent) {
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", true, false);
+            elem.dispatchEvent(evt);
+        }
+    }
+</script>
+
 <nav class="side-nav" style="display: none">
     <ul>
         <li class="side-nav__item ">
@@ -904,13 +915,19 @@ $j(document).ready(function() {
     margin-left: 256px;"></i>
         </li>
         <li class="side-nav__item active">
-            <a href="#">Your courses<span class="counter" id="recs">12</span></a>
+           <!-- <a href="#">Your courses<span class="counter" id="recs">12</span></a>-->
+            <a href="#">Your courses<span class="counter" id="">12</span></a>
         </li>
         <li class="side-nav__item ">
-            <a href="#archived">Archived courses<span class="counter">2</span></a>
+            <a href="#archived">Archived courses<span class="counter">0</span></a>
         </li>
         <li class="side-nav__item ">
-            <a href="#" id="upload_csv">Upload CSV</a>
+
+            <a href="#" onclick="performClick('theFile');">
+                <input type="file" id="theFile" style="display: none" />
+                Upload CSV </a>
+
+            <!--<a href="#" id="upload_csv">Upload CSV</a>-->
         </li>
         <!--<li class="side-nav__item ">
             <a href="#">Download CSV</a>
