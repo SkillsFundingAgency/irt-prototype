@@ -238,13 +238,10 @@ GOV.UK prototype kit
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 <script>
 
-
 $(document).ready(function (e) {
-
 	var json = [];
 	
 	$.getJSON("json.html", function(result){
@@ -255,21 +252,17 @@ $(document).ready(function (e) {
 
 	$("#submit1").click(function(e) {
 		e.preventDefault();
-		if ($("#search1").val().length>3) {
+		if ($("#search1").val().length>2) {
 			$("#search-cont").hide();	
 			$("#results-cont").show();
 			$("#search").val($("#search1").val());			
-				doSearch($("#search").val(), json);
-		} 
-		
+			doSearch($("#search1").val(), json);
+		}
 	});
 	
 	$("#submit").click(function(e) {
 		e.preventDefault();
-		if ($("#search").val().length>3) {
-			doSearch($("#search").val(), json);
-		} 
-		
+		if ($("#search").val().length>2) doSearch($("#search").val(), json);
 	});
 	
 	/*$("#course-list").click(function (e) {
@@ -287,7 +280,6 @@ function doSearch(text, json) {
 	
 	var count=0;
 	$("#searchResultsList").empty();
-	$("#search-grp").removeClass("govuk-form-group--error");
 	
 	$.each(json, function(i, value) {
 		
@@ -295,15 +287,12 @@ function doSearch(text, json) {
 		if (val.indexOf(text)>-1) {
 			//$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
 			
-			if (count<20) {
-			
-			$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form?name='+value[1]+'&lars='+value[0]+'&level='+value[2]+'&org='+value[3]+'" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
+			if (count<20)$("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="title"><a href="#">'+value[1]+'</a></h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding organisation: </span>'+value[3]+'</p></div></div><div class="details moredetails collapse" id="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><div><p><span class="item-label">Total Credits: </span>0</p></div><div><p><span class="item-label">Regulated By CCEA Regulation: </span>False</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a><a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a><label class="select-compare"><input type="checkbox" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="" data-original-title="A maximum of 3 items can be compared"></label></div></li>');
 			
 			count++;
-			}
 			
-		} 
 			
+		}
 
 	}); 
 	
@@ -338,7 +327,179 @@ function doSearch(text, json) {
     });
 </script>
 
+<script>
+    var $j = jQuery.noConflict();
+    $j(document).ready(function() {
+        $j("#readmore").click(function(e){
+            $j("span.showit").toggle();
+            e.preventDefault();
+        });
+        $j( "#header-search" ).submit(function( event ) {
+            //alert( "Handler for .submit() called." );
+            /*var miscCharge = $j("#miscCharge").val();
+            if(!isNaN(miscCharge))
+            {
+                //do some thing if it's a number  alert('Yeah a number');
+                var x= (miscCharge).length;
+                //alert(x);
+                if (x == 8){
+                    $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
+                    //alert('NEW ROW CREATED');
+                    $j("#add-course-table").toggle();
+                }
+                else{
+                    //alert('Error number too short or too long');
+                    $j("#number-too-long-error").toggle();
+                }
+            }else{
+                //do some thing if it's NOT a number alert('Error not a number');
+                // $j("#must-be-a-number-error").toggle();
+                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Search results (40816) for </h2>");
+                $j("#add-course-table").toggle();
+            }*/
+            event.preventDefault();
+        });
+        $j('#popup-descript, #popup-url, #popup-req, #popup-cost, #popup-duration,#popup-dur,#popup-start-des, #popup-bring, #popup-flat').popup({
+            opacity: 0.999,
+            color:'#fff',
+            transition: 'all 0.3s'
+        });
 
+
+        setInterval(function(){
+
+            $j(".open-descript").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-descript').popup('show');
+                });
+            });
+
+            $j(".close-descript").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-descript').popup('hide');
+                });
+            });
+
+            $j(".open-url").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-url').popup('show');
+                });
+            });
+
+            $j(".close-url").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-url').popup('hide');
+                });
+            });
+            $j(".open-req").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-req').popup('show');
+                });
+            });
+
+            $j(".close-req").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-req').popup('hide');
+                });
+            });
+            $j(".open-cost").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-cost').popup('show');
+                });
+            });
+
+            $j(".close-cost").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-cost').popup('hide');
+                });
+            });
+            $j(".open-duration").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-duration').popup('show');
+                });
+            });
+
+            $j(".close-duration").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-duration').popup('hide');
+                });
+            });
+
+            $j(".open-flat").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-flat').popup('show');
+                });
+            });
+
+            $j(".close-flat").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-flat').popup('hide');
+                });
+            });
+
+            $j(".open-dur").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-dur').popup('show');
+                });
+            });
+            $j(".close-dur").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-dur').popup('hide');
+                });
+            });
+            $j(".open-start-des").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-start-des').popup('show');
+                });
+            });
+            $j(".close-start-des").each(function (e) {
+                $j(this).click(function (e) {
+                    $j('#popup-start-des').popup('hide');
+                });
+            });
+
+        }, 500);
+
+        $j("#duplicate").click(function(e) {
+            $j(".check:checkbox:checked").each (function(e) {
+                $j("#main-table").append('<tr class="govuk-table__row">'+$j(this).closest("tr").html()+'</tr>');
+                $j(this).prop('checked', false);
+            });
+        });
+
+        $j("#delete").click(function(e) {
+            if (confirm('Are you sure you want to delete selected items?')) {
+                $j(".check:checkbox:checked").each (function(e) {
+                    $j(this).closest("tr").remove();
+                });
+            }
+        });
+
+        $j("#duration-units").change(function (e) {
+            $j("#duration").empty();
+            var i=0;
+            switch ($j("#duration-units").val()) {
+                case "1":
+                    i=31;
+                    $j("#duration").append('<option>Less than one day</option>');
+                    break;
+                case "2":
+                    i=52;
+                    break;
+                case "3":
+                    i=6;
+                    break;
+                case "4":
+                    i=24;
+                    break;
+            }
+            for (x=1; x<=i; x++) {
+                $j("#duration").append('<option>'+x+'</option>');
+            }
+        });
+
+    });
+</script>
 
 <div class="govuk-body" style="color: white;font-size: 16px;
     position: relative;
@@ -386,9 +547,9 @@ function doSearch(text, json) {
             <div class="header-search-content" style="font-size: 14px;">
                 <form action="add-qualification1" class="site-search ui-front" id="header-search" method="post">
 
-                    <div class="search-input-wrapper">
+                    <div class="search-input-wrapper govuk-form-group--error">
 
-                        <div class="govuk-form-group" style="height:40px;" id="search-grp">
+                        <div class="govuk-form-group" style="height:40px;">
                             <label class="govuk-label" for="address-line-2" style="font-size: 14px">
                             </label>
                             <div class="select-editable">
@@ -417,16 +578,14 @@ function doSearch(text, json) {
                                     </select>
                                 </section>-->
                                 <!--<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 40%;float: left;">-->
-								<span id="dob-error" class="govuk-error-message">
-     You must enter at least 4 characters.
-    </span>
+								
 				
-										<input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;" required pattern=".{4,}"   required title="4 characters minimum"/>
+										<input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;"/>
 									
                             </div>
                         </div>
 						<div class="govuk-form-group">
-                        <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-bottom: 30px;clear:both;margin-top:20px;" >
+                        <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-bottom: 30px;clear:both;margin-top:20px;">
                     </div>
 
                 </form>
@@ -723,7 +882,116 @@ function doSearch(text, json) {
 
 
 
+<div id="popup-descript"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <div contenteditable="true" class="govuk-textarea tarea" style="font-size: 14px;height:auto;">
+        <p class="shade">Who is the course for:</p>
+        This course gives you the skills you need to work in jobs such as nursing, social work and residential care. It’s also a route into a degree programme in Focus Awards Limited. Taking in everything from human anatomy and physiology to equality and diversity at work, this Extended Diploma will also give you valuable work experience.
+        <i class="far fa-edit"></i>
+        <p class="shade">What you’ll learn:</p>
+        You'll learn about topics such as public health, sociological and psychological perspectives, caring for children, and young people, and safeguarding adults and promoting independence.  You'll also study:
+        effective communication
+        equality
+        diversity and rights
+        anatomy and physiology
+        social sciences  <i class="far fa-edit"></i>
 
+        <p class="shade">How you’ll learn</p>
+        Most of the course is taught in the classroom, but you’ll do work placements throughout the programme, completing up to 100 hours in a variety of health and social care settings over the year. You’ll also complete a research project.
+        <i class="far fa-edit"></i>
+
+        <p class="shade">Where next?</p>
+        If you pass with merit or distinction, a BTEC Extended Diploma is the equivalent of three A levels, and opens up the opportunity for you to study health, social sciences or a related field at university. It’s a well-respected qualification in business, so it should help you progress within  your workplace, particularly in areas such as human resources.
+        <i class="far fa-edit"></i>
+
+        <p class="shade">What you need to bring?</p>
+        What you need to bring.
+        <i class="far fa-edit"></i>
+
+        <p class="shade">How will you be assessed?</p>
+        How will you be assessed?
+        <i class="far fa-edit"></i>  </div>
+</div>
+    <button class="govuk-button close-descript">Close</button>
+
+</div>
+
+<div id="popup-url"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">http://www.bmet.ac.uk/courses/76000122775958
+    </textarea>
+    <button class="govuk-button close-url">Close</button>
+
+</div></div>
+
+<div id="popup-req"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">You will need four GCSE grades A-C (9-4) including English and Maths. Alternatively, you will have a Diploma in Health & Social Care Level 2 with Merit grade or above.
+    </textarea>
+    <button class="govuk-button close-req">Close</button>
+
+</div></div>
+
+<div id="popup-cost"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">TBC
+    </textarea>
+    <button class="govuk-button close-cost">Close</button>
+
+</div></div>
+
+<div id="popup-duration"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Duration additional information
+    </textarea>
+    <button class="govuk-button close-duration">Close</button>
+
+</div></div>
+
+<!--<div id="popup-dur"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Duration description
+</textarea>
+    <button class="govuk-button close-dur">Close</button>
+
+</div></div>-->
+
+<div id="popup-flat"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <div  class="govuk-textarea tarea" style="font-size: 14px;">
+
+        <p class="shade">Qualification level</p> 2 <i class="far fa-edit"></i>
+
+        <p class="shade">Qualification Type</p>Other regulated <i class="far fa-edit"></i>
+
+        <p class="shade">Awarding organisation</p>NCFE  <i class="far fa-edit"></i>
+
+        <p class="shade">SSA Tier1 Description</p>Health, Public Services and Care <i class="far fa-edit"></i>
+
+        <p class="shade">SSA Tier 2 Description</p>Health and Social Care <i class="far fa-edit"></i>
+
+
+    </div>
+    <button class="govuk-button close-flat" style="clear:both;display:block;margin-top:20px;">Close</button>
+
+</div></div>
+
+
+<div id="popup-start-des"><div style="padding:0;width:100%;">
+    <button class="my_popup_close govuk-button">Insert bullets</button>
+    <button class="my_popup_close govuk-button">Spell check</button>
+    <textarea class="govuk-textarea tarea">Start date additional information
+    </textarea>
+    <button class="govuk-button close-start-des">Close</button>
+
+</div></div>
 
 
 

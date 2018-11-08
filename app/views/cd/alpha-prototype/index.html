@@ -65,7 +65,6 @@ GOV.UK prototype kit
 	
 	.pnl {
 	
-		border:solid 1px #000;
 		padding:20px;
 		margin:5px;
 	
@@ -90,33 +89,35 @@ GOV.UK prototype kit
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Course directory login
-        </h1>
+
 	</div>	
 
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
 	
-		<div class="pnl">
+
+
+            <h1 class="govuk-heading-l" style="padding-top: 20px;">
+                Course directory login
+            </h1>
 	
         <p>
 
 
-            Login to upload and update details of your qualifications and courses, course dates and centres. This covers all accredited courses offered in England.
+            Log in to upload and update details of your qualifications and courses, course dates and centres. This covers all accredited courses offered in England.
         </p>
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="username">
 			Username
 		  </label>
-		  <input class="govuk-input" id="username" name="username" type="text" />
+		  <input class="govuk-input" id="username" name="username" type="text" style="width: 260px" />
 		</div>
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="username">
 			Password
 		  </label>
-		  <input class="govuk-input" id="password" name="password" type="password" />
+		  <input class="govuk-input" id="password" name="password" type="password" style="width: 260px" />
 		</div>		
 		
 		<div class="govuk-form-group">
@@ -131,23 +132,20 @@ GOV.UK prototype kit
 			<a class="govuk-link" href="#">Forgot your password?</a>
 		  </li>
 		</ul>
+
+
+
+        <p>
+            If you don't know your log in details or you need further information please visit the help pages, contact the Course Directory Support Team on 0844 811 5073 or <a href>support@coursedirectoryproviderportal.org.uk</a>. For help with your course data you can contact an information officer at <a href>support@coursedirectoryproviderportal.org.uk</a>.</p>
 		
 		
 	</div>	
+
+
+
+
+
+
 </div>
-    </div>
-
-<div class="govuk-grid-row">
-
-    <div class="govuk-grid-column-full">
-	
-	<div class="pnl">
-
-	        <p>
-                If you don't know your log in details or you need further information please visit the help pages, contact the Course Directory Support Team on 0844 811 5073 or <a href>support@coursedirectoryproviderportal.org.uk</a>. For help with your course data you can contact an information officer at <a href>support@coursedirectoryproviderportal.org.uk</a>.</p>
-	</div>
-</div>
-
-
 </main>
 {% endblock %}

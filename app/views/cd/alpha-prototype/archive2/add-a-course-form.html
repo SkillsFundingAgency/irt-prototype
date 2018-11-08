@@ -161,53 +161,7 @@ GOV.UK prototype kit
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-<script>
-function makeid() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 20; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-  return text;
-}
-
-$(document).ready(function (e) {
-
-	
-	var url_string = window.location.href
-	var url = new URL(url_string);
-	
-	Cookies.set("qual", url.searchParams.get("name"));
-	Cookies.set("lars", url.searchParams.get("lars"));
-	Cookies.set("level", url.searchParams.get("level"));
-	Cookies.set("org", url.searchParams.get("org"));
-	Cookies.set("advanced",0);
-
-	$("#qual").text("Qualification added: "+Cookies.get("qual")+", Level: "+Cookies.get("level")+", "+Cookies.get("org")+", Lars: "+Cookies.get("lars"));
-	
-	$("#advanced").click(function(e) {
-		if ($(this).prop("checked")==true) {
-			Cookies.set("advanced",1);
-		} else {
-			Cookies.set("advanced",0);
-		}
-	});
-	
-	$("#form").submit(function(e) {
-		Cookies.set("descript", $("#descript").val());
-		Cookies.set("learn", $("#learn").val());
-		Cookies.set("next", $("#next").val());
-		Cookies.set("bring", $("#bring").val());
-		Cookies.set("assesed", $("#assesed").val());
-		Cookies.set("entry", $("#entry").val());
-		//$(location).attr("href", "add-a-course-form1");
-	});
-	
-});
-</script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -232,7 +186,6 @@ $(document).ready(function (e) {
 </div>
     <a class="link-back mt" href="add-qualification">Back to qualification search</a>
 
-	<form name="form" action="add-a-course-form1" method="post" id="form">
 
 <div class="govuk-grid-row">
 
@@ -241,7 +194,12 @@ $(document).ready(function (e) {
             Complete your qualification details
         </h1>
 
-        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color: #bfc1c3;" id="qual"></p>
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color: #bfc1c3;">Qualification added: GCE A Level in Biology, Level 3,<br> Assessment & Qualifications Alliance, Lars: 60146254 </p>
+
+
+
+
+
 
 
         <h3 class="govuk-heading-m">Course description</h3>
@@ -253,7 +211,7 @@ $(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
               Who is the course for?<span style="color: red">*</span>
 		  </label>
-		  <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0">This qualification is a basic craft introduction to the plumbing industry. It gives you the knowledge and skills to enable you to achieve a recognised plumbing trade qualification which could lead to a job (for example, as a plumber’s mate) or an apprenticeship. You will need to do another course to become a fully qualified plumber and work on a building site.</textarea>
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6" style="margin-bottom: 0">This qualification is a basic craft introduction to the plumbing industry. It gives you the knowledge and skills to enable you to achieve a recognised plumbing trade qualification which could lead to a job (for example, as a plumber’s mate) or an apprenticeship. You will need to do another course to become a fully qualified plumber and work on a building site.</textarea>
 
             <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label> </div> </div>
 
@@ -268,7 +226,7 @@ $(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
               What you’ll learn
 		  </label>
-		  <textarea class="govuk-textarea descript" id="learn" name="learn" rows="7" style="margin-bottom: 0">
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="7" style="margin-bottom: 0">
               •health & safety training
               •scientific principles of plumbing
               •electrical principles and processes
@@ -288,7 +246,7 @@ $(document).ready(function (e) {
             <label class="govuk-label" for="sub">
                 Where next?
             </label>
-            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0">When you’ve completed the course, you will be recognised as a plumbers’ mate, which can lead to better employment opportunities. You can go straight into work, take a Level 3 NVQ Diploma in Plumbing and Heating, or a Level 3 Diploma in Plumbing Studies.</textarea>
+            <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6" style="margin-bottom: 0">When you’ve completed the course, you will be recognised as a plumbers’ mate, which can lead to better employment opportunities. You can go straight into work, take a Level 3 NVQ Diploma in Plumbing and Heating, or a Level 3 Diploma in Plumbing Studies.</textarea>
             <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label> </div> </div>
 
 
@@ -299,7 +257,7 @@ $(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
               How you’ll learn
 		  </label>
-		  <textarea class="govuk-textarea descript" id="how" name="how" rows="6"></textarea> 
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
 		</div>
 
 
@@ -308,7 +266,7 @@ $(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
 			What you'll need to bring
 		  </label>
-		  <input class="govuk-input descript" id="bring" name="bring" type="text"/>
+		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
 		</div>	
 
 
@@ -316,7 +274,7 @@ $(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
 			How you'll be assessed
 		  </label>
-		  <input class="govuk-input descript" id="assesed" name="assesed" type="text"/>
+		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
 		</div>
 
 
@@ -325,14 +283,14 @@ $(document).ready(function (e) {
             <label class="govuk-label" for="sub">
                 Entry requirements
             </label>
-            <input class="govuk-input descript" id="entry" name="entry" type="text"/>
+            <input class="govuk-input descript" id="sub" name="sub" type="text"/>
         </div>
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Advanced learner loan
             </label>
-            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
+            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
         </div>
 
 
@@ -341,14 +299,14 @@ $(document).ready(function (e) {
         <div class="govuk-form-group">
 
 
-<button type="submit" class="govuk-button govuk-button--start" id="go">
+<a href="add-a-course-form1" role="button" class="govuk-button govuk-button--start">
   Next
-</button>
+</a>
 		</div>
 		
 	</div>	
 
-</form>
+
 <!--
 <div class="govuk-grid-column-one-third" style="position:relative;display:block;;">
 
