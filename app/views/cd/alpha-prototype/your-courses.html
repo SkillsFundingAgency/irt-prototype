@@ -270,7 +270,7 @@ function initPicker() {
 $j(document).ready(function() {
 
 	//add new data //////////////////////
-	if (Cookies.get("name")!=="undefined") {
+	if (Cookies.get("name")!==undefined && Cookies.get("name")!=="" ) {
 		
 		if (Cookies.get("advanced")==1) {
 			var adv="Advanced learner loan available";
@@ -306,12 +306,28 @@ $j(document).ready(function() {
 		}
 			
 		
-		//$j('html, body').animate({
-		 //  scrollTop: $j(document).height()-$j(window).height()},
-		 //  1400,
-		 //  "easeOutQuint"
-		//);
+		/*$j('html, body').animate({ 
+		   scrollTop: $j(document).height()-$j(window).height()}, 
+		   1400, 
+		   "easeOutQuint"
+		);	*/	
 	}
+	
+	Cookies.remove('name');
+	Cookies.remove('level');
+	Cookies.remove('org');
+	Cookies.remove('lars');
+	Cookies.remove('descript');
+	Cookies.remove('date');
+	Cookies.remove('courseid');
+	Cookies.remove('url');
+	Cookies.remove('cost');
+	Cookies.remove('costdescription');
+	Cookies.remove('durationunits');
+	Cookies.remove('duration');
+	Cookies.remove('daynight');
+	Cookies.remove('based');
+	Cookies.remove('venue');
 	
 	///////////////////////////////////////
 
