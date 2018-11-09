@@ -424,15 +424,16 @@ function doSearch(text, json) {
 										<input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;" required pattern=".{4,}"   required title="4 characters minimum"/>
 									
                             </div>
-                        
-                        <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-top:0;float:left;height:42px;" >
+                        </div>
+						<div class="govuk-form-group">
+                        <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-bottom: 30px;clear:both;margin-top:20px;" >
                     </div>
 
                 </form>
 
             </div>
 
-    <hr style="clear:both;">
+    <hr>
     <h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;
     ">Alternatively search for <strong><a href="non-regulated-provision">Non regulated provision</a> </strong>(including community learning).</h2>
 
@@ -493,7 +494,7 @@ function doSearch(text, json) {
 								
                             </div>
                         </div>
-                        <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px;height:42px;margin-left:10px;">
+                        <input id="submit" class="submit govuk-button" type="submit" value="Search" style="font-size: 14px;float: left;margin-bottom: 30px">
                     </div>
 
                 </form>
@@ -530,19 +531,11 @@ function doSearch(text, json) {
             </a>
         </div>
         <div class="panel-collapse collapse in" id="organisationname">
-            <div class="panel-body" style="border:solid 1px #ddd;height:auto;">
-                    <div class="link-list list-group check-b" >
-                   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">All</label> </div> </span>
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Entry Level</label> </div> </span>
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 1</label> </div> </span>
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 2</label> </div> </span>
-				   
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 3</label> </div> </span>
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 4</label> </div> </span>
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 5</label> </div> </span>
-				   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 6</label> </div> </span>
-				   <span class="list-group-item" style="border:none;margin-bottom:15px;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Level 7</label> </div> </span>
-               
+            <div class="panel-body">
+                <div class="link-list list-group">
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BNCFE">Level 3 (16)</a>
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BBIIAB">Level 4 (13)</a>
+                    <a class="list-group-item" href="/Search?category=Qualifications&amp;query=Playwork&amp;sort=-None&amp;filters%5B0%5D=status%2BAvailable%20to%20learners&amp;filters%5B1%5D=ssa%2BChild%20development%20and%20well-being&amp;filters%5B2%5D=organisationname%2BFocus%20Awards%20Limited">Level 5 (2)</a>
                 </div>
 
             </div>
@@ -562,21 +555,21 @@ function doSearch(text, json) {
                 </a>
         </div>
         <div class="panel-collapse collapse in" id="organisationname">
-            <div class="panel-body" style="border:solid 1px #ddd;">
+            <div class="panel-body">
                 <div class="link-list list-group check-b" style="height: 280px;overflow-y: scroll; ">
-                   <span class="list-group-item" style="border:none;"> <div class="govuk-checkboxes__item" > <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">City and Guilds of London Institute (5682)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Pearson Education Ltd (4694)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">OCR (2589)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">NCFE (1460)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">VTCT (1142)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">ABC Awards (1111)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">NOCN (1079)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">WJEC-CBAC (1016)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">AQA Education (1015)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Pearson EDI (944)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">AIM Awards (943)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Ascentis (935)</label> </div> </span>
-                   <span class="list-group-item"  style="border:none;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #000">Excellence, Achievement &amp; Learning Limited (710)</label> </div> </span>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">City and Guilds of London Institute (5682)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Pearson Education Ltd (4694)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">OCR (2589)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">NCFE (1460)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">VTCT (1142)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">ABC Awards (1111)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">NOCN (1079)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">WJEC-CBAC (1016)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">AQA Education (1015)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Pearson EDI (944)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">AIM Awards (943)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Ascentis (935)</label> </div> </a>
+                   <a class="list-group-item" href="/Search?category=Qualifications&amp;sort=-None&amp;filters%5B0%5D=organisationname%2BPearson%20Education%20Ltd"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5">Excellence, Achievement &amp; Learning Limited (710)</label> </div> </a>
                 </div>
 
             </div>

@@ -302,23 +302,12 @@ $j(document).ready(function (e) {
 
 	$("#qual").text("Qualification added: "+Cookies.get("qual")+", Level: "+Cookies.get("level")+", "+Cookies.get("org")+", Lars: "+Cookies.get("lars"));
 	
-	Cookies.set("based", "classroom");
+	Cookies.set("based", "Classroom based");
 	Cookies.set("time", "Full-time");
 	Cookies.set("daynight", "Daytime/working hours");
 	Cookies.set("venue", "");
 	
 	$j("#form").submit(function (e) {
-		
-		if ((Cookies.get("based")=="classroom") && $j(".venue:checked").length==0) {
-			alert("Please select a venue.");
-			return false;
-		}
-		
-		if ((Cookies.get("based")=="work") && $j(".venue:checked").length==0) {
-			alert("Please select a region.");
-			return false;
-		}		
-		
 		Cookies.set("name",$j("#name").val());
 		Cookies.set("courseid",$j("#courseid").val());
 		Cookies.set("date",$j("#datepicker").val());
@@ -344,8 +333,7 @@ $j(document).ready(function (e) {
 		if ($j("#years").val().trim()!=="") {
 			Cookies.set("duration",$j("#years").val());
 			Cookies.set("durationunits","Years");
-		}
-			
+		}		
 	});
 	
 });
