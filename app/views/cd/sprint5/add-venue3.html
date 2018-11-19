@@ -89,23 +89,7 @@ GOV.UK prototype kit
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
 
-$(document).ready(function (e) {
-
-	var url_string = window.location.href
-	var url = new URL(url_string);
-	
-	$("#name").val(url.searchParams.get("name"));
-	$("#address-line-1").val(url.searchParams.get("street1"));
-	$("#address-line-2").val(url.searchParams.get("street2"));
-	$("#address-town").val(url.searchParams.get("city"));
-	$("#address-postcode").val(url.searchParams.get("pc"));
-	
-
-});
-
-</script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <div class="govuk-body" style="color: white;font-size: 16px;
@@ -123,7 +107,7 @@ $(document).ready(function (e) {
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-venues">Venues</li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Course directory edit venue</li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Course directory add a venue</li>
 
 
     </ol>
@@ -134,43 +118,45 @@ $(document).ready(function (e) {
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Edit venue details
+           Edit a venue
         </h1>
-
-<div class="">
-
-
-    <table class="govuk-table">
-
-        <tr>
-
-        <th class="govuk-table__header" scope="col">Name</th>
-        <td class="govuk-table__cell">  London City College</td>
-        <td class="govuk-table__cell">  <a href="add-venue2"> Change</a><span class="govuk-visually-hidden"> name</span></td>
+		
+		
+	
 
 
-    </tr>
-        <tr>
 
-            <th class="govuk-table__header" scope="col">Venue address</th>
-            <td class="govuk-table__cell">  72 Guild Street<br>
-                London<br>
-                SE23 6FH</td>
-            <td class="govuk-table__cell">  <a href="add-venue3"> Change</a><span class="govuk-visually-hidden"> name</span></td>
+        <fieldset class="govuk-fieldset">
+            <h2 class="govuk-heading-m">
+                What is your address?
+            </h2>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
 
-
-        </tr>
-    </table>
+            </legend>
 
 
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="address-postcode">
+                    Postcode
+                </label>
+                <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text">
+            </div>
+
+
+            <a href="add-venue-select-address" type="submit" class="govuk-button">
+                Find address
+            </a>
+
+        </fieldset>
+
+      
+		<a href="add-venue1">I cannot find my post code</a>
 
 
 
 		
-
-
-
-		
+				<div class="govuk-form-group">
 
 
 
