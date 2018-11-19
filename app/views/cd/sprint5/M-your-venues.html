@@ -73,6 +73,26 @@ GOV.UK prototype kit
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
+<script>
+
+
+$(document).ready(function (e) {
+
+	
+	var url_string = window.location.href
+	var url = new URL(url_string);
+	
+	if (url.searchParams.get("addr")=="1") {
+
+		$(".addr").each(function(e) {
+			$(this).show();
+		});
+	}
+
+});
+
+</script>
+
 <div class="govuk-body" style="color: white;font-size: 16px;
     position: relative;
     top: -88px;
@@ -100,6 +120,14 @@ GOV.UK prototype kit
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
+	<div class="govuk-warning-text addr" style="display:none;margin-top:20px;">
+  <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Notice</span>
+    11 Orwell Court, Pownall Road, London
+  </strong>
+</div>
+	
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
             Your venues
         </h1>
@@ -136,27 +164,39 @@ GOV.UK prototype kit
                  
                       <div class="govuk-checkboxes__item">
                           <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >London NW3 3PU&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">View/Edit &gt;</a></label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Stratford campus<br/>
+Welfare Road<br/>
+Stratford<br/>
+Greater London<br/>
+E15 4H<br/><a href="edit-venue?name=Stratford campus&street1=Welfare Road&street2=Stratford&city=Greater London&pc=E15 4H">Edit &gt;</a></label>
                       </div>
 					  
                       <div class="govuk-checkboxes__item">
                           <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Belfast BE22 4ON&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">View/Edit &gt;</a></label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Eastleigh campus<br/>
+Chestnut Avenue<br/>
+Eastleigh<br/>
+Hampshire<br/>
+SO50 5FS<br/><a href="edit-venue?name=Eastleigh campus&street1=Chestnut Avenue&street2=Eastleigh&city=Hampshire&pc=SO50 5FS">Edit &gt;</a></label>
                       </div>
 
 					  <div class="govuk-checkboxes__item">
                           <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Hull HU22 7TD&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">View/Edit &gt;</a></label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Salford campus<br/>
+Lissadel Street<br/>
+Salford<br/>
+M6 6AP<br/><a href="edit-venue?name=Salford campus&street1=Lissadel Street&street2=&city=Salford&pc=M6 6AP">Edit &gt;</a></label>
                       </div>
 					  
-                      <div class="govuk-checkboxes__item">
+					  <div class="govuk-checkboxes__item addr" style="display:none;">
                           <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Birmingham B9 8FD&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">View/Edit &gt;</a></label>
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Mars Spiders
+11 Orwell Court<br/>
+Pownall Road<br/>
+London<br/>
+E8 4PS<br/><a href="edit-venue?name=Salford campus&street1=Lissadel Street&street2=&city=Salford&pc=M6 6AP">Edit &gt;</a></label>
                       </div>
-
 					  
-
-
               </div>
 
       <div class="govuk-form-group" style="margin-top:30px;">
