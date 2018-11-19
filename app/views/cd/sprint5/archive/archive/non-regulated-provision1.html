@@ -1,0 +1,549 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+
+
+<style xmlns="http://www.w3.org/1999/html">
+
+
+    .panel-collapse ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    .panel-collapse ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0,0,0,.5);
+        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
+
+
+    .list-inline,#searchResults{padding: 0}
+    .details p {
+        margin-bottom: 0;
+    }
+    .details h3{
+    padding: 0;
+        margin: 0;
+    }
+    .pagination .pagination-item {
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-decoration: underline;
+    }
+    .sort-order,#searchResults,.header-search-content{margin-top: 0;padding-top: 0;margin-bottom: 0;padding-bottom: 0}
+    .govuk-checkboxes__label::before {
+        left: 7px;
+    }
+    .govuk-checkboxes{
+    position: relative;
+        top: -25px;
+        font-size: 12px;
+    }
+    .govuk-grid-column-one-third .list-group{border-bottom: 2px solid #ddd;}
+    a.list-group-item {border-top: none;border-bottom: none}
+    .govuk-option-select {
+        background-color: #dee0e2;
+        padding: 5px;
+    }
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .sort-list-item+.sort-list-item {
+        border-left: 2px solid #dee0e2;
+    }
+    .title a {color: inherit;text-decoration: none}
+    .moredetails{display: none}
+    .list-group p {font-size: 14px;}
+    .select-compare{display: none}
+    .list-inline>li {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .enrol-text {
+        position: relative;top: -25px; font-size: 14px;
+    }
+
+    @media all and (max-width: 640px) {
+        .enrol-text {
+            margin-top:12px;
+        }
+        .share-links li {
+            margin:5px !important;
+        }
+    }
+
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before  {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+    th.govuk-table__header, td.govuk-table__cell {
+        width: 193px;
+    }
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        border: 2px solid  #bfc1c3;
+    }
+    span{font-size: 14px}
+    textarea {width: 500px; font-size: 14px; height: 140px}
+    .foo123{border: 2px solid hotpink}
+    #main-table td:nth-child(1){padding-left: 30px;}
+    #main-table td:nth-child(2){background-color: #bfc1c3;padding-left: 30px; padding-right: 10px}
+    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
+    #main-table td:nth-child(4){ background-color: #bfc1c3;padding-left: 20px}
+    #main-table td:nth-child(5){ background-color: #bfc1c3;padding-left: 20px}
+    #main-table td:nth-child(6){padding-left: 20px}
+    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
+
+    .tarea {
+        width:40vw;
+        height: 500px;
+        resize:none;
+    }
+    .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
+
+
+    .govuk-form-group--error {
+        border-left: none;
+    }
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 8px 15px 5px 0;}
+    .govuk-checkboxes{margin-left: 25px;}
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 0px;
+        padding-top: 10px;
+    }
+	
+/*SEARCH*/
+
+ .select-editable {
+     position:relative;
+     background-color:white;
+     border:solid #eee 2px;
+     width:500px;
+     height:40px;
+	 overflow:visible;
+	 float:left;
+ }
+ .select-editable ul {
+	font-family: Arial, sans-sherif;
+     position:absolute;
+     top:44px;
+     left:0px;
+     width:500px;
+	 max-width:100vw;
+     margin:0;
+	 display:none;
+	 height:auto;
+	 max-height:400px;
+	 z-index:10001;
+	 font-size:17px !important;
+	 cursor:pointer;
+	 padding:0;
+	 border-top:none;
+	 border-right: solid 1px #ccc;
+	 border-left: solid 1px #ccc;
+	 border-bottom: solid 1px #ccc;	 
+	 list-style-type: none;
+	 background-color:#fff;
+	 overflow-y: scroll;
+	 overflow-x: hidden;
+ }
+ 
+  .select-editable li:hover {
+    background-color:#ccc !important;
+ }
+ 
+  .select-editable li {
+     padding: 8px;
+	 height:auto;
+ }
+  
+  
+  .select-editable li:nth-child(even) {
+     background-color: #eee;
+ }
+ 
+ .select-editable input {
+     position:absolute;
+     top:0px;
+     left:0px;
+     width:100px;
+     padding:1px;
+	 padding-left:8px;
+     font-size:17px !important;
+     border:none;
+ }
+ 
+  .select-editable input:focus {
+     outline: 3px solid #FFBF47;
+ }
+ 
+ 
+.select-editable .govuk-input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 40px;
+    margin-right: -40px;
+    float: left;
+    width: 100%;
+}
+
+#searchResultsList {
+	padding-left:5px;
+}
+
+
+    .check-b .list-group-item {
+
+        padding: 0px 15px 0px;
+
+    }
+
+
+
+</style>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+
+<script>
+
+$(document).ready(function (e) {
+
+		$("#level").click(function (e) {
+			if ($(this).is(':checked')) {
+				$(".level").each(function (e) {
+					$(this).prop("checked",true);
+				});
+			} else {
+				$(".level").each(function (e) {
+					$(this).prop("checked",false);
+				});
+			}
+		});
+		
+		$("#lars").click(function (e) {
+			if ($(this).is(':checked')) {
+				$(".lars").each(function (e) {
+					$(this).prop("checked",true);
+				});
+			} else {
+				$(".lars").each(function (e) {
+					$(this).prop("checked",false);
+				});
+			}
+		});		
+		
+		$(".level, .lars").each(function (e) {
+			$(this).change(function (e) {
+				$("#table .roww").hide();
+				$("#table .roww").each(function (e) {
+					var level=$(this).attr("data-level");
+					var lars=$(this).attr("data-lars");
+					if ($('.level[value="'+level+'"]').is(":checked") && $('.lars[value="'+lars+'"]').is(":checked")) {
+						$(this).show();
+					}
+				});
+				if ($(".level").length>$(".level:checked").length) {
+					$("#level").prop("checked",false);
+				} else {
+					$("#level").prop("checked",true);
+				}
+				if ($(".lars").length>$(".lars:checked").length) {
+					$("#lars").prop("checked",false);
+				} else {
+					$("#lars").prop("checked",true);
+				}				
+			})
+		});		
+	
+});
+
+
+</script>
+
+<script>
+    $(window).on('load', function(){
+        var toggle = false;
+        $('.btn').click(function() {
+            toggle = !toggle;
+            if(toggle){
+                $('#A').animate({left: 0});
+            }
+            else{
+                $('#A').animate({left:-400});
+            }
+        });
+    });
+</script>
+
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: relative;
+    top: -88px;
+    padding-left: 80%;">
+    <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a>
+    <a href="/" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
+</div>
+
+<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">
+
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Non regulated provision</a></li>
+
+
+    </ol>
+</div>
+
+
+
+
+
+<!--TABS-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+
+
+<div class="govuk-width-container" style="margin-top: 20px;margin-left: 0;margin-right: 0">
+
+
+
+
+
+<main class="govuk-main-wrapper" style="padding-top: 0">
+
+<div class="govuk-grid-row">
+
+
+<div class="govuk-grid-column-one-third">
+
+
+    <div class="filter mobilecollapse panel panel-default collapsable" style="border: solid 2px #ddd;">
+        <div class="panel-heading govuk-option-select">
+
+            <div class="option-select-label" style="color: inherit;text-decoration: none;"><p style="font-weight: 600;padding-left: 5px;margin-top: 10px;margin-bottom: 3px">Level</p></div>
+            <a data-toggle="collapse" href="#organisationname" aria-expanded="true" aria-controls="organisationname" class="clearfix"> <span class="glyphicon glyphicon-chevron-up pull-right"></span>
+                <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+            </a>
+        </div>
+        <div class="panel-collapse collapse in" id="organisationname">
+            <div class="panel-body">
+                <div class="link-list list-group" style="border: none">
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="level" name="level" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">All</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="0"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Entry level</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="1"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 1</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="2"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 2</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="3"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 3</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="4"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 4</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="5"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 5</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="6"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 6</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check level" name="level" type="checkbox"  value="7"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">Level 7</label> </div>
+												
+								
+				
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="filter mobilecollapse panel panel-default collapsable" style="border: solid 2px #ddd;margin-top:20px;">
+        <div class="panel-heading govuk-option-select">
+
+            <div class="option-select-label" style="color: inherit;text-decoration: none;"><p style="font-weight: 600;padding-left: 5px;margin-top: 10px;margin-bottom: 3px">LARS Category</p></div>
+            <a data-toggle="collapse" href="#organisationname" aria-expanded="true" aria-controls="organisationname" class="clearfix"> <span class="glyphicon glyphicon-chevron-up pull-right"></span>
+                <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+            </a>
+        </div>
+        <div class="panel-collapse collapse in" id="organisationname">
+            <div class="panel-body">
+                <div class="link-list list-group" style="border: none">
+
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="lars" name="lars" type="checkbox" > <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">All</label> </div>				
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="A"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">A - Adult Skills</label> </div>
+				
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="B"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">B - Adult Skills (English, Maths, ESOL)</label> </div>
+
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="E"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">E - Non Adult Skills or Community Learning</label> </div>
+								
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="F"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">F - Community Learning</label> </div>
+
+				<div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check lars" name="lars" type="checkbox" value="G"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;color: #005ea5;padding-left:5px;">G - Non Adult Skills (English, Maths, ESOL)</label> </div>
+				
+												
+	
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="govuk-grid-column-two-thirds" style="padding-left: 0">
+
+	<div class="govuk-grid-column-one-half">
+		<label class="govuk-label govuk-checkboxes__label" style="padding-top:0;">Subject Sector Area Level 1</label>
+		<select class="govuk-select">
+			<option value="0">Publishing</option>
+		</select>
+   </div>
+   
+	<div class="govuk-grid-column-one-half">
+		<label class="govuk-label govuk-checkboxes__label" style="padding-top:0;">Subject Sector Area Level 2</label>
+		<select class="govuk-select">
+			<option value="0">Crafts Creative arts and Design</option>
+		</select>
+   </div> 
+
+	<div class="govuk-grid-column-full" style="margin-top:20px;">   
+	
+		<table  class="govuk-table" style="font-size:15px;" id="table">
+		<thead class="govuk-table__head">
+		<tr class="govuk-table__row">
+			<td class="govuk-table__header" scope="col" style="width:60px;">LARS Ref</td>
+			<td class="govuk-table__header" scope="col" style="width: calc(100% - 180px);">Qualification Title</td>
+			<td class="govuk-table__header" scope="col" style="width:60px;">Level</td>
+			<td class="govuk-table__header" scope="col" style="width:60px;">&nbsp;</td>
+		</tr>
+		</thead>
+		
+		<tbody class="govuk-table__body">
+		
+		<tr class="govuk-table__row roww" data-lars="A" data-level="0" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003071</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Entry Level: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">E</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+		
+		<tr class="govuk-table__row roww" data-lars="B" data-level="1" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003077</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 1: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">1</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+
+		
+		<tr class="govuk-table__row roww" data-lars="E" data-level="2" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003083</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 2: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">2</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+		
+		<tr class="govuk-table__row roww"  data-lars="F" data-level="3" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003089</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 3: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">3</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+
+		<tr class="govuk-table__row roww" data-lars="G" data-level="4" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003007</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 4: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">4</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>
+
+		<tr class="govuk-table__row roww" data-lars="G" data-level="5" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003022</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 5: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">5</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+
+		<tr class="govuk-table__row roww" data-lars="A" data-level="6" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003009</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 6: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">6</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+
+				<tr class="govuk-table__row roww" data-lars="B" data-level="7" style="display:none;">
+			<td class="govuk-table__cell" style="width:60px;">Z0003008</td>
+			<td class="govuk-table__cell" style="width: calc(100% - 180px);">Non regulated Adult skills formula funded provision<br/>Level 7: Crafts Creative Arts and Design: 3 to 4 hrs: PW C</td>
+			<td class="govuk-table__cell" style="width:60px;">7</td>
+			<td class="govuk-table__cell" style="width:60px;"><a href="#">preview</a></td>
+		</tr>	
+		
+		</tbody>
+
+
+</table>	
+	
+	</div>
+   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</header>
+
+
+
+
+
+
+
+
+{% endblock %}

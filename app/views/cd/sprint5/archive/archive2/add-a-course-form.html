@@ -1,0 +1,383 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 8px 15px 5px 0;}
+    .govuk-checkboxes{margin-left: 25px;}
+    .govuk-checkboxes__label {
+        display: block;
+        padding: 0px;
+        padding-top: 10px;
+    }
+
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+	
+	.enrol-text {
+		position: relative;top: -25px; font-size: 14px;
+	}
+	
+	@media all and (max-width: 640px) {
+		.enrol-text {
+			margin-top:12px;
+		}
+		.share-links li {
+			margin:5px !important;
+		}
+	}
+	
+	.pnl {
+	
+		border:solid 1px #000;
+		padding:20px;
+		margin:5px;
+	
+	}
+	
+	h3 {
+		width:100%;
+		margin-bottom:20px;
+		clear:both;
+	}
+    .govuk-date-input__item {
+        width: 60px;
+        margin-right: 40px;
+    }
+    .govuk-input--width-4 {
+        width: 9ex;
+    }
+	
+	/*progress*/
+	.prog-container {
+		float:right;
+		width:100%;
+		height:auto;
+		position:sticky;
+	}
+	
+	.prog-point {
+		width:40px;
+		height:40px;
+		border: solid 1px #ccc;
+		border-radius:40px;
+		clear:both;
+		color:#ccc;
+		font-size:22px;
+		text-align:center;
+		line-height:40px;
+		margin:0 auto;
+	}
+	
+	.prog-point-cont {
+		width:140px;
+		text-align:center;
+	}
+
+	.prog-point-descript {
+		width:100%;
+		text-align:center;
+		margin-top:10px;
+	}	
+	
+	.prog-point.active {
+		border: solid 1px #36D900;
+		background-color: #36D900;
+		color:#fff;
+	}	
+	
+	.prog-line {
+		width:1px;
+		height: 100px;
+		margin:10px 0 10px 70px;
+		border-left: solid 1px #ccc;
+		clear:both;
+	}
+
+    .govuk-label {
+        font-size:24px;
+    }
+
+</style>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: relative;
+    top: -88px;
+    padding-left: 80%;">
+    <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a>
+    <a href="/" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
+</div>
+
+
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Complete your qualification details</a></li>
+
+
+    </ol>
+</div>
+    <a class="link-back mt" href="add-qualification">Back to qualification search</a>
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Complete your qualification details
+        </h1>
+
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color: #bfc1c3;">Qualification added: GCE A Level in Biology, Level 3,<br> Assessment & Qualifications Alliance, Lars: 60146254 </p>
+
+
+
+
+
+
+
+        <h3 class="govuk-heading-m">Course description</h3>
+
+        <!--<p><i class="fas fa-info-circle"></i> We have provided template description you can overwrite below.</p>-->
+        <p><i class="fas fa-info-circle"></i> We’ve written some suggested text to get you started, but you can change it or add to it – just click in the box to edit.</p>
+
+		<div class="govuk-form-group" style="margin-bottom: 0;padding-bottom: 0">
+		  <label class="govuk-label" for="sub">
+              Who is the course for?<span style="color: red">*</span>
+		  </label>
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6" style="margin-bottom: 0">This qualification is a basic craft introduction to the plumbing industry. It gives you the knowledge and skills to enable you to achieve a recognised plumbing trade qualification which could lead to a job (for example, as a plumber’s mate) or an apprenticeship. You will need to do another course to become a fully qualified plumber and work on a building site.</textarea>
+
+            <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label> </div> </div>
+
+
+
+        </div>
+
+
+
+
+				<div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+              What you’ll learn
+		  </label>
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="7" style="margin-bottom: 0">
+              •health & safety training
+              •scientific principles of plumbing
+              •electrical principles and processes
+              •hot & cold water systems
+              •central heating systems
+              •sanitation and drainage
+              •basic installation techniques of plumbing appliances
+          </textarea>
+
+                    <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label> </div> </div>
+
+
+                </div>
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Where next?
+            </label>
+            <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6" style="margin-bottom: 0">When you’ve completed the course, you will be recognised as a plumbers’ mate, which can lead to better employment opportunities. You can go straight into work, take a Level 3 NVQ Diploma in Plumbing and Heating, or a Level 3 Diploma in Plumbing Studies.</textarea>
+            <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label> </div> </div>
+
+
+
+        </div>
+		
+		<div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+              How you’ll learn
+		  </label>
+		  <textarea class="govuk-textarea descript" id="sub" name="sub" rows="6"></textarea> 
+		</div>
+
+
+
+        <div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+			What you'll need to bring
+		  </label>
+		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+		</div>	
+
+
+				<div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+			How you'll be assessed
+		  </label>
+		  <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+		</div>
+
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Entry requirements
+            </label>
+            <input class="govuk-input descript" id="sub" name="sub" type="text"/>
+        </div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Advanced learner loan
+            </label>
+            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
+        </div>
+
+
+
+
+        <div class="govuk-form-group">
+
+
+<a href="add-a-course-form1" role="button" class="govuk-button govuk-button--start">
+  Next
+</a>
+		</div>
+		
+	</div>	
+
+
+<!--
+<div class="govuk-grid-column-one-third" style="position:relative;display:block;;">
+
+	<div class="prog-container" style="font-family: nta, Arial, sans-serif">
+		<div class="prog-point-cont"><div class="prog-point" id="pr_1">1</div><div class="prog-point-descript">Course details</div></div>
+		<div class="prog-line">&nbsp;</div>
+		<div class="prog-point-cont"><div class="prog-point" id="pr_2">2</div><div class="prog-point-descript">Select venue</div></div>
+		<div class="prog-line">&nbsp;</div>
+		<div class="prog-point-cont"><div class="prog-point" id="pr_3">3</div><div class="prog-point-descript">Course description</div></div>
+		<div class="prog-line">&nbsp;</div>
+		<div class="prog-point-cont"><div class="prog-point" id="pr_4">4</div><div class="prog-point-descript">Confirmation</div></div>
+	</div>
+
+</div>-->
+
+		
+	</div>	
+</div>
+</main>
+
+<script>
+
+var $j = jQuery.noConflict();
+
+function check(classs) {
+	var ok=true;
+	$j(classs).each(function (e) {
+		if ($j(this).val().trim()=="") ok=false;
+	});
+	return ok;
+}
+
+$j(document).ready(function (e) {
+
+	$j(".venue").each(function (e) {
+		$j(this).change(function (e) {
+			if ($j(".venue:checked").length==0) {
+				$j("#pr_2").removeClass("active");
+			} else {
+				$j("#pr_2").addClass("active");
+			}
+		});
+	});
+	
+	$j(".details").each(function (e) {
+		$j(this).keyup(function (e) {
+			if (check(".details")) {
+				$j("#pr_1").addClass("active");
+			} else {
+				$j("#pr_1").removeClass("active");
+			}
+		});
+	});
+	
+	$j(".descript").each(function (e) {
+		$j(this).keyup(function (e) {
+			if (check(".descript")) {
+				$j("#pr_3").addClass("active");
+			} else {
+				$j("#pr_3").removeClass("active");
+			}
+		});
+	});	
+	
+	$j(document).scroll(function (e) {
+		$j(".prog-container").css("margin-top", $j(window).scrollTop()-140+"px");
+		if ($j(window).scrollTop()<100) $j(".prog-container").css("margin-top", "0");
+	});
+
+});
+
+</script>
+
+{% endblock %}
