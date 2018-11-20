@@ -90,8 +90,6 @@ GOV.UK prototype kit
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <div class="govuk-body" style="color: white;font-size: 16px;
@@ -115,52 +113,57 @@ GOV.UK prototype kit
     </ol>
 </div>
 
-    <a class="link-back mt" href="add-venue-select-address">Back</a>
+
+    <a class="link-back mt" href="add-venue3">Back</a>
 
 
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add a venue
+            Edit a venue
         </h1>
+		
+		
+        <fieldset class="govuk-fieldset">
+            <h2 class="govuk-heading-m">
+                What is your address?
+            </h2>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+            </legend>
 
 
 
-        <table class="govuk-table">
+            <div class="govuk-form-group">
+                <h3> <span style="font-size: 22px">Postcode</span><br>
+                    SW1A 1AA <a href="add-venue" style="margin-left: 10px;font-weight: 300">Change</a>
 
-            <tr>
-
-                <th class="govuk-table__header" scope="col">Name</th>
-                <td class="govuk-table__cell">  London City College</td>
-                <td class="govuk-table__cell">  <a href="add-venue4"> Change</a><span class="govuk-visually-hidden"> name</span></td>
+                </h3>
 
 
-            </tr>
-            <tr>
-
-                <th class="govuk-table__header" scope="col">Venue address</th>
-                <td class="govuk-table__cell">  72 Guild Street<br>
-                    London<br>
-                    SE23 6FH</td>
-                <td class="govuk-table__cell">  <a href="add-venue5"> Change</a><span class="govuk-visually-hidden"> name</span></td>
+                    <select class="govuk-select based" style="width: 40%"><option value="classroom" selected="">2 addresses found</option><option value="online">12 Orwell Court</option><option value="online">14 Orwell Court</option></select>
 
 
-            </tr>
-        </table>
+            </div>
+
+
+
+
+        </fieldset>
 
       
-		
+		<a href="add-venue1">I cannot find my address in the list</a>
 
 
 
 		
 				<div class="govuk-form-group">
 
-<p>By submitting you confirm your venue name and address are correct.</p>
-<a href="your-venues-new-added" role="button" class="govuk-button">
-  Continue
-</a>
+
+                    <a href="add-venue-confirm-address" role="button" class="govuk-button" style="margin-top: 20px">
+                        Continue
+                    </a>
 		</div>
 		
 	</div>	
