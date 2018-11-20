@@ -90,8 +90,6 @@ GOV.UK prototype kit
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <div class="govuk-body" style="color: white;font-size: 16px;
@@ -115,34 +113,45 @@ GOV.UK prototype kit
     </ol>
 </div>
 
-    <a class="link-back mt" href="add-venue-select-address">Back</a>
-
 
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add a venue
+           Edit a venue
         </h1>
+		
 		
 	
 
 
+
         <fieldset class="govuk-fieldset">
             <h2 class="govuk-heading-m">
-                Confirm your address
+                What is your address?
             </h2>
-		<p>
-		You have selected<br/>
-		11 Orwell Court<br/>
-		Pownall Road<br/>
-		London
-		</p>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+            </legend>
+
+
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="address-postcode">
+                    Postcode
+                </label>
+                <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text">
+            </div>
+
+
+            <a href="add-venue-select-address" type="submit" class="govuk-button">
+                Find address
+            </a>
 
         </fieldset>
 
       
-		
+		<a href="add-venue1">I cannot find my post code</a>
 
 
 
@@ -150,9 +159,7 @@ GOV.UK prototype kit
 				<div class="govuk-form-group">
 
 
-<a href="your-venues-new-added" role="button" class="govuk-button">
-  Continue
-</a>
+
 		</div>
 		
 	</div>	
