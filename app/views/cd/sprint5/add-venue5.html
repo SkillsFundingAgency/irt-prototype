@@ -112,19 +112,20 @@ GOV.UK prototype kit
 
     </ol>
 </div>
-
-
-    <a class="link-back mt" href="add-venue3">Back</a>
-
+    <a class="link-back mt" href="edit-venue">Back</a>
 
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Edit a venue
+           Edit a venue address
         </h1>
 		
 		
+	
+
+
+
         <fieldset class="govuk-fieldset">
             <h2 class="govuk-heading-m">
                 What is your address?
@@ -136,24 +137,21 @@ GOV.UK prototype kit
 
 
             <div class="govuk-form-group">
-                <h3> <span style="font-size: 22px">Postcode</span><br>
-                    SW1A 1AA <a href="add-venue" style="margin-left: 10px;font-weight: 300">Change</a>
-
-                </h3>
-
-
-                    <select class="govuk-select based" style="width: 40%"><option value="classroom" selected="">2 addresses found</option><option value="online">12 Orwell Court</option><option value="online">14 Orwell Court</option></select>
-
-
+                <label class="govuk-label" for="address-postcode">
+                    Postcode
+                </label>
+                <textarea class="govuk-textarea descript" id="descript" name="descript" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;width: 20%" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">NW1 7RE</textarea>
             </div>
 
 
-
+            <a href="add-venue-select-address2" type="submit" class="govuk-button">
+                Find address
+            </a>
 
         </fieldset>
 
       
-		<a href="add-venue1">I cannot find my address in the list</a>
+		<a href="add-venue1">Enter post code manually</a>
 
 
 
@@ -161,9 +159,7 @@ GOV.UK prototype kit
 				<div class="govuk-form-group">
 
 
-                    <a href="edit-venue" role="button" class="govuk-button" style="margin-top: 20px">
-                        Continue
-                    </a>
+
 		</div>
 		
 	</div>	
