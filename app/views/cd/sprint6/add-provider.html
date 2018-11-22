@@ -91,6 +91,24 @@ GOV.UK prototype kit
         background-color: #ececec;
         margin-bottom: 1em;
     }
+
+    .success-container {
+        background-color: green;
+        position: relative;
+        padding:1rem;
+        margin-bottom:1rem;
+        color: white;
+    }
+
+    .success-close {
+        position: absolute;
+        right:16px;
+        top:6px;
+    }
+
+    .success-container p {
+        color: white;
+    }
 	
 	h3 {
 		width:100%;
@@ -144,8 +162,8 @@ GOV.UK prototype kit
 
         <div class="success-container hide">
             <p>Provider added </p>
-            <a href="your-providers-success" id="Close" role="button" class="govuk-button">
-                Close
+            <a href="your-providers-success" id="Close" role="button" class="success-close">
+                Close X
             </a>
         </div>
         <div class="govuk-form-group">
