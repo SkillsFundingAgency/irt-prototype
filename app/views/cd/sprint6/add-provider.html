@@ -69,6 +69,28 @@ GOV.UK prototype kit
 		margin:5px;
 	
 	}
+
+    .row {
+
+    }
+
+    .inline {
+        display: inline-block;
+        padding:1em;
+    }
+
+    .hide {
+        display:none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .provider-details {
+        background-color: #ececec;
+        margin-bottom: 1em;
+    }
 	
 	h3 {
 		width:100%;
@@ -88,6 +110,7 @@ GOV.UK prototype kit
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -116,36 +139,105 @@ GOV.UK prototype kit
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Search UKPRN
+            Add a Provider
         </h1>
-		
-		
-	
-	
+
+        <div class="success-container hide">
+            <p>Provider added </p>
+            <a href="your-providers-success" id="Close" role="button" class="govuk-button">
+                Close
+            </a>
+        </div>
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                UKPRN
+                Enter UKPRN number
             </label>
             <input class="govuk-input" id="name" name="name" type="text" value=""/>
-
         </div>
-
-		
-				<div class="govuk-form-group">
-
-
-<a href="add-provider1" role="button" class="govuk-button">
-  Find
-</a>
+        <div class="govuk-form-group">
+            <a href="#" id="Find" role="button" class="govuk-button">
+              Find
+            </a>
 		</div>
-		
 	</div>	
 
 </div>
+    <div class="govuk-grid-row hide provider-details-container">
 
+        <div class="govuk-grid-column-full provider-details">
+            <div class="grid-row">
+                <div class="inline">
+                <label class="govuk-label" for="sub">
+                    Provider Name
+                </label>
+                <p>NLH PARTNERSHIP LTD</p>
+                    <label class="govuk-label" for="sub">
+                        UKPRN
+                    </label>
+                    <p>10034293</p>
+                    <label class="govuk-label" for="sub">
+                        Provider Type
+                    </label>
+                    <p>College</p>
+                    <label class="govuk-label" for="sub">
+                        Telephone
+                    </label>
+                    <p>07711 872621</p>
+                </div>
+                <div class="inline">
+                    <label class="govuk-label" for="sub">
+                        Address line 1
+                    </label>
+                    <p>1 Heathside Road</p>
+                    <label class="govuk-label" for="sub">
+                        Address line 2
+                    </label>
+                    <p></p>
+                    <label class="govuk-label" for="sub">
+                        Town
+                    </label>
+                    <p>Northwood</p>
+                    <label class="govuk-label" for="sub">
+                        Post code
+                    </label>
+                    <p>HA6 2EE</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="Add" role="button" class="govuk-button">
+            Add
+        </a>
+    </div>
 
 		
-	</div>	
+	</div>
+
 
 </main>
+<script>
+
+  const add = document.getElementById("Add");
+  const find = document.getElementById("Find");
+  const close = document.getElementById("Close");
+
+  const providerDetailsContainer = document.getElementsByClassName('provider-details-container')[0];
+  const successMessage = document.getElementsByClassName('success-container')[0];
+
+  add.addEventListener('click', (e)=> {
+    e.preventDefault();
+    providerDetailsContainer.classList.remove('show');
+    successMessage.classList.add('show');
+  });
+
+  find.addEventListener('click', (e)=> {
+    e.preventDefault();
+    providerDetailsContainer.classList.add('show');
+  });
+
+  close.addEventListener('click', (e)=> {
+    e.preventDefault();
+    successMessage.classList.remove('show');
+  });
+
+</script>
 {% endblock %}
