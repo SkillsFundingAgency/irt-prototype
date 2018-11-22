@@ -152,7 +152,7 @@ GOV.UK prototype kit
             <label class="govuk-label" for="sub">
                 Enter UKPRN number
             </label>
-            <input class="govuk-input" id="name" name="name" type="text" value=""/>
+            <input class="govuk-input" id="Ukprn" name="name" type="text" value=""/>
         </div>
         <div class="govuk-form-group">
             <a href="#" id="Find" role="button" class="govuk-button">
@@ -219,6 +219,7 @@ GOV.UK prototype kit
   const add = document.getElementById("Add");
   const find = document.getElementById("Find");
   const close = document.getElementById("Close");
+  const ukprn = document.getElementById("Ukprn");
 
   const providerDetailsContainer = document.getElementsByClassName('provider-details-container')[0];
   const successMessage = document.getElementsByClassName('success-container')[0];
@@ -226,6 +227,7 @@ GOV.UK prototype kit
   add.addEventListener('click', (e)=> {
     e.preventDefault();
     providerDetailsContainer.classList.remove('show');
+    ukprn.value = '';
     successMessage.classList.add('show');
   });
 
