@@ -106,21 +106,18 @@ GOV.UK prototype kit
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-venues">Venues</li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-venues">Venues</a></li>
 
 
     </ol>
 </div>
 
 
-    <a class="link-back mt" href="add-venue-confirm-address">Back</a>
-
-
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Edit venue name
+            Add venue
         </h1>
 		
 		
@@ -130,19 +127,46 @@ GOV.UK prototype kit
             <label class="govuk-label" for="sub">
                 Venue name
             </label>
-            <textarea class="govuk-textarea descript" id="descript" name="descript" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">London City College</textarea>
+            <input class="govuk-input" id="name" name="name" type="text"/>
 
         </div>
 
 
+        <fieldset class="govuk-fieldset">
+            <h2 class="govuk-heading-m">
+                Venue address
+            </h2>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
 
+            </legend>
+
+
+
+            <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="address-postcode">
+                    Postcode
+                </label>
+  <span id="address-postcode-error" class="govuk-error-message">
+    Enter a real postcode
+  </span>
+                <input class="govuk-input govuk-input--width-10 govuk-input--error" id="address-postcode" name="address-postcode" type="text" value="Not a postcode" aria-describedby="address-postcode-error">
+            </div>
+
+            <a href="add-venue-select-address" type="submit" class="govuk-button">
+                Find address
+            </a>
+
+        </fieldset>
+
+      
+		<a href="add-venue1">Enter address manually</a>
 
 
 
 		
 				<div class="govuk-form-group">
 
-<a href="add-venue-confirm-address" class="govuk-button">Continue</a>
+
 
 		</div>
 		

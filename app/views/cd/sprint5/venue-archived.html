@@ -51,27 +51,27 @@ GOV.UK prototype kit
         height: 400px;
         width: 100%;
     }
-	
-	.enrol-text {
-		position: relative;top: -25px; font-size: 14px;
-	}
-	
-	@media all and (max-width: 640px) {
-		.enrol-text {
-			margin-top:12px;
-		}
-		.share-links li {
-			margin:5px !important;
-		}
-	}
-	
-	.pnl {
-	
-		border:solid 1px #000;
-		padding:20px;
-		margin:5px;
-	
-	}
+
+    .enrol-text {
+        position: relative;top: -25px; font-size: 14px;
+    }
+
+    @media all and (max-width: 640px) {
+        .enrol-text {
+            margin-top:12px;
+        }
+        .share-links li {
+            margin:5px !important;
+        }
+    }
+
+    .pnl {
+
+        border:solid 1px #000;
+        padding:20px;
+        margin:5px;
+
+    }
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -88,142 +88,133 @@ GOV.UK prototype kit
 
 <main id="content" role="main">
 
-<div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Course directory</a></li>
+    <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+            <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Course directory</a></li>
 
 
-    </ol>
-</div>
+        </ol>
+    </div>
 
 
-
-
-<div class="govuk-grid-row">
-
-    <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Your venues
-        </h1>
-	</div>
+    <p style="padding: 15px 20px;  border: 4px solid #11813e;" id="qual"><span class="govuk-heading-m">Venue archived:</span>Bradford College, 33 Hutchinson House, NW3 3PU London</p>
 
 
 
+    <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-full">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l" style="padding-top: 20px;">
+                Your venues
+            </h1>
+        </div>
 
-        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color: #F2F2F2;" id="qual"><span class="govuk-heading-m">Venue archived:</span></h3>Bradford College, 33 Hutchinson House, NW3 3PU London</p>
-
-
-
-        <!--TABS-->
-	
-	<div class="govuk-tabs" data-module="tabs">
-  <h2 class="govuk-tabs__title">
-    Contents
-  </h2>
-
-  <ul class="govuk-tabs__list">
-    <li class="govuk-tabs__list-item">
-      <a class="govuk-tabs__tab" href="#live">
-        Live
-      </a>
-    </li>
-    <li class="govuk-tabs__list-item">
-      <a class="govuk-tabs__tab" href="#archived">
-        Archived
-      </a>
-    </li>
-
-  </ul>
-
-  <section class="govuk-tabs__panel" id="live">
-    
-              <div class="form-group govuk-checkboxes">
-
-                  <div class="govuk-checkboxes__item">
-                      <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                      <label class="govuk-label govuk-checkboxes__label" for="study0" >Bradford College<br> 33 Hutchinson House <br>NW3 3PU <br>London
-                          <br/><a href="edit-venue?name=Stratford campus&street1=Welfare Road&street2=Stratford&city=Greater London&pc=E15 4H">Edit</a></label>
-                  </div>
+        <div class="govuk-grid-column-full">
 
 
 
-                 
-                      <div class="govuk-checkboxes__item">
-                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Stratford campus<br/>
-Welfare Road<br/>
-Stratford<br/>
-Greater London<br/>
-E15 4H<br/><a href="edit-venue?name=Stratford campus&street1=Welfare Road&street2=Stratford&city=Greater London&pc=E15 4H">Edit</a></label>
-                      </div>
-					  
-                      <div class="govuk-checkboxes__item">
-                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Eastleigh campus
-Chestnut Avenue<br/>
-Eastleigh<br/>
-Hampshire<br/>
-SO50 5FS<br/><a href="edit-venue?name=Eastleigh campus&street1=Chestnut Avenue&street2=Eastleigh&city=Hampshire&pc=SO50 5FS">Edit</a></label>
-                      </div>
+            <!--TABS-->
 
-					  <div class="govuk-checkboxes__item">
-                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-                          <label class="govuk-label govuk-checkboxes__label" for="study0" >Salford campus
-Lissadel Street<br/>
-Salford<br/>
-M6 6AP<br/><a href="edit-venue?name=Salford campus&street1=Lissadel Street&street2=&city=Salford&pc=M6 6AP">Edit</a></label>
-                      </div>
-					  
-              </div>
+            <div class="govuk-tabs" data-module="tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
 
-      <div class="govuk-form-group" style="margin-top:30px;">
-      <a href="your-venues-cannot-archive">Archive</a></div>
+                <ul class="govuk-tabs__list">
+                    <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#live">
+                            Live
+                        </a>
+                    </li>
+                    <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#archived">
+                            Archived
+                        </a>
+                    </li>
 
+                </ul>
 
+                <section class="govuk-tabs__panel" id="live">
 
-  </section>
-  
-  
+                    <div class="form-group govuk-checkboxes">
 
-  <section class="govuk-tabs__panel" id="archived">
-
-      <div class="govuk-checkboxes__item">
-          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input">
-          <label class="govuk-label govuk-checkboxes__label" for="study0" >Olympia campus
-              Pownall Street<br/>
-              Bedford<br/>
-              M6 6AP<br/><a href="edit-venue?name=Salford campus&street1=Lissadel Street&street2=&city=Salford&pc=M6 6AP">Edit</a></label>
-      </div>
+                        <div class="govuk-checkboxes__item">
+                            <label class="govuk-label govuk-checkboxes__label" for="study0" >Stratford campus<br/>
+                                Welfare Road<br/>
+                                Stratford<br/>
+                                Greater London<br/>
+                                E15 4H<br/><a href="edit-venue?name=Stratford campus&street1=Welfare Road&street2=Stratford&city=Greater London&pc=E15 4H">Edit</a>
 
 
+                                <br><a href="your-venues-cannot-archive">Archive</a>
+                            </label>
+                        </div>
 
-        <div class="govuk-form-group" style="margin-top:30px;">
-            <a href="#">Restore</a></div>
+                        <div class="govuk-checkboxes__item">
+                            <label class="govuk-label govuk-checkboxes__label" for="study0" >Eastleigh campus<br>
+                                Chestnut Avenue<br/>
+                                Eastleigh<br/>
+                                Hampshire<br/>
+                                SO50 5FS<br/><a href="edit-venue?name=Eastleigh campus&street1=Chestnut Avenue&street2=Eastleigh&city=Hampshire&pc=SO50 5FS">Edit</a>
+                                <br><a href="your-venues-cannot-archive">Archive</a></label>
+                        </div>
+
+                        <div class="govuk-checkboxes__item">
+                            <label class="govuk-label govuk-checkboxes__label" for="study0" >Salford campus<br>
+                                Lissadel Street<br/>
+                                Salford<br/>
+                                M6 6AP<br/><a href="edit-venue?name=Salford campus&street1=Lissadel Street&street2=&city=Salford&pc=M6 6AP">Edit</a>
+                                <br><a href="your-venues-cannot-archive">Archive</a></label>
+                        </div>
+
+                    </div>
+
+                    <div class="govuk-form-group" style="margin-top:30px;">
+                    </div>
+                    <a href="your-venues-archive-confirm">Archive happy path</a>
 
 
 
-  </section>
-
-</div>
-
-<!--END TABS-->
+                </section>
 
 
-        <div class="govuk-form-group" style="margin-top:30px;">
-            <a href="add-venue" role="button" class="govuk-button">
-                + Add a new venue
-            </a>
+
+                <section class="govuk-tabs__panel" id="archived">
+
+                    <div class="govuk-checkboxes__item">
+                        <label class="govuk-label govuk-checkboxes__label" for="study0" >Olympia campus<br>
+                            Pownall Street<br/>
+                            Bedford<br/>
+                            M6 6AP<br><a href="your-venues-restore-confirm">Unarchive</a>
+                        </label>
+                    </div>
+
+
+
+
+
+
+
+                </section>
+
+            </div>
+
+            <!--END TABS-->
+
+
+            <div class="govuk-form-group" style="margin-top:30px;">
+                <a href="add-venue" role="button" class="govuk-button">
+                    + Add a new venue
+                </a>
+            </div>
+
+
         </div>
 
 
-    </div>
-	
 
-		
-	</div>	
+    </div>
 
 
 

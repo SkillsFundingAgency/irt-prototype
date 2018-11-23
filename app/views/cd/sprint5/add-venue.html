@@ -106,8 +106,7 @@ GOV.UK prototype kit
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-venues">Venues</li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Course directory add a venue</li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-venues">Venues</a></li>
 
 
     </ol>
@@ -118,7 +117,7 @@ GOV.UK prototype kit
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add a venue
+            Add venue
         </h1>
 		
 		
@@ -145,15 +144,19 @@ GOV.UK prototype kit
 
             <div class="govuk-form-group">
                 <label class="govuk-label" for="address-postcode">
-                    Postcode
+                    Venue postcode
                 </label>
                 <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text">
             </div>
 
 
+
+
             <a href="add-venue-select-address" type="submit" class="govuk-button">
                 Find address
             </a>
+<br>
+            <a href="add-venue-error" style="color: red;margin-bottom: 20px;display: block">Unhappy path</a>
 
         </fieldset>
 

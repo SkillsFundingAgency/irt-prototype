@@ -6,6 +6,9 @@ GOV.UK prototype kit
 
 {% block content %}
 <style xmlns="http://www.w3.org/1999/html">
+
+    .govuk-checkboxes__label {padding-top:0}
+
     .govuk-related-items {
         margin-top: 30px;
         border-top: 10px solid #005ea5;
@@ -69,90 +72,81 @@ GOV.UK prototype kit
 		margin:5px;
 	
 	}
-	
-	h3 {
-		width:100%;
-		margin-bottom:20px;
-		clear:both;
-	}
-    .govuk-date-input__item {
-        width: 60px;
-        margin-right: 40px;
-    }
-    .govuk-input--width-4 {
-        width: 9ex;
-    }
 
 </style>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <div class="govuk-body" style="color: white;font-size: 16px;
     position: relative;
     top: -88px;
-    padding-left: 80%;">
+    padding-left:80%;">
     <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a>
     <a href="index" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
 </div>
+
 
 
 <main id="content" role="main">
 
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
-        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-venues">Venues</li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Course directory</a></li>
 
 
     </ol>
 </div>
 
-
-    <a class="link-back mt" href="add-venue-confirm-address">Back</a>
+    <a class="link-back mt" href="your-venues">Back</a>
 
 
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Edit venue name
+            Unarchive your venue
         </h1>
-		
-		
+	</div>	
+
+    <div class="govuk-grid-column-full">
 	
 	
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Venue name
-            </label>
-            <textarea class="govuk-textarea descript" id="descript" name="descript" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">London City College</textarea>
+	
+	<!--TABS-->
+	
+<p>We will unarchive:<br><br>
+
+
+    Olympia campus Pownall Street<br>
+    Bedford<br>
+    M6 6AP
+</p>
+
+<!--END TABS-->
+        <div class="govuk-form-group" style="margin-top:30px;">
+            <a href="your-venues" role="button" class="govuk-button" style="margin-right: 10px">
+                Cancel
+            </a>
+
+            <a href="your-venues-new-restored" role="button" class="govuk-button">
+                Continue
+            </a>
+        </div>
+
+        <div class="govuk-form-group" style="margin-top:30px;">
 
         </div>
 
 
-
-
-
-
-		
-				<div class="govuk-form-group">
-
-<a href="add-venue-confirm-address" class="govuk-button">Continue</a>
-
-		</div>
-		
-	</div>	
-
-</div>
-
+    </div>
+	
 
 		
 	</div>	
+
+
+
+
 
 </main>
 {% endblock %}
