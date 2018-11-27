@@ -367,6 +367,7 @@ $j(document).ready(function (e) {
 	});		
 
 	$("#qual").text("Qualification added: "+Cookies.get("qual")+", Level: "+Cookies.get("level")+", "+Cookies.get("org")+", Lars: "+Cookies.get("lars"));
+	$("#reff").val("Qualification added: "+Cookies.get("qual")+", Level: "+Cookies.get("level")+", "+Cookies.get("org")+", Lars: "+Cookies.get("lars"));
 	
 	Cookies.set("based", "classroom");
 	Cookies.set("time", "Full-time");
@@ -463,7 +464,7 @@ $j(document).ready(function (e) {
                Your course reference&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
             </label>
 
-            <textarea class="govuk-textarea descript" id="" name="descript" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">PGCE in Secondary (Mathematics) - Bradford College, Level: 7</textarea>
+            <textarea class="govuk-textarea descript" id="reff" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true"></textarea>
 
         </div>
 
