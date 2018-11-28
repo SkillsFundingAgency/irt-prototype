@@ -663,12 +663,16 @@ $j(document).ready(function (e) {
         </div>
 
 
-
+        <div class="govuk-form-group govuk-form-group--error">
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Course URL
             </label>
+             <span id="national-insurance-number-error" class="govuk-error-message">
+    Enter course URL in the correct format
+  </span>
             <input class="govuk-input details" id="url" name="sub" type="text" required/>
+        </div>
         </div>
 
 
@@ -778,12 +782,10 @@ $j(document).ready(function (e) {
     Publish
 </button>
 		</div>
+		
+	</div>	
 
 
-        <a href="add-a-course-form1-error">Unhappy path submit</a>
-
-
-    </div>
 
 		
 	</div>	
