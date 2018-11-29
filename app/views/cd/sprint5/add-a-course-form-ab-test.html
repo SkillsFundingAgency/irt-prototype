@@ -289,7 +289,7 @@ $j(document).ready(function (e) {
 					}
 	});	
 
-	$j(".online").each(function (e) {
+	/*$j(".online").each(function (e) {
 		$j(this).click(function (e) {
 			$j(".online, .classroom, .work").removeClass(".govuk-colour");
 			$j(".online, .classroom, .work").css("background","#fff");
@@ -322,9 +322,21 @@ $j(document).ready(function (e) {
 			$("#venue, #time, #mode").hide();
 			Cookies.set("based", "work");
 		});
-	});	
+	});	*/
 	
-	/*$j(".dur").each(function (e) {
+	$j("#delivery").change(function (e) {
+		Cookies.set("based", $(this).val());
+	});
+	
+	$j("#attendance").change(function (e) {
+		Cookies.set("daynight", $(this).val());
+	});	
+
+	$j("#time").change(function (e) {
+		Cookies.set("time", $(this).val());
+	});		
+	
+	$j(".dur").each(function (e) {
 		$j(this).on("keyup change", function (e) {
 			var val=$(this).val();
 			$j(".dur").val("");
@@ -332,8 +344,9 @@ $j(document).ready(function (e) {
 			$j(".dur").css("background","#ddd");
 			$j(this).css("background","#fff");
 		});
-	});*/
+	});
 
+	/*
 	$j(".time").each(function (e) {
 		$j(this).click(function (e) {
 			$j(".time").removeClass(".govuk-colour");
@@ -355,7 +368,7 @@ $j(document).ready(function (e) {
 			var value=$(this).text();
 			Cookies.set("daynight", value);
 		});
-	});	
+	});*/	
 
 	$j(".venue").each(function (e) {
 		$j(this).click(function (e) {
@@ -476,12 +489,18 @@ $j(document).ready(function (e) {
 
         <div class="btn-gr">
             <label class="govuk-label">Delivery</label>
-            <button class="govuk-button classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
+            <!--<button class="govuk-button classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
             <button class="govuk-button online" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Online</button>
-            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>
+            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>-->
+			
+			<select class="govuk-select" id="delivery">
+				<option value="classroom">Classroom based</option>
+				<option value="online">Online</option>
+				<option value="work">Work based</option>
+		   </select>
         </div>
 
-        <div class="govuk-form-group" id="date">
+        <div class="govuk-form-group" id="date" style="margin-top:40px;">
             <label class="govuk-label" for="sub">
                 Start date:
             </label>
@@ -717,7 +736,6 @@ $j(document).ready(function (e) {
                     </div>
 
 
-
                 </div>
             </fieldset>
         </div>
@@ -727,9 +745,17 @@ $j(document).ready(function (e) {
 
         <div class="btn-gr">
             <label class="govuk-label">Full time or part time</label>
+			<!--
             <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Full-time</button>
             <button id="venues-show" class="govuk-button govuk-colour time" value="" type="button" style="background:white;color: #000000; border:2px solid black">Part-time</button>
             <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Flexible</button>
+			-->
+			
+			<select class="govuk-select" id="time">
+				<option value="Full-time">Full-time</option>
+				<option value="Part-time">Part-time</option>
+				<option value="Flexible">Flexible</option>
+		   </select>
         </div>
 
 </div>
@@ -740,10 +766,18 @@ $j(document).ready(function (e) {
 		  
 		 <div class="btn-gr">
             <label class="govuk-label">Attendance</label>
-            <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Daytime</button>
+           <!-- <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Daytime</button>
 			<button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:white;color: #000000; border:2px solid black">Evening</button>
             <button id="venues-show" class="govuk-button govuk-colour daynight" value="" type="button" style="background:white;color: #000000; border:2px solid black">Weekend</button>
             <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Day/Block Release</button>
+			-->
+		<select class="govuk-select" id="attendance">
+				<option value="Daytime">Daytime</option>
+				<option value="Evening">Evening</option>
+				<option value="Weekend">Weekend</option>
+				<option value="Day/Block Release">Day/Block Release</option>
+		   </select>
+		   
         </div>
 		
 		</div>
