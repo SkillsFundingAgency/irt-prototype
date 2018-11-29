@@ -984,19 +984,19 @@ $j(document).ready(function() {
 
     <tr class="govuk-table__row" style="border-bottom: solid 2px #dee0e2;">
         <th class="govuk-table__header hdr-cell" style="width:70px;"></th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Status</th>
-		<th class="govuk-table__header hdr-cell" style="width:170px;">Provider course name</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Course ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>		
-		<th class="govuk-table__header hdr-cell" style="width: 180px;">Classroom or online</th>
-		<th class="govuk-table__header hdr-cell" style="width:200px">Start date<!--&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a>--></th>
-		<th class="govuk-table__header hdr-cell" style="width:170px;">Venue</th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Course URL</th>
-		<th class="govuk-table__header hdr-cell" style="width:90px;">Cost</th>
-		<th class="govuk-table__header hdr-cell" style="width:140px;">Cost description</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Duration</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Duration units</th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Full-time or part-time</th>
-        <th class="govuk-table__header hdr-cell" style="width:120px;">Day, night or weekend</th>
+        <th class="govuk-table__header hdr-cell" style="width:120px;">Status</th>
+        <th class="govuk-table__header hdr-cell" style="width:170px;">Course name&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+        <th class="govuk-table__header hdr-cell" style="width:110px;">ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+        <th class="govuk-table__header hdr-cell" style="width: 180px;">Delivery</th>
+        <th class="govuk-table__header hdr-cell" style="width:200px">Start date<!--&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a>--></th>
+        <th class="govuk-table__header hdr-cell" style="width:170px;">Location</th>
+        <th class="govuk-table__header hdr-cell" style="width:120px;">URL&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+        <th class="govuk-table__header hdr-cell" style="width:90px;">Cost</th>
+        <th class="govuk-table__header hdr-cell" style="width:140px;">Cost description</th>
+        <th class="govuk-table__header hdr-cell" style="width:110px;">Duration</th>
+        <th class="govuk-table__header hdr-cell" style="width:110px;">Duration units</th>
+        <th class="govuk-table__header hdr-cell" style="width:120px;">Full-time or part-time</th>
+        <th class="govuk-table__header hdr-cell" style="width:120px;">Attendance</th>
         <th class="govuk-table__header hdr-cell" style="width:210px;">&nbsp;</th>
 		
 		
@@ -1147,18 +1147,18 @@ $j(document).ready(function() {
     <tr class="govuk-table__row" style="border-bottom: solid 2px #dee0e2;">
         <th class="govuk-table__header hdr-cell" style="width:70px;"></th>
 		<th class="govuk-table__header hdr-cell" style="width:120px;">Status</th>
-		<th class="govuk-table__header hdr-cell" style="width:170px;">Provider course name</th>
-		<th class="govuk-table__header hdr-cell" style="width:110px;">Course ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>		
-		<th class="govuk-table__header hdr-cell" style="width: 180px;">Classroom or online</th>
+		<th class="govuk-table__header hdr-cell" style="width:170px;">Course name&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+		<th class="govuk-table__header hdr-cell" style="width:110px;">ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+		<th class="govuk-table__header hdr-cell" style="width: 180px;">Delivery</th>
 		<th class="govuk-table__header hdr-cell" style="width:200px">Start date<!--&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a>--></th>
-		<th class="govuk-table__header hdr-cell" style="width:170px;">Venue</th>
-		<th class="govuk-table__header hdr-cell" style="width:120px;">Course URL</th>
+		<th class="govuk-table__header hdr-cell" style="width:170px;">Location</th>
+		<th class="govuk-table__header hdr-cell" style="width:120px;">URL&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
 		<th class="govuk-table__header hdr-cell" style="width:90px;">Cost</th>
 		<th class="govuk-table__header hdr-cell" style="width:140px;">Cost description</th>
 		<th class="govuk-table__header hdr-cell" style="width:110px;">Duration</th>
 		<th class="govuk-table__header hdr-cell" style="width:110px;">Duration units</th>
 		<th class="govuk-table__header hdr-cell" style="width:120px;">Full-time or part-time</th>
-        <th class="govuk-table__header hdr-cell" style="width:120px;">Day, night or weekend</th>
+        <th class="govuk-table__header hdr-cell" style="width:120px;">Attendance</th>
         <th class="govuk-table__header hdr-cell" style="width:210px;">&nbsp;</th>
 		
 		
@@ -1184,25 +1184,21 @@ $j(document).ready(function() {
 
 
 <tr class="govuk-table__row" style="opacity: 0;height: 0px;border: none;">
-    <th class="govuk-table__header" scope="col" style="width: 69px"></th>
-
-    <th class="govuk-table__header" scope="col" style="">Status</th>
-    <th class="govuk-table__header" scope="col" style="width: 160px">Provider course name</th>
-
-    <th class="govuk-table__header" scope="col" style="width: 70px">Course ID</th>
-    <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 160px">Classroom or online</th>
-
-    <th class="govuk-table__header" scope="col" style="padding-left: 15px;width:180px;">Start date&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a></th>
-    <th class="govuk-table__header" scope="col">Course description</th>
-    <th class="govuk-table__header" scope="col" style="width:120px;">Venue</th>
-    <th class="govuk-table__header" scope="col">Course URL</th>
-    <th class="govuk-table__header" scope="col" style="width:120px;">Cost</th>
-    <th class="govuk-table__header" scope="col">Cost description</th>
-    <th class="govuk-table__header" scope="col">Duration</th>
-    <th class="govuk-table__header" scope="col">Duration units</th>
-    <th class="govuk-table__header" scope="col">Full-time or part-time</th>
-    <th class="govuk-table__header" scope="col">Day, night or weekend</th>
-    <th class="govuk-table__header" scope="col">&nbsp;</th>
+    <th class="govuk-table__header hdr-cell" style="width:70px;"></th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">Status</th>
+    <th class="govuk-table__header hdr-cell" style="width:170px;">Course name&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+    <th class="govuk-table__header hdr-cell" style="width:110px;">ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+    <th class="govuk-table__header hdr-cell" style="width: 180px;">Delivery</th>
+    <th class="govuk-table__header hdr-cell" style="width:200px">Start date<!--&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a>--></th>
+    <th class="govuk-table__header hdr-cell" style="width:170px;">Location</th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">URL&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+    <th class="govuk-table__header hdr-cell" style="width:90px;">Cost</th>
+    <th class="govuk-table__header hdr-cell" style="width:140px;">Cost description</th>
+    <th class="govuk-table__header hdr-cell" style="width:110px;">Duration</th>
+    <th class="govuk-table__header hdr-cell" style="width:110px;">Duration units</th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">Full-time or part-time</th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">Attendance</th>
+    <th class="govuk-table__header hdr-cell" style="width:210px;">&nbsp;</th>
 </tr>
 
 
@@ -1641,25 +1637,21 @@ $j(document).ready(function() {
 
 
 <tr class="govuk-table__row" style="opacity: 0;height: 0px;border: none;">
-    <th class="govuk-table__header" scope="col" style="width: 69px"></th>
-
-    <th class="govuk-table__header" scope="col" style="">Status</th>
-    <th class="govuk-table__header" scope="col" style="width: 160px">Provider course name</th>
-
-    <th class="govuk-table__header" scope="col" style="width: 70px">Course ID</th>
-    <th class="govuk-table__header" scope="col" style="padding-left: 20px;width: 160px">Classroom or online</th>
-
-    <th class="govuk-table__header" scope="col" style="padding-left: 15px;width:180px;">Start date&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a></th>
-    <th class="govuk-table__header" scope="col">Course description</th>
-    <th class="govuk-table__header" scope="col">Venue</th>
-    <th class="govuk-table__header" scope="col">Course URL</th>
-    <th class="govuk-table__header" scope="col" style="width:120px;">Cost</th>
-    <th class="govuk-table__header" scope="col">Cost description</th>
-    <th class="govuk-table__header" scope="col">Duration</th>
-    <th class="govuk-table__header" scope="col">Duration units</th>
-    <th class="govuk-table__header" scope="col">Full-time or part-time</th>
-    <th class="govuk-table__header" scope="col">Day, night or weekend</th>
-    <th class="govuk-table__header" scope="col">&nbsp;</th>
+    <th class="govuk-table__header hdr-cell" style="width:70px;"></th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">Status</th>
+    <th class="govuk-table__header hdr-cell" style="width:170px;">Course name&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+    <th class="govuk-table__header hdr-cell" style="width:110px;">ID&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+    <th class="govuk-table__header hdr-cell" style="width: 180px;">Delivery</th>
+    <th class="govuk-table__header hdr-cell" style="width:200px">Start date<!--&nbsp;&nbsp;<a href="#" class="open-startdate"><i class="fa fa-info-circle"></i></a>--></th>
+    <th class="govuk-table__header hdr-cell" style="width:170px;">Location</th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">URL&nbsp;&nbsp;<a href="#" class="open-courseid"><i class="fa fa-info-circle"></i></a></th>
+    <th class="govuk-table__header hdr-cell" style="width:90px;">Cost</th>
+    <th class="govuk-table__header hdr-cell" style="width:140px;">Cost description</th>
+    <th class="govuk-table__header hdr-cell" style="width:110px;">Duration</th>
+    <th class="govuk-table__header hdr-cell" style="width:110px;">Duration units</th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">Full-time or part-time</th>
+    <th class="govuk-table__header hdr-cell" style="width:120px;">Attendance</th>
+    <th class="govuk-table__header hdr-cell" style="width:210px;">&nbsp;</th>
 </tr>
 
 </thead>

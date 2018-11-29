@@ -454,7 +454,7 @@ $j(document).ready(function (e) {
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                Course display name&nbsp;&nbsp;<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>
+                Course name&nbsp;&nbsp;<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>
             </label>
 
             <textarea class="govuk-textarea descript" id="reff" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true"></textarea>
@@ -463,7 +463,7 @@ $j(document).ready(function (e) {
 
         <div class="govuk-form-group" style="clear:both;">
             <label class="govuk-label" for="sub">
-                Your course reference&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
+                ID&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
             </label>
             <input class="govuk-input details" id="name" name="name" type="text" required/>
 
@@ -472,7 +472,7 @@ $j(document).ready(function (e) {
 
 
         <div class="btn-gr">
-            <label class="govuk-label">Classroom or online</label>
+            <label class="govuk-label">Delivery</label>
             <button class="govuk-button classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
             <button class="govuk-button online" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Online</button>
             <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>
@@ -666,7 +666,7 @@ $j(document).ready(function (e) {
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                Course URL
+                URL&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
             </label>
             <input class="govuk-input details" id="url" name="sub" type="text" required/>
         </div>
@@ -752,7 +752,7 @@ $j(document).ready(function (e) {
 
 		  
 		 <div class="btn-gr">
-            <label class="govuk-label">Day, night or weekend</label>
+            <label class="govuk-label">Attendance</label>
             <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Daytime</button>
 			<button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:white;color: #000000; border:2px solid black">Evening</button>
             <button id="venues-show" class="govuk-button govuk-colour daynight" value="" type="button" style="background:white;color: #000000; border:2px solid black">Weekend</button>
@@ -829,7 +829,7 @@ $j(document).ready(function (e) {
 		  <fieldset class="govuk-fieldset" aria-describedby="dob-hint dob-error" role="group">
 			<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
 			<span id="pcerr" class="govuk-error-message" style="display:none;">
-			  Wrong post code.
+			  Enter a real postcode
 			</span>
 			<div class="govuk-date-input" id="pcc">
 			  <div class="govuk-date-input__item">
@@ -837,7 +837,7 @@ $j(document).ready(function (e) {
 				  <label class="govuk-label govuk-date-input__label" for="pc">
 					Postcode
 				  </label>
-				  <input class="govuk-input govuk-date-input__input govuk-input--width-8" style="width:100px;" id="post" name="pc" type="text" value="" pattern="[0-9,a-z]*">
+				  <input class="govuk-input govuk-date-input__input govuk-input--width-8 govuk-input--error" style="width:100px;" id="post" name="pc" type="text" value="" pattern="[0-9,a-z]*">
 				</div>
 			  </div>
 			  </div>
