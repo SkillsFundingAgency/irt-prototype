@@ -108,8 +108,27 @@ homepageUrl: "#"
     .govuk-header__container {
         border:none;
     }
-    .govuk-heading-l {
+
+    .govuk-checkboxes__input {
+        height:38px;
+        width:38px;
+
+    }
+
+    .govuk-checkboxes__label {
+        font-size:16px;
+    }
+    .govuk-heading-l,
+    .search-instruction{
         color: white;
+    }
+
+    .pagination {
+        text-align: right;
+    }
+
+    .pagination a {
+        padding :0 .25rem;
     }
 
     .cd-brand-masthead {
@@ -335,6 +354,7 @@ homepageUrl: "#"
             </ol>
         </div>
         <h1 class="govuk-heading-l">Find a Qualification</h1>
+        <h2 class="govuk-heading-s search-instruction">Enter a search term or LARS/QAN number to begin</h2>
         <form action="add-qualification1" class="site-search ui-front" id="header-search" method="post">
 
             <div class="search-input-wrapper">
@@ -348,7 +368,7 @@ homepageUrl: "#"
                          Wrong Lars number. Valid Lars number has 8 digits and no letters.</span>
 
                         <!--<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 40%;float: left;">-->
-                        <span id="dob-error" class="govuk-error-message">You must enter at least 4 characters.</span>
+                        <!--<span id="dob-error" class="govuk-error-message">You must enter at least 4 characters.</span>-->
                         <div class="input-container">
                             <input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;" required pattern=".{4,}"   required title="4 characters minimum"/>
                             <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-top:0;height:42px;" >
@@ -647,9 +667,9 @@ homepageUrl: "#"
 
                 <div class="pagination page-bottom"><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=1" class="pagination-item current">1</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=2" class="pagination-item">2</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=3" class="pagination-item">3</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=4" class="pagination-item">4</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=5" class="pagination-item">5</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=6" class="pagination-item">6</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=7" class="pagination-item">7</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=8" class="pagination-item">8</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=9" class="pagination-item">9</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=10" class="pagination-item">10</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=2" class="pagination-item pagination-next">Next</a></div>
 
-                <hr style="clear:both;">
-                <h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;
-    ">Alternatively search for <strong><a href="non-regulated-provision">Non regulated provision</a> </strong>(including community learning).</h2>
+                <!--<hr style="clear:both;">-->
+                <!--<h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;-->
+    <!--">Alternatively search for <strong><a href="non-regulated-provision">Non regulated provision</a> </strong>(including community learning).</h2>-->
             </div>
         </div>
     </main>
