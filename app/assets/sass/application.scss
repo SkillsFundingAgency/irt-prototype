@@ -718,11 +718,11 @@ strong{font-weight: bold}
 @media (min-width: 48.0625em){
   @media (min-width: 40.0625em){
   #adminContent {
-    height: calc(100vh - 60px);
+
   }
   }
 #adminContent {
-  width: calc(100% - 29%);
+
   padding: 0px 60px;
 }
 }
@@ -787,7 +787,6 @@ strong{font-weight: bold}
 }
 
 .search-box-container {
-  padding: 20px;    background: #f8f8f8;
 }
 
 .search-box {
@@ -977,3 +976,4 @@ border-color: #efefef !important;}
 
 #qual {
   border: 4px solid #11813e!important;background: white!important;}
+
