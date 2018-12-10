@@ -263,6 +263,21 @@ GOV.UK prototype kit
 
         width: 750px;
     }
+	
+	.edit-cost-cont, .edit-url-cont {
+		display:none;
+		position:absolute;
+		width:300px;;
+		height:auto;
+		padding_10px;
+		background-color:#fff;
+		margin-top:15px;
+		margin-left:33px;
+	}
+	
+	.edit-url-cont {
+		margin-left:16px;
+	}	
 
 </style>
 
@@ -369,7 +384,7 @@ $j(document).ready(function() {
 	
 
     //number of records
-    var recs=$j(".table-row").length/2;
+    var recs=$j(".table-row").length;
     $j("#recs").text(recs);
 	$j("#recs2").text(recs);
 
@@ -510,22 +525,31 @@ $j(document).ready(function() {
             });
         });
 
-	$(".fa-angle-up").each(function (e) {
+	$(".table-collapse").each(function (e) {
 		$j(this).click(function (e) {
-			//$j(this).parent().parent().parent().parent().parent().css("height","145px");
-			$j(this).parent().parent().parent().parent().parent().find(".roww").css("display","none");
-			//$j(this).parent().parent().parent().parent().parent().css("overflow","hidden");
-			$j(this).removeClass("fa-angle-up");
-			$j(this).addClass("fa-angle-down");
+			if ($j(this).hasClass("fa-angle-up")) {
+				$j(this).parent().parent().find(".table-row").hide();
+				$j(this).parent().parent().find(".section-container").hide();
+				$j(this).removeClass("fa-angle-up").addClass("fa-angle-down");
+			} else {
+				$j(this).parent().parent().find(".table-row").show();
+				$j(this).parent().parent().find(".section-container").show();
+				$j(this).removeClass("fa-angle-down").addClass("fa-angle-up");
+			}
 		});
-	});	
+	});
 	
-	$(".fa-angle-down").each(function (e) {
+	$(".section-collapse").each(function (e) {
 		$j(this).click(function (e) {
-			$j(this).parent().parent().parent().parent().parent().find(".roww").css("display","");
-			//$j(this).parent().parent().parent().parent().parent().css("overflow-x","scroll");
-			$j(this).removeClass("fa-angle-down");
-			$j(this).addClass("fa-angle-up");
+			if ($j(this).hasClass("fa-angle-up")) {
+				$j(this).parent().parent().find(".table-row").hide();
+				$j(this).parent().parent().find(".sub-descript").hide();
+				$j(this).removeClass("fa-angle-up").addClass("fa-angle-down");
+			} else {
+				$j(this).parent().parent().find(".table-row").show();
+				$j(this).parent().parent().find(".sub-descript").show();
+				$j(this).removeClass("fa-angle-down").addClass("fa-angle-up");
+			}
 		});
 	});
 	
@@ -558,124 +582,71 @@ $j(document).ready(function() {
     //quick edit
     initCommands();
     function initCommands() {
-        $j("#cancel-cost").click(function (e) {
-            e.preventDefault();
-            $j("#edit-cost").hide();
-            $j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
-            $j(this).parent().parent().parent().prev("tr").find(".save-cost").hide();
-            $j(this).parent().parent().parent().prev("tr").find(".open-cost").show();
-            e.preventDefault();
-        });
+        $j(".cancel-cost").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j(this).parent().hide();
+				$j(this).parent().parent().find(".open-cost").show();
+				$j(this).parent().parent().find(".save-cost").hide();
+				$j(this).parent().parent().find(".edit-cost-input").val($j(this).parent().parent().find(".open-cost").attr("data-cost"));
+			});
+		});
 
         $j(".open-cost").each(function (e) {
-			$j(this).attr("data-old", $j(this).attr("data-cost"));
             $j(this).click(function (e) {
                 e.preventDefault();
-                $j("#cancel-url").click();
-                $j("#cancel-subtitle").click();
-                var elem=$j("#edit-cost");
-                $("#edit-cost").remove();
-                elem.insertAfter($(this).closest('tr'));
-                $j("#input-cost").val($j(this).attr("data-cost"));
-                $j(this).parent().parent().css("border-bottom", "none");
+				$j(this).attr("data-cost", $j(this).parent().parent().find(".edit-cost-input").val()); 
+                $j(".cancel-url").each (function (e) {
+					$j(this).click();
+				});
+                $j(this).parent().find(".edit-cost-cont").show();
                 $j(this).hide();
                 $j(this).parent().find(".save-cost").show();
-                elem.show();
             });
         });
 
         $j(".save-cost").each(function (e) {
             $j(this).click(function (e) {
                 e.preventDefault();
-                $j(this).closest("tr").find(".open-cost").attr("data-cost", $j("#input-cost").val()).show();
-                $j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
-                $j("#edit-cost").hide();
+                $j(this).parent().find(".edit-cost-cont").hide();
                 $j(this).hide();
-				doEdit($j(this).closest("tr").find(".open-cost"));
+                $j(this).parent().find(".open-cost").show();
+				$j(this).parent().find(".open-cost").attr("data-cost", $j(this).parent().parent().find(".edit-cost-input").val()); 
             });
         });
 
-        $j("#cancel-url").click(function (e) {
-            e.preventDefault();
-            $j("#edit-url").hide();
-            $j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
-            $j(this).parent().parent().parent().prev("tr").find(".save-url").hide();
-            $j(this).parent().parent().parent().prev("tr").find(".open-url").show();
-            e.preventDefault();
-        });
+        $j(".cancel-url").each(function (e) {
+			$j(this).click(function (e) {
+				e.preventDefault();
+				$j(this).parent().hide();
+				$j(this).parent().parent().find(".open-url").show();
+				$j(this).parent().parent().find(".save-url").hide();
+				$j(this).parent().parent().find(".edit-url-input").val($j(this).parent().parent().find(".open-url").attr("data-url"));
+			});
+		});
 
         $j(".open-url").each(function (e) {
-			$j(this).attr("data-old", $j(this).attr("data-url"));
             $j(this).click(function (e) {
                 e.preventDefault();
-                $j("#cancel-cost").click();
-                $j("#cancel-subtitle").click();
-                var elem=$j("#edit-url");
-                $("#edit-url").remove();
-                elem.insertAfter($(this).closest('tr'));
-                $j("#input-url").val($j(this).attr("data-url"));
-                $j(this).parent().parent().css("border-bottom", "none");
+				$j(this).attr("data-url", $j(this).parent().parent().find(".edit-url-input").val()); 
+                $j(".cancel-cost").each (function (e) {
+					$j(this).click();
+				});
+                $j(this).parent().find(".edit-url-cont").show();
                 $j(this).hide();
                 $j(this).parent().find(".save-url").show();
-                $j("#edit-cost").hide();
-                elem.show();
             });
         });
 
         $j(".save-url").each(function (e) {
             $j(this).click(function (e) {
                 e.preventDefault();
-                $j(this).closest("tr").find(".open-url").attr("data-url", $j("#input-url").val()).show();
-                $j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
-                $j("#edit-url").hide();
+                $j(this).parent().find(".edit-url-cont").hide();
                 $j(this).hide();
-				doEdit($j(this).closest("tr").find(".open-url"));
+                $j(this).parent().find(".open-url").show();
+				$j(this).parent().find(".open-url").attr("data-url", $j(this).parent().parent().find(".edit-url-input").val()); 
             });
         });
-
-        $j("#cancel-subtitle").click(function (e) {
-            e.preventDefault();
-            $j("#edit-subtitle").hide();
-            $j(this).parent().parent().parent().prev("tr").css("border-bottom", "solid 1px #ccc");
-            $j(this).parent().parent().parent().prev("tr").find(".save-subtitle").hide();
-            $j(this).parent().parent().parent().prev("tr").find(".open-subtitle").show();
-            e.preventDefault();
-        });
-
-        $j(".open-subtitle").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-                $j("#cancel-cost").click();
-                $j("#cancel-url").click();
-                var elem=$j("#edit-subtitle");
-                $("#edit-subtitle").remove();
-                elem.insertAfter($(this).closest('tr'));
-                $j("#input-subtitle").val($j(this).attr("data-subtitle"));
-                $j(this).parent().parent().css("border-bottom", "none");
-                $j(this).hide();
-                $j(this).parent().find(".save-subtitle").show();
-                elem.show();
-            });
-        });
-
-        $j(".save-subtitle").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-                $j(this).closest("tr").find(".open-subtitle").attr("data-subtitle", $j("#input-subtitle").val()).show();
-                $j(this).parent().parent().css("border-bottom", "solid 1px #ccc");
-                $j("#edit-subtitle").hide();
-                $j(this).hide();
-            });
-        });
-
-
-
-
-
-
-
-
-
 
     }
 
@@ -1003,6 +974,9 @@ $j(document).ready(function() {
 .table-container {
 	width:93vw;
 	height:auto;
+	position:relative;
+	float:left;
+	padding-bottom:30px;
 }
 
 .table-main-header {
@@ -1047,6 +1021,14 @@ $j(document).ready(function() {
 	border-bottom: solid 1px #bfc1c3;
 }
 
+.table-border-bottom-thick {
+	border-bottom: solid 2px #000;
+}
+
+.table-sub-header, .table-main-header {
+	clear:both;
+}
+
 </style>
 
 
@@ -1055,150 +1037,256 @@ $j(document).ready(function() {
 <div class="table-container">
 
 <!-- TABLE HEADER -->
-<div class="table-main-header"><i class="fa fa-angle-up" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-	<h2 style="margin:0;width:auto;margin-left:10px;float:left;margin-right: 20px" class="govuk-heading-l">GCSE</h2>
+<div class="table-main-header"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+	<h2 style="margin:0;width:auto;margin-left:10px;float:left;margin-right: 20px" class="govuk-heading-l">Diploma</h2>
 </div>
 
 <!-- TABLE SUB-HEADER -->
-<div class="table-sub-header"><i class="fa fa-angle-up" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-	<p style="
-    font-weight: bold;font-size: 22px;margin-left: 28px"> GCE A Level in Accounting,</p> <p style="font-weight: 300">Level 3, Assessment & Qualifications Alliance, Lars: 60309209, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal.
-" data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label> </div> </div>
-
-
-    </p>
-
-
-
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> BA (Hons) in Education Studies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 302298, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
 </div>
 
 <!-- TABLE ROW-->
-
-
-
-
-
-<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;border-bottom: 2px solid">
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="width-10">
-            Status
-        </label>
-
-        <p>Published</p>
-
-        <!--<input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text" placeholder="Published" style="border: none;border-bottom: 4px solid #f2f2f2">-->    </div>
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="width-10">
-            Course name
-        </label>
-        <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Education and Training">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px">
-        <label class="govuk-label" for="width-10">
-            ID
-        </label>
-        <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="sort">
-            Delivery
-        </label>
-        <select class="govuk-select" id="sort" name="sort">
-            <option value="published">Classroom</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
         </select>
     </div>
-
 
     <div style="display: inline-block;padding-right: 10px" >
-        <label class="govuk-label" for="sort">
-            Start date
-        </label>
-        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/09/2018" value="01/08/2018" style="border: none;font-size: 14px;position: relative;width: 130px;color:inherit;background-color: inherit;" id="dp1543395926104" data-old="01/08/2018"></div>
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;"/>
+	</div>
 
-
-    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="sort">
-            Venue
-        </label>
-        <select class="govuk-select" id="sort" name="sort">
-            <option value="published">Coventry college</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
         </select>
     </div>
 
 
-    <div style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="width-10">
-            URL
-        </label>
-        <a href="#" id="width-10" class="edit-btn open-url">Edit</a>
-        <!--<input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text" placeholder="Edit" style="border: none;border-bottom: 4px solid #f2f2f2">-->
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://www.qualhub.co.uk/qualification-search/qualification-detail/level-3-diploma-in-specialist-support-for-teaching-and-learning-in-schools-157">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://www.qualhub.co.uk/qualification-search/qualification-detail/level-3-diploma-in-specialist-support-for-teaching-and-learning-in-schools-157">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px">
-        <label class="govuk-label" for="width-10">
-            Cost
-        </label>
-        <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text" placeholder="£">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="2225">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="Price excludes VAT">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="Price excludes VAT">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="width-10">
-            Cost detail
-        </label>
-        <a href="#" id="width-10" class="edit-btn open-cost">Edit</a>
-       <!-- <input class="govuk-input govuk-input--width-10" id="width-10" name="width-10" type="text" placeholder="Edit" style="border: none;border-bottom: 4px solid #f2f2f2">-->
-    </div>
-
-    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="sort">
-            Duration
-        </label>
-        <select class="govuk-select" id="sort" name="sort">
-            <option value="published">1</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
         </select>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="sort">
-            Duration unit
-        </label>
-        <select class="govuk-select" id="sort" name="sort">
-            <option value="published">Month</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
         </select>
     </div>
 
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="sort">
-            Attendance
-        </label>
+        <label class="govuk-label">Attendance</label>
         <select class="govuk-select" id="sort" name="sort">
-            <option value="published">Full-time</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>
+</div>	
+<!-- ////////////////////////// -->
+
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Education and Training">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://www.qualhub.co.uk/qualification-search/qualification-detail/level-3-diploma-in-specialist-support-for-teaching-and-learning-in-schools-157">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://www.qualhub.co.uk/qualification-search/qualification-detail/level-3-diploma-in-specialist-support-for-teaching-and-learning-in-schools-157">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="2225">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="This is the 24 + Advanced Learning loan price, self funders would have to add VAT at the standard rate">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="This is the 24 + Advanced Learning loan price, self funders would have to add VAT at the standard rate">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
         </select>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label" for="sort">
-            Mode
-        </label>
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
         <select class="govuk-select" id="sort" name="sort">
-            <option value="published">Day</option>
-            <option value="views">Most views</option>
-            <option value="comments">Most comments</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time" selected>Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised">Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
         </select>
     </div>
     <section class="btns" style="margin-bottom: 10px;width: 400px">
@@ -1210,145 +1298,2458 @@ $j(document).ready(function() {
     </section>
 </div>
 
-<style>.btns a{margin-right: 10px; font-size: 18px}</style>
-
-<!--END TABLE 2-->
-
-<!--
-
-    <div style="margin-top: 130px; border:6px solid #21827b; padding: 20px 20px; width:25%; float: left; margin-right: 20px">
-
-        <p>Status: Published</p>
-
-        <p> Course name: A-level biology
-        </p>
-        <p>ID: 234252</p>
-
-        <p>  Delivery: Classroom</p>
+<!-- ////////////////////////// -->
 
 
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
 
-        <p>
-            Start date: 11 November 2019</p>
-        <p>
-            Venue: Coventry campus
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Education and Training">
+    </div>
 
-        </p>
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
 
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
 
-        <p>
-            URL: http://coventry-college.org.uk/</p>
-
-        <p> Cost: £345</p>
-
-
-
-        <p> Cost detail:</p>
-        <p>     Duration: 26 days</p>
-        <p> Attendance: Full-time</p>
-        <p>  Mode: Daytime</p>
-
-
-
-
-
-
-        <section class="btns">
-
-            <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Edit</a>
-            <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Remove</a>
-            <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Copy</a>
-            <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Preview</a>
-
-        </section>
-
-
-
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
     </div>
 
 
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://cachezone2013.cache.org.uk/Qualifications/EducationSupport/EducationSupportL3/Pages/Home.aspx">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://cachezone2013.cache.org.uk/Qualifications/EducationSupport/EducationSupportL3/Pages/Home.aspx">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
 
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time" selected>Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible">Flexible</option>
+        </select>
+    </div>
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised">Customised</option>
+			<option value="Daytime/working hours" selected>Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
 
+    </section>	
+</div>
+</div>
 
-
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Information Technology,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
 </div>
 
 
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Information Technology">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
 
 
-<div style="margin-top: 130px; border:6px solid #21827b; padding: 20px 20px; width:26%; float: left; margin-right: 20px">
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
 
-    <p>Status: Published</p>
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
 
-    <p> Course name: A-level biology
-    </p>
-    <p>ID: 234252</p>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="For 19 + learners and Employer contribution is required. ">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="For 19 + learners and Employer contribution is required. ">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
 
-    <p>  Delivery: Classroom</p>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
 
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time" selected>Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible">Flexible</option>
+        </select>
+    </div>
 
-    <p>
-        Start date: 11 November 2019</p>
-    <p>
-        Venue: Coventry campus
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised">Customised</option>
+			<option value="Daytime/working hours" selected>Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
 
-    </p>
+    </section>	
+
+</div>
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Information Technology">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
 
 
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
 
-    <p>
-        URL: http://coventry-college.org.uk/</p>
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
 
-    <p> Cost: £345</p>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
 
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
 
-    <p> Cost detail:</p>
-    <p>     Duration: 26 days</p>
-    <p> Attendance: Full-time</p>
-    <p>  Mode: Daytime</p>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>		
+</div>
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Information Technology">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
 
 
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="19+ co-funded with Employer contribution required.">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="19+ co-funded with Employer contribution required.">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
 
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time" selected>Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible">Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised">Customised</option>
+			<option value="Daytime/working hours" selected>Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>		
+</div>
+	
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Information Technology">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
 
 
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/it/it-professional/9779-it-software-web-and-telecoms-professionals-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
 
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
 
-    <section class="btns">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
 
-        <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Edit</a>
-        <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Remove</a>
-        <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Copy</a>
-        <a href="#" style="text-align: center;display: inline-block;border: 1px #dee0e2 solid;padding:10px 0 10px 0">Preview</a>
+    </section>			
+</div>
+</div>
+	
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Administration,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
+</div>
+
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/business-admin-and-public-services/9097-business-and-administration-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/business-admin-and-public-services/9097-business-and-administration-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="Free of charge to apprentices but there is a 19+ employer contribution of GBP1080">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="Free of charge to apprentices but there is a 19+ employer contribution of GBP1080">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+	
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/business-admin-and-public-services/9097-business-and-administration-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/business-admin-and-public-services/9097-business-and-administration-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>		
+</div>
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/business-admin-and-public-services/9097-business-and-administration-apprenticeships">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/business-admin-and-public-services/9097-business-and-administration-apprenticeships">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+	
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Home Economics: Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 50043985, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
+</div>	
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Child Development">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://cachezone2013.cache.org.uk/Qualifications/CYP/CYPL3/Pages/Home.aspx">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://cachezone2013.cache.org.uk/Qualifications/CYP/CYPL3/Pages/Home.aspx">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="Free of charge to 16 to 18 year olds but the 19+ employer contribution is 1260">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="Free of charge to 16 to 18 year olds but the 19+ employer contribution is 1260">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+	
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Child Development">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://cachezone2013.cache.org.uk/Qualifications/CYP/CYPL3/Pages/Home.aspx">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://cachezone2013.cache.org.uk/Qualifications/CYP/CYPL3/Pages/Home.aspx">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>		
+</div>
+<div>
+
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Bussiness Administration,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 302793, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
+</div>
+
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Business Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Business Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Business Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Business Administration">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.cityandguilds.com/qualifications-and-apprenticeships/business-skills/customer-service-and-contact-centre/5530-customer-service#tab=information">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="1987">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 326874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
+</div>
+
+
+<!-- ////////////////////////// -->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Diploma in Child Development">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" data-old="01/08/2018">
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="http://www.profiledt.co.uk">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.profiledt.co.uk">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="2882">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>	
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!--END TABLE 1-->
+
+<div class="table-container">
+
+<!-- TABLE HEADER -->
+<div class="table-main-header"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+	<h2 style="margin:0;width:auto;margin-left:10px;float:left;margin-right: 20px" class="govuk-heading-l">Certificate</h2>
+</div>
+
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Certificate in Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, NCFE, Lars: 569874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
+</div>
+
+<!-- TABLE ROW-->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Certificate in Child Development">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;"/>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://cachezone2013.cache.org.uk/Qualifications/EYE/Pages/NCFE-CACHE-Level-4-Certificate-in-Early-Years-Advanced-Practitioner.aspx">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://cachezone2013.cache.org.uk/Qualifications/EYE/Pages/NCFE-CACHE-Level-4-Certificate-in-Early-Years-Advanced-Practitioner.aspx">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="811">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="This price is the total cost for the qualification funded through an advanced learner loan. ">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="This price is the total cost for the qualification funded through an advanced learner loan. ">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" id="sort" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised">Customised</option>
+			<option value="Daytime/working hours" selected>Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
 
     </section>
+</div>	
+
+<!-- TABLE ROW-->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Certificate in Child Development">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;"/>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
 
 
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://cachezone2013.cache.org.uk/Qualifications/CYP/CYPL2/Pages/Home.aspx">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://cachezone2013.cache.org.uk/Qualifications/CYP/CYPL2/Pages/Home.aspx">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
 
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" id="sort" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
 
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>
+</div>	
 </div>
 
-
-
-
-
-
-
-
+<!-- TABLE SUB-HEADER -->
+<div class="section-container">
+<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
+<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Certificate in Direct Learning Support,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 369874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
 </div>
 
+<!-- TABLE ROW-->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
--->
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Certificate in Direct LEarning Support">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;"/>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
 
 
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://coursedirectoryproviderportal.org.uk/Course/Create/50097453">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://coursedirectoryproviderportal.org.uk/Course/Create/50097453">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
 
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="1417">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="The total cost for completing this qualification with an advanced learner loan. ">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="The total cost for completing this qualification with an advanced learner loan. ">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" id="sort" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised">Customised</option>
+			<option value="Daytime/working hours" selected>Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>
+</div>	
+
+<!-- TABLE ROW-->
+<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Status</label><p>Published</p>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Course name</label>
+        <input class="govuk-input govuk-input--width-10" type="text" value="Certificate in Direct LEarning Support">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
+        <label class="govuk-label">ID</label>
+        <input class="govuk-input govuk-input--width-10" type="text">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:160px;">
+        <label class="govuk-label">Delivery</label>
+        <select class="govuk-select">
+            <option value="work" selected>Work based</option>
+            <option value="classroom">Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+    <div style="display: inline-block;padding-right: 10px" >
+        <label class="govuk-label">Start date</label>
+        <input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;"/>
+	</div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
+        <label class="govuk-label">Venue</label>
+        <select class="govuk-select">
+            <option value="" selected></option>
+			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
+			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+			<option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+
+    <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
+        <label class="govuk-label" style="margin-bottom:18px;">URL</label>
+        <a href="#" class="edit-btn open-url" data-url="https://cachezone2013.cache.org.uk/Qualifications/EducationSupport/EducationSupportL2/Pages/Home.aspx">Edit</a>
+       	<a href="#" class="edit-btn save-url">Update</a>
+        <div class="edit-url-cont">
+			<input class="govuk-input edit-url-input" type="text" value="https://cachezone2013.cache.org.uk/Qualifications/EducationSupport/EducationSupportL2/Pages/Home.aspx">
+			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:110px;">
+        <label class="govuk-label">Cost</label>
+        <input class="govuk-input govuk-input--width-10" type="text" placeholder="£" value="0">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;text-align:center;width:110px;">
+        <label class="govuk-label" style="margin-bottom:20px;">Cost detail</label>
+        <a href="#" class="edit-btn open-cost" data-cost="No cost to apprentices">Edit</a>
+		<a href="#" class="edit-btn save-cost">Update</a>
+        <div class="edit-cost-cont">
+			<input class="govuk-input edit-cost-input" type="text" value="No cost to apprentices">
+			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Cancel</a>
+		</div>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration</label>
+        <select class="govuk-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12" selected>12</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Duration unit</label>
+        <select class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+			<option value="Years">Years</option>
+        </select>
+    </div>
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
+        <label class="govuk-label">Attendance</label>
+        <select class="govuk-select" id="sort" name="sort">
+            <option value="Full-time">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible" selected>Flexible</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:180px;">
+        <label class="govuk-label">Mode</label>
+        <select class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Flexible">Flexible</option>
+			<option value="Customised" selected>Customised</option>
+			<option value="Daytime/working hours">Daytime/working hours</option>
+        </select>
+    </div>
+    <section class="btns" style="margin-bottom: 10px;width: 400px">
+        <a href="#" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Unpublish</a>
+        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+
+    </section>
+</div>	
+
+</div>
+</div>
+
+<style>.btns a{margin-right: 10px; font-size: 18px}</style>
 
 <div id="popup-startdate"><div style="padding:40px;width:100%;">
     <a href="#" class="close-startdate" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
