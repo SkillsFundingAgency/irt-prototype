@@ -216,17 +216,6 @@ $j(document).ready(function (e) {
 			$j("#venue1").show();
 		}
 	});	
-	
-	$j("#addvenuebutton").click(function (e) {
-		e.preventDefault();
-		if ($j("#venuename").val().trim()=="") {
-			alert("Please enter venue name.");
-		} else {
-			$j("#venuess").append('<div class="govuk-checkboxes"><div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">'+$j("#venuename").val()+'</label></div></div>');
-			$j('#popup-venue').popup('hide'); 
-			$j("#venuename").val("");
-		}
-	});	
 
 	$j("#toggleareas").click(function (e) {
 		e.preventDefault();
@@ -345,7 +334,7 @@ $j(document).ready(function (e) {
 		});
 	});*/
 
-	/*$j(".time").each(function (e) {
+	$j(".time").each(function (e) {
 		$j(this).click(function (e) {
 			$j(".time").removeClass(".govuk-colour");
 			$j(".time").css("background","#fff");
@@ -366,7 +355,7 @@ $j(document).ready(function (e) {
 			var value=$(this).text();
 			Cookies.set("daynight", value);
 		});
-	});	*/
+	});	
 
 	$j(".venue").each(function (e) {
 		$j(this).click(function (e) {
@@ -512,7 +501,7 @@ $j(document).ready(function (e) {
             Add your first course
         </h1>
 
-        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added: PGCE in Secondary (Mathematics) - Bradford College, Level: 7, NOLTONIN, Lars: 302309</p>
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color:#bfc1c3;" id="qual"></p>
 
 
 
@@ -521,7 +510,7 @@ $j(document).ready(function (e) {
                 Course name&nbsp;&nbsp;<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>
             </label>
 
-            <textarea class="govuk-textarea descript" id="reff--" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;border-color: #eee;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">PGCE in Secondary (Mathematics) - Bradford College</textarea>
+            <textarea class="govuk-textarea descript" id="reff" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true"></textarea>
 
         </div>
 
@@ -536,35 +525,10 @@ $j(document).ready(function (e) {
 
 
         <div class="btn-gr">
-            <!--<label class="govuk-label">Delivery</label>
-            <input type="radio" class="govuk-radio classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
+            <label class="govuk-label">Delivery</label>
+            <button class="govuk-button classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
             <button class="govuk-button online" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Online</button>
-            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>-->
-			
-			 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-
-    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom" checked>
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Classroom based
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input online" name="changed-name2" type="radio" value="online">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Online
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input work" name="changed-name2" type="radio" value="work">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Work based
-        </label>
-      </div>	  
-    </div>
-  </fieldset>
-			
+            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>
         </div>
 
         <div class="govuk-form-group" id="date">
@@ -811,36 +775,12 @@ $j(document).ready(function (e) {
 
 <div class="govuk-form-group" id="time">
 
-        <!--<div class="btn-gr">
+        <div class="btn-gr">
             <label class="govuk-label">Full time or part time</label>
             <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Full-time</button>
             <button id="venues-show" class="govuk-button govuk-colour time" value="" type="button" style="background:white;color: #000000; border:2px solid black">Part-time</button>
             <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Flexible</button>
-        </div>-->
-		
-				<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Full time or part time</label>
-    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="" checked>
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Full-time
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Part-time
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Flexible
-        </label>
-      </div>	
-    </div>
-  </fieldset>
+        </div>
 
 </div>
 
@@ -848,43 +788,13 @@ $j(document).ready(function (e) {
 
 
 		  
-		 <!--<div class="btn-gr">
-            
+		 <div class="btn-gr">
+            <label class="govuk-label">Attendance</label>
             <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Daytime</button>
 			<button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:white;color: #000000; border:2px solid black">Evening</button>
             <button id="venues-show" class="govuk-button govuk-colour daynight" value="" type="button" style="background:white;color: #000000; border:2px solid black">Weekend</button>
             <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Day/Block Release</button>
-        </div>-->
-		
-		<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Attendance</label>
-    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="classroom" checked>
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Daytime
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="online">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Evening
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="work">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Weekend
-        </label>
-      </div>
-		<div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="work">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Day/Block Release
-        </label>
-      </div>	
-    </div>
-  </fieldset>
+        </div>
 		
 		</div>
 
@@ -921,65 +831,19 @@ $j(document).ready(function (e) {
 <div id="popup-venue"><div style="padding:40px;width:calc(100% - 80px);">
     <a href="#" id="close-venue" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 
-<div class="govuk-grid-row">
+	<div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add a venue
-        </h1>
-		
-	
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Venue name
-            </label>
-            <textarea class="govuk-textarea descript" id="venuename" name="venuename" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">London City College</textarea>
-
-        </div>
-
-
-        <fieldset class="govuk-fieldset">
-            <!--<h2 class="govuk-heading-m">
-                venue address
-            </h2>-->
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-
-            </legend>
-
-
-
-            <div class="govuk-form-group">
-                <h3> <span style="font-size: 22px">Venue postcode</span><br>
-                    SW1A 1AA <a href="add-venue" style="margin-left: 10px;font-weight: 300">Change</a>
-
-                </h3>
-
-
-                    <select class="govuk-select based" style="width: 40%"><option value="classroom" selected="">2 addresses found</option><option value="online">12 Orwell Court</option><option value="online">14 Orwell Court</option></select>
-
-
-            </div>
+        <div class="govuk-grid-column-full">
+           
+		<div id="venue1">
+		   <h1 class="govuk-heading-l" style="padding-top: 20px;">
+                Add venue
+            </h1>
 
 
 
 
-        </fieldset>
-
-				<div class="govuk-form-group">
-
-
-                    <a href="#" role="button" class="govuk-button" style="margin-top: 20px" id="addvenuebutton">
-                        Continue
-                    </a>
-		</div>
-		
-	</div>	
-
-</div>
-
-
-
-            <!--<div class="govuk-form-group" style="clear:both;">
+            <div class="govuk-form-group" style="clear:both;">
                 <label class="govuk-label" for="sub">
                     Venue name
                 </label>
@@ -1024,12 +888,12 @@ $j(document).ready(function (e) {
                 <a href="#" type="button" class="govuk-button" id="findaddress">
                     Find address
                 </a>
-                <br>-->
+                <br>
 </div>
 
 	</div>
 	
-	<!--<div id="venue2" style="display:none">
+	<div id="venue2" style="display:none">
 	
 	              <div class="form-group govuk-checkboxes">
                  
@@ -1073,7 +937,7 @@ E8 4PS</label>
 	
 	</div>
 	
-</div>-->
+</div>
    
 </div>
 </div>
