@@ -512,14 +512,13 @@ $j(document).ready(function (e) {
             Add your first course
         </h1>
 
-        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> BOLTONIN<br/> Lars: 302309</p>
+        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added: PGCE in Secondary (Mathematics) - Bradford College, Level: 7, NOLTONIN, Lars: 302309</p>
 
 
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                Course name&nbsp;&nbsp;<!--<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>-->
-				<br/><span style="colour:#6f777b">Secondary line</span>
+                Course name&nbsp;&nbsp;<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>
             </label>
 
             <textarea class="govuk-textarea descript" id="reff--" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;border-color: #eee;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">PGCE in Secondary (Mathematics) - Bradford College</textarea>
@@ -528,8 +527,7 @@ $j(document).ready(function (e) {
 
         <div class="govuk-form-group" style="clear:both;">
             <label class="govuk-label" for="sub">
-                ID&nbsp;&nbsp;<!--a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
-				<br/><span style="colour:#6f777b">Secondary line</span>
+                ID&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
             </label>
             <input class="govuk-input details" id="name" name="name" type="text" required/>
 
@@ -538,13 +536,13 @@ $j(document).ready(function (e) {
 
 
         <div class="btn-gr">
-            <!--
+            <!--<label class="govuk-label">Delivery</label>
             <input type="radio" class="govuk-radio classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
             <button class="govuk-button online" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Online</button>
             <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>-->
 			
 			 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Delivery mode</label>
+
     <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
       <div class="govuk-radios__item">
         <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom" checked>
@@ -574,14 +572,10 @@ $j(document).ready(function (e) {
                 Start date:
             </label>
 
-            <!--<p> <input type="text" id="datepicker" class="govuk-input details" style="width:200px;"></p>-->
-			
-			<input type="text" class="govuk-input" style="width:60px;" />
-			<input type="text" class="govuk-input" style="width:60px;" />
-			<input type="text" class="govuk-input" style="width:120px;" />
-			<br/>
-            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 10px;clear:both;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Flexible start date</label> </div> </div>
+            <p> <input type="text" id="datepicker" class="govuk-input details" style="width:200px;"></p>
         </div>
+		
+		
        
 
         <div class="govuk-form-group" style="margin-bottom:10px;" id="venue">
@@ -601,7 +595,7 @@ $j(document).ready(function (e) {
                     Baconsham College
                 </label> </div> </div>
             </div>
-            <!--<a href="#" class="submit govuk-button" type="submit" value="Add a new venue" id="addvenue" style="width:200px;height: 39px;margin-top:20px;"/>Add a new venue</a>-->
+            <a href="#" class="submit govuk-button" type="submit" value="Add a new venue" id="addvenue" style="width:200px;height: 39px;margin-top:20px;"/>Add a new venue</a>
         </div>
 
         
@@ -759,10 +753,9 @@ $j(document).ready(function (e) {
 
 
 
-        <div class="govuk-form-group" style="margin-top:25px;">
+        <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                URL&nbsp;&nbsp;<!--<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
-				<br/><span style="colour:#6f777b">Secondary line</span>
+                URL&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
             </label>
             <input class="govuk-input details" id="url" name="sub" type="text" required/>
         </div>
@@ -904,9 +897,9 @@ $j(document).ready(function (e) {
 		
 				<div class="govuk-form-group">
 
-                    <!--<a href="#" role="button" id="preview" class="govuk-button">
+                    <a href="#" role="button" id="preview" class="govuk-button">
                         Preview
-                    </a>-->
+                    </a>
 
 <button type="submit" class="govuk-button">
     Publish

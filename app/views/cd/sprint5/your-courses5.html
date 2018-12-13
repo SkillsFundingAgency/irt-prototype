@@ -525,19 +525,35 @@ $j(document).ready(function() {
             });
         });
 
-	$(".table-collapse").each(function (e) {
+	/*$(".table-collapse").each(function (e) {
 		$j(this).click(function (e) {
 			if ($j(this).hasClass("fa-angle-up")) {
 				$j(this).parent().parent().find(".table-row").hide();
 				//$j(this).parent().parent().find(".section-container").hide();
-				$j(this).removeClass("fa-angle-up").addClass("fa-angle-down");
+				$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
 			} else {
 				$j(this).parent().parent().find(".table-row").show();
 				//$j(this).parent().parent().find(".section-container").show();
-				$j(this).removeClass("fa-angle-down").addClass("fa-angle-up");
+				$j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
 			}
 		});
-	});
+	});*/
+	
+	$(".fa-angle-up").each(function (e) {
+		$j(this).click(function (e) {
+			$j(this).parent().parent().find(".table-row").hide();
+			//$j(this).parent().parent().find(".section-container").hide();
+			$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
+		});
+	});	
+	
+	$(".fa-angle-down").each(function (e) {
+		$j(this).click(function (e) {
+			$j(this).parent().parent().find(".table-row").show();
+			//$j(this).parent().parent().find(".section-container").show();
+			$j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
+		});
+	});	
 	
 	/*$(".section-collapse").each(function (e) {
 		$j(this).click(function (e) {
@@ -1046,14 +1062,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> BA (Hons) in Education Studies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 302298, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> BA (Hons) in Education Studies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 302298, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1178,7 +1194,7 @@ $j(document).ready(function() {
 
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1305,7 +1321,7 @@ $j(document).ready(function() {
 
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1431,14 +1447,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Information Technology,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Information Technology,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1564,7 +1580,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1689,7 +1705,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1814,7 +1830,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1940,14 +1956,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Administration,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Administration,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2073,7 +2089,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2198,7 +2214,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2325,13 +2341,13 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Home Economics: Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 50043985, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Home Economics: Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 50043985, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2456,7 +2472,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2582,14 +2598,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Bussiness Administration,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 302793, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Bussiness Administration,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 302793, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2714,7 +2730,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2839,7 +2855,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2964,7 +2980,7 @@ $j(document).ready(function() {
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -3090,14 +3106,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 326874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Diploma in Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 326874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- ////////////////////////// -->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -3223,7 +3239,6 @@ $j(document).ready(function() {
 </div>
 
 
-
 <!--END TABLE 1-->
 
 <div class="table-container">
@@ -3236,14 +3251,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Certificate in Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, NCFE, Lars: 569874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Certificate in Child Development,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, NCFE, Lars: 569874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -3369,7 +3384,7 @@ $j(document).ready(function() {
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -3495,14 +3510,14 @@ $j(document).ready(function() {
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header">
-<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Certificate in Direct Learning Support,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 369874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<p style="font-weight: bold;font-size: 22px;margin-left: 0" class="sub-title"> Certificate in Direct Learning Support,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, NCFE, Lars: 369874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -3628,7 +3643,7 @@ $j(document).ready(function() {
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">

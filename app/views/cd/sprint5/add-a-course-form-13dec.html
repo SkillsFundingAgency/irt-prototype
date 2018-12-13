@@ -241,7 +241,7 @@ $(document).ready(function (e) {
             Complete your qualification details
         </h1>
 
-        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> BOLTONIN<br/> Lars: 302309</p>
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color: #bfc1c3;" id="qual"></p>
 
 
         <h3 class="govuk-heading-m">Course description</h3>
@@ -251,11 +251,11 @@ $(document).ready(function (e) {
 
 		<div class="govuk-form-group" style="margin-bottom: 0;padding-bottom: 0">
 		  <label class="govuk-label" for="sub">
-              Who is the course for?<br/>
-			  <span style="colour:#6f777b">Secondary line</span>
+              Who is the course for?<span style="color: red">*</span>
 		  </label>
-		  <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0"></textarea>
-		<p style="colour:#6f777b;margin-top:5px;">You have 200 characters remaining</p>
+		  <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0">This qualification is a basic craft introduction to the plumbing industry. It gives you the knowledge and skills to enable you to achieve a recognised plumbing trade qualification which could lead to a job (for example, as a plumber’s mate) or an apprenticeship. You will need to do another course to become a fully qualified plumber and work on a building site.</textarea>
+
+            <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <!--<label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label>--> </div> </div>
 
 
 
@@ -267,10 +267,19 @@ $(document).ready(function (e) {
 				<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
               What you’ll learn
-			  <br/><span style="colour:#6f777b">Secondary line</span>
 		  </label>
-		  <textarea class="govuk-textarea descript" id="learn" name="learn" rows="7" style="margin-bottom: 0"></textarea>
-		  <p style="colour:#6f777b;margin-top:5px;">You have 200 characters remaining</p>
+		  <textarea class="govuk-textarea descript" id="learn" name="learn" rows="7" style="margin-bottom: 0">
+              •health & safety training
+              •scientific principles of plumbing
+              •electrical principles and processes
+              •hot & cold water systems
+              •central heating systems
+              •sanitation and drainage
+              •basic installation techniques of plumbing appliances
+          </textarea>
+
+                    <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"><!-- <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label>--> </div> </div>
+
 
                 </div>
 
@@ -278,18 +287,17 @@ $(document).ready(function (e) {
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Where next?
-				<br/><span style="colour:#6f777b">Secondary line</span>
             </label>
-            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0"></textarea>
-			<p style="colour:#6f777b;margin-top:5px;">You have 200 characters remaining</p>
-         
+            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0">When you’ve completed the course, you will be recognised as a plumbers’ mate, which can lead to better employment opportunities. You can go straight into work, take a Level 3 NVQ Diploma in Plumbing and Heating, or a Level 3 Diploma in Plumbing Studies.</textarea>
+            <div class="govuk-checkboxes" style="margin-bottom: 10px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <!--<label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">I would like to use the default text.</label>--> </div> </div>
+
+
 
         </div>
 		
 		<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
               How you’ll learn
-			  <br/><span style="colour:#6f777b">Secondary line</span>
 		  </label>
 		  <textarea class="govuk-textarea descript" id="how" name="how" rows="6"></textarea> 
 		</div>
@@ -299,20 +307,16 @@ $(document).ready(function (e) {
         <div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			What you'll need to bring
-			<br/><span style="colour:#6f777b">Secondary line</span>
 		  </label>
 		  <input class="govuk-input descript" id="bring" name="bring" type="text"/>
-		  <p style="colour:#6f777b;margin-top:5px;">You have 200 characters remaining</p>
 		</div>	
 
 
 				<div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
 			How you'll be assessed
-			<br/><span style="colour:#6f777b">Secondary line</span>
 		  </label>
 		  <input class="govuk-input descript" id="assesed" name="assesed" type="text"/>
-		  <p style="colour:#6f777b;margin-top:5px;">You have 200 characters remaining</p>
 		</div>
 
 
@@ -320,10 +324,8 @@ $(document).ready(function (e) {
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Entry requirements
-				<br/><span style="colour:#6f777b">Secondary line</span>
             </label>
-            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0"></textarea>
-			<p style="colour:#6f777b;margin-top:5px;">You have 200 characters remaining</p>
+            <input class="govuk-input descript" id="entry" name="entry" type="text"/>
         </div>
 
         <div class="govuk-form-group">

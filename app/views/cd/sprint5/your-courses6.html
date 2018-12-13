@@ -525,21 +525,21 @@ $j(document).ready(function() {
             });
         });
 
-	$(".table-collapse").each(function (e) {
+	/*$(".table-collapse").each(function (e) {
 		$j(this).click(function (e) {
 			if ($j(this).hasClass("fa-angle-up")) {
 				$j(this).parent().parent().find(".table-row").hide();
-				$j(this).parent().parent().find(".section-container").hide();
-				$j(this).removeClass("fa-angle-up").addClass("fa-angle-down");
+				//$j(this).parent().parent().find(".section-container").hide();
+				$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
 			} else {
 				$j(this).parent().parent().find(".table-row").show();
-				$j(this).parent().parent().find(".section-container").show();
-				$j(this).removeClass("fa-angle-down").addClass("fa-angle-up");
+				//$j(this).parent().parent().find(".section-container").show();
+				$j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
 			}
 		});
-	});
+	});*/
 	
-	$(".section-collapse").each(function (e) {
+	/*$(".section-collapse").each(function (e) {
 		$j(this).click(function (e) {
 			if ($j(this).hasClass("fa-angle-up")) {
 				$j(this).parent().parent().find(".table-row").hide();
@@ -551,7 +551,23 @@ $j(document).ready(function() {
 				$j(this).removeClass("fa-angle-down").addClass("fa-angle-up");
 			}
 		});
-	});
+	});*/
+	
+	$(".fa-angle-up").each(function (e) {
+		$j(this).click(function (e) {
+			$j(this).parent().parent().find(".table-row").hide();
+			//$j(this).parent().parent().find(".section-container").hide();
+			$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
+		});
+	});	
+	
+	$(".fa-angle-down").each(function (e) {
+		$j(this).click(function (e) {
+			$j(this).parent().parent().find(".table-row").show();
+			//$j(this).parent().parent().find(".section-container").show();
+			$j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
+		});
+	});	
 	
     $j(".open-inline-menu.collapsed").each(function (e) {
            $j(this).click(function (e) {
@@ -1043,15 +1059,15 @@ $j(document).ready(function() {
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
-<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Science,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, Ascentis, Lars: 569741, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<div class="table-sub-header">
+<p style="font-weight: bold;font-size: 22px;margin-left: 0"> Diploma in Science,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, Ascentis, Lars: 569741, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1177,16 +1193,16 @@ $j(document).ready(function() {
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
-<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Diploma in Agriculture and Veterinary Science,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 36574, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<div class="table-sub-header">
+<p style="font-weight: bold;font-size: 22px;margin-left: 0"> Diploma in Agriculture and Veterinary Science,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 36574, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1312,7 +1328,7 @@ $j(document).ready(function() {
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1438,7 +1454,7 @@ $j(document).ready(function() {
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1564,7 +1580,7 @@ $j(document).ready(function() {
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1690,7 +1706,7 @@ $j(document).ready(function() {
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1811,21 +1827,20 @@ $j(document).ready(function() {
 
     </section>
 </div>	
-
 </div>
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
-<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Engineering and Manufacturing Technologies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, City & Guilds of London Institute, Lars: 36574, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<div class="table-sub-header">
+<p style="font-weight: bold;font-size: 22px;margin-left: 0"> Engineering and Manufacturing Technologies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, City & Guilds of London Institute, Lars: 36574, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -1952,16 +1967,16 @@ $j(document).ready(function() {
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
-<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Engineering and Manufacturing Technologies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, Pearson Education Ltd (Formerly EDEXCEL), Lars: 365412, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<div class="table-sub-header">
+<p style="font-weight: bold;font-size: 22px;margin-left: 0"> Engineering and Manufacturing Technologies,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 3, Pearson Education Ltd (Formerly EDEXCEL), Lars: 365412, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2085,28 +2100,27 @@ $j(document).ready(function() {
 
 </div>
 
-
 </div>
+
 
 <div class="table-container">
 
 <!-- TABLE HEADER -->
 <div class="table-main-header"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-	<h2 style="margin:0;width:auto;margin-left:10px;float:left;margin-right: 20px" class="govuk-heading-l">Award</h2>
+	<h2 style="margin:0;width:auto;margin-left:10px;float:left;margin-right: 20px" class="govuk-heading-l">Certificate</h2>
 </div>
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
-<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Arts, Media and Publishing​,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 1, NCFE, Lars: 1265456, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
-
+<div class="table-sub-header">
+<p style="font-weight: bold;font-size: 22px;margin-left: 0"> Agriculture, Horticulture and Animal Care​,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, City & Guilds of London Institute, Lars: 365471, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2136,7 +2150,7 @@ $j(document).ready(function() {
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
         <label class="govuk-label">Venue</label>
         <select class="govuk-select">
-            <option value="Quorum Business Park" selected>Quorum Business Park</option>
+            <option value="City & Guilds of London College" selected>City & Guilds of London College</option>
 			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
 			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
             <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
@@ -2148,10 +2162,10 @@ $j(document).ready(function() {
 
     <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
         <label class="govuk-label" style="margin-bottom:18px;">URL</label>
-        <a href="#" class="edit-btn open-url" data-url="http://www.kmc.ac.uk/view-courses/Level-1-Welding,-Fabrication-and-Blacksmithing/">Edit</a>
+        <a href="#" class="edit-btn open-url" data-url="http://www.kmc.ac.uk/view-courses/Level-2-Technical-Certificate-in-Animal-Care/">Edit</a>
        	<a href="#" class="edit-btn save-url">Update</a>
         <div class="edit-url-cont">
-			<input class="govuk-input edit-url-input" type="text" value="http://www.kmc.ac.uk/view-courses/Level-1-Welding,-Fabrication-and-Blacksmithing/">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.kmc.ac.uk/view-courses/Level-2-Technical-Certificate-in-Animal-Care/">
 			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
 		</div>
     </div>
@@ -2230,27 +2244,19 @@ $j(document).ready(function() {
 
 </div>
 
-</div>
-
-
-<div class="table-container">
-
-<!-- TABLE HEADER -->
-<div class="table-main-header"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-	<h2 style="margin:0;width:auto;margin-left:10px;float:left;margin-right: 20px" class="govuk-heading-l">Certificate</h2>
-</div>
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
-<div class="table-sub-header"><i class="fa fa-angle-up section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>
-<p style="font-weight: bold;font-size: 22px;margin-left: 28px"> Agriculture, Horticulture and Animal Care​,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 2, City & Guilds of London Institute, Lars: 365471, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available</p><div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label"></label></div> </div> </div>
-</div>
+<div class="table-sub-header">
+<p style="font-weight: bold;font-size: 22px;margin-left: 0"> Arts, Media and Publishing​,</p> <div class="sub-descript"><p  style="font-weight: 300">Level 1, NCFE, Lars: 1265456, <a class="edit-btn open-descript" style="margin-right: 20px" href="#" data-descript="Accounting at A2 level develops your understanding of the purposes, principles, concepts and techniques of accounting by further examining financial and management accounting, including sources of finance, published accounts of Limited Companies, marginal and absorption costing and investment appraisal." data-title="GCE A Level in Accounting">Edit course description</a> Advanced learner loan available&nbsp;&nbsp;<input id="waste-1" name="waste" type="checkbox"></p>
+</div></div>
+
 
 <!-- TABLE ROW-->
 <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row table-border-bottom-thick">
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
-        <label class="govuk-label">Status</label><p>Published</p>
+        <label class="govuk-label" style="margin-bottom:13px;">Status</label><p>Published</p>
 	</div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px">
@@ -2280,7 +2286,7 @@ $j(document).ready(function() {
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:220px;">
         <label class="govuk-label">Venue</label>
         <select class="govuk-select">
-            <option value="City & Guilds of London College" selected>City & Guilds of London College</option>
+            <option value="Quorum Business Park" selected>Quorum Business Park</option>
 			<option value="Kent Innovation Centre">Kent Innovation Centre</option>
 			<option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
             <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
@@ -2292,10 +2298,10 @@ $j(document).ready(function() {
 
     <div style="display: inline-block;padding-right: 10px;width:80px;text-align:center;">
         <label class="govuk-label" style="margin-bottom:18px;">URL</label>
-        <a href="#" class="edit-btn open-url" data-url="http://www.kmc.ac.uk/view-courses/Level-2-Technical-Certificate-in-Animal-Care/">Edit</a>
+        <a href="#" class="edit-btn open-url" data-url="http://www.kmc.ac.uk/view-courses/Level-1-Welding,-Fabrication-and-Blacksmithing/">Edit</a>
        	<a href="#" class="edit-btn save-url">Update</a>
         <div class="edit-url-cont">
-			<input class="govuk-input edit-url-input" type="text" value="http://www.kmc.ac.uk/view-courses/Level-2-Technical-Certificate-in-Animal-Care/">
+			<input class="govuk-input edit-url-input" type="text" value="http://www.kmc.ac.uk/view-courses/Level-1-Welding,-Fabrication-and-Blacksmithing/">
 			<a href="#" class="edit-btn cancel-url" style="margin-top:10px;float:left;">Cancel</a>
 		</div>
     </div>
