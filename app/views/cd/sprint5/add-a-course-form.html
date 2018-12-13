@@ -236,19 +236,18 @@ $(document).ready(function (e) {
 
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
             Complete your qualification details
         </h1>
 
-        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> BOLTONIN<br/> Lars: 302309</p>
+        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> Awarding organisation: BOLTONIN<br/> LARS/QAN: 302309</p>
 
 
         <h3 class="govuk-heading-m">Course description</h3>
 
         <!--<p><i class="fas fa-info-circle"></i> We have provided template description you can overwrite below.</p>-->
-        <p><i class="fas fa-info-circle"></i> We’ve written some suggested text to get you started, but you can change it or add to it – just click in the box to edit.</p>
-
+  
 		<div class="govuk-form-group" style="margin-bottom: 0;padding-bottom: 0">
 		  <label class="govuk-label" for="sub">
               Who is the course for?<br/>
@@ -291,10 +290,12 @@ $(document).ready(function (e) {
               How you’ll learn
 			  <br/><span style="colour:#6f777b">Secondary line</span>
 		  </label>
-		  <textarea class="govuk-textarea descript" id="how" name="how" rows="6"></textarea> 
-		</div>
+		  <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0"></textarea>
+            <p style="colour:#6f777b;margin-top:0px;">You have 200 characters remaining</p>
 
+        </div>
 
+<hr style="margin-top:15px;margin-bottom:30px;">
 
         <div class="govuk-form-group">
 		  <label class="govuk-label" for="sub">
@@ -327,16 +328,6 @@ $(document).ready(function (e) {
         </div>
 
         <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Advanced learner loan
-            </label>
-            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
-        </div>
-
-
-
-
-        <div class="govuk-form-group">
 
 
 <button type="submit" class="govuk-button" id="go">
@@ -352,7 +343,7 @@ $(document).ready(function (e) {
 
 	<div class="prog-container" style="font-family: nta, Arial, sans-serif">
 		<div class="prog-point-cont"><div class="prog-point" id="pr_1">1</div><div class="prog-point-descript">Course details</div></div>
-		<div class="prog-line">&nbsp;</div>
+		<div class="prog-line">&nbsp;</dv>
 		<div class="prog-point-cont"><div class="prog-point" id="pr_2">2</div><div class="prog-point-descript">Select venue</div></div>
 		<div class="prog-line">&nbsp;</div>
 		<div class="prog-point-cont"><div class="prog-point" id="pr_3">3</div><div class="prog-point-descript">Course description</div></div>

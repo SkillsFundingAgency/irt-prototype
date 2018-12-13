@@ -479,6 +479,14 @@ $j(document).ready(function (e) {
 		});
 	});
 	
+	$j("#flexible").change(function (e) {
+		if ($j("#flexible").is(":checked")) {
+			$j(".date").each(function(e) {
+				$j(this).val("");
+			});
+		}
+	});
+	
 });
 
 </script>
@@ -507,19 +515,17 @@ $j(document).ready(function (e) {
 <form name="form" action="your-courses" method="post" id="form">
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
             Add your first course
         </h1>
 
-        <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> BOLTONIN<br/> Lars: 302309</p>
+<p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> Awarding organisation: BOLTONIN<br/> LARS/QAN: 302309</p>
 
-
-
-        <div class="govuk-form-group">
+        <div class="govuk-form-group" style="margin-top: 30px">
             <label class="govuk-label" for="sub">
                 Course name&nbsp;&nbsp;<!--<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>-->
-				<br/><span style="colour:#6f777b">Secondary line</span>
+				<br/><span style="colour:#6f777b">This is the name people will see when they search for your course.</span>
             </label>
 
             <textarea class="govuk-textarea descript" id="reff--" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;border-color: #eee;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">PGCE in Secondary (Mathematics) - Bradford College</textarea>
@@ -529,7 +535,7 @@ $j(document).ready(function (e) {
         <div class="govuk-form-group" style="clear:both;">
             <label class="govuk-label" for="sub">
                 ID&nbsp;&nbsp;<!--a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
-				<br/><span style="colour:#6f777b">Secondary line</span>
+				<br/><span style="colour:#6f777b">This is how you identify a course in you internal system.</span>
             </label>
             <input class="govuk-input details" id="name" name="name" type="text" required/>
 
@@ -576,11 +582,11 @@ $j(document).ready(function (e) {
 
             <!--<p> <input type="text" id="datepicker" class="govuk-input details" style="width:200px;"></p>-->
 			
-			<input type="text" class="govuk-input" style="width:60px;" />
-			<input type="text" class="govuk-input" style="width:60px;" />
-			<input type="text" class="govuk-input" style="width:120px;" />
+			<input type="text" class="govuk-input date" style="width:60px;" />
+			<input type="text" class="govuk-input date" style="width:60px;" />
+			<input type="text" class="govuk-input date" style="width:120px;" />
 			<br/>
-            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 10px;clear:both;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Flexible start date</label> </div> </div>
+            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 10px;clear:both;"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="flexible" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Flexible start date</label> </div> </div>
         </div>
        
 
@@ -762,7 +768,6 @@ $j(document).ready(function (e) {
         <div class="govuk-form-group" style="margin-top:25px;">
             <label class="govuk-label" for="sub">
                 URL&nbsp;&nbsp;<!--<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
-				<br/><span style="colour:#6f777b">Secondary line</span>
             </label>
             <input class="govuk-input details" id="url" name="sub" type="text" required/>
         </div>
@@ -772,16 +777,23 @@ $j(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
 			Cost
 		  </label>
-		  <input class="govuk-input details" id="cost" name="sub" type="number" min="1" step="0.01" style="" required/>
+		  <input class="govuk-input details" id="cost" name="sub" type="number" min="0" step="0.01" style="" placeholder="£" required/>
 		</div>
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Cost description
             </label>
-            <input class="govuk-input details" id="costdescription" name="sub" type="text" style=""/>
+           <textarea class="govuk-textarea"  rows="6" style="resize:none;"></textarea>
         </div>
 
+		        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Advanced learner loan
+            </label>
+            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
+        </div>
+		
 
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
