@@ -573,11 +573,22 @@ $j(document).ready(function (e) {
 			
         </div>
 
+
+        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+
         <div class="govuk-form-group" id="date">
             <label class="govuk-label" for="sub" style="margin-bottom: 15px">
                 Start date
             </label>
             <span id="more-detail-hint" class="govuk-hint">Enter the start date of this course, if it has flexible start dates select the checkbox below </span>
+            <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
+            <div class="govuk-radios__item ">
+                <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom" checked>
+                <label class="govuk-label govuk-radios__label" for="changed-name-1">
+
+                </label>
+            </div>
+            </div>
 
 
 <div class="">
@@ -600,17 +611,35 @@ $j(document).ready(function (e) {
 			<input type="text" class="govuk-input date" style="width:60px;" />
 
 			<input type="text" class="govuk-input date" style="width:120px;" />
-			<br><p style="margin: 15px 0">Or</p>
-            <div class="govuk-checkboxes">
+
+
+
+            <span id="more-detail-hint" class="govuk-hint" style="margin-top: 20px">Or select a flexible start date: </span>
+
+
+
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom">
+                <label class="govuk-label govuk-radios__label" for="changed-name-1">
+                    Select a flexible start date
+
+                </label>
+            </div>
+
+
+
+            <!--<div class="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox" value="carcasses">
                     <label class="govuk-label govuk-checkboxes__label" for="waste-1">
                         Flexible start date
                     </label>
                 </div>
-            </div>
+            </div>-->
 
         </div>
+
+        </fieldset>
        
 
         <div class="govuk-form-group" style="margin-bottom:10px;" id="venue">
