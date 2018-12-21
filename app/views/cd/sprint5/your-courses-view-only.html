@@ -58,7 +58,7 @@ GOV.UK prototype kit
     }
     .shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
 
-    .gov-btns .govuk-button{background-color: white; color: #1754B9; border-bottom: 1px solid  #1754B9}
+    .gov-btns .govuk-button{background-color: white; color: black; border-bottom: 1px solid  black}
     .header-wrapper, footer,.govuk-width-container{max-width: 2300px;width: 2300px}
     footer{display: none}
     .govuk-main-wrapper{padding: 0}
@@ -278,6 +278,9 @@ GOV.UK prototype kit
 	.edit-url-cont {
 		margin-left:16px;
 	}	
+
+.section-container{display: none}
+
 
 </style>
 
@@ -557,7 +560,7 @@ $j(document).ready(function() {
 			/*$j(this).parent().parent().find(".table-row").hide();
 			//$j(this).parent().parent().find(".section-container").hide()*/
 			$j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
-				$j(this).hide();
+				$j(this).show();
 			});
 			$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
 		});
@@ -579,7 +582,7 @@ $j(document).ready(function() {
 			/*$j(this).parent().parent().find(".table-row").hide();
 			//$j(this).parent().parent().find(".section-container").hide()*/
 			$j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
-				$j(this).hide();
+				$j(this).show();
 			});
 			$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
 		});
@@ -873,6 +876,7 @@ $j(document).ready(function() {
 	initRows();
 	initEdit();
 	
+	$j(".table-row").find("input[type=text]").prop("readonly",true);
 
 	
 });
@@ -939,14 +943,14 @@ $j(document).ready(function() {
 <!--<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">-->
 <main role="main" id="adminContent" class="govuk-main-wrapper">
 
-<!--<i class="fa fa-bars menu-button collapsed" style="    color: #1754B9;"></i>-->
+<!--<i class="fa fa-bars menu-button collapsed" style="    color: black;"></i>-->
 
 <header class="admin-page-header">
 
     <h1 class="govuk-heading-l" style="display: inline-block;margin-bottom: 0">Your courses</h1><p class="count">(<span id="recs2">12</span>)</p>
 	
 	<div style="float:right; position: relative;"><a href="add-qualification" class="govuk-button">+ Add a qualification</a></div>
-	<div style="float:right; position: relative; clear:both;"><a href="add-qualification" class="govuk-button">Publish all</a></div>
+	<div style="float:right; position: relative; clear:both;"><a href="add-qualification" class="" style="font-size:30px;padding-right: 20px">Publish all</a></div>
 	
     <!--<div class="search-box-container">
 
@@ -1141,20 +1145,21 @@ $j(document).ready(function() {
 
 <!-- TABLE HEADER -->
 <div class="table-main-header">
-	<h2 style="margin:0;width:auto;float:left;margin-right: 20px" class="govuk-heading-l"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Diploma</h2>
+	<h2 style="margin:0;width:auto;float:left;margin-right: 20px" class="govuk-heading-l"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Diploma</h2>
+    <br><br><br><span style="display: block;">Expand to see your qualifications</span><hr>
 </div>
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i> BA (Hons) in Education Studies,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i> BA (Hons) in Education Studies,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, NCFE, Lars: 302298, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
-        <label class="govuk-label govuk-checkboxes__label"">&nbsp;</label>
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
+        <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
 </div>
@@ -1237,10 +1242,11 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-	
 
-			<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
-  
+
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 
 </div>	
 <!-- ////////////////////////// -->
@@ -1319,8 +1325,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
 
-	<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+
 </div>
 
 <!-- ////////////////////////// -->
@@ -1404,7 +1411,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 </div>
 
@@ -1413,7 +1422,7 @@ $j(document).ready(function() {
 
 <div class="section-container">
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Diploma in Information Technology,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Diploma in Information Technology,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
@@ -1502,7 +1511,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 
 </div>
 
@@ -1580,7 +1591,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-	<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 <!-- ////////////////////////// -->
@@ -1658,7 +1671,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-	<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 	
 <!-- ////////////////////////// -->
@@ -1735,7 +1750,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-		<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 </div>
 	
@@ -1744,13 +1761,13 @@ $j(document).ready(function() {
 
 
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Diploma in Administration,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Diploma in Administration,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 10010348, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
         <label class="govuk-label govuk-checkboxes__label"">&nbsp;</label>
       </div>
 </div>
@@ -1833,7 +1850,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 	
@@ -1912,7 +1931,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-		<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 <!-- ////////////////////////// -->
@@ -1990,7 +2011,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 </div>
 
@@ -2000,7 +2023,7 @@ $j(document).ready(function() {
 
 
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Diploma in Home Economics: Child Development,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Diploma in Home Economics: Child Development,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, NCFE, Lars: 50043985, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
@@ -2088,7 +2111,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 	
 <!-- ////////////////////////// -->
@@ -2166,7 +2191,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-	<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 </div>
 
@@ -2174,7 +2201,7 @@ $j(document).ready(function() {
 <div class="section-container">
 
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Diploma in Bussiness Administration,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Diploma in Bussiness Administration,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, City & Guilds of London Institute, Lars: 302793, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
@@ -2262,7 +2289,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 <!-- ////////////////////////// -->
@@ -2340,7 +2369,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-	<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 <!-- ////////////////////////// -->
@@ -2418,7 +2449,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-	<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 <!-- ////////////////////////// -->
@@ -2496,7 +2529,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 </div>
 
@@ -2505,13 +2540,13 @@ $j(document).ready(function() {
 
 
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Diploma in Child Development,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Diploma in Child Development,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, NCFE, Lars: 326874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
         <label class="govuk-label govuk-checkboxes__label"">&nbsp;</label>
       </div>
 </div>
@@ -2593,7 +2628,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>
 
 </div>
@@ -2606,14 +2643,15 @@ $j(document).ready(function() {
 
 <!-- TABLE HEADER -->
 <div class="table-main-header">
-	<h2 style="margin:0;width:auto;float:left;margin-right: 20px" class="govuk-heading-l"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i> Certificate</h2>
+	<h2 style="margin:0;width:auto;float:left;margin-right: 20px;margin-top: 10px" class="govuk-heading-l"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i> Certificate</h2>
+    <br><br><br><span style="display: block;">Expand to see your qualifications</span><hr>
 </div>
 
 <!-- TABLE SUB-HEADER -->
 <div class="section-container">
 
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Certificate in Child Development,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Certificate in Child Development,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 2, NCFE, Lars: 569874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
@@ -2700,7 +2738,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>	
 
 <!-- TABLE ROW-->
@@ -2777,7 +2817,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>	
 </div>
 
@@ -2785,7 +2827,7 @@ $j(document).ready(function() {
 <div class="section-container">
 
 <div class="table-sub-header" style="position:relative;">
-<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#1754B9;float:left;">&nbsp;</i>  Certificate in Direct Learning Support,</p></div>
+<div><p style="font-weight: bold;font-size: 22px;margin-left: 0;margin-bottom:10px;" class="sub-title"><i class="fa fa-angle-down section-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:black;float:left;">&nbsp;</i>  Certificate in Direct Learning Support,</p></div>
 
 <div class="sub-descript" style="display:inline-block;height:40px;"><p  style="font-weight: 300">Level 3, NCFE, Lars: 369874, <a class="edit-btn open-descript" style="margin-right: 20px" href="#">View course description</a> Advanced learner loan available</p></div>
 <div style="position:relative;display:inline-block;">
@@ -2874,7 +2916,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>	
 
 <!-- TABLE ROW-->
@@ -2953,7 +2997,9 @@ $j(document).ready(function() {
         <label class="govuk-label">Mode</label>
         <input class="govuk-input" type="text" readonly value="Full-time">
     </div>
-<a href="add-qualification" class="govuk-button" style="margin-top:30px;">Publish</a>
+    <a href="add-qualification" class="" style="margin-top:30px;float:right;font-size: 25px">Publish</a>
+
+
 </div>	
 
 </div>
@@ -3242,7 +3288,7 @@ $j(document).ready(function() {
               Who is the course for?
 			  <span id="more-detail-hint" class="govuk-hint">who will attend this course  </span>
 		  </label>
-		  <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0"></textarea>
+		  <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
             <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
@@ -3256,7 +3302,7 @@ $j(document).ready(function() {
                 Entry requirements
                 <span id="more-detail-hint" class="govuk-hint">List entry requirements</span>
             </label>
-            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0"></textarea>
+            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
             <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
@@ -3270,7 +3316,7 @@ $j(document).ready(function() {
               What you’ll learn
 			  <span id="more-detail-hint" class="govuk-hint">Details of topics covered on the course</span>
 		  </label>
-		  <textarea class="govuk-textarea descript" id="learn" name="learn" rows="7" style="margin-bottom: 0"></textarea>
+		  <textarea class="govuk-textarea descript" id="learn" name="learn" rows="7" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
                     <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
@@ -3283,7 +3329,7 @@ $j(document).ready(function() {
                 How you’ll learn
                 <span id="more-detail-hint" class="govuk-hint">Describe the delivery of the course</span>
             </label>
-            <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0"></textarea>
+            <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
             <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
@@ -3296,7 +3342,7 @@ $j(document).ready(function() {
                 What you'll need to bring
                 <span id="more-detail-hint" class="govuk-hint">List any tools or apparatus Learners will need to bring</span>
             </label>
-            <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0"></textarea>
+            <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
             <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
@@ -3309,7 +3355,7 @@ $j(document).ready(function() {
                 How you'll be assessed
                 <span id="more-detail-hint" class="govuk-hint">Describe the assesment methods used to assess this course</span>
             </label>
-            <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0"></textarea>
+            <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
                     <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
@@ -3325,7 +3371,7 @@ $j(document).ready(function() {
                 Where next?
 				<span id="more-detail-hint" class="govuk-hint">What are the next destinations for learners</span>
             </label>
-            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0"></textarea>
+            <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
             <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
     You can enter up to 200 characters
   </span>
