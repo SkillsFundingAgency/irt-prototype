@@ -298,8 +298,7 @@ GOV.UK prototype kit
 var $j = jQuery.noConflict();
 
 $j('#popup-venue,#popup-preview','#popup-descript').popup({
-    opacity: 0.5,
-    color:'#666',
+    color:'#fff',
     transition: 'all 0.3s'
 });
 
@@ -427,7 +426,7 @@ $j(document).ready(function() {
         }
         event.preventDefault();
     });
-    $j('#popup-descript, #popup-startdate, #popup-courseid').popup({
+    $j('#popup-startdate, #popup-courseid').popup({
         opacity: 0.999,
         color:'#fff',
         transition: 'all 0.3s'
@@ -648,6 +647,7 @@ $j(document).ready(function() {
 				$j(this).parent().parent().find(".open-cost").show();
 				$j(this).parent().parent().find(".save-cost").hide();
 				$j(this).parent().parent().find(".edit-cost-input").val($j(this).parent().parent().find(".open-cost").attr("data-cost"));
+				$j(this).parent().parent().parent().css("min-height","auto");
 			});
 		});
 
@@ -661,6 +661,7 @@ $j(document).ready(function() {
                 $j(this).parent().find(".edit-cost-cont").show();
                 $j(this).hide();
                 $j(this).parent().find(".save-cost").show();
+				$j(this).parent().parent().css("min-height","160px");
             });
         });
 
@@ -671,6 +672,7 @@ $j(document).ready(function() {
                 $j(this).hide();
                 $j(this).parent().find(".open-cost").show();
 				$j(this).parent().find(".open-cost").attr("data-cost", $j(this).parent().parent().find(".edit-cost-input").val()); 
+				
             });
         });
 
@@ -681,6 +683,7 @@ $j(document).ready(function() {
 				$j(this).parent().parent().find(".open-url").show();
 				$j(this).parent().parent().find(".save-url").hide();
 				$j(this).parent().parent().find(".edit-url-input").val($j(this).parent().parent().find(".open-url").attr("data-url"));
+				$j(this).parent().parent().parent().css("min-height","auto");
 			});
 		});
 
@@ -694,6 +697,7 @@ $j(document).ready(function() {
                 $j(this).parent().find(".edit-url-cont").show();
                 $j(this).hide();
                 $j(this).parent().find(".save-url").show();
+				$j(this).parent().parent().css("min-height","160px");
             });
         });
 
@@ -954,7 +958,7 @@ $j(document).ready(function() {
 
     <h1 class="govuk-heading-l" style="display: inline-block;margin-bottom: 0">Your courses</h1><p class="count">(<span id="recs2">12</span>)</p>
 	
-	<div style="float:right; position: relative;"><a href="add-qualification" class="govuk-button">+ Add a qualification</a></div>
+	<div style="float:right; position: relative;"><a href="add-qualification" class="govuk-button">Add a qualification</a></div>
 	
     <!--<div class="search-box-container">
 
@@ -1161,7 +1165,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
+        <input class="govuk-checkboxes__input" type="checkbox" checked value="1" disabled>
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -1179,14 +1183,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Education and Training">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:50px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:120px;">
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1227,7 +1231,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1261,14 +1265,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Education and Training">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-       <input class="govuk-input" type="text" readonly value="Classroom">
+       <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1302,14 +1306,14 @@ $j(document).ready(function() {
         <a href="#" class="edit-btn open-cost" data-cost="This is the 24 + Advanced Learning loan price, self funders would have to add VAT at the standard rate">View</a>
 		<a href="#" class="edit-btn save-cost">&nbsp;</a>
         <div class="edit-cost-cont">
-			<input class="govuk-input edit-cost-input" type="text"  readonly value="This is the 24 + Advanced Learning loan price, self funders would have to add VAT at the standard rate">
+			<input class="govuk-input edit-cost-input" type="text" checked readonly value="This is the 24 + Advanced Learning loan price, self funders would have to add VAT at the standard rate">
 			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Close</a>
 		</div>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1342,14 +1346,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Education and Training">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1390,7 +1394,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1425,7 +1429,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -1442,14 +1446,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Information Technology">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1490,7 +1494,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1520,14 +1524,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Information Technology">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1568,7 +1572,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1598,14 +1602,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Information Technology">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1646,7 +1650,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1675,14 +1679,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Information Technology">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1723,7 +1727,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1756,7 +1760,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" checked disabled>
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -1773,14 +1777,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1821,7 +1825,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1852,14 +1856,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1900,7 +1904,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -1930,14 +1934,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -1978,7 +1982,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2012,7 +2016,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -2028,14 +2032,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Child Development">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2076,7 +2080,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2106,14 +2110,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Child Development">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2154,7 +2158,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2186,7 +2190,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -2202,14 +2206,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Business Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2250,7 +2254,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2280,14 +2284,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Business Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2328,7 +2332,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2358,14 +2362,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Business Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2406,7 +2410,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2436,14 +2440,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Business Administration">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2477,14 +2481,14 @@ $j(document).ready(function() {
         <a href="#" class="edit-btn open-cost" data-cost="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">View</a>
 		<a href="#" class="edit-btn save-cost">&nbsp;</a>
         <div class="edit-cost-cont">
-			<input class="govuk-input edit-cost-input" type="text"  readonly value="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">
+			<input class="govuk-input edit-cost-input" type="text" checked readonly value="This is the 24+ Advanced Learning Loan price, self funders should add VAT at the standard rate">
 			<a href="#" class="edit-btn cancel-cost" style="margin-top:10px;float:left;">Close</a>
 		</div>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2517,7 +2521,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1" disabled>
+        <input class="govuk-checkboxes__input" type="checkbox" value="1" checked disabled>
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -2533,14 +2537,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Diploma in Child Development">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2581,7 +2585,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2625,7 +2629,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" disabled value="1">
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -2640,14 +2644,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Certificate in Child Development">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2688,7 +2692,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2717,14 +2721,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Certificate in Child Development">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2765,7 +2769,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2797,7 +2801,7 @@ $j(document).ready(function() {
 <div style="position:relative;display:inline-block;">
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" type="checkbox" value="1">
+        <input class="govuk-checkboxes__input" type="checkbox" disabled checked value="1">
         <label class="govuk-label govuk-checkboxes__label">&nbsp;</label>
       </div>
 </div>
@@ -2814,14 +2818,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Certificate in Direct LEarning Support">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2862,7 +2866,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2893,14 +2897,14 @@ $j(document).ready(function() {
         <input class="govuk-input govuk-input--width-10 coursename" type="text"  readonly value="Certificate in Direct LEarning Support">
     </div>
 
-    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:55px;">
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:90px;">
         <label class="govuk-label">ID</label>
-        <input class="govuk-input govuk-input--width-10" style="width:50px;" type="text" readonly>
+        <input class="govuk-input govuk-input--width-10" style="width:90px;" type="text" readonly>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
         <label class="govuk-label">Delivery</label>
-        <input class="govuk-input" type="text" readonly value="Classroom">
+        <select name="delivery" class="govuk-select"><option>Classroom</option></select>
     </div>
 
     <div style="display: inline-block;padding-right: 10px" >
@@ -2941,7 +2945,7 @@ $j(document).ready(function() {
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
         <label class="govuk-label">Duration</label>
-        <select name="duration" class="govuk-select"><option>12</option></select>
+        <input class="govuk-input" name="duration" value="12" readonly/>
     </div>
 
     <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
@@ -2983,13 +2987,13 @@ $j(document).ready(function() {
         #popup-flat.popup_content, #popup-descript {
             border: solid 1px #000 !important;
         }
-        #popup-flat_background,#popup-descript {
+        #popup-flat_background {
             background-color: rgba(255,255,255,.6) !important;
         }
 
         #popup-flat,#popup-descript {
             background-color: #fff;
-            height:80%;
+            height:60%;
 			overflow-y:scroll;
         }
 
@@ -3230,7 +3234,7 @@ $j(document).ready(function() {
 
     <!--popoup descript-->
 
-<div id="popup-descript" style="padding:40px;width:50%;"><div style="padding:40px;">
+<div id="popup-descript" style="padding:40px;width:50%;background-color:#fff;opacity:1;"><div style="padding:40px;">
 <a href="#" id="close-preview" class="close-descript" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 
 <div class="govuk-grid-row">
