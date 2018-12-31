@@ -487,6 +487,15 @@ $j(document).ready(function (e) {
 		}
 	});
 	
+	/*START DATE*/
+	$j("#startdate_s").change(function(e) {
+		$("#startdate").show();
+	});
+
+	$j("#startdate_f").change(function(e) {
+		$("#startdate").hide();
+	});	
+	
 });
 
 </script>
@@ -574,72 +583,31 @@ $j(document).ready(function (e) {
         </div>
 
 
-        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-
-        <div class="govuk-form-group" id="date">
-            <label class="govuk-label" for="sub" style="margin-bottom: 15px">
-                Start date
-            </label>
-            <span id="more-detail-hint" class="govuk-hint">Enter the start date of this course, if it has flexible start dates select the checkbox below </span>
-            <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-            <div class="govuk-radios__item ">
-                <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom" checked>
-                <label class="govuk-label govuk-radios__label" for="changed-name-1">
-
-                </label>
-            </div>
-            </div>
-
-
-<div class="">
-            <!--<p> <input type="text" id="datepicker" class="govuk-input details" style="width:200px;"></p>-->
-            <label class="govuk-label govuk-date-input__label" for="dob-day" style="display: inline-block;width:60px;">
-                Day
-            </label>
-
-            <label class="govuk-label govuk-date-input__label" for="dob-month" style="display: inline-block;width:100px;">
-                Month
-            </label>
-
-            <label class="govuk-label govuk-date-input__label" for="dob-year" style="display: inline-block;width:60px;">
-                Year
-            </label>
-    </div>
-
+					 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+<label class="govuk-label">Start date</label>
+    <div class="govuk-radios govuk-radios" style="margin-bottom:30px;">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input classroom" name="startdate" type="radio" value="classroom" id="startdate_s">
+        <label class="govuk-label govuk-radios__label" for="changed-name-1">
+          Specific start date
+        </label>
+      </div>
+	  
+			<div id="startdate" style="display:none;padding-left:55px;margin-bottom:25px;">
+			<span id="more-detail-hint" class="govuk-hint">Please enter the date (dd/mm/yyyy).</span>
 			<input type="text" class="govuk-input date" style="width:60px;" />
-
 			<input type="text" class="govuk-input date" style="width:60px;" />
-
 			<input type="text" class="govuk-input date" style="width:120px;" />
-
-
-
-            <span id="more-detail-hint" class="govuk-hint" style="margin-top: 20px">Or select a flexible start date: </span>
-
-
-
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom">
-                <label class="govuk-label govuk-radios__label" for="changed-name-1">
-                    Select a flexible start date
-
-                </label>
-            </div>
-
-
-
-            <!--<div class="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox" value="carcasses">
-                    <label class="govuk-label govuk-checkboxes__label" for="waste-1">
-                        Flexible start date
-                    </label>
-                </div>
-            </div>-->
-
-        </div>
-
-        </fieldset>
+			</div>	  
+	  
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input online" id="startdate_f" name="startdate" type="radio" value="online" checked>
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Flexible start date
+        </label>
+      </div>	  
+    </div>
+  </fieldset>
        
 
         <div class="govuk-form-group" style="margin-bottom:10px;" id="venue">
