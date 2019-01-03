@@ -269,11 +269,9 @@ GOV.UK prototype kit
 		width:300px;;
 		height:auto;
 		padding:10px;
-		padding-left:25px;
 		background-color:#fff;
 		margin-top:15px;
-		margin-left:35px;
-		border-left:solid 5px #bfc1c3;
+		margin-left:33px;
 	}
 	
 	.edit-date-cont {
@@ -282,12 +280,10 @@ GOV.UK prototype kit
 		width:auto;;
 		height:auto;
 		padding:10px;
-		padding-left:25px;
 		background-color:#fff;
 		margin-top:15px;
-		margin-left:20px;
+		margin-left:33px;
 		z-index:100000;
-		border-left:solid 5px #bfc1c3;
 	}	
 	
 	.edit-url-cont {
@@ -787,7 +783,7 @@ $j(document).ready(function() {
                 $j(this).parent().find(".edit-date-cont").show();
                 $j(this).hide();
                 $j(this).parent().find(".save-date").show();
-				$j(this).parent().parent().css("min-height",($j(this).parent().find(".edit-date-cont").height()+110)+"px");
+				$j(this).parent().parent().css("min-height","250px");
             });
         });
 
@@ -808,45 +804,72 @@ $j(document).ready(function() {
 
 	function initRows() {
 	
-		$j(".save-row").each(function(e) {
-			$j(this).off();
-			$j(this).click(function (e) {
-				e.preventDefault();		
-				$j(this).closest(".table-row").find(".btns1").show();
-				$j(this).closest(".table-row").find(".btns2").hide();
-				initRows();
-			});
-		});
-		
-		$j(".discard-row").each(function(e) {
-			$j(this).off();
-			$j(this).click(function (e) {
-				e.preventDefault();		
-				$j(this).closest(".table-row").remove();
-				initRows();
-			});
-		});		
-	
-		$j(".copy-row").each(function (e) {
+		$j(".publish-copy").each(function(e) {
 			$j(this).off();
 			$j(this).click(function (e) {
 				e.preventDefault();
 				
-				var elem=$j('<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;display:block;" class="table-row">'+$j(this).closest(".table-row").html()+'</div>').insertAfter($j(this).closest(".table-row"));
-				elem.find(".btns1").hide();
-				elem.find(".btns2").show();
+				$("input[data-old], select[data-old]").each(function(e) {
+					$j(this).attr("data-old", $j(this).val());
+				});
+				
+				$(".open-url").each(function(e) {
+					$j(this).attr("data-old", $j(this).attr("data-url"));
+				});
+				
+				$(".open-course").each(function(e) {
+					$j(this).attr("data-old", $j(this).attr("data-url"));
+				});				
+				
+				$j(this).closest("tr").find(".pub-status").html("Published");
+				
+				$j(this).closest("tr").removeClass("gray-back");
+				
+				$j("#edit-cost").hide();
+				$j("#edit-url").hide();
+				$j(this).closest("tr").find(".open-inline-menu").removeClass("active").addClass("collapsed");				
+				$j(this).closest(".inline-menu").html('<a href="#" class="copy-course">Copy course</a><br><a href="#" class="archive-course">Archive course</a><br>').hide();
+
 				initRows();
+			});
+		});
+	
+		$j(".copy-course").each(function (e) {
+			$j(this).off();
+			$j(this).click(function (e) {
+				e.preventDefault();
+				var elem=$j(this).closest("tr");
+				elem.closest("tr").find(".inline-menu").hide();
+				elem.closest("tr").find(".open-inline-menu").removeClass("active").addClass("collapsed");
+				$j('<tr class="roww">'+elem.html()+'</tr>').insertAfter(elem);
+				var neww=elem.next("tr");
+				neww.addClass("gray-back");
+				neww.find(".inline-menu").hide();
+				neww.find(".pub-status").html("Unpublished");
+				var html='<div style="padding:5px;" class="editborder"><a href="#" class="publish-copy">Publish</a><br/><a href="#" class="archive-course">Discard</a></div>';
+				neww.closest("tr").find(".inline-menu").html(html);
+				neww.closest("tr").find(".inline-menu").show();
+				neww.closest("tr").find(".open-inline-menu").removeClass("collapsed").addClass("active");
+				initRows();
+				initPicker();
+				initCommands();
+				
+				neww.closest("tr").find(".based, .venue, .coursedur, .courseunits, .coursetime, .coursewhen,.coursename, .courseid, .coursecost, .datepicker").off();
+							
 				
 			});
 		});
 
-		$j(".archive-row").each(function (e) {
+		$j(".archive-course").each(function (e) {
 			$j(this).off();
 			$j(this).click(function (e) {
 				e.preventDefault();
-				if (confirm("Are you sure you want to archive this course?")) {
-					$j(this).closest(".table-row").remove();
+				var elem=$j(this).closest("tr");
+				if (elem.prev("tr").hasClass("heading-row") && (!elem.next("tr").length || elem.next("tr").hasClass("heading-row"))) {
+					elem.prev("tr").remove();
 				}
+				elem.find(".inline-menu").hide();
+				elem.remove();
 			});
 		});	
 		
@@ -942,16 +965,12 @@ $j(document).ready(function() {
 			$j(".startdate_s").each(function(e) {
 				$j(this).change(function(e) {
 					$j(".startdate").show();
-					$j(this).closest(".table-row").css("height","auto");
-					$j(this).closest(".table-row").css("min-height","275px");		
 				});
 			});
 
 			$j(".startdate_f").each(function(e) {
 				$j(this).change(function(e) {
 					$j(".startdate").hide();
-					$j(this).closest(".table-row").css("height","auto");
-					$j(this).closest(".table-row").css("min-height","195px");					
 				});	
 			});
 		
@@ -1264,19 +1283,26 @@ $j(document).ready(function() {
           <option value="online">Online</option>
         </select>
       </div>
-   <div style="display: inline-block;padding-right: 10px;text-align:center;" >
+      <div style="display: inline-block;padding-right: 10px;text-align:center;" >
         <label class="govuk-label" style="margin-bottom:20px;">Start date</label>
         <!--<input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" />-->
-        <a href="#" class="edit-btn open-date" data-day="03" data-month="09" data-year="2018">Change</a> <a href="#" class="edit-btn save-date">Update</a>
+        <a href="#" class="edit-btn open-date" data-day="03" data-month="09" data-year="2018">Edit</a> <a href="#" class="edit-btn save-date">Update</a>
         <div class="edit-date-cont">
 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-    <div class="govuk-radios  govuk-radios--inline" style="margin-bottom:10px;">
+    <div class="govuk-radios govuk-radios" style="margin-bottom:30px;">
       <div class="govuk-radios__item">
         <input class="govuk-radios__input classroom startdate_s" name="sdt" type="radio" value="classroom" id="startdate_s">
         <label class="govuk-label govuk-radios__label" for="changed-name-1">
           Specific start date
         </label>
-      </div>  
+      </div>
+	  
+			<div id="startdate" class="startdate" style="display:none;padding-left:55px;margin-bottom:25px;">
+			<span id="more-detail-hint" class="govuk-hint">Please enter the date (dd/mm/yyyy).</span>
+			<input type="text" class="govuk-input edit-day-input" style="width:60px;" />
+			<input type="text" class="govuk-input edit-month-input" style="width:60px;" />
+			<input type="text" class="govuk-input edit-year-input" style="width:120px;" />
+			</div>	  
 	  
       <div class="govuk-radios__item">
         <input class="govuk-radios__input online startdate_f" id="startdate_f" name="sdt" type="radio" value="online" checked>
@@ -1285,14 +1311,6 @@ $j(document).ready(function() {
         </label>
       </div>	  
     </div>
-			<div id="startdate" class="startdate" style="display:none;padding-left:55px;margin-bottom:25px;">
-			<span id="more-detail-hint" class="govuk-hint" style="float:left;clear:both;display:block;">Please enter the date (dd/mm/yyyy).</span>
-			<div style="float:left;clear:both;">
-			<input type="text" class="govuk-input edit-day-input" style="width:60px;" />
-			<input type="text" class="govuk-input edit-month-input" style="width:60px;" />
-			<input type="text" class="govuk-input edit-year-input" style="width:120px;" />
-			</div>
-			</div>		
   </fieldset>			
           <a href="#" class="edit-btn cancel-date" style="margin-top:10px;float:left;">Close</a> </div>		
       </div>
@@ -1358,18 +1376,6 @@ $j(document).ready(function() {
           <option value="Daytime/working hours">Daytime/working hours</option>
         </select>
       </div>
-	  
-	 <section class="btns btns1" style="margin-bottom: 10px;width: 400px">
-        <a href="#" class="copy-row" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Copy</a>
-        <a href="#" class="open-preview" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Preview</a>
-        <a href="#" class="archive-row" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
-    </section>
-	
-	 <section class="btns btns2" style="margin-bottom: 10px;width: 400px;display:none;">
-        <a href="#" class="save-row" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Save</a>
-        <a href="#" class="discard-row" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Discard</a>
-    </section>	  
-	  
     </div>
     <!-- ////////////////////////// -->
     

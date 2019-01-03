@@ -1031,10 +1031,29 @@ $j(document).ready(function() {
 
 <!--<i class="fa fa-bars menu-button collapsed" style="    color: #1754B9;"></i>-->
 
-<header class="admin-page-header" style="height:80px;">
+<header class="admin-page-header" style="height:200px;">
   <h1 class="govuk-heading-l" style="display: inline-block;margin-bottom: 0">Your courses</h1>
   <p class="count">(<span id="recs2">12</span>)</p>
   <div style="float:right; position: relative;"><a href="add-qualification" class="govuk-button">Add a qualification</a></div>
+
+
+
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary" style=" margin-top: 20px">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                    <a href="#dob-error">A course was duplicated</a>
+                </li>
+                <li>
+                    <a href="#postcode-error">At least one item needs to be different</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
   
   <!--<div class="search-box-container">
 
@@ -1247,8 +1266,21 @@ $j(document).ready(function() {
     </div>
     
     <!-- TABLE ROW-->
-    <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row">
-      <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:230px;">
+
+    <div class="govuk-form-group govuk-form-group--error">
+
+
+    <div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;" class="table-row; background:red">
+
+        <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                    <a href="#nationality">Change at least one detail</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:230px;">
         <label class="govuk-label">Course name</label>
         <input class="govuk-input coursename" type="text"   style="width:230px"  value="Diploma in Education and Training">
       </div>
@@ -1264,6 +1296,9 @@ $j(document).ready(function() {
           <option value="online">Online</option>
         </select>
       </div>
+
+        </div>
+
    <div style="display: inline-block;padding-right: 10px;text-align:center;" >
         <label class="govuk-label" style="margin-bottom:20px;">Start date</label>
         <!--<input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" />-->
