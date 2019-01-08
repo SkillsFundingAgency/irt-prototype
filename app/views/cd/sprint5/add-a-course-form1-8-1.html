@@ -1,0 +1,1484 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+.link--button {
+    border:none;
+    color:#005ea5;
+    font-size: 1.1875rem;
+    text-decoration: underline;
+}
+    .govuk-related-items {
+        margin-top: 30px;
+        border-top: 10px solid #005ea5;
+        padding-top: 5px;
+    }
+    .link-back {
+        display: -moz-inline-stack;
+        display: inline-block;
+        position: relative;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1428571429;
+        font-weight: 400;
+        text-transform: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 14px;
+        color: #0b0c0c;
+        text-decoration: none;
+        border-bottom: 1px solid #0b0c0c;
+
+    }
+    .link-back:link, .link-back:visited, .link-back:hover, .link-back:active {
+        color: #0b0c0c;
+    }
+    .link-back::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 6px solid #0b0c0c;
+        border-bottom: 5px solid transparent;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -6px;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+	
+	.enrol-text {
+		position: relative;top: -25px; font-size: 14px;
+	}
+	
+	@media all and (max-width: 640px) {
+		.enrol-text {
+			margin-top:12px;
+		}
+		.share-links li {
+			margin:5px !important;
+		}
+	}
+	
+	.pnl {
+	
+		border:solid 1px #000;
+		padding:20px;
+		margin:5px;
+	
+	}
+	
+	h3 {
+		width:100%;
+		margin-bottom:20px;
+		clear:both;
+	}
+    .govuk-date-input__item {
+        width: 60px;
+        margin-right: 40px;
+    }
+    .govuk-input--width-4 {
+        width: 9ex;
+    }
+	
+	/*progress*/
+	.prog-container {
+		float:right;
+		width:100%;
+		height:auto;
+		position:sticky;
+	}
+	
+	.prog-point {
+		width:40px;
+		height:40px;
+		border: solid 1px #ccc;
+		border-radius:40px;
+		clear:both;
+		color:#ccc;
+		font-size:22px;
+		text-align:center;
+		line-height:40px;
+		margin:0 auto;
+	}
+	
+	.prog-point-cont {
+		width:140px;
+		text-align:center;
+	}
+
+	.prog-point-descript {
+		width:100%;
+		text-align:center;
+		margin-top:10px;
+	}	
+	
+	.prog-point.active {
+		border: solid 1px #36D900;
+		background-color: #36D900;
+		color:#fff;
+	}	
+	
+	.prog-line {
+		width:1px;
+		height: 100px;
+		margin:10px 0 10px 70px;
+		border-left: solid 1px #ccc;
+		clear:both;
+	}
+	
+	#popup-preview  {
+		background-color:#fff;
+		border:solid 1px #000;
+		height:70%;
+		width: 70%;
+		overflow-x:hidden;
+		overflow-y:scroll;
+	}
+	
+	#popup-venue  {
+		background-color:#fff;
+		border:solid 1px #000;
+		height:auto;
+		max-height:70%;
+		width: 70%;
+		overflow-x:hidden;
+		overflow-y:visible;
+	}
+
+</style>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<script>
+
+var $j = jQuery.noConflict();
+
+function isValidPostcode(p) { 
+    var postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i; 
+    return postcodeRegEx.test(p); 
+}
+
+$j(document).ready(function (e) {
+	
+	var validpost=false;
+	$j("#post").keyup(function (e) {
+		if(isValidPostcode($j(this).val())) {
+			$j("#post").removeClass("govuk-input--error");
+			$j(".grerr").removeClass("govuk-form-group--error");
+			$j("#pcerr").hide();
+			validpost=true;
+		} else {
+			$j("#post").addClass("govuk-input--error");
+			$j(".grerr").addClass("govuk-form-group--error");
+			$j("#pcerr").show();
+			validpost=false;
+		}
+	});
+	
+	$j("#findaddress").click(function (e) {
+		e.preventDefault();
+		if (!validpost || $j("#venuename").val().trim()=="") {
+			alert("Please enter venue name and a valid postcode.");
+		} else {
+			$j("#venue1").hide();
+			$j("#venue2").show();
+		}
+	});
+	
+	$j("#saveaddress").click(function (e) {
+		e.preventDefault();
+		if ($j(".addr:checked").length==0) {
+			alert("Please select an address");
+		} else {
+			$j("#venuess").append('<div class="govuk-checkboxes"><div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">'+$j("#venuename").val()+'</label></div></div>');
+			$j('#popup-venue').popup('hide'); 
+			$j("#venuename").val("");
+			$j("#post").val("");
+			$j(".addr").each(function (e) {
+				$j(this).prop("checked",false);
+			});
+			$j("#venue2").hide();
+			$j("#venue1").show();
+		}
+	});	
+	
+	$j("#addvenuebutton").click(function (e) {
+		e.preventDefault();
+		if ($j("#venuename").val().trim()=="") {
+			alert("Please enter venue name.");
+		} else {
+			$j("#venuess").append('<div class="govuk-checkboxes"><div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">'+$j("#venuename").val()+'</label></div></div>');
+			$j('#popup-venue').popup('hide'); 
+			$j("#venuename").val("");
+		}
+	});	
+
+	$j("#toggleareas").click(function (e) {
+		e.preventDefault();
+		if ($j("#areaslondon").is(":visible")) {
+			$j("#areaslondon").hide();
+			$j(this).text("Show areas within London");
+		} else {
+			$j("#areaslondon").show();
+			$j(this).text("Hide areas within London");
+		}
+		$j(this).blur();
+	});
+
+    $j('#popup-venue,#popup-preview').popup({
+        opacity: 0.5,
+        color:'#666',
+        transition: 'all 0.3s'
+    });
+	
+	
+	$j("#addvenue").click(function (e) {
+		e.preventDefault();
+		$j(this).blur();
+		$j("#venuename").val("");
+		$j("#post").val("");
+		$j(".addr").each(function (e) {
+			$j(this).prop("checked",false);
+		});
+		$j("#venue2").hide();
+		$j("#venue1").show();		
+		$j('#popup-venue').popup('show'); 
+	});
+	
+	$j("#close-venue, #save-venue").click(function (e) {
+		e.preventDefault();
+		$j('#popup-venue').popup('hide'); 
+	});	
+	
+	$j("#preview").click(function (e) {
+		e.preventDefault();
+		$("html, body").css("overflow","hidden");
+		$j('#popup-preview').popup('show'); 
+	});
+	
+	$j("#close-preview").click(function (e) {
+		e.preventDefault();
+		$("html, body").css("overflow","auto");
+		$j('#popup-preview').popup('hide'); 
+	});	
+	
+	$j("#datepicker").datepicker({
+					dateFormat: 'dd/mm/yy',
+					showButtonPanel: true,
+					beforeShow: function (input) {
+						setTimeout(function () {
+							var buttonPane = $j(input)
+									.datepicker("widget")
+									.find(".ui-datepicker-buttonpane");
+
+							var btn = $j('<button class="ui-state-default ui-priority-primary ui-corner-all" type="button">Flexible start date</button>');
+							btn.unbind("click")
+									.bind("click", function () {
+										$j(input).datepicker("hide");
+										$j(input).val("Flexible start date");
+									});
+
+							btn.appendTo(buttonPane);
+							$j(input).datepicker("widget").find(".ui-datepicker-current").hide();
+
+						}, 1);
+					}
+	});	
+
+	$j(".online").each(function (e) {
+		$j(this).click(function (e) {
+			$j(".online, .classroom, .work").removeClass(".govuk-colour");
+			$j(".online, .classroom, .work").css("background","#fff");
+			$j(this).addClass("govuuk-colour");
+			$j(this).css("background","#2b8cc4");
+			$("#date, #time, #venue, #mode, #region").hide();
+			Cookies.set("based", "online");
+		});
+	});
+	
+	$j(".classroom").each(function (e) {
+		$j(this).click(function (e) {
+			$j(".online, .classroom, .work").removeClass(".govuk-colour");
+			$j(".online, .classroom, .work").css("background","#fff");
+			$j(this).addClass("govuuk-colour");
+			$j(this).css("background","#2b8cc4");
+			$("#date, #time, #venue, #mode").show();
+			$("#region").hide();
+			Cookies.set("based", "classroom");
+		});
+	});
+	
+	$j(".work").each(function (e) {
+		$j(this).click(function (e) {
+			$j(".online, .classroom, .work").removeClass(".govuk-colour");
+			$j(".online, .classroom, .work").css("background","#fff");
+			$j(this).addClass("govuuk-colour");
+			$j(this).css("background","#2b8cc4");
+			$("#date, #time, #region, #mode").show();
+			$("#venue, #time, #mode").hide();
+			Cookies.set("based", "work");
+		});
+	});	
+	
+	/*$j(".dur").each(function (e) {
+		$j(this).on("keyup change", function (e) {
+			var val=$(this).val();
+			$j(".dur").val("");
+			$j(this).val(val);
+			$j(".dur").css("background","#ddd");
+			$j(this).css("background","#fff");
+		});
+	});*/
+
+	/*$j(".time").each(function (e) {
+		$j(this).click(function (e) {
+			$j(".time").removeClass(".govuk-colour");
+			$j(".time").css("background","#fff");
+			$j(this).addClass("govuuk-colour");
+			$j(this).css("background","#2b8cc4");
+			var value=$(this).text();
+			Cookies.set("time", value);
+			
+		});
+	});	
+	
+	$j(".daynight").each(function (e) {
+		$j(this).click(function (e) {
+			$j(".daynight").removeClass(".govuk-colour");
+			$j(".daynight").css("background","#fff");
+			$j(this).addClass("govuuk-colour");
+			$j(this).css("background","#2b8cc4");
+			var value=$(this).text();
+			Cookies.set("daynight", value);
+		});
+	});	*/
+
+	$j(".venue").each(function (e) {
+		$j(this).click(function (e) {
+			//$(".venue").prop("checked",false);
+			//$(this).prop("checked",true);
+			var value=$(this).next("label").text().trim();
+			Cookies.set("venue", value);
+		});
+	});		
+
+	$("#qual").text("Qualification added: "+Cookies.get("qual")+", Level: "+Cookies.get("level")+", "+Cookies.get("org")+", Lars: "+Cookies.get("lars"));
+	$("#reff").val(" "+Cookies.get("qual")+", Level: "+Cookies.get("level")+", "+Cookies.get("org")+", Lars: "+Cookies.get("lars"));
+	
+	Cookies.set("based", "classroom");
+	Cookies.set("time", "Full-time");
+	Cookies.set("daynight", "Daytime/working hours");
+	Cookies.set("venue", "");
+	
+	$j("#form").submit(function (e) {
+		
+		if ((Cookies.get("based")=="classroom") && $j(".venue:checked").length==0) {
+			alert("Please select a venue.");
+			return false;
+		}
+		
+		if ((Cookies.get("based")=="work") && $j(".venue:checked").length==0) {
+			alert("Please select a region.");
+			return false;
+		}		
+		
+		Cookies.set("name",$j("#name").val());
+		Cookies.set("courseid",$j("#courseid").val());
+		Cookies.set("date",$j("#datepicker").val());
+		Cookies.set("url",$j("#url").val());
+		Cookies.set("cost",$j("#cost").val());
+		Cookies.set("costdescription",$j("#costdescription").val());
+		
+		Cookies.set("duration",$j("#duration").val());
+		Cookies.set("durationunits",$j("#durationunits").val());
+		
+		/*if ($j("#days").val().trim()!=="") {
+			Cookies.set("duration",$j("#days").val());
+			Cookies.set("durationunits","Days");
+		}
+		
+		if ($j("#weeks").val().trim()!=="") {
+			Cookies.set("duration",$j("#weeks").val());
+			Cookies.set("durationunits","Weeks");
+		}
+
+		if ($j("#months").val().trim()!=="") {
+			Cookies.set("duration",$j("#months").val());
+			Cookies.set("durationunits","Months");
+		}
+		
+		if ($j("#years").val().trim()!=="") {
+			Cookies.set("duration",$j("#years").val());
+			Cookies.set("durationunits","Years");
+		}*/
+			
+	});
+	
+	$j("#england").click(function (e) {
+		if ($j(this).is(":checked")) {
+			$j(".england").each(function(e) {
+				$j(this).prop("checked", true);
+			});
+			$j(".london").each(function(e) {
+				$j(this).prop("checked", true);
+			});			
+		} else {
+			$j(".england").each(function(e) {
+				$j(this).prop("checked", false);
+			});
+			$j(".london").each(function(e) {
+				$j(this).prop("checked", false);
+			});
+		}
+	});
+	
+	$j("#london").click(function (e) {
+		if ($j(this).is(":checked")) {
+			$j(".london").each(function(e) {
+				$j(this).prop("checked", true);
+			});		
+		} else {
+			$j(".london").each(function(e) {
+				$j(this).prop("checked", false);
+			});
+		}
+	});	
+	
+	$j(".england").each(function(e) {
+		$j(this).click(function (e) {
+			if ($j(".england:checked").length==$j(".england").length) {
+				$j("#england").prop("checked",true);
+			} else {
+				$j("#england").prop("checked",false);
+			}
+		});
+	});
+
+	$j(".london").each(function(e) {
+		$j(this).click(function (e) {
+			if ($j(".london:checked").length==$j(".london").length) {
+				$j("#london").prop("checked",true);
+			} else {
+				$j("#london").prop("checked",false);
+			}
+		});
+	});
+	
+	$j("#flexible").change(function (e) {
+		if ($j("#flexible").is(":checked")) {
+			$j(".date").each(function(e) {
+				$j(this).val("");
+			});
+		}
+	});
+	
+	/*START DATE*/
+	$j("#startdate_s").change(function(e) {
+		$("#startdate").show();
+	});
+
+	$j("#startdate_f").change(function(e) {
+		$("#startdate").hide();
+	});	
+	
+});
+
+</script>
+
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: relative;
+    top: -88px;
+    padding-left: 80%;">
+    <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a>
+    <a href="/" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a>
+</div>
+
+
+<main id="content" role="main">
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link">Course directory add course</a></li>
+
+
+    </ol>
+</div>
+<a class="link-back mt" href="add-a-course-form">Back</a>
+<form name="form" action="your-courses" method="post" id="form">
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Add course details
+        </h1>
+
+<p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> Awarding organisation: BOLTONIN<br/> LARS/QAN: 302309</p>
+
+        <div class="govuk-form-group" style="margin-top: 30px">
+            <label class="govuk-label" for="sub">
+                Course name&nbsp;&nbsp;<!--<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>-->
+				<span id="more-detail-hint" class="govuk-hint">This is the name people will see when they search for your course.</span>
+            </label>
+
+            <textarea class="govuk-textarea descript" id="reff--" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;border-color: #eee;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">PGCE in Secondary (Mathematics) - Bradford College</textarea>
+
+        </div>
+
+        <div class="govuk-form-group" style="clear:both;">
+            <label class="govuk-label" for="sub">
+                ID&nbsp;&nbsp;<!--a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
+				<span id="more-detail-hint" class="govuk-hint">This is how you identify a course in you internal system.</span>
+            </label>
+            <input class="govuk-input details" id="name" name="name" width="50%" type="text" style="width: 50%" required/>
+
+        </div>
+        <div class="btn-gr">
+            <!--
+            <input type="radio" class="govuk-radio classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
+            <button class="govuk-button online" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Online</button>
+            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>-->
+			
+			 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+<label class="govuk-label">Delivery mode</label>
+                 <span id="more-detail-hint" class="govuk-hint">Select how this course will be delivered</span>
+    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom" checked>
+        <label class="govuk-label govuk-radios__label" for="changed-name-1">
+          Classroom based
+        </label>
+      </div>
+     <div class="govuk-radios__item">
+        <input class="govuk-radios__input online" name="changed-name2" type="radio" value="online">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Online
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input work" name="changed-name2" type="radio" value="work">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Work based
+        </label>
+      </div>	
+    </div>
+  </fieldset>
+			
+        </div>
+
+
+					 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+<label class="govuk-label">Start date</label>
+    <div class="govuk-radios govuk-radios" style="margin-bottom:30px;">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input classroom" name="startdate" type="radio" value="classroom" id="startdate_s">
+        <label class="govuk-label govuk-radios__label" for="changed-name-1">
+          Specific start date
+        </label>
+      </div>
+	  
+			<div id="startdate" style="display:none;padding-left:55px;margin-bottom:25px;">
+			<span id="more-detail-hint" class="govuk-hint">Please enter the date (dd/mm/yyyy).</span>
+			<input type="text" class="govuk-input date" style="width:60px;" />
+			<input type="text" class="govuk-input date" style="width:60px;" />
+			<input type="text" class="govuk-input date" style="width:120px;" />
+			</div>	  
+	  
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input online" id="startdate_f" name="startdate" type="radio" value="online">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Flexible start date
+        </label>
+      </div>	  
+    </div>
+  </fieldset>
+       
+
+        <div class="govuk-form-group" style="margin-bottom:10px;" id="venue">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                    <legend class=" ">
+                        <label class="govuk-label">
+                            Select course venue
+                        </label>
+                    </legend>
+                    <span id="waste-hint" class="govuk-hint">
+      Select all that apply.
+    </span>
+                    <div class="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
+                            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+                                Baconsham College
+                            </label>
+                        </div>
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
+                            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+                                Durham College
+                            </label>
+                        </div>
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox" value="carcasses">
+                            <label class="govuk-label govuk-checkboxes__label" for="waste-1">
+                                Newham College
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                                Oxham College
+                            </label>
+                        </div>
+
+
+                    </div>
+                </fieldset>
+            </div>
+          <a href="#" class="submit govuk-button" type="submit" value="Add a new venue" id="addvenue" style="width:200px;height: 39px;margin-top:20px;"/>Add a new venue</a>
+        </div>
+
+        
+
+        <div class="govuk-form-group" id="region" style="margin-bottom:10px;display:none;">
+		
+		<h3 class="govuk-heading-m">Select course region</h3>
+
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="england" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               England
+            </label> </div> </div>
+
+            <div style="margin-left: 20px">
+		
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="london" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                London
+            </label> </div>  <a href="#" id="toggleareas">Hide areas within London</a></div>
+
+			<div style="margin-left: 20px" id="areaslondon">
+                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    Barking and Dagenham
+                </label> </div> </div>
+
+                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    Barnet
+                </label> </div> </div><div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                Bexley
+                </label> </div> </div>
+
+    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+
+    Bromley</label> </div> </div>
+
+        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+        CamdenCity of London</label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+
+            Croydon</label> </div> </div>
+                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                Ealing</label> </div> </div>
+                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                    Enfield</label> </div> </div>
+                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                        Greenwich</label> </div> </div>
+                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                            Hackney</label> </div> </div>
+                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                Hammersmith and Fulham</label> </div> </div>
+                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                    Haringey</label> </div> </div>
+                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                        Harrow</label> </div> </div>
+                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                            Havering</label> </div> </div>
+                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                Hillingdon Hounslow</label> </div> </div>
+
+                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                    Islington</label> </div> </div>
+                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                        Kensington and Chelsea</label> </div> </div>
+                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                            Kingston upon Thames</label> </div> </div>
+
+                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                Lambeth</label> </div> </div>
+                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                    Lewisham</label> </div> </div>
+
+                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                        Merton</label> </div> </div>
+                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                            Newham</label> </div> </div>
+                                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                Redbridge</label> </div> </div>
+                                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                    Richmond upon Thames</label> </div> </div>
+                                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                        Southwark</label> </div> </div>
+                                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                            Sutton</label> </div> </div>
+                                                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                                Tower Hamlets</label> </div> </div>
+                                                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                                    Waltham Forest</label> </div> </div>
+                                                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+                                                                                                        Wandsworth</label> </div> </div>
+                                                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+
+
+
+                                                                                                            Westminster</label> </div> </div>
+
+
+
+
+    </div>
+
+
+
+
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                South East
+            </label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                South West
+            </label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               West Midlands
+            </label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               North West
+            </label> </div> </div>
+			<div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               North East
+            </label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               Yorkshire and the Humber
+            </label> </div> </div>
+			            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               East Midlands
+            </label> </div> </div>
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+               East of England
+            </label> </div> </div>			
+            
+        </div>		
+        </div>
+
+
+
+        <div class="govuk-form-group" style="margin-top:25px;">
+            <label class="govuk-label" for="sub">
+                URL&nbsp;&nbsp;<!--<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
+            </label>
+            <span id="more-detail-hint" class="govuk-hint">Enter the url for this course</span>
+            <input class="govuk-input details" id="url" name="sub" type="text" required/>
+        </div>
+
+
+        <div class="govuk-form-group">
+		  <label class="govuk-label" for="sub">
+			Cost
+		  </label>
+            <span id="more-detail-hint" class="govuk-hint">Enter the cost of this course</span>
+
+
+
+		 <span>£</span> <input class="govuk-input details" id="cost" name="sub" type="number" min="0" step="0.01" style="width: 20%" placeholder="" required/>
+		</div>
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Cost description
+            </label>
+            <span id="more-detail-hint" class="govuk-hint">Enter additional information related to the cost of this course
+            </span>
+           <textarea class="govuk-textarea"  rows="6" style="margin-bottom: 0"></textarea>
+            <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+    You can enter up to 200 characters
+  </span>
+        </div>
+
+		        <div class="govuk-form-group">
+            <label class="govuk-label" for="sub">
+                Advanced learner loan
+            </label>
+                    <span id="more-detail-hint" class="govuk-hint">Select the checkbox below if Avanded Learner Loans are available for this course</span>
+            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
+        </div>
+		
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
+                <label class="govuk-label" for="sub">
+                    Duration
+                </label>
+                <span id="more-detail-hint" class="govuk-hint">Select the duration of the course</span>
+                <div class="govuk-date-input" id="dob">
+
+                    <div class="govuk-date-input__item" style="margin-right:10px;">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="dob-day">
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 dur" id="duration" name="dob-day" type="number" pattern="[0-9]*" min="1" step="1" required>
+                        </div>
+                    </div>
+
+                    <div class="govuk-date-input__item" style="width:120px;">
+                        <div class="govuk-form-group">
+                            <select class="govuk-select" id="durationunits">
+							<option value="Days">Days</option>
+							<option value="Weeks">Weeks</option>
+							<option value="Months">Months</option>
+							<option value="Years">Years</option>
+					   </select>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </fieldset>
+        </div>
+
+
+<div class="govuk-form-group" id="time">
+
+        <!--<div class="btn-gr">
+            <label class="govuk-label">Full time or part time</label>
+            <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Full-time</button>
+            <button id="venues-show" class="govuk-button govuk-colour time" value="" type="button" style="background:white;color: #000000; border:2px solid black">Part-time</button>
+            <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Flexible</button>
+        </div>-->
+		
+				<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+<label class="govuk-label">Full time or part time</label>
+                    <span id="more-detail-hint" class="govuk-hint">Select the attendance pattern</span>
+    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="" checked>
+        <label class="govuk-label govuk-radios__label" for="changed-name-1">
+          Full-time
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Part-time
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Flexible
+        </label>
+      </div>	
+    </div>
+  </fieldset>
+
+</div>
+
+				<div class="govuk-form-group" id="mode">
+
+
+		  
+		 <!--<div class="btn-gr">
+            
+            <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Daytime</button>
+			<button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:white;color: #000000; border:2px solid black">Evening</button>
+            <button id="venues-show" class="govuk-button govuk-colour daynight" value="" type="button" style="background:white;color: #000000; border:2px solid black">Weekend</button>
+            <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Day/Block Release</button>
+        </div>-->
+		
+		<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+<label class="govuk-label">Attendance</label>
+            <span id="more-detail-hint" class="govuk-hint">Select the time of day the course tales place</span>
+    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="classroom" checked>
+        <label class="govuk-label govuk-radios__label" for="changed-name-1">
+          Daytime
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="online">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Evening
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="work">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Weekend
+        </label>
+      </div>
+		<div class="govuk-radios__item">
+        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="work">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Day/Block Release
+        </label>
+      </div>	
+    </div>
+  </fieldset>
+		
+		</div>
+
+
+
+
+
+
+
+		
+				<div class="govuk-form-group">
+
+                    <a href="#" role="button" id="preview" class="govuk-button">
+                        Preview
+                    </a>
+
+<button type="submit" class="govuk-button">
+    Publish
+</button>
+		</div>
+
+<!--
+        <a href="add-a-course-form1-error">Unhappy path submit</a>-->
+
+
+    </div>
+
+		
+	</div>	
+</div>
+</form>
+</main>
+
+<div id="popup-venue"><div style="padding:40px;width:calc(100% - 80px);">
+    <a href="#" id="close-venue" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            Add a venue
+        </h1>
+		
+	
+        <div class="govuk-form-group" style="clear:both;">
+            <label class="govuk-label" for="sub">
+                Venue name
+            </label>
+            <textarea class="govuk-textarea descript" id="venuename" name="venuename" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">London City College</textarea>
+
+        </div>
+
+
+        <fieldset class="govuk-fieldset">
+            <!--<h2 class="govuk-heading-m">
+                venue address
+            </h2>-->
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+            </legend>
+
+
+
+            <div class="govuk-form-group">
+                <h3> <span style="font-size: 22px">Venue postcode</span><br>
+                    SW1A 1AA <a href="add-venue" style="margin-left: 10px;font-weight: 300">Change</a>
+
+                </h3>
+
+
+                    <select class="govuk-select based" style="width: 40%"><option value="classroom" selected="">2 addresses found</option><option value="online">12 Orwell Court</option><option value="online">14 Orwell Court</option></select>
+
+
+            </div>
+
+
+
+
+        </fieldset>
+
+				<div class="govuk-form-group">
+
+
+                    <a href="#" role="button" class="govuk-button" style="margin-top: 20px" id="addvenuebutton">
+                        Continue
+                    </a>
+		</div>
+		
+	</div>	
+
+</div>
+
+
+
+            <!--<div class="govuk-form-group" style="clear:both;">
+                <label class="govuk-label" for="sub">
+                    Venue name
+                </label>
+                <input class="govuk-input" id="venuename" name="name" style="width: 50%" type="text"/>
+
+            </div>
+
+
+            <fieldset class="govuk-fieldset">
+                <h2 class="govuk-heading-m">
+                    Venue address
+                </h2>
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+                </legend>
+
+
+
+		<div class="govuk-form-group  grerr">
+		  <fieldset class="govuk-fieldset" aria-describedby="dob-hint dob-error" role="group">
+			<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+			<span id="pcerr" class="govuk-error-message" style="display:none;">
+			  Enter a real postcode
+			</span>
+			<div class="govuk-date-input" id="pcc">
+			  <div class="govuk-date-input__item">
+				<div class="govuk-form-group">
+				  <label class="govuk-label govuk-date-input__label" for="pc">
+					Postcode
+				  </label>
+				  <input class="govuk-input govuk-date-input__input govuk-input--width-8 govuk-input--error" style="width:100px;" id="post" name="pc" type="text" value="" pattern="[0-9,a-z]*">
+				</div>
+			  </div>
+			  </div>
+			</div>
+		  </fieldset>
+		
+
+
+
+
+                <a href="#" type="button" class="govuk-button" id="findaddress">
+                    Find address
+                </a>
+                <br>-->
+</div>
+
+	</div>
+	
+	<!--<div id="venue2" style="display:none">
+	
+	              <div class="form-group govuk-checkboxes">
+                 
+                      <div class="govuk-checkboxes__item">
+                          <input id="study0" name="study" type="checkbox" value="0" class="govuk-checkboxes__input addr">
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >
+Welfare Road<br/>
+Stratford<br/>
+E15 4H</label>
+                      </div>
+					  
+                      <div class="govuk-checkboxes__item">
+                          <input id="study1" name="study" type="checkbox" value="0" class="govuk-checkboxes__input addr">
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >
+Chestnut Avenue<br/>
+Eastleigh<br/>
+SO50 5FS</label>
+                      </div>
+
+					  <div class="govuk-checkboxes__item">
+                          <input id="study2" name="study" type="checkbox" value="0" class="govuk-checkboxes__input addr">
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >
+Lissadel Street<br/>
+Salford<br/>
+M6 6AP</label>
+                      </div>
+					  
+					  <div class="govuk-checkboxes__item">
+                          <input id="study3" name="a" type="checkbox" value="0" class="govuk-checkboxes__input addr">
+                          <label class="govuk-label govuk-checkboxes__label" for="study0" >
+Pownall Road<br/>
+London<br/>
+E8 4PS</label>
+                      </div>
+					  
+              </div>
+	
+	                <a href="#" type="button" class="govuk-button" id="saveaddress" style="margin-top:30px;">
+                   Save
+                </a>
+	
+	</div>
+	
+</div>-->
+   
+</div>
+</div>
+
+
+<div id="popup-preview" style="padding:40px;width:70%;"><div style="padding:40px;width:calc(100% - 80px);">
+    <a href="#" id="close-preview" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+   
+   <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="padding-top: 20px;">
+            City & Guilds Intermediate Diploma in Plumbing
+        </h1>
+        <section id="1">
+
+
+            <table class="govuk-table" role="presentation">
+                <tbody class="govuk-table__body">
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Qualification name</td>
+                    <td class="govuk-table__cell">Level 2 Diploma in Plumbing Studies</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Entry requirements</td>
+                    <td class="govuk-table__cell">
+
+                        Plumbing L1, or working in the trade, or previous experience.
+
+                    </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Cost</td>
+                    <td class="govuk-table__cell">The course fee is £1275 (Plus £125 Exam Fee).<!-- <br>For those aged 16 to 18, courses are government funded--><br><a href="https://www.gov.uk/advanced-learner-loan/overview" target="_blank">Advanced Learner Loans maybe available</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Start date</td>
+                    <td class="govuk-table__cell">10 September 2018</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Duration</td>
+                    <td class="govuk-table__cell">35 weeks </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Full-time or part-time</td>
+                    <td class="govuk-table__cell">Part-time</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Day, night or weekend</td>
+                    <td class="govuk-table__cell">Normal working hours</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Classroom or online</td>
+                    <td class="govuk-table__cell">Classroom-based</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <a target="_blank" href="https://www.newham.ac.uk/course-listing/city-guilds-intermediate-diploma-in-plumbing.html" role="button" class="govuk-button govuk-button--start">
+                Enrol now
+            </a>
+            <p class="enrol-text">on the provider’s website</p>
+
+        </section>
+
+
+
+        <section id="2">
+            <h2 class="govuk-heading-m">Course description</h2>
+
+            <p class="govuk-body govuk-!-font-size-19">
+                The qualification covers many areas within plumbing and domestic heating, such as hot and cold water supplies, sanitation and understanding health and safety within Building Services Engineering. Candidates will be assessed by on-demand multiple choice tests (available through the City & Guilds assessment platform e-volve) and practical assignments.
+            </p>
+            <p class="govuk-heading-s">What you’ll need to bring</p>
+            <p class="govuk-body govuk-!-font-size-19">
+                No equipment required
+            </p>
+            <p class="govuk-heading-s">How you’ll be assessed</p>
+            <p class="govuk-body govuk-!-font-size-19">Exam & Course work based
+            </p>
+        </section>
+
+
+
+        <div class="icons-buttons" style="margin-top: 80px">
+            <h3 class="govuk-heading-m">Share this page</h3>
+            <ul class="share-links">
+                <li>
+                    <a target="_blank" href="https://twitter.com/intent/tweet?original_referer&amp;url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F&amp;text=GOV.UK+social+sharing+buttons%3A+the+first+10+weeks" class="twitter">Twitter</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="facebook">Facebook</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Finsidegovuk.blog.gov.uk%2F2014%2F02%2F20%2Fgov-uk-social-sharing-buttons-the-first-10-weeks%2F" class="linkedin">LinkedIn</a>
+                </li>
+                <li>
+                    <a href="mailto:?subject=I wanted to share this post with you from Inside GOV.UK&amp;body=GOV.UK social sharing buttons: the first 10 weeks https://insidegovuk.blog.gov.uk/2014/02/20/gov-uk-social-sharing-buttons-the-first-10-weeks/" class="email">Email</a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+
+
+       <!-- <hr>
+
+        <h2 class="govuk-heading-m" style="padding-top:10px ">Speak to a National Careers adviser</h2>
+        <p class="govuk-body govuk-!-font-size-19" style="margin-bottom: 0px;"><span class="govuk-bold-s">Call </span>0800 100 900 or <a class="govuk-link" style="white-space: nowrap;" href="https://cxdirect.serco.com/visitor/EntryPage.htm" rel="external">use webchat</a></p>
+        <p class="govuk-body govuk-!-font-size-19 govuk-gray">8am to 10pm, 7 days a week</p>
+-->
+    </div>
+    <div class="govuk-grid-column-one-third">
+
+
+        <section id="6">
+            <aside class="govuk-related-items" role="complementary">
+                <h2 class="govuk-heading-s" style="margin-top: 10px">Provider</h2>
+                <p class="govuk-body-s">Newham College of Further Education</p>
+                <hr>
+                <h2 class="govuk-heading-s" style="margin-top: 10px;padding-top: 10px">Venue</h2>
+
+                <table class="govuk-table" role="presentation">
+                    <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Name</td>
+                        <td class="govuk-table__cell govuk-body-s">	Stratford campus</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Address</td>
+                        <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                            Welfare Road<br>
+                            Stratford<br>
+                            Greater London<br>
+                            E15 4HT<br>
+                            <a class="govuk-link" target="_blank" href="https://www.google.com/maps?q=51.540288,0.009541">Find on Google maps</a>
+                        </td>
+                    </tr><tr class="govuk-table__row">
+                        <td class="govuk-table__cell" colspan="2">     <details>
+
+                            <summary>
+
+                                <span style="color:#005ea5"> Journey time</span></summary>
+                            <div class="panel">
+
+                                <select class="form-control valid select-mode" name="" aria-invalid="false">
+
+                                    <option value="TRANSIT" aria-live="polite">Bus/Train</option>
+                                    <option value="WALKING" aria-live="polite">Walking</option>
+                                    <option value="BICYCLING" aria-live="polite">Cycling</option>
+                                    <option value="DRIVING" aria-live="polite">Driving</option>
+                                </select>
+
+                                <span class="journey-time" aria-live="polite">5 mins</span>
+                            </div>
+                        </details></td>
+
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Website</td>
+                        <td class="govuk-table__cell">
+                            <a class="govuk-link govuk-body-s" target="_blank" href="http://www.newham.ac.uk" style="word-break: break-all;">http://www.newham.ac.uk</a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Email</td>
+                        <td class="govuk-table__cell govuk-body-s"><a href="mailto:	externalenquiries@newham.ac.uk" style="word-break: break-all;">	externalenquiries@newham.ac.uk</a> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-body-s">Phone</td>
+                        <td class="govuk-table__cell govuk-body-s">020 8257 4446</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <details>
+
+                    <summary style="position: relative;top:-10px">
+                        <span style="color:#005ea5;">Other dates and venues</span>
+                    </summary>
+                    <div class="panel">
+                        <table class="govuk-table">
+                            <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__header govuk-body-s" scope="col">Venue</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Start date</td>
+                                <td class="govuk-table__header govuk-body-s" scope="col">Options</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s">Clarence Street</td>
+                                <td class="govuk-table__cell govuk-body-s">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Boswall Street</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">Variable</td>
+                                <td class="govuk-table__cell govuk-body-s" style="border-bottom: none">
+                                    <a href="#">View course</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+
+                <hr>
+
+
+            </aside>
+        </section>
+
+
+
+
+    </div>
+</div>
+   
+</div>
+
+<div id="popup-name"><div style="padding:40px;width:100%;">
+    <a href="#" id="close-name" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+
+    <div style="border:solid 1px #000;padding:40px;"><span style="font-size:16px;">This is the name people will see when they search for your course.</span></div>
+</div>
+</div>
+
+<div id="popup-ref"><div style="padding:40px;width:100%;">
+    <a href="#" id="close-ref" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
+
+    <div style="border:solid 1px #000;padding:40px;"><span style="font-size:16px;">How you identify a course in you internal system.</span></div>
+</div>
+</div>
+
+<script>
+
+
+
+function check(classs) {
+	var ok=true;
+	$j(classs).each(function (e) {
+		if ($j(this).val().trim()=="") ok=false;
+	});
+	return ok;
+}
+
+$j(document).ready(function (e) {
+
+    $j('#popup-ref, #popup-name').popup({
+        opacity: 0.999,
+        color:'#fff',
+        transition: 'all 0.3s'
+    });
+	
+    $j("#close-ref").click(function (e) {
+       e.preventDefault();
+        $j('#popup-ref').popup('hide');
+    });
+  
+    $j("#close-name").click(function (e) {
+       e.preventDefault();
+        $j('#popup-name').popup('hide');
+    });
+	
+    $j("#open-ref").click(function (e) {
+       e.preventDefault();
+	   $j(this).blur();
+        $j('#popup-ref').popup('show');
+    });
+  
+    $j("#open-name").click(function (e) {
+       e.preventDefault();
+	   $j(this).blur();
+        $j('#popup-name').popup('show');
+    });	
+  
+	$j(".venue").each(function (e) {
+		$j(this).change(function (e) {
+			if ($j(".venue:checked").length==0) {
+				$j("#pr_2").removeClass("active");
+			} else {
+				$j("#pr_2").addClass("active");
+			}
+		});
+	});
+	
+	$j(".details").each(function (e) {
+		$j(this).keyup(function (e) {
+			if (check(".details")) {
+				$j("#pr_1").addClass("active");
+			} else {
+				$j("#pr_1").removeClass("active");
+			}
+		});
+	});
+	
+	$j(".descript").each(function (e) {
+		$j(this).keyup(function (e) {
+			if (check(".descript")) {
+				$j("#pr_3").addClass("active");
+			} else {
+				$j("#pr_3").removeClass("active");
+			}
+		});
+	});	
+	
+	$j(document).scroll(function (e) {
+		$j(".prog-container").css("margin-top", $j(window).scrollTop()-140+"px");
+		if ($j(window).scrollTop()<100) $j(".prog-container").css("margin-top", "0");
+	});
+
+});
+
+</script>
+
+{% endblock %}
