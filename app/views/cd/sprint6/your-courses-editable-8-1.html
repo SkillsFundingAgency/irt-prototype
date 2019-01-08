@@ -126,7 +126,7 @@ GOV.UK prototype kit
         overflow-x:none;
     }
 
-   /* div::-webkit-scrollbar {
+    div::-webkit-scrollbar {
         width: 18px;
         height: 10px;
     }
@@ -162,7 +162,7 @@ GOV.UK prototype kit
     }
     div::-webkit-scrollbar-corner {
         background: transparent;
-    }*/
+    }
 
     /*
     .hover {
@@ -339,11 +339,36 @@ GOV.UK prototype kit
 
 var $j = jQuery.noConflict();
 
-$j('#popup-venue,#popup-preview,#popup-descript,#popup-cost').popup({
+$j('#popup-venue,#popup-preview','#popup-descript').popup({
     color:'#fff',
     transition: 'all 0.3s'
 });
 
+$j("#preview").click(function (e) {
+    e.preventDefault();
+    $("html, body").css("overflow","hidden");
+    $j('#popup-preview').popup('show');
+});
+
+$j("#close-preview").click(function (e) {
+    e.preventDefault();
+    $("html, body").css("overflow","auto");
+    $j('#popup-preview').popup('hide');
+});
+
+$j(".open-descript").each(function (e) {
+    j$(this).click(function (e) {
+		e.preventDefault();
+		$("html, body").css("overflow","hidden");
+		$j('#popup-descript').popup('show');
+	});
+});
+
+$j("#close-descript, #close-descript2").click(function (e) {
+    e.preventDefault();
+    $("html, body").css("overflow","auto");
+    $j('#popup-descript').popup('hide');
+});
 
 
 
@@ -380,47 +405,6 @@ function initPicker() {
 
 
 $j(document).ready(function() {
-
-	$j("#preview").click(function (e) {
-		e.preventDefault();
-		$("html, body").css("overflow","hidden");
-		$j('#popup-preview').popup('show');
-	});
-
-	$j("#close-preview").click(function (e) {
-		e.preventDefault();
-		$("html, body").css("overflow","auto");
-		$j('#popup-preview').popup('hide');
-	});
-
-	$j(".open-descript").each(function (e) {
-		$j(this).click(function (e) {
-			e.preventDefault();
-			$("html, body").css("overflow","hidden");
-			$j('#popup-descript').popup('show');
-		});
-	});
-
-	$j(".open-cost").each(function (e) {
-		$j(this).click(function (e) {
-			e.preventDefault();
-			$("html, body").css("overflow","hidden");
-			$j('#popup-cost').popup('show');
-		});
-	});
-		
-	$j("#close-descript, #close-descript2").click(function (e) {
-		e.preventDefault();
-		$("html, body").css("overflow","auto");
-		$j('#popup-descript').popup('hide');
-	});
-
-	$j("#close-cost, #close-cost2").click(function (e) {
-		e.preventDefault();
-		$("html, body").css("overflow","auto");
-		$j('#popup-cost').popup('hide');
-	});
-	
 
     var allCells = $j("td.govuk-table__cell");
 	
@@ -698,7 +682,7 @@ $j(document).ready(function() {
     //quick edit
     initCommands();
     function initCommands() {
-       /* $j(".cancel-cost").each(function (e) {
+        $j(".cancel-cost").each(function (e) {
 			$j(this).click(function (e) {
 				e.preventDefault();
 				$j(this).parent().hide();
@@ -735,7 +719,7 @@ $j(document).ready(function() {
 				$j(this).parent().find(".open-cost").attr("data-cost", $j(this).parent().parent().find(".edit-cost-input").val()); 
 				
             });
-        });*/
+        });
 
         $j(".cancel-url").each(function (e) {
 			$j(this).click(function (e) {
@@ -3588,29 +3572,6 @@ $j(document).ready(function() {
         <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
         <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
       <a href="#" id="close-descript2" class="govuk-button close-descript">Save</a> </div>
-  </div>
-</div>
-
-<!--popoupend-->
-
-<!--popoup cost-->
-
-<div id="popup-cost" style="padding:40px;width:50%;background-color:#fff;opacity:1;">
-<div style="padding:40px;"> <a href="#" id="close-cost" class="close-cost" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-        <h3 class="govuk-heading-l">BA (Hons) in Education Studies </h3>
-        </h3>
-
-
-        <!--<p><i class="fas fa-info-circle"></i> We have provided template description you can overwrite below.</p>-->
-      
-      <div class="govuk-form-group" style="margin-bottom: 0;padding-bottom: 0">
-        <label class="govuk-label" for="sub"> Cost detail <span id="more-detail-hint" class="govuk-hint">Lorem ipsum...</span> </label>
-        <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0" ></textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
-     
-      <a href="#" id="close-cost2" class="govuk-button close-descript">Save</a> </div>
   </div>
 </div>
 
