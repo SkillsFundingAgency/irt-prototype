@@ -308,9 +308,6 @@ $j(document).ready(function (e) {
 			$j(this).css("background","#2b8cc4");
 			$("#date, #time, #venue, #mode, #region").hide();
 			Cookies.set("based", "online");
-			$j("#startdate_f").prop("checked",true);
-			$j("#startdate_s").prop("checked",false);
-			$j("#startdate_f").change();
 		});
 	});
 	
@@ -323,9 +320,6 @@ $j(document).ready(function (e) {
 			$("#date, #time, #venue, #mode").show();
 			$("#region").hide();
 			Cookies.set("based", "classroom");
-			$j("#startdate_f").prop("checked",false);
-			$j("#startdate_s").prop("checked",true);
-			$j("#startdate_s").change();
 		});
 	});
 	
@@ -338,9 +332,6 @@ $j(document).ready(function (e) {
 			$("#date, #time, #region, #mode").show();
 			$("#venue, #time, #mode").hide();
 			Cookies.set("based", "work");
-			$j("#startdate_f").prop("checked",true);
-			$j("#startdate_s").prop("checked",false);			
-			$j("#startdate_f").change();
 		});
 	});	
 	
@@ -638,7 +629,7 @@ $j(document).ready(function (e) {
                         </div>
                     </div>
 
-</div>	
+
 			</div>	  
 	  
       <div class="govuk-radios__item">
