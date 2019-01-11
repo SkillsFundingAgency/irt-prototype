@@ -325,6 +325,10 @@ GOV.UK prototype kit
 		text-decoration:none !important;
 	}
 	
+	.govuk-input--error {
+		border: solid 4px #b10e1e !important;
+	}
+	
 
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -831,13 +835,30 @@ $j(document).ready(function() {
 
         $j(".save-date").each(function (e) {
             $j(this).click(function (e) {
-                e.preventDefault();
-                $j(this).parent().find(".edit-date-cont").hide();
-                $j(this).hide();
-                $j(this).parent().find(".open-date").show();
-				$j(this).parent().find(".open-date").attr("data-day", $j(this).parent().parent().find(".edit-day-input").val()); 
-				$j(this).parent().find(".open-date").attr("data-month", $j(this).parent().parent().find(".edit-month-input").val());
-				$j(this).parent().find(".open-date").attr("data-year", $j(this).parent().parent().find(".edit-year-input").val());
+			
+				 e.preventDefault();
+				 
+				var year=$j(this).parent().parent().find(".edit-year-input").val();
+				var month=$j(this).parent().parent().find(".edit-month-input").val();
+				var day=$j(this).parent().parent().find(".edit-day-input").val()
+				var date = new Date(parseInt(year),parseInt(month)-1, parseInt(day));
+				var now = new Date();
+
+                if ((date<=now || date=="Invalid Date") && $j(this).parent().parent().find(".startdate_s").is(":checked")) {
+					$j(this).parent().parent().find(".edit-day-input").addClass("govuk-input--error");
+					$j(this).parent().parent().find(".edit-month-input").addClass("govuk-input--error");
+					$j(this).parent().parent().find(".edit-year-input").addClass("govuk-input--error");
+					$j(this).parent().parent().find(".startdate-error").show();
+					$j(this).parent().parent().find(".startdate-cont").addClass("govuk-form-group--error");
+					$j(this).closest(".table-row").css("min-height","345px");
+				} else {
+					$j(this).parent().find(".edit-date-cont").hide();
+					$j(this).hide();
+					$j(this).parent().find(".open-date").show();
+					$j(this).parent().find(".open-date").attr("data-day", $j(this).parent().parent().find(".edit-day-input").val()); 
+					$j(this).parent().find(".open-date").attr("data-month", $j(this).parent().parent().find(".edit-month-input").val());
+					$j(this).parent().find(".open-date").attr("data-year", $j(this).parent().parent().find(".edit-year-input").val());				
+				}
 				
             });
         });	
@@ -1054,7 +1075,7 @@ $j(document).ready(function() {
 				$j(this).change(function(e) {
 					$j(".startdate").show();
 					$j(this).closest(".table-row").css("height","auto");
-					$j(this).closest(".table-row").css("min-height","275px");		
+					$j(this).closest(".table-row").css("min-height","305px");		
 				});
 			});
 
@@ -1062,7 +1083,12 @@ $j(document).ready(function() {
 				$j(this).change(function(e) {
 					$j(".startdate").hide();
 					$j(this).closest(".table-row").css("height","auto");
-					$j(this).closest(".table-row").css("min-height","195px");					
+					$j(this).closest(".table-row").css("min-height","225px");	
+					$j(this).closest(".table-row").find(".edit-day-input").removeClass("govuk-input--error");
+					$j(this).closest(".table-row").find(".edit-month-input").removeClass("govuk-input--error");
+					$j(this).closest(".table-row").find(".edit-year-input").removeClass("govuk-input--error");
+					$j(this).closest(".table-row").find(".startdate-error").hide();
+					$j(this).closest(".table-row").find(".startdate-cont").removeClass("govuk-form-group--error");
 				});	
 			});
 			
@@ -1435,7 +1461,11 @@ $j(document).ready(function() {
         <!--<input type="text" class="datepicker govuk-input hasDatepicker" placeholder="03/12/2018" value="Flexible start date" style="border: none;font-size: 14px;position: relative;width:130px;color:inherit;background-color: inherit;" />-->
         <a href="#" class="edit-btn open-date" data-day="03" data-month="09" data-year="2018">Edit</a> <a href="#" class="edit-btn save-date">Update</a>
         <div class="edit-date-cont">
-<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+<div class="govuk-form-group startdate-cont">
+  <fieldset class="govuk-fieldset" aria-describedby="dob-hint dob-error" role="group">
+      <span id="dob-error" class="startdate-error govuk-error-message" style="text-align:left; display:none;">
+      Wrong start date
+    </span>
     <div class="govuk-radios  govuk-radios--inline" style="margin-bottom:10px;">
       <div class="govuk-radios__item">
         <input class="govuk-radios__input classroom startdate_s" name="sdt" type="radio" value="classroom" id="startdate_s">
@@ -1459,7 +1489,8 @@ $j(document).ready(function() {
 			<input type="text" class="govuk-input edit-year-input" style="width:120px;" />
 			</div>
 			</div>		
-  </fieldset>			
+  </fieldset>	
+</div>  
           <a href="#" class="edit-btn cancel-date" style="margin-top:10px;float:left;">Close</a> </div>		
       </div>
       <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:230px;">
