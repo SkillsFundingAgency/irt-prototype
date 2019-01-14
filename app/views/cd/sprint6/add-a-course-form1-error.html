@@ -6,12 +6,7 @@ GOV.UK prototype kit
 
 {% block content %}
 <style xmlns="http://www.w3.org/1999/html">
-.link--button {
-    border:none;
-    color:#005ea5;
-    font-size: 1.1875rem;
-    text-decoration: underline;
-}
+
     .govuk-related-items {
         margin-top: 30px;
         border-top: 10px solid #005ea5;
@@ -153,9 +148,12 @@ GOV.UK prototype kit
 		overflow-x:hidden;
 		overflow-y:visible;
 	}
+
+	.govuk-label {
+		font-size:24px !important;
+	}	
 	
 
- 
 </style>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -218,17 +216,6 @@ $j(document).ready(function (e) {
 			$j("#venue1").show();
 		}
 	});	
-	
-	$j("#addvenuebutton").click(function (e) {
-		e.preventDefault();
-		if ($j("#venuename").val().trim()=="") {
-			alert("Please enter venue name.");
-		} else {
-			$j("#venuess").append('<div class="govuk-checkboxes"><div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">'+$j("#venuename").val()+'</label></div></div>');
-			$j('#popup-venue').popup('hide'); 
-			$j("#venuename").val("");
-		}
-	});	
 
 	$j("#toggleareas").click(function (e) {
 		e.preventDefault();
@@ -243,9 +230,9 @@ $j(document).ready(function (e) {
 	});
 
     $j('#popup-venue,#popup-preview').popup({
-        opacity: 0.7,
-        color:'#333',
-        transition: 'all 0.3s',
+        opacity: 0.5,
+        color:'#666',
+        transition: 'all 0.3s'
     });
 	
 	
@@ -310,9 +297,6 @@ $j(document).ready(function (e) {
 			$j(this).css("background","#2b8cc4");
 			$("#date, #time, #venue, #mode, #region").hide();
 			Cookies.set("based", "online");
-			$j("#startdate_f").prop("checked",true);
-			$j("#startdate_s").prop("checked",false);
-			//$j("#startdate_f").change();
 		});
 	});
 	
@@ -325,9 +309,6 @@ $j(document).ready(function (e) {
 			$("#date, #time, #venue, #mode").show();
 			$("#region").hide();
 			Cookies.set("based", "classroom");
-			$j("#startdate_f").prop("checked",false);
-			$j("#startdate_s").prop("checked",true);
-			//$j("#startdate_s").change();
 		});
 	});
 	
@@ -338,16 +319,12 @@ $j(document).ready(function (e) {
 			$j(this).addClass("govuuk-colour");
 			$j(this).css("background","#2b8cc4");
 			$("#date, #time, #region, #mode").show();
-			//$("#venue, #time, #mode").hide();
-			$("#date, #time, #venue, #mode").hide();
+			$("#venue, #time, #mode").hide();
 			Cookies.set("based", "work");
-			$j("#startdate_f").prop("checked",true);
-			$j("#startdate_s").prop("checked",false);			
-			//$j("#startdate_f").change();
 		});
 	});	
 	
-	/*$j(".dur").each(function (e) {
+	$j(".dur").each(function (e) {
 		$j(this).on("keyup change", function (e) {
 			var val=$(this).val();
 			$j(".dur").val("");
@@ -355,9 +332,9 @@ $j(document).ready(function (e) {
 			$j(".dur").css("background","#ddd");
 			$j(this).css("background","#fff");
 		});
-	});*/
+	});
 
-	/*$j(".time").each(function (e) {
+	$j(".time").each(function (e) {
 		$j(this).click(function (e) {
 			$j(".time").removeClass(".govuk-colour");
 			$j(".time").css("background","#fff");
@@ -378,7 +355,7 @@ $j(document).ready(function (e) {
 			var value=$(this).text();
 			Cookies.set("daynight", value);
 		});
-	});	*/
+	});	
 
 	$j(".venue").each(function (e) {
 		$j(this).click(function (e) {
@@ -416,10 +393,7 @@ $j(document).ready(function (e) {
 		Cookies.set("cost",$j("#cost").val());
 		Cookies.set("costdescription",$j("#costdescription").val());
 		
-		Cookies.set("duration",$j("#duration").val());
-		Cookies.set("durationunits",$j("#durationunits").val());
-		
-		/*if ($j("#days").val().trim()!=="") {
+		if ($j("#days").val().trim()!=="") {
 			Cookies.set("duration",$j("#days").val());
 			Cookies.set("durationunits","Days");
 		}
@@ -437,76 +411,9 @@ $j(document).ready(function (e) {
 		if ($j("#years").val().trim()!=="") {
 			Cookies.set("duration",$j("#years").val());
 			Cookies.set("durationunits","Years");
-		}*/
+		}
 			
 	});
-	
-	$j("#england").click(function (e) {
-		if ($j(this).is(":checked")) {
-			$j(".england").each(function(e) {
-				$j(this).prop("checked", true);
-			});
-			$j(".london").each(function(e) {
-				$j(this).prop("checked", true);
-			});			
-		} else {
-			$j(".england").each(function(e) {
-				$j(this).prop("checked", false);
-			});
-			$j(".london").each(function(e) {
-				$j(this).prop("checked", false);
-			});
-		}
-	});
-	
-	$j("#london").click(function (e) {
-		if ($j(this).is(":checked")) {
-			$j(".london").each(function(e) {
-				$j(this).prop("checked", true);
-			});		
-		} else {
-			$j(".london").each(function(e) {
-				$j(this).prop("checked", false);
-			});
-		}
-	});	
-	
-	$j(".england").each(function(e) {
-		$j(this).click(function (e) {
-			if ($j(".england:checked").length==$j(".england").length) {
-				$j("#england").prop("checked",true);
-			} else {
-				$j("#england").prop("checked",false);
-			}
-		});
-	});
-
-	$j(".london").each(function(e) {
-		$j(this).click(function (e) {
-			if ($j(".london:checked").length==$j(".london").length) {
-				$j("#london").prop("checked",true);
-			} else {
-				$j("#london").prop("checked",false);
-			}
-		});
-	});
-	
-	$j("#flexible").change(function (e) {
-		if ($j("#flexible").is(":checked")) {
-			$j(".date").each(function(e) {
-				$j(this).val("");
-			});
-		}
-	});
-	
-	/*START DATE*/
-	$j("#startdate_s").change(function(e) {
-		//$("#startdate").show();
-	});
-
-	$j("#startdate_f").change(function(e) {
-		//$("#startdate").hide();
-	});	
 	
 });
 
@@ -536,288 +443,184 @@ $j(document).ready(function (e) {
 <form name="form" action="your-courses" method="post" id="form">
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add course details
+            Add your first course
         </h1>
 
-<p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;" id="qual--">Qualification added:<br/> PGCE in Secondary (Mathematics) - Bradford College<br/> Level: 7<br/> Awarding organisation: BOLTONIN<br/> LARS/QAN: 302309</p>
+        <p style="padding: 15px 20px; border: 1px solid #0b0c0c;background-color:#bfc1c3;" id="qual"></p>
 
-        <div class="govuk-form-group" style="margin-top: 30px">
+
+
+        <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                Course name&nbsp;&nbsp;<!--<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>-->
-				<span id="more-detail-hint" class="govuk-hint">This is the name people will see when they search for your course.</span>
+                Course display name&nbsp;&nbsp;<a href="#" id="open-name"><i class="fa fa-info-circle"></i></a>
             </label>
 
-            <textarea class="govuk-textarea descript" id="reff--" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;border-color: #eee;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">PGCE in Secondary (Mathematics) - Bradford College</textarea>
+            <textarea class="govuk-textarea descript" id="reff" name="descript" rows="1" style="resize:none;overflow:hidden;margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;height:57px;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true"></textarea>
 
         </div>
 
         <div class="govuk-form-group" style="clear:both;">
             <label class="govuk-label" for="sub">
-                ID&nbsp;&nbsp;<!--a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
-				<span id="more-detail-hint" class="govuk-hint">This is how you identify a course in you internal system.</span>
+                Your course reference&nbsp;&nbsp;<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>
             </label>
-            <input class="govuk-input details" id="name" name="name" width="50%" type="text" style="width: 50%" required/>
+            <input class="govuk-input details" id="name" name="name" type="text" required/>
 
         </div>
+
+
+
         <div class="btn-gr">
-            <!--
-            <input type="radio" class="govuk-radio classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
+            <label class="govuk-label">Classroom or online</label>
+            <button class="govuk-button classroom" value="Search" type="button" style="background: #2b8cc4;color: #000000; border:2px solid black">Classroom based</button>
             <button class="govuk-button online" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Online</button>
-            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>-->
-			
-			 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Delivery mode</label>
-                 <span id="more-detail-hint" class="govuk-hint">Select how this course will be delivered</span>
-    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input classroom" name="changed-name2" type="radio" value="classroom" checked>
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Classroom based
-        </label>
-      </div>
-     <div class="govuk-radios__item">
-        <input class="govuk-radios__input online" name="changed-name2" type="radio" value="online">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Online
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input work" name="changed-name2" type="radio" value="work">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Work based
-        </label>
-      </div>	
-    </div>
-  </fieldset>
-			
+            <button class="govuk-button work" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Work based</button>
         </div>
 
+        <div class="govuk-form-group" id="date">
+            <label class="govuk-label" for="sub">
+                Start date:
+            </label>
 
-					 <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Start date</label>
-
-                         <span id="more-detail-hint" class="govuk-hint">e.g. 'For example, 30 9 2019 </span>
-    <div class="govuk-radios govuk-radios" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" name="startdate" type="radio" value="classroom" id="startdate_s" checked="checked">
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Defined start date
-        </label>
-      </div>
-	  
-			<div id="startdate" style="margin-bottom:25px;">
-			<!--<span id="more-detail-hint" class="govuk-hint">Please enter the date (dd/mm/yyyy).</span>
-			<input type="text" class="govuk-input date" style="width:60px;" />
-			<input type="text" class="govuk-input date" style="width:60px;" />
-			<input type="text" class="govuk-input date" style="width:120px;" />-->
-
-
-
-                <div class="govuk-date-input" id="dob" style="margin-left: 60px">
-                    <div class="govuk-date-input__item" style="margin-right: 20px">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-day">
-                                Day
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-                    <div class="govuk-date-input__item" style="margin-right: 20px">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-month">
-                                Month
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="dob-year">
-                                Year
-                            </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
-                        </div>
-                    </div>
-
-</div>	
-			</div>	  
-	  
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="startdate_f" name="startdate" type="radio" value="online">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Flexible start date
-        </label>
-      </div>	  
-    </div> 
-  </fieldset>
+            <p> <input type="text" id="datepicker" class="govuk-input details" style="width:200px;"></p>
+        </div>
+		
+		
        
 
         <div class="govuk-form-group" style="margin-bottom:10px;" id="venue">
-
-            <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-                    <legend class=" ">
-                        <label class="govuk-label">
-                            Select course venue
-                        </label>
-                    </legend>
-                    <span id="waste-hint" class="govuk-hint">
-      Select all that apply.
-    </span>
-                    <div class="govuk-checkboxes">
-
-
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-                            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                                Baconsham College
-                            </label>
-                        </div>
-
-
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-                            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                                Durham College
-                            </label>
-                        </div>
-
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="waste-1" name="waste" type="checkbox" value="carcasses">
-                            <label class="govuk-label govuk-checkboxes__label" for="waste-1">
-                                Newham College
-                            </label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-                            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
-                                Oxham College
-                            </label>
-                        </div>
-
-
-                    </div>
-                </fieldset>
+		
+		 <h3 class="govuk-heading-m">Select course venue</h3>
+            <div class="govuk-form-group" style="margin-bottom:10px;" id="venuess">
+                <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    Newham College
+                </label> </div> </div>
+                <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    Oxham College
+                </label> </div> </div>
+                <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    Durham College
+                </label> </div> </div>
+                <div class="govuk-checkboxes"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    Baconsham College
+                </label> </div> </div>
             </div>
-          <a href="#" class="submit govuk-button" type="submit" value="Add a new venue" id="addvenue" style="width:200px;height: 39px;margin-top:20px;"/>Add a new venue</a>
+            <a href="#" class="submit govuk-button" type="submit" value="Add a new venue" id="addvenue" style="width:200px;height: 39px;margin-top:20px;"/>Add a new venue</a>
         </div>
 
         
 
         <div class="govuk-form-group" id="region" style="margin-bottom:10px;display:none;">
-            <label class="govuk-label">Select course region</label>
-            <span id="dob-hint" class="govuk-hint">
-      For example, South West
-    </span>
+		
+		<h3 class="govuk-heading-m">Select course region</h3>
 
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="england" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                England
             </label> </div> </div>
 
             <div style="margin-left: 20px">
 		
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="london" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-1" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 London
             </label> </div>  <a href="#" id="toggleareas">Hide areas within London</a></div>
 
 			<div style="margin-left: 20px" id="areaslondon">
-                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                     Barking and Dagenham
                 </label> </div> </div>
 
-                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                     Barnet
-                </label> </div> </div><div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                </label> </div> </div><div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 Bexley
                 </label> </div> </div>
 
-    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
 
     Bromley</label> </div> </div>
 
-        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
         CamdenCity of London</label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
 
             Croydon</label> </div> </div>
-                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                 Ealing</label> </div> </div>
-                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                     Enfield</label> </div> </div>
-                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                         Greenwich</label> </div> </div>
-                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                             Hackney</label> </div> </div>
-                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                 Hammersmith and Fulham</label> </div> </div>
-                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                     Haringey</label> </div> </div>
-                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                         Harrow</label> </div> </div>
-                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                             Havering</label> </div> </div>
-                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                 Hillingdon Hounslow</label> </div> </div>
 
-                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                     Islington</label> </div> </div>
-                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                         Kensington and Chelsea</label> </div> </div>
-                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                             Kingston upon Thames</label> </div> </div>
 
-                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                 Lambeth</label> </div> </div>
-                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                     Lewisham</label> </div> </div>
 
-                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                         Merton</label> </div> </div>
-                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                             Newham</label> </div> </div>
-                                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                 Redbridge</label> </div> </div>
-                                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                     Richmond upon Thames</label> </div> </div>
-                                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                         Southwark</label> </div> </div>
-                                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                             Sutton</label> </div> </div>
-                                                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                                <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                                 Tower Hamlets</label> </div> </div>
-                                                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                                    <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                                     Waltham Forest</label> </div> </div>
-                                                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                                        <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
                                                                                                         Wandsworth</label> </div> </div>
-                                                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check london" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+                                                                                                            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
 
 
 
@@ -831,28 +634,28 @@ $j(document).ready(function (e) {
 
 
 
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-2" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 South East
             </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-3" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                 South West
             </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                West Midlands
             </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                North West
             </label> </div> </div>
-			<div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+			<div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                North East
             </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                Yorkshire and the Humber
             </label> </div> </div>
-			            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+			            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                East Midlands
             </label> </div> </div>
-            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check england" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
+            <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check venue" id="waste-4" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                East of England
             </label> </div> </div>			
             
@@ -860,13 +663,16 @@ $j(document).ready(function (e) {
         </div>
 
 
-
-        <div class="govuk-form-group" style="margin-top:25px;">
+        <div class="govuk-form-group govuk-form-group--error">
+        <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
-                URL&nbsp;&nbsp;<!--<a href="#" id="open-ref"><i class="fa fa-info-circle"></i></a>-->
+                Course URL
             </label>
-            <span id="more-detail-hint" class="govuk-hint">Enter the url for this course</span>
+             <span id="national-insurance-number-error" class="govuk-error-message">
+    Enter course URL in the correct format
+  </span>
             <input class="govuk-input details" id="url" name="sub" type="text" required/>
+        </div>
         </div>
 
 
@@ -874,61 +680,59 @@ $j(document).ready(function (e) {
 		  <label class="govuk-label" for="sub">
 			Cost
 		  </label>
-            <span id="more-detail-hint" class="govuk-hint">Enter the cost of this course</span>
-
-
-
-		 <span>£</span> <input class="govuk-input details" id="cost" name="sub" type="number" min="0" step="0.01" style="width: 20%" placeholder="" required/>
+		  <input class="govuk-input details" id="cost" name="sub" type="number" min="1" step="0.01" style="" required/>
 		</div>
 
         <div class="govuk-form-group">
             <label class="govuk-label" for="sub">
                 Cost description
             </label>
-            <span id="more-detail-hint" class="govuk-hint">Enter additional information related to the cost of this course
-            </span>
-           <textarea class="govuk-textarea"  rows="6" style="margin-bottom: 0"></textarea>
-            <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
-    You can enter up to 200 characters
-  </span>
+            <input class="govuk-input details" id="costdescription" name="sub" type="text" style=""/>
         </div>
 
-		        <div class="govuk-form-group">
-            <label class="govuk-label" for="sub">
-                Advanced learner loan
-            </label>
-                    <span id="more-detail-hint" class="govuk-hint">Select the checkbox below if Avanded Learner Loans are available for this course</span>
-            <div class="govuk-checkboxes" style="display: inline-block; margin-top: 25px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="advanced" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label" style="font-size: 14px">Available</label> </div> </div>
-        </div>
-		
 
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
                 <label class="govuk-label" for="sub">
                     Duration
                 </label>
-                <span id="more-detail-hint" class="govuk-hint">Select the duration of the course</span>
                 <div class="govuk-date-input" id="dob">
 
-                    <div class="govuk-date-input__item" style="margin-right:10px;">
+                    <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
                             <label class="govuk-label govuk-date-input__label" for="dob-day">
+                                Day(s)
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 dur" id="duration" name="dob-day" type="number" pattern="[0-9]*" min="1" step="1" required>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 dur" id="days" name="dob-day" type="number" pattern="[0-9]*">
                         </div>
                     </div>
 
-                    <div class="govuk-date-input__item" style="width:120px;">
+                    <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
-                            <select class="govuk-select" id="durationunits">
-							<option value="Days">Days</option>
-							<option value="Weeks">Weeks</option>
-							<option value="Months">Months</option>
-							<option value="Years">Years</option>
-					   </select>
+                            <label class="govuk-label govuk-date-input__label" for="dob-month">
+                               Week(s)
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 dur" id="weeks" name="dob-month" type="number" pattern="[0-9]*">
                         </div>
                     </div>
 
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="dob-month">
+                                Month(s)
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 dur" id="months" name="dob-month" type="number" pattern="[0-9]*">
+                        </div>
+                    </div>
+
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="dob-year">
+                                Year(s)
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4 dur" id="years" name="dob-year" type="number" pattern="[0-9]*">
+                        </div>
+                    </div>
 
 
                 </div>
@@ -938,37 +742,12 @@ $j(document).ready(function (e) {
 
 <div class="govuk-form-group" id="time">
 
-        <!--<div class="btn-gr">
+        <div class="btn-gr">
             <label class="govuk-label">Full time or part time</label>
             <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Full-time</button>
             <button id="venues-show" class="govuk-button govuk-colour time" value="" type="button" style="background:white;color: #000000; border:2px solid black">Part-time</button>
             <button id="venues-show" class="govuk-button time" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Flexible</button>
-        </div>-->
-		
-				<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Full time or part time</label>
-                    <span id="more-detail-hint" class="govuk-hint">Select the attendance pattern</span>
-    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="" checked>
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Full-time
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Part-time
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input time" name="changed-name1" type="radio" value="">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Flexible
-        </label>
-      </div>	
-    </div>
-  </fieldset>
+        </div>
 
 </div>
 
@@ -976,44 +755,13 @@ $j(document).ready(function (e) {
 
 
 		  
-		 <!--<div class="btn-gr">
-            
+		 <div class="btn-gr">
+            <label class="govuk-label">Day, night or weekend</label>
             <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:#2b8cc4;color: #000000; border:2px solid black">Daytime</button>
 			<button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background:white;color: #000000; border:2px solid black">Evening</button>
             <button id="venues-show" class="govuk-button govuk-colour daynight" value="" type="button" style="background:white;color: #000000; border:2px solid black">Weekend</button>
             <button id="venues-show" class="govuk-button daynight" value="Search" type="button" style="background: white;color: #000000; border:2px solid black">Day/Block Release</button>
-        </div>-->
-		
-		<fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-<label class="govuk-label">Attendance</label>
-            <span id="more-detail-hint" class="govuk-hint">Select the time of day the course tales place</span>
-    <div class="govuk-radios govuk-radios--inline" style="margin-bottom:30px;">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="classroom" checked>
-        <label class="govuk-label govuk-radios__label" for="changed-name-1">
-          Daytime
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="online">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Evening
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="work">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Weekend
-        </label>
-      </div>
-		<div class="govuk-radios__item">
-        <input class="govuk-radios__input daynight" name="changed-name" type="radio" value="work">
-        <label class="govuk-label govuk-radios__label" for="changed-name-2">
-          Day/Block Release
-        </label>
-      </div>	
-    </div>
-  </fieldset>
+        </div>
 		
 		</div>
 
@@ -1034,12 +782,10 @@ $j(document).ready(function (e) {
     Publish
 </button>
 		</div>
+		
+	</div>	
 
-<!--
-        <a href="add-a-course-form1-error">Unhappy path submit</a>-->
 
-
-    </div>
 
 		
 	</div>	
@@ -1050,65 +796,19 @@ $j(document).ready(function (e) {
 <div id="popup-venue"><div style="padding:40px;width:calc(100% - 80px);">
     <a href="#" id="close-venue" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
 
-<div class="govuk-grid-row">
+	<div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l" style="padding-top: 20px;">
-            Add a venue
-        </h1>
-		
-	
-        <div class="govuk-form-group" style="clear:both;">
-            <label class="govuk-label" for="sub">
-                Venue name
-            </label>
-            <textarea class="govuk-textarea descript" id="venuename" name="venuename" rows="1" style="margin-bottom: 0px; z-index: auto; position: relative; line-height: 23.75px; font-size: 19px; transition: none 0s ease 0s; background: transparent !important;" data-gramm="true" data-txt_gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" data-gramm_id="0a476794-e114-be1a-6b77-54fb5d480f83" spellcheck="false" data-gramm_editor="true">London City College</textarea>
-
-        </div>
-
-
-        <fieldset class="govuk-fieldset">
-            <!--<h2 class="govuk-heading-m">
-                venue address
-            </h2>-->
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-
-            </legend>
-
-
-
-            <div class="govuk-form-group">
-                <h3> <span style="font-size: 22px">Venue postcode</span><br>
-                    SW1A 1AA <a href="add-venue" style="margin-left: 10px;font-weight: 300">Change</a>
-
-                </h3>
-
-
-                    <select class="govuk-select based" style="width: 40%"><option value="classroom" selected="">2 addresses found</option><option value="online">12 Orwell Court</option><option value="online">14 Orwell Court</option></select>
-
-
-            </div>
+        <div class="govuk-grid-column-full">
+           
+		<div id="venue1">
+		   <h1 class="govuk-heading-l" style="padding-top: 20px;">
+                Add venue
+            </h1>
 
 
 
 
-        </fieldset>
-
-				<div class="govuk-form-group">
-
-
-                    <a href="#" role="button" class="govuk-button" style="margin-top: 20px" id="addvenuebutton">
-                        Continue
-                    </a>
-		</div>
-		
-	</div>	
-
-</div>
-
-
-
-            <!--<div class="govuk-form-group" style="clear:both;">
+            <div class="govuk-form-group" style="clear:both;">
                 <label class="govuk-label" for="sub">
                     Venue name
                 </label>
@@ -1131,7 +831,7 @@ $j(document).ready(function (e) {
 		  <fieldset class="govuk-fieldset" aria-describedby="dob-hint dob-error" role="group">
 			<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
 			<span id="pcerr" class="govuk-error-message" style="display:none;">
-			  Enter a real postcode
+			  Wrong post code.
 			</span>
 			<div class="govuk-date-input" id="pcc">
 			  <div class="govuk-date-input__item">
@@ -1139,7 +839,7 @@ $j(document).ready(function (e) {
 				  <label class="govuk-label govuk-date-input__label" for="pc">
 					Postcode
 				  </label>
-				  <input class="govuk-input govuk-date-input__input govuk-input--width-8 govuk-input--error" style="width:100px;" id="post" name="pc" type="text" value="" pattern="[0-9,a-z]*">
+				  <input class="govuk-input govuk-date-input__input govuk-input--width-8" style="width:100px;" id="post" name="pc" type="text" value="" pattern="[0-9,a-z]*">
 				</div>
 			  </div>
 			  </div>
@@ -1153,12 +853,12 @@ $j(document).ready(function (e) {
                 <a href="#" type="button" class="govuk-button" id="findaddress">
                     Find address
                 </a>
-                <br>-->
+                <br>
 </div>
 
 	</div>
 	
-	<!--<div id="venue2" style="display:none">
+	<div id="venue2" style="display:none">
 	
 	              <div class="form-group govuk-checkboxes">
                  
@@ -1202,7 +902,7 @@ E8 4PS</label>
 	
 	</div>
 	
-</div>-->
+</div>
    
 </div>
 </div>

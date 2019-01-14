@@ -337,9 +337,9 @@ $j(document).ready(function (e) {
 			$j(".online, .classroom, .work").css("background","#fff");
 			$j(this).addClass("govuuk-colour");
 			$j(this).css("background","#2b8cc4");
-			$("#date, #time, #region, #mode").show();
-			//$("#venue, #time, #mode").hide();
-			$("#date, #time, #venue, #mode").hide();
+			/*$("#date, #time, #region, #mode").show();
+			$("#venue, #time, #mode").hide();*/
+			$("#date, #time, #venue, #mode, #region").hide();
 			Cookies.set("based", "work");
 			$j("#startdate_f").prop("checked",true);
 			$j("#startdate_s").prop("checked",false);			
@@ -707,10 +707,8 @@ $j(document).ready(function (e) {
         
 
         <div class="govuk-form-group" id="region" style="margin-bottom:10px;display:none;">
-            <label class="govuk-label">Select course region</label>
-            <span id="dob-hint" class="govuk-hint">
-      For example, South West
-    </span>
+		
+		<h3 class="govuk-heading-m">Select course region</h3>
 
             <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="england" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                England

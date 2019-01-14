@@ -153,9 +153,7 @@ GOV.UK prototype kit
 		overflow-x:hidden;
 		overflow-y:visible;
 	}
-	
 
- 
 </style>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -243,9 +241,9 @@ $j(document).ready(function (e) {
 	});
 
     $j('#popup-venue,#popup-preview').popup({
-        opacity: 0.7,
-        color:'#333',
-        transition: 'all 0.3s',
+        opacity: 0.5,
+        color:'#666',
+        transition: 'all 0.3s'
     });
 	
 	
@@ -310,9 +308,6 @@ $j(document).ready(function (e) {
 			$j(this).css("background","#2b8cc4");
 			$("#date, #time, #venue, #mode, #region").hide();
 			Cookies.set("based", "online");
-			$j("#startdate_f").prop("checked",true);
-			$j("#startdate_s").prop("checked",false);
-			//$j("#startdate_f").change();
 		});
 	});
 	
@@ -325,9 +320,6 @@ $j(document).ready(function (e) {
 			$("#date, #time, #venue, #mode").show();
 			$("#region").hide();
 			Cookies.set("based", "classroom");
-			$j("#startdate_f").prop("checked",false);
-			$j("#startdate_s").prop("checked",true);
-			//$j("#startdate_s").change();
 		});
 	});
 	
@@ -338,12 +330,8 @@ $j(document).ready(function (e) {
 			$j(this).addClass("govuuk-colour");
 			$j(this).css("background","#2b8cc4");
 			$("#date, #time, #region, #mode").show();
-			//$("#venue, #time, #mode").hide();
-			$("#date, #time, #venue, #mode").hide();
+			$("#venue, #time, #mode").hide();
 			Cookies.set("based", "work");
-			$j("#startdate_f").prop("checked",true);
-			$j("#startdate_s").prop("checked",false);			
-			//$j("#startdate_f").change();
 		});
 	});	
 	
@@ -501,11 +489,11 @@ $j(document).ready(function (e) {
 	
 	/*START DATE*/
 	$j("#startdate_s").change(function(e) {
-		//$("#startdate").show();
+		$("#startdate").show();
 	});
 
 	$j("#startdate_f").change(function(e) {
-		//$("#startdate").hide();
+		$("#startdate").hide();
 	});	
 	
 });
@@ -601,7 +589,7 @@ $j(document).ready(function (e) {
                          <span id="more-detail-hint" class="govuk-hint">e.g. 'For example, 30 9 2019 </span>
     <div class="govuk-radios govuk-radios" style="margin-bottom:30px;">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" name="startdate" type="radio" value="classroom" id="startdate_s" checked="checked">
+        <input class="govuk-radios__input classroom" name="startdate" type="radio" value="classroom" id="startdate_s" checked="checked">
         <label class="govuk-label govuk-radios__label" for="changed-name-1">
           Defined start date
         </label>
@@ -641,16 +629,16 @@ $j(document).ready(function (e) {
                         </div>
                     </div>
 
-</div>	
+
 			</div>	  
 	  
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="startdate_f" name="startdate" type="radio" value="online">
+        <input class="govuk-radios__input online" id="startdate_f" name="startdate" type="radio" value="online">
         <label class="govuk-label govuk-radios__label" for="changed-name-2">
           Flexible start date
         </label>
       </div>	  
-    </div> 
+    </div>
   </fieldset>
        
 
@@ -707,10 +695,8 @@ $j(document).ready(function (e) {
         
 
         <div class="govuk-form-group" id="region" style="margin-bottom:10px;display:none;">
-            <label class="govuk-label">Select course region</label>
-            <span id="dob-hint" class="govuk-hint">
-      For example, South West
-    </span>
+		
+		<h3 class="govuk-heading-m">Select course region</h3>
 
             <div class="govuk-checkboxes" style="padding-bottom: 20px"> <div class="govuk-checkboxes__item"> <input class="govuk-checkboxes__input check" id="england" name="waste" type="checkbox"> <label class="govuk-label govuk-checkboxes__label">
                England
