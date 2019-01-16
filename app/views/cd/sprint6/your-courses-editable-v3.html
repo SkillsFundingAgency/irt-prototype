@@ -7,11 +7,6 @@ GOV.UK prototype kit
 {% block content %}
 <style>
 
-	/*.ui-button .ui-icon,.ui-datepicker-trigger{display: none!important}*/
-
-    .foo, .govuk-table__cell1,.govuk-table__cell2, .foo123, td {
-        border-bottom: 1px solid #bfc1c3;
-    }
     .govuk-checkboxes__input + .govuk-checkboxes__label::before  {
         content: "";
         -webkit-box-sizing: border-box;
@@ -24,31 +19,11 @@ GOV.UK prototype kit
         background: transparent;
     }
 
-    th.govuk-table__header,td.govuk-table__cell{
-        width: 100px;
-    }
     .govuk-checkboxes__input + .govuk-checkboxes__label::before {
         border: 2px solid  #bfc1c3;
     }
     span{}
     textarea {width: 500px; font-size: 14px; height: 140px}
-    .foo123{border: 2px solid hotpink}
-    #main-table td:nth-child(1){position: relative;left:10px}
-    #main-table td:nth-child(2){background-color: #bfc1c3; padding-right: 10px}
-    #main-table td:nth-child(3){background-color: #bfc1c3;padding-left: 10px;}
-    #main-table td:nth-child(4){padding-left: 20px}
-    #main-table td:nth-child(5){padding-left: 20px}
-    #main-table td:nth-child(6){padding-left: 20px}
-    #main-table td:nth-child(8){padding-left: 20px}
-    #main-table td:nth-child(10){padding-left: 20px}
-    #main-table td:nth-child(20){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(21){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(22){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(23){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(24){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(25){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(26){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
-    #main-table td:nth-child(27){background-color: #bfc1c3;padding-left: 10px; padding-right: 10px}
 
     .tarea {
         width:40vw;
@@ -63,19 +38,6 @@ GOV.UK prototype kit
     .govuk-main-wrapper{padding: 0}
     .govuk-header{border-bottom: 0}
 
-    table {
-        font-family: "nta", Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.25;
-        color: #0b0c0c;
-
-        margin-bottom: 20px;
-        border-spacing: 0;
-        border-collapse: collapse;
-    }
 
     .hidden,.my_popup_2 {display: none}
 
@@ -85,15 +47,6 @@ GOV.UK prototype kit
 
     #edit-url td, #edit-cost td, #edit-subtitle td  {
         border-bottom:none;
-    }
-
-    #main-table td {
-        background-color: #fff !important;
-        border-bottom: none;
-    }
-
-    #main-table tr {
-        border-bottom: solid 1px #ccc;
     }
 
     .input-symbol-gbp {
@@ -126,65 +79,10 @@ GOV.UK prototype kit
         overflow-x:none;
     }
 
-   /* div::-webkit-scrollbar {
-        width: 18px;
-        height: 10px;
-    }
-    div::-webkit-scrollbar-button {
-        width: 0px;
-        height: 0px;
-    }
-    div::-webkit-scrollbar-thumb {
-        background: #999;
-        border: 0px none #000000;
-        border-radius: 4px;
-    }
-    div::-webkit-scrollbar-thumb:hover {
-        background: #666;
-    }
-    div::-webkit-scrollbar-thumb:active {
-        background: #1D58B4;
-    }
-    div::-webkit-scrollbar-track {
-        background-repeat:repeat-x;*/
-    border: 0px none #000000;
-    border-radius: 4px;
-    background-color:rgba(192, 192, 192, 0.5);
-
-        }
-    div::-webkit-scrollbar-track:hover {
-        background-color:#B7B7B7;
-        background-color:rgba(150, 150, 150, 0.5);
-    }
-    div::-webkit-scrollbar-track:active {
-        background: #1D58B4;
-        background-color:rgba(29, 88, 180, 0.5);
-    }
-    div::-webkit-scrollbar-corner {
-        background: transparent;
-    }*/
-
-    /*
-    .hover {
-        background-color: #f2f2f2;
-    }
-    */
-
-    .menu-button {
-        font-size: 35px !important;
-        position: absolute;
-        top: 76px;
-        cursor: pointer;
-        left: 12px;
-    }
-	
 	.gray-back {
 		background-color:#eee !important;
 	}
 	
-	.datepicker {
-		border: solid 2px #efefef !important;
-	}
 	
 	.hdr-cell {
 		margin-left:0 !important;
@@ -201,21 +99,6 @@ GOV.UK prototype kit
 		padding:5px;
 	}
 	
-	.head-table1 {
-		position:fixed;
-		display:none;
-		top:0;
-		background-color:#fff;
-		z-index:100000;
-		left:60px;
-		background-color:#ddd;
-	}
-	
-	.head-table {
-		background-color:#ddd;
-	}
-
-
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: #005ea5!important;
         opacity: 1; /* Firefox */
@@ -257,11 +140,6 @@ GOV.UK prototype kit
         border: 2px solid;
     }
 
-
-    .search-box input[type="text"] {
-
-        width: 750px;
-    }
 	
 	.edit-cost-cont, .edit-url-cont {
 		display:none;
@@ -343,47 +221,23 @@ GOV.UK prototype kit
 
 var $j = jQuery.noConflict();
 
-$j('#popup-venue,#popup-preview,#popup-descript,#popup-cost').popup({
-    color:'#fff',
-    transition: 'all 0.3s'
-});
-
-
-
-
-function initPicker() {
-
-   /* $j(".datepicker").each(function () {
-        $j(this).removeClass("hasDatepicker");
-        $(this).attr("id","");
-        $j(this).datepicker({
-			dateFormat: 'dd/mm/yy',
-            showButtonPanel: true,
-            //showOn: 'both',
-			beforeShow: function (input) {
-                setTimeout(function () {
-                    var buttonPane = $j(input)
-                            .datepicker("widget")
-                            .find(".ui-datepicker-buttonpane");
-
-                    var btn = $j('<button class="ui-state-default ui-priority-primary ui-corner-all" type="button">Flexible start date</button>');
-                    btn.unbind("click")
-                            .bind("click", function () {
-                                //$j(input).datepicker("hide");
-                                $j(input).val("Flexible start date");
-                            });
-
-                    btn.appendTo(buttonPane);
-                    $j(input).datepicker("widget").find(".ui-datepicker-current").hide();
-
-                }, 1);
-            }
-		});
-    });*/
-}
 
 
 $j(document).ready(function() {
+
+	$j('#popup-preview,#popup-descript,#popup-cost').popup({
+		color:'#fff',
+		transition: 'all 0.3s'
+	});
+	
+	$j(".table-collapse.fa-angle-up").each(function (e) {
+			/*$j(this).parent().parent().find(".table-row").hide();
+			//$j(this).parent().parent().find(".section-container").hide()*/
+			$j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
+				$j(this).hide();
+			});
+			$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
+	});	
 
 	$j("#preview").click(function (e) {
 		e.preventDefault();
@@ -413,10 +267,45 @@ $j(document).ready(function() {
 		});
 	});
 		
-	$j("#close-descript, #close-descript2").click(function (e) {
+	$j("#close-descript").click(function (e) {
 		e.preventDefault();
 		$("html, body").css("overflow","auto");
 		$j('#popup-descript').popup('hide');
+	});
+	
+	$j("#save-descript").click(function (e) {
+		e.preventDefault();
+		var ok=true;
+		
+		if ($j("#whoitisfor").val().trim()=="") {
+			ok=false;
+			var msg="Who is the course for?"
+		}
+		
+		if ($j("#whoitisfor").val().length>500) {
+			ok=false;
+			var msg="Who is the course for?"
+			var msg1="Your answer must be no more than 500 characters."
+		}
+		
+		$("#popup-descript").animate({ scrollTop: 0 }, "fast");
+
+		if (ok) {
+			$j("#descript-error").hide();
+			$j("#descript-error2").hide();
+			$j("#whoitisfor").removeClass("govuk-input--error");
+			$j("#descript-cont").removeClass("govuk-form-group--error");		
+			$("html, body").css("overflow","auto");
+			$j('#popup-descript').popup('hide');	
+		} else {
+			$j("#descript-error").show();
+			$j("#descript-errmsg").text(msg);
+			$j("#descript-error2").text(msg1);
+			$j("#descript-error2").show();
+			$j("#whoitisfor").addClass("govuk-input--error");
+			$j("#descript-cont").addClass("govuk-form-group--error");
+		}
+		
 	});
 
 	$j("#close-cost, #close-cost2").click(function (e) {
@@ -426,73 +315,10 @@ $j(document).ready(function() {
 	});
 	
 
-    var allCells = $j("td.govuk-table__cell");
-	
-    allCells
-            .on("mouseover", function() {
-                var el = $j(this),
-                        pos = el.index();
-                el.parent().find("td.govuk-table__cell").addClass("hover");
-                allCells.filter(":nth-child(" + (pos+1) + ")").addClass("hover");
-            })
-            .on("mouseout", function() {
-                allCells.removeClass("hover");
-            });
-
-    $j(".menu-button1.active").click(function (e) {
-        //$j(this).removeClass("active");
-        //$j(this).addClass("collapsed");
-        $j(".side-nav").hide();
-        $j(".menu-button").show();
-		$j(".head-table1").css("margin-left","0");
-    });
-
-    $j(".menu-button.collapsed").click(function (e) {
-        $j(this).addClass("active");
-        $j(this).removeClass("collapsed");
-        $j(".side-nav").show();
-        $j(".menu-button").hide();
-		$j(".head-table1").css("margin-left","300px");
-		console.log("kkk");
-    });
-	
-
     //number of records
     var recs=$j(".table-row").length;
     $j("#recs").text(recs);
 	$j("#recs2").text(recs);
-
-
-    $j( "#header-search" ).submit(function( event ) {
-        //alert( "Handler for .submit() called." );
-        var miscCharge = $j("#miscCharge").val();
-        if(!isNaN(miscCharge))
-        {
-            //do some thing if it's a number  alert('Yeah a number');
-            var x= (miscCharge).length;
-            //alert(x);
-            if (x == 8){
-                $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your Lars search result:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'>Lars number: 12345678 </td></tr>");
-                //alert('NEW ROW CREATED');
-                $j("#add-course-table").toggle();
-            }
-            else{
-                //alert('Error number too short or too long');
-                $j("#number-too-long-error").toggle();
-            }
-        }else{
-            //do some thing if it's NOT a number alert('Error not a number');
-            // $j("#must-be-a-number-error").toggle();
-            $j("#lars-search-results").html("<h2 class='govuk-heading-m'>Your search result for course subject Biology:</h2><tr class='govuk-table__row'><td class='govuk-input' style='border: none'><div class='govuk-form-group'><label class='govuk-label' for='level'>Select course level </label><select class='govuk-select' id='level' name='level'><option value='1'>Level 1</option><option value='2'>Level 2</option><option value='3' selected=''>Level 3</option><option value='4'>Level 4</option><option value='5'>Level 5</option><option value='5'>Level 6</option><option value='5'>Level 7</option><option value='5'>Level 8</option></select></div><div class='govuk-form-group'><label>Select qualification type<br></label><select class='govuk-select' style='width: 50%'><option>A level</option><option>AS level</option><option>Btech</option></select></div></td></tr>");
-            $j("#add-course-table").toggle();
-        }
-        event.preventDefault();
-    });
-    $j('#popup-startdate, #popup-courseid').popup({
-        opacity: 0.999,
-        color:'#fff',
-        transition: 'all 0.3s'
-    });
 
 
     setInterval(function(){
@@ -514,36 +340,6 @@ $j(document).ready(function() {
             });
         });
 
-        $j(".open-startdate").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-				$j(this).blur();
-                $j('#popup-startdate').popup('show');  
-            });
-        });
-		
-        $j(".open-courseid").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-				$j(this).blur();
-                $j('#popup-courseid').popup('show');
-            });
-        });		
-
-        $j(".close-startdate").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-                $j('#popup-startdate').popup('hide');
-            });
-        });
-		
-        $j(".close-courseid").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-                $j('#popup-courseid').popup('hide');
-            });
-        });
-
         $j(".open-preview").each(function (e) {
             $j(this).click(function (e) {
                 e.preventDefault();
@@ -558,60 +354,6 @@ $j(document).ready(function() {
             });
         });			
 
-        $j(".duration-units").each(function (e) {
-            $j(this).change(function (e) {
-                $j(this).parent().parent().find(".duration").empty();
-                var i=0;
-                switch ($j(this).val()) {
-                    case "1":
-                        i=31;
-                        $j(this).parent().parent().find(".duration").append('<option>Less than one day</option>');
-                        break;
-                    case "2":
-                        i=52;
-                        break;
-                    case "3":
-                        i=6;
-                        break;
-                    case "4":
-                        i=24;
-                        break;
-                }
-                for (x=1; x<=i; x++) {
-                    $j(this).parent().parent().find(".duration").append('<option>'+x+'</option>');
-                }
-            });
-        });
-
-        $j(".based").each(function (e) {
-            $j(this).change(function (e) {
-                if ($j(this).val()=="online" || $j(this).val()=="work") {
-                    $j(this).parent().parent().find(".coursetime").hide();
-                    $j(this).parent().parent().find(".coursewhen").hide();
-                    $j(this).parent().parent().find(".venue").hide();
-                    $j(this).parent().parent().find(".datepicker").hide();
-                } else {
-                    $j(this).parent().parent().find(".coursetime").show();
-                    $j(this).parent().parent().find(".coursewhen").show();
-                    $j(this).parent().parent().find(".venue").show();
-                    $j(this).parent().parent().find(".datepicker").show();
-                }
-            });
-        });
-
-	/*$(".table-collapse").each(function (e) {
-		$j(this).click(function (e) {
-			if ($j(this).hasClass("fa-angle-up")) {
-				$j(this).parent().parent().find(".table-row").hide();
-				//$j(this).parent().parent().find(".section-container").hide();
-				$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
-			} else {
-				$j(this).parent().parent().find(".table-row").show();
-				//$j(this).parent().parent().find(".section-container").show();
-				$j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
-			}
-		});
-	});*/
 	
 	$(".section-container .fa-angle-up").each(function (e) {
 		$j(this).click(function (e) {
@@ -704,90 +446,15 @@ $j(document).ready(function() {
 				$j(this).removeClass("allup").addClass("alldown").text("Expand all");				
 		});
 	});		
-	
-	/*$(".section-collapse").each(function (e) {
-		$j(this).click(function (e) {
-			if ($j(this).hasClass("fa-angle-up")) {
-				$j(this).parent().parent().find(".table-row").hide();
-				$j(this).parent().css("height","30px");
-				//$j(this).parent().parent().find(".sub-descript").hide();
-				$j(this).removeClass("fa-angle-up").addClass("fa-angle-down");
-			} else {
-				$j(this).parent().parent().find(".table-row").show();
-				$j(this).parent().css("height","65px");
-				//$j(this).parent().parent().find(".sub-descript").show();
-				$j(this).removeClass("fa-angle-down").addClass("fa-angle-up");
-			}
-		});
-	});*/
-	
-    $j(".open-inline-menu.collapsed").each(function (e) {
-           $j(this).click(function (e) {
-            e.preventDefault();
-            $j(this).next(".inline-menu").show();
-			$j(this).removeClass("collapsed");
-			$j(this).addClass("active");
-			$j(this).blur();
-        });
-    });	
-		
-    $j(".open-inline-menu.active").each(function (e) {
-        $j(this).click(function (e) {
-            e.preventDefault();
-            $j(this).next(".inline-menu").hide();
-			$j(this).removeClass("active");
-			$j(this).addClass("collapsed");
-			$j(this).blur();
-        });
-    });			
+			
 
     }, 200);
 	
-
-    initPicker();
 
 
     //quick edit
     initCommands();
     function initCommands() {
-       /* $j(".cancel-cost").each(function (e) {
-			$j(this).click(function (e) {
-				e.preventDefault();
-				$j(this).parent().hide();
-				$j(this).parent().parent().find(".open-cost").show();
-				$j(this).parent().parent().find(".save-cost").hide();
-				$j(this).parent().parent().find(".edit-cost-input").val($j(this).parent().parent().find(".open-cost").attr("data-cost"));
-				$j(this).parent().parent().parent().css("min-height","auto");
-			});
-		});
-
-        $j(".open-cost").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-				$j(this).attr("data-cost", $j(this).parent().parent().find(".edit-cost-input").val()); 
-                $j(".cancel-url").each (function (e) {
-					$j(this).click();
-				});
-                $j(".cancel-date").each (function (e) {
-					$j(this).click();
-				});					
-                $j(this).parent().find(".edit-cost-cont").show();
-                $j(this).hide();
-                $j(this).parent().find(".save-cost").show();
-				$j(this).parent().parent().css("min-height","170px");
-            });
-        });
-
-        $j(".save-cost").each(function (e) {
-            $j(this).click(function (e) {
-                e.preventDefault();
-                $j(this).parent().find(".edit-cost-cont").hide();
-                $j(this).hide();
-                $j(this).parent().find(".open-cost").show();
-				$j(this).parent().find(".open-cost").attr("data-cost", $j(this).parent().parent().find(".edit-cost-input").val()); 
-				
-            });
-        });*/
 
         $j(".cancel-url").each(function (e) {
 			$j(this).click(function (e) {
@@ -836,6 +503,14 @@ $j(document).ready(function() {
 				$j(this).parent().parent().find(".edit-day-input").val($j(this).parent().parent().find(".open-date").attr("data-day"));
 				$j(this).parent().parent().find(".edit-month-input").val($j(this).parent().parent().find(".open-date").attr("data-month"));
 				$j(this).parent().parent().find(".edit-year-input").val($j(this).parent().parent().find(".open-date").attr("data-year"));
+				$j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+				$j(this).parent().parent().find(".startdate-error").show();
+				$j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");
+				$j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+				$j(this).parent().parent().find(".edit-month-input").removeClass("govuk-input--error");
+				$j(this).parent().parent().find(".edit-day-input").removeClass("govuk-input--error");
+				$j(this).parent().parent().find(".startdate-error").hide();
+				$j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");						
 				$j(this).parent().parent().parent().css("min-height","auto");
 			});
 		});
@@ -862,15 +537,21 @@ $j(document).ready(function() {
         $j(".save-date").each(function (e) {
             $j(this).click(function (e) {
 			
-				 e.preventDefault();
+				e.preventDefault();
 				 
 				var year=$j(this).parent().parent().find(".edit-year-input").val();
 				var month=$j(this).parent().parent().find(".edit-month-input").val();
 				var day=$j(this).parent().parent().find(".edit-day-input").val()
 				var date = new Date(parseInt(year),parseInt(month)-1, parseInt(day));
+				var datestring=month+"/"+day+"/"+year; 
+				
+				var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+				var datevalid=true;
+				if(!(date_regex.test(datestring))) datevalid=false;
+					
 				var now = new Date();
 
-                if ((date<=now || date=="Invalid Date") && $j(this).parent().parent().find(".startdate_s").is(":checked")) {
+                if ((date<=now || date=="Invalid Date" || !datevalid) && $j(this).parent().parent().find(".startdate_s").is(":checked")) {
 					$j(this).parent().parent().find(".edit-day-input").addClass("govuk-input--error");
 					$j(this).parent().parent().find(".edit-month-input").addClass("govuk-input--error");
 					$j(this).parent().parent().find(".edit-year-input").addClass("govuk-input--error");
@@ -883,7 +564,15 @@ $j(document).ready(function() {
 					$j(this).parent().find(".open-date").show();
 					$j(this).parent().find(".open-date").attr("data-day", $j(this).parent().parent().find(".edit-day-input").val()); 
 					$j(this).parent().find(".open-date").attr("data-month", $j(this).parent().parent().find(".edit-month-input").val());
-					$j(this).parent().find(".open-date").attr("data-year", $j(this).parent().parent().find(".edit-year-input").val());				
+					$j(this).parent().find(".open-date").attr("data-year", $j(this).parent().parent().find(".edit-year-input").val());	
+					$j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+					$j(this).parent().parent().find(".startdate-error").show();
+					$j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");
+					$j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+					$j(this).parent().parent().find(".edit-month-input").removeClass("govuk-input--error");
+					$j(this).parent().parent().find(".edit-day-input").removeClass("govuk-input--error");					
+					$j(this).parent().parent().find(".startdate-error").hide();
+					$j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");					
 				}
 				
             });
@@ -1022,16 +711,6 @@ $j(document).ready(function() {
 	
 	
 	
-	function doEdit(elem) {
-		elem.addClass("editborder");
-		var html='<div style="padding:5px;" class="editborder"><a href="#" class="publish-changes">Publish</a><br/><a href="#" class="delete-changes">Discard</a></div>';
-		elem.closest("tr").find(".inline-menu").html(html);
-		elem.closest("tr").find(".inline-menu").show();
-		elem.closest("tr").find(".open-inline-menu").removeClass("collapsed").addClass("active");
-		elem.closest("tr").find(".pub-status").html("Unpublished changes");		
-		initEdit();
-	}
-	
 	function initEdit() {
 		$j(".publish-changes").each(function(e) {
 			$j(this).off();
@@ -1134,15 +813,6 @@ $j(document).ready(function() {
 	initEdit();
 	
 	$j(".table-row").find("input[type=text]").prop("",true);
-
-	$j(".table-collapse.fa-angle-up").each(function (e) {
-			/*$j(this).parent().parent().find(".table-row").hide();
-			//$j(this).parent().parent().find(".section-container").hide()*/
-			$j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
-				$j(this).hide();
-			});
-			$j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
-	});
 	
 });
 
@@ -1164,35 +834,6 @@ $j(document).ready(function() {
     }
 </script>
 <nav class="nav-container"> <a class="nav-item" href="add-qualification">Add a qualification</a> <a class="nav-item" href="your-venues">Manage your venues</a> <a class="nav-item" href="#">CSV upload</a> <a class="nav-item" href="#">Archived courses</a> <a class="nav-item" href="#">Your courses</a> </nav>
-
-<!--<nav class="side-nav" style="display: none">
-    <ul>
-        <li class="side-nav__item ">
-            <i class="fas fa-times menu-button1 active" style="font-size: 46px;cursor: pointer;
-    margin-left: 256px;"></i>
-        </li>
-        <li class="side-nav__item active">
-          
-            <a href="#">Your courses<span class="counter" id="recs">12</span></a>
-        </li>
-        <li class="side-nav__item ">
-            <a href="#archived">Archived courses<span class="counter">0</span></a>
-        </li>
-        <li class="side-nav__item ">
-
-
-
-            <a href="#" id="upload_csv">CSV upload</a>
-        </li>
-
-        <li class="side-nav__item ">
-            <a href="your-venues">Manage my venues</a>
-        </li>
-        <li class="side-nav__item ">
-            <a href="add-qualification"><i class="fas fa-plus" style="font-size: 20px"></i> Add a qualification</a>
-        </li>
-    </ul>
-</nav>-->
 
 <div class="govuk-body" style="color: white;font-size: 16px;
     position: relative;
@@ -1232,78 +873,6 @@ $j(document).ready(function() {
 	
 	<p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;margin-top:20px;display:none;" id="loan-changed"></p>
   
-  <!--<div class="search-box-container">
-
-        <div class="pagination" style="padding:20px 0">
-
-        <form action="" class="search-box">
-            <div class="inline-search-wrapper">
-                <input class="search-box__input" type="text" name="search-box" placeholder="Search" value="">
-                <button type="submit" class="inline-search-button">
-                    <span class="govuk-visually-hidden">Search</span>
-                </button>
-            </div>
-
-        </form>
-        
-
-
-        </div>
-
-        <div class="search-results-header" style="border-bottom: solid 3px; padding-bottom: 10px">
-
-            <div class="top-pagination">
-
-
-
-                <div class="pagination">
-                    <p>Showing 1-50 of <span class="result-count">29956</span> establishments</p>
-
-                    <ul class="pagination-links">
-
-
-                        <li><span class="go-nowhere numeric-pagination">1</span></li>
-                        <li>
-                            <a href="?tok=8T9wtx5&amp;startIndex=50&amp;Count=29956" class="numeric-pagination tablet-pagination">2</a>
-                        </li>
-                        <li>
-                            <a href="?tok=8T9wtx5&amp;startIndex=100&amp;Count=29956" class="numeric-pagination tablet-pagination">3</a>
-                        </li>
-                        <li>
-                            <a href="?tok=8T9wtx5&amp;startIndex=150&amp;Count=29956" class="numeric-pagination ">4</a>
-                        </li>
-                        <li>
-                            <a href="?tok=8T9wtx5&amp;startIndex=200&amp;Count=29956" class="numeric-pagination ">5</a>
-                        </li>
-
-                        <li>
-                            <a href="?tok=8T9wtx5&amp;startIndex=50&amp;Count=29956" class="pagination-next">Next</a>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Sort by:</label>
-                <select class="form-control trigger-result-update sortby-selector" name="z">
-                    <option id="alpha-az" value="a" selected="">Alphabetical A-Z</option>
-                    <option id="alpha-za" value="z">Alphabetical Z-A</option>
-                </select>
-
-            </div>
-
-        </div>
-
-
-
-
-
-    </div>
-
-
---> 
   
 </header>
 <style>
@@ -4572,17 +4141,7 @@ $j(document).ready(function() {
 
 <style>
 .btns a{margin-right: 10px; font-size: 18px}
-</style>
-<div id="popup-startdate">
-<div style="padding:40px;width:100%;"> <a href="#" class="close-startdate" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
-  <div style="border:solid 1px #000;padding:40px;"><span style="font-size:16px;">You can change all your start dates in your <a href="account-management">account settings</a>.</span></div>
-</div>
-<div id="popup-courseid">
-  <div style="padding:40px;width:100%;"> <a href="#" class="close-courseid" style="clear:both;display:block;position: relative; top:7px;float:right;margin-right:20px;margin-bottom:0;padding:5px;color:#00F;">Close</a>
-    <div style="border:solid 1px #000;padding:40px;"><span style="font-size:16px;">Course ID is optional. You are not required to use Course ID.</span></div>
-  </div>
-</div>
-<style>
+
         #popup-flat.popup_content, #popup-descript {
             border: solid 1px #000 !important;
         }
@@ -4763,36 +4322,57 @@ $j(document).ready(function() {
 
 
         <!--<p><i class="fas fa-info-circle"></i> We have provided template description you can overwrite below.</p>-->
-      
-      <div class="govuk-form-group" style="margin-bottom: 0;padding-bottom: 0">
-        <label class="govuk-label" for="sub"> Who is the course for? <span id="more-detail-hint" class="govuk-hint">who will attend this course </span> </label>
-        <textarea class="govuk-textarea descript" id="descript" name="descript" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
+		
+   <div class="govuk-error-summary" id="descript-error"  aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary" style="display:none">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#" id="descript-errmsg">Date of birth must be in the past</a>
+      </li>
+    </ul>
+  </div>
+</div>
+   
+   <div class="govuk-form-group" id="descript-cont">
+  <fieldset class="govuk-fieldset" aria-describedby="dob-hint dob-error" role="group">
+
+ <label class="govuk-label" for="sub"> Who is the course for? <span id="more-detail-hint" class="govuk-hint">who will attend this course </span> </label>
+    <span id="descript-error2" class="govuk-error-message" style="display:none">
+      Date of birth must be in the past
+    </span> 
+        <textarea class="govuk-textarea descript" id="whoitisfor" name="descript" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
+  </fieldset>
+</div>
+   
       <div class="govuk-form-group">
         <label class="govuk-label" for="sub"> Entry requirements <span id="more-detail-hint" class="govuk-hint">List entry requirements</span> </label>
         <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="sub"> What you’ll learn <span id="more-detail-hint" class="govuk-hint">Details of topics covered on the course</span> </label>
         <textarea class="govuk-textarea descript" id="learn" name="learn" rows="7" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="sub"> How you’ll learn <span id="more-detail-hint" class="govuk-hint">Describe the delivery of the course</span> </label>
         <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="sub"> What you'll need to bring <span id="more-detail-hint" class="govuk-hint">List any tools or apparatus Learners will need to bring</span> </label>
         <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="sub"> How you'll be assessed <span id="more-detail-hint" class="govuk-hint">Describe the assesment methods used to assess this course</span> </label>
         <textarea class="govuk-textarea descript" id="how" name="how" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
       <div class="govuk-form-group">
         <label class="govuk-label" for="sub"> Where next? <span id="more-detail-hint" class="govuk-hint">What are the next destinations for learners</span> </label>
         <textarea class="govuk-textarea descript" id="next" name="next" rows="6" style="margin-bottom: 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 200 characters </span> </div>
-      <a href="#" id="close-descript2" class="govuk-button close-descript">Save</a> </div>
+        <span id="with-hint-info" class="govuk-hint govuk-character-count__message" aria-live="polite"> You can enter up to 500 characters </span> </div>
+      <a href="#" id="save-descript" class="govuk-button">Save</a> </div>
   </div>
 </div>
 </div>
