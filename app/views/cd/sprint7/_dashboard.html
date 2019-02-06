@@ -1,0 +1,1148 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<style>
+
+.govuk-checkboxes__input + .govuk-checkboxes__label::before  {
+    content: "";
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: -47px;
+    left: 1000px;
+    width: 25px;
+    height: 25px;
+    background: transparent;
+}
+
+.govuk-checkboxes__input + .govuk-checkboxes__label::before {
+    border: 2px solid  #bfc1c3;
+}
+span{}
+textarea {width: 500px; font-size: 14px; height: 140px}
+
+.tarea {
+    width:40vw;
+    height: 500px;
+    resize:none;
+}
+.shade{background-color:#bfc1c3;margin-top: 10px;padding-left: 5px}
+
+.gov-btns .govuk-button{background-color: white; color: #1754B9; border-bottom: 1px solid  #1754B9}
+.header-wrapper, footer,.govuk-width-container{max-width: 2300px;width: 2300px}
+footer{display: none}
+.govuk-main-wrapper{padding: 0}
+.govuk-header{border-bottom: 0}
+
+
+.hidden,.my_popup_2 {display: none}
+
+#edit-url, #edit-cost, #edit-date, #edit-subtitle, .save-cost, .save-url, .save-subtitle, .save-date {
+    display:none;
+}
+
+#edit-url td, #edit-cost td, #edit-subtitle td  {
+    border-bottom:none;
+}
+
+.input-symbol-gbp {
+    position: relative;
+}
+.input-symbol-gbp input {
+    padding-left:22px;
+}
+.input-symbol-gbp:before {
+    position: absolute;
+    top: -3px;
+    left:4px;
+    content:"";
+    left: 5px;
+}
+.govuk-input{font-size:14px;color:#0b0c0c!important;opacity: 1}
+::placeholder{font-size:14px;color:#0b0c0c!important;opacity: 1}
+
+.govuk-main-wrapper {
+    max-width: 100%;
+}
+
+.govuk-width-container {
+    width:100%;
+}
+
+.table-cont {
+    width:2100px;
+    height:auto;
+    overflow-x:none;
+}
+
+.gray-back {
+    background-color:#eee !important;
+}
+
+
+.hdr-cell {
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+.editborder {
+    border: solid 2px #000 !important;
+}
+
+.open-url, .open-cost {
+    padding:5px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #005ea5!important;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #005ea5!important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #005ea5!impprtant;
+}
+
+
+.pagination {
+    border-bottom: #0b0c0c 1px solid;
+}
+
+@media (min-width: 640px){
+    .pagination-links {
+        position: absolute;
+        right: 70px;
+        margin-bottom: 0;
+    }
+}
+
+.form-control {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "nta",Arial,sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 16px;
+    line-height: 1.25;
+    width: 200px;
+    padding: 5px 4px 4px;
+    background-color: #fff;
+    border: 2px solid;
+}
+
+
+.edit-cost-cont, .edit-url-cont {
+    display:none;
+    position:absolute;
+    width:300px;;
+    height:auto;
+    padding:10px;
+    padding-left:25px;
+    background-color:#fff;
+    margin-top:15px;
+    margin-left:35px;
+    border-left:solid 5px #bfc1c3;
+}
+
+.edit-date-cont {
+    display:none;
+    position:absolute;
+    width:auto;;
+    height:auto;
+    padding:10px;
+    padding-left:25px;
+    background-color:#fff;
+    margin-top:15px;
+    margin-left:20px;
+    z-index:100000;
+    border-left:solid 5px #bfc1c3;
+}
+
+.edit-url-cont {
+    margin-left:16px;
+}
+
+
+/*NAV*/
+.nav-container {
+    display:block;
+    position:absolute;
+    top:60px;
+    left:0;
+    width:calc(100% - 120px);
+    height:auto;
+    padding: 0 0 0 0;
+    height:auto;
+    margin-bottom:40px;
+	margin-left:60px;
+	margin-left:60px;
+	border-bottom:solid 1px #ccc;
+}
+
+.nav-item {
+    display: block;
+    padding: 22px 15px 10px 15px;
+    float:right;
+    border-bottom: solid 4px #fff;
+    color: #4b4c4c!important;
+    text-decoration:none !important;
+
+}
+
+.nav-item:hover, .nav-item:focus {
+    color: #005ea5 !important;
+    border-bottom: solid 4px #eee;
+    text-decoration:none !important;
+}
+
+.govuk-input--error {
+    border: solid 4px #b10e1e !important;
+}
+
+
+</style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script>
+
+
+var $j = jQuery.noConflict();
+
+
+
+$j(document).ready(function() {
+
+    $j('#popup-preview,#popup-descript,#popup-cost').popup({
+        color:'#fff',
+        transition: 'all 0.3s'
+    });
+
+    $j(".table-collapse.fa-angle-up").each(function (e) {
+        /*$j(this).parent().parent().find(".table-row").hide();
+         //$j(this).parent().parent().find(".section-container").hide()*/
+        $j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
+            $j(this).hide();
+        });
+        $j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
+    });
+
+    $j("#preview").click(function (e) {
+        e.preventDefault();
+        $("html, body").css("overflow","hidden");
+        $j('#popup-preview').popup('show');
+    });
+
+    $j("#close-preview").click(function (e) {
+        e.preventDefault();
+        $("html, body").css("overflow","auto");
+        $j('#popup-preview').popup('hide');
+    });
+
+    $j(".open-descript").each(function (e) {
+        $j(this).click(function (e) {
+            e.preventDefault();
+            $("html, body").css("overflow","hidden");
+            $j('#popup-descript').popup('show');
+        });
+    });
+
+    $j(".open-cost").each(function (e) {
+        $j(this).click(function (e) {
+            e.preventDefault();
+            $("html, body").css("overflow","hidden");
+            $j('#popup-cost').popup('show');
+        });
+    });
+
+    $j("#close-descript").click(function (e) {
+        e.preventDefault();
+        $("html, body").css("overflow","auto");
+        $j('#popup-descript').popup('hide');
+    });
+
+    $j("#save-descript").click(function (e) {
+        e.preventDefault();
+        var ok=true;
+
+        if ($j("#whoitisfor").val().trim()=="") {
+            ok=false;
+            var msg="Who is the course for?"
+        }
+
+        if ($j("#whoitisfor").val().length>500) {
+            ok=false;
+            var msg="Who is the course for?"
+            var msg1="Your answer must be no more than 500 characters."
+        }
+
+        $("#popup-descript").animate({ scrollTop: 0 }, "fast");
+
+        if (ok) {
+            $j("#descript-error").hide();
+            $j("#descript-error2").hide();
+            $j("#whoitisfor").removeClass("govuk-input--error");
+            $j("#descript-cont").removeClass("govuk-form-group--error");
+            $("html, body").css("overflow","auto");
+            $j('#popup-descript').popup('hide');
+        } else {
+            $j("#descript-error").show();
+            $j("#descript-errmsg").text(msg);
+            $j("#descript-error2").text(msg1);
+            $j("#descript-error2").show();
+            $j("#whoitisfor").addClass("govuk-input--error");
+            $j("#descript-cont").addClass("govuk-form-group--error");
+        }
+
+    });
+
+    $j("#close-cost, #close-cost2").click(function (e) {
+        e.preventDefault();
+        $("html, body").css("overflow","auto");
+        $j('#popup-cost').popup('hide');
+    });
+
+
+    //number of records
+    var recs=$j(".table-row").length;
+    $j("#recs").text(recs);
+    $j("#recs2").text(recs);
+
+
+    setInterval(function(){
+
+        $j(".open-descript").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j("#q_descript").text($j(this).attr("data-descript"));
+                $j("#q_title").text($j(this).attr("data-title"));
+                $j('#popup-descript').popup('show');
+                $j(this).blur();
+            });
+        });
+
+        $j(".close-descript").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j('#popup-descript').popup('hide');
+            });
+        });
+
+        $j(".open-preview").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j('#popup-preview').popup('show');
+            });
+        });
+
+        $j(".close-preview").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j('#popup-preview').popup('hide');
+            });
+        });
+
+
+        $(".section-container .fa-angle-up").each(function (e) {
+            $j(this).click(function (e) {
+                /*$j(this).parent().parent().find(".table-row").hide();
+                 //$j(this).parent().parent().find(".section-container").hide()*/
+                $j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
+                    $j(this).hide();
+                });
+                $j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
+            });
+        });
+
+        $(".section-container .fa-angle-down").each(function (e) {
+            $j(this).click(function (e) {
+                /*$j(this).parent().parent().find(".table-row").show();
+                 //$j(this).parent().parent().find(".section-container").show();*/
+                $j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
+                    $j(this).show();
+                });
+                $j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
+            });
+        });
+
+        $(".section-container .fa-minus").each(function (e) {
+            $j(this).click(function (e) {
+                /*$j(this).parent().parent().find(".table-row").hide();
+                 //$j(this).parent().parent().find(".section-container").hide()*/
+                $j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
+                    $j(this).hide();
+                });
+                $j(this).addClass("fa-plus").removeClass("fa-minus");
+            });
+        });
+
+        $(".section-container .fa-plus").each(function (e) {
+            $j(this).click(function (e) {
+                /*$j(this).parent().parent().find(".table-row").show();
+                 //$j(this).parent().parent().find(".section-container").show();*/
+                $j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
+                    $j(this).show();
+                });
+                $j(this).addClass("fa-minus").removeClass("fa-plus");
+            });
+        });
+
+        $(".table-collapse.fa-angle-up").each(function (e) {
+            $j(this).click(function (e) {
+                /*$j(this).parent().parent().find(".table-row").hide();
+                 //$j(this).parent().parent().find(".section-container").hide()*/
+                $j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
+                    $j(this).hide();
+                });
+                $j(this).addClass("fa-angle-down").removeClass("fa-angle-up");
+            });
+        });
+
+        $(".table-collapse.fa-angle-down").each(function (e) {
+            $j(this).click(function (e) {
+                /*$j(this).parent().parent().find(".table-row").show();
+                 //$j(this).parent().parent().find(".section-container").show();*/
+                $j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
+                    $j(this).show();
+                });
+                $j(this).addClass("fa-angle-up").removeClass("fa-angle-down");
+            });
+        });
+
+        $(".table-container .alldown").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
+                    $j(this).show();
+                });
+                $j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
+                    $j(this).show();
+                });
+                $j(this).removeClass("alldown").addClass("allup").text("Collapse all");
+            });
+        });
+
+        $(".table-container .allup").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).parentsUntil(".table-container").parent().find(".section-container").each(function (e) {
+                    $j(this).hide();
+                });
+                $j(this).parentsUntil(".section-container").parent().find(".table-row").each(function (e) {
+                    $j(this).hide();
+                });
+                $j(this).removeClass("allup").addClass("alldown").text("Expand all");
+            });
+        });
+
+
+    }, 200);
+
+
+
+    //quick edit
+    initCommands();
+    function initCommands() {
+
+        $j(".cancel-url").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).parent().hide();
+                $j(this).parent().parent().find(".open-url").show();
+                $j(this).parent().parent().find(".save-url").hide();
+                $j(this).parent().parent().find(".edit-url-input").val($j(this).parent().parent().find(".open-url").attr("data-url"));
+                $j(this).parent().parent().parent().css("min-height","auto");
+            });
+        });
+
+        $j(".open-url").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).attr("data-url", $j(this).parent().parent().find(".edit-url-input").val());
+                $j(".cancel-cost").each (function (e) {
+                    $j(this).click();
+                });
+                $j(".cancel-date").each (function (e) {
+                    $j(this).click();
+                });
+                $j(this).parent().find(".edit-url-cont").show();
+                $j(this).hide();
+                $j(this).parent().find(".save-url").show();
+                $j(this).parent().parent().css("min-height","170px");
+            });
+        });
+
+        $j(".save-url").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).parent().find(".edit-url-cont").hide();
+                $j(this).hide();
+                $j(this).parent().find(".open-url").show();
+                $j(this).parent().find(".open-url").attr("data-url", $j(this).parent().parent().find(".edit-url-input").val());
+            });
+        });
+
+        $j(".cancel-date").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).parent().hide();
+                $j(this).parent().parent().find(".open-date").show();
+                $j(this).parent().parent().find(".save-date").hide();
+                $j(this).parent().parent().find(".edit-day-input").val($j(this).parent().parent().find(".open-date").attr("data-day"));
+                $j(this).parent().parent().find(".edit-month-input").val($j(this).parent().parent().find(".open-date").attr("data-month"));
+                $j(this).parent().parent().find(".edit-year-input").val($j(this).parent().parent().find(".open-date").attr("data-year"));
+                $j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+                $j(this).parent().parent().find(".startdate-error").show();
+                $j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");
+                $j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+                $j(this).parent().parent().find(".edit-month-input").removeClass("govuk-input--error");
+                $j(this).parent().parent().find(".edit-day-input").removeClass("govuk-input--error");
+                $j(this).parent().parent().find(".startdate-error").hide();
+                $j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");
+                $j(this).parent().parent().parent().css("min-height","auto");
+            });
+        });
+
+        $j(".open-date").each(function (e) {
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).attr("data-day", $j(this).parent().parent().find(".edit-day-input").val());
+                $j(this).attr("data-month", $j(this).parent().parent().find(".edit-month-input").val());
+                $j(this).attr("data-year", $j(this).parent().parent().find(".edit-month-input").val());
+                $j(".cancel-url").each (function (e) {
+                    $j(this).click();
+                });
+                $j(".cancel-cost").each (function (e) {
+                    $j(this).click();
+                });
+                $j(this).parent().find(".edit-date-cont").show();
+                $j(this).hide();
+                $j(this).parent().find(".save-date").show();
+                $j(this).parent().parent().css("min-height",($j(this).parent().find(".edit-date-cont").height()+110)+"px");
+            });
+        });
+
+        $j(".save-date").each(function (e) {
+            $j(this).click(function (e) {
+
+                e.preventDefault();
+
+                var year=$j(this).parent().parent().find(".edit-year-input").val();
+                var month=$j(this).parent().parent().find(".edit-month-input").val();
+                var day=$j(this).parent().parent().find(".edit-day-input").val()
+                var date = new Date(parseInt(year),parseInt(month)-1, parseInt(day));
+                var datestring=month+"/"+day+"/"+year;
+
+                var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+                var datevalid=true;
+                if(!(date_regex.test(datestring))) datevalid=false;
+
+                var now = new Date();
+
+                if ((date<=now || date=="Invalid Date" || !datevalid) && $j(this).parent().parent().find(".startdate_s").is(":checked")) {
+                    $j(this).parent().parent().find(".edit-day-input").addClass("govuk-input--error");
+                    $j(this).parent().parent().find(".edit-month-input").addClass("govuk-input--error");
+                    $j(this).parent().parent().find(".edit-year-input").addClass("govuk-input--error");
+                    $j(this).parent().parent().find(".startdate-error").show();
+                    $j(this).parent().parent().find(".startdate-cont").addClass("govuk-form-group--error");
+                    $j(this).closest(".table-row").css("min-height","345px");
+                } else {
+                    $j(this).parent().find(".edit-date-cont").hide();
+                    $j(this).hide();
+                    $j(this).parent().find(".open-date").show();
+                    $j(this).parent().find(".open-date").attr("data-day", $j(this).parent().parent().find(".edit-day-input").val());
+                    $j(this).parent().find(".open-date").attr("data-month", $j(this).parent().parent().find(".edit-month-input").val());
+                    $j(this).parent().find(".open-date").attr("data-year", $j(this).parent().parent().find(".edit-year-input").val());
+                    $j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+                    $j(this).parent().parent().find(".startdate-error").show();
+                    $j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");
+                    $j(this).parent().parent().find(".edit-year-input").removeClass("govuk-input--error");
+                    $j(this).parent().parent().find(".edit-month-input").removeClass("govuk-input--error");
+                    $j(this).parent().parent().find(".edit-day-input").removeClass("govuk-input--error");
+                    $j(this).parent().parent().find(".startdate-error").hide();
+                    $j(this).parent().parent().find(".startdate-cont").removeClass("govuk-form-group--error");
+                }
+
+            });
+        });
+
+    }
+
+    function initRows() {
+
+        //init old and editable
+        $j(".table-row input, .table-row select").each(function (e) {
+            $j(this).attr("data-old",$j(this).val());
+        });
+
+        $j(".table-row").each(function (e) {
+            $j(this).attr("data-edited","false");
+        });
+
+        $j(".table-row select").each(function (e) {
+            $j(this).change(function (e) {
+                $j(this).closest(".table-row").attr("data-edited","true");
+                if ($j(this).closest(".table-row").find(".btns2").is(":hidden")) {
+                    $j(this).closest(".table-row").find(".btns3").show();
+                    $j(this).closest(".table-row").find(".btns1").hide();
+                };
+            });
+        });
+
+        $j(".table-row input").each(function (e) {
+            $j(this).keyup(function (e) {
+                $j(this).closest(".table-row").attr("data-edited","true");
+                if ($j(this).closest(".table-row").find(".btns2").is(":hidden")) {
+                    $j(this).closest(".table-row").find(".btns3").show();
+                    $j(this).closest(".table-row").find(".btns1").hide();
+                };
+            });
+        });
+
+        $j(".save-row").each(function(e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+                if ($j(this).closest(".table-row").attr("data-edited")=="true") {
+                    $j(this).closest(".table-row").find(".btns1").show();
+                    $j(this).closest(".table-row").find(".btns2").hide();
+                    $j(this).closest(".table-row").find(".row-error").hide();
+                    $j(".main-error").hide();
+                    $j(".admin-page-header").height(100);
+                    $j(this).closest(".table-row").removeClass("govuk-form-group govuk-form-group--error");
+                    $j(this).closest(".table-row").css("padding-left","0");
+                    $j(this).closest(".table-row").find("input, select").each (function (e) {
+                        $j(this).removeClass("input-error");
+                    });
+                    initRows();
+                } else {
+                    $j(this).closest(".table-row").find(".row-error").show();
+                    $j(".main-error").show();
+                    $j(".admin-page-header").height(200);
+                    $j(this).closest(".table-row").addClass("govuk-form-group govuk-form-group--error");
+                    $j(this).closest(".table-row").css("padding-left","20px");
+                    $j(this).closest(".table-row").find("input, select").each (function (e) {
+                        $j(this).addClass("input-error");
+                    });
+                }
+            });
+        });
+
+        $j(".discard-row").each(function(e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(this).closest(".table-row").remove();
+                initRows();
+            });
+        });
+
+        $j(".copy-row").each(function (e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+
+                var elem=$j('<div style="margin-top: 0px; border-top:2px solid; padding: 20px 0 0 0;display:block;" class="table-row">'+$j(this).closest(".table-row").html()+'</div>').insertAfter($j(this).closest(".table-row"));
+                elem.find(".btns1").hide();
+                elem.find(".btns2").show();
+                initRows();
+
+            });
+        });
+
+        $j(".archive-row").each(function (e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+                if (confirm("Are you sure you want to archive this course?")) {
+                    $j(this).closest(".table-row").remove();
+                }
+            });
+        });
+
+        $j(".save-row-changes").each(function(e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(".table-row input, .table-row select").each(function (e) {
+                    $j(this).attr("data-old",$j(this).val());
+                });
+                $j(".admin-page-header").height(150);
+                $j("#save-not").show();
+                $j(this).closest(".table-row").find(".btns3").hide();
+                $j(this).closest(".table-row").find(".btns1").show();
+            });
+        });
+
+        $j(".discard-row-changes").each(function(e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j(".table-row input, .table-row select").each(function (e) {
+                    $j(this).val($j(this).attr("data-old"));
+                });
+                $j(this).closest(".table-row").find(".btns3").hide();
+                $j(this).closest(".table-row").find(".btns1").show();
+            });
+        });
+
+        $j(".based, .venue, .coursedur, .courseunits, .coursetime, .coursewhen,.coursename, .courseid, .coursecost, .datepicker").each(function (e) {
+            $j(this).attr("data-old",$j(this).val());
+            $j(this).on("change keyup", function (e) {
+                doEdit($j(this));
+                initEdit();
+            });
+        });
+
+
+    }
+
+
+
+    function initEdit() {
+        $j(".publish-changes").each(function(e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+
+                $("input[data-old], select[data-old]").each(function(e) {
+                    $j(this).attr("data-old", $j(this).val());
+                });
+
+                $(".open-url").each(function(e) {
+                    $j(this).attr("data-old", $j(this).attr("data-url"));
+                });
+
+                $(".open-course").each(function(e) {
+                    $j(this).attr("data-old", $j(this).attr("data-url"));
+                });
+
+                $j(this).closest("tr").find(".pub-status").html("Published");
+
+                $j("#edit-cost").hide();
+                $j("#edit-url").hide();
+                $j(this).closest("tr").find(".editborder").removeClass("editborder");
+                $j(this).closest(".inline-menu").html('<a href="#" class="copy-course">Copy course</a><br><a href="#" class="archive-course">Archive course</a><br>').hide();
+                $j(this).closest("tr").find(".open-inline-menu").removeClass("active").addClass("collapsed");
+                initRows();
+            });
+        });
+
+        $j(".delete-changes").each(function(e) {
+            $j(this).off();
+            $j(this).click(function (e) {
+                e.preventDefault();
+                $j("#edit-cost").hide();
+                $j("#edit-url").hide();
+                $j(this).closest("tr").find(".editborder").removeClass("editborder");
+
+                $j(this).closest("tr").find(".open-inline-menu").removeClass("active").addClass("collapsed");
+
+                $("input[data-old], select[data-old]").each(function(e) {
+                    $j(this).val($j(this).attr("data-old"));
+                });
+
+                $(".open-url").each(function(e) {
+                    $j(this).attr("data-url", $j(this).attr("data-old"));
+                });
+
+                $(".open-course").each(function(e) {
+                    $j(this).attr("data-url", $j(this).attr("data-old"));
+                });
+
+                if ($j(this).closest("tr").find(".based").val()=="classroom") {
+                    $j(this).closest("tr").find(".datepicker").show();
+                    $j(this).closest("tr").find(".venue").show();
+                    $j(this).closest("tr").find(".coursewhen").show();
+                    $j(this).closest("tr").find(".coursetime").show();
+                }
+
+                $j(this).closest("tr").find(".pub-status").html("Published");
+
+                $j(this).closest(".inline-menu").html('<a href="#" class="copy-course">Copy course</a><br><a href="#" class="archive-course">Archive course</a><br>').hide();
+                initRows();
+            });
+        });
+
+        $j(".startdate_s").each(function(e) {
+            $j(this).change(function(e) {
+                $j(".startdate").show();
+                $j(this).closest(".table-row").css("height","auto");
+                $j(this).closest(".table-row").css("min-height","305px");
+            });
+        });
+
+        $j(".startdate_f").each(function(e) {
+            $j(this).change(function(e) {
+                $j(".startdate").hide();
+                $j(this).closest(".table-row").css("height","auto");
+                $j(this).closest(".table-row").css("min-height","225px");
+                $j(this).closest(".table-row").find(".edit-day-input").removeClass("govuk-input--error");
+                $j(this).closest(".table-row").find(".edit-month-input").removeClass("govuk-input--error");
+                $j(this).closest(".table-row").find(".edit-year-input").removeClass("govuk-input--error");
+                $j(this).closest(".table-row").find(".startdate-error").hide();
+                $j(this).closest(".table-row").find(".startdate-cont").removeClass("govuk-form-group--error");
+            });
+        });
+
+        $j(".loan").each(function(e) {
+            $j(this).change(function(e) {
+                if ($j(this).is(":checked")) {
+                    $j("#loan-changed").html("Advanced learner loan available for BA (Hons) in Education Studies").show();
+                } else {
+                    $j("#loan-changed").html("Advanced learner loan not available for BA (Hons) in Education Studies").show();
+                };
+            });
+        });
+
+    }
+
+    initRows();
+    initEdit();
+
+    $j(".table-row").find("input[type=text]").prop("",true);
+	
+	$j(".table-container, .section-container, .table-row").each(function (e) {
+		$(this).show();
+	});
+
+});
+
+
+
+
+
+
+</script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<script type="text/javascript">
+    function performClick(elemId) {
+        var elem = document.getElementById(elemId);
+        if(elem && document.createEvent) {
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", true, false);
+            elem.dispatchEvent(evt);
+        }
+    }
+</script>
+<nav class="nav-container"> <a class="nav-item" href="add-qualification">Add a qualification</a> <a class="nav-item" href="your-venues">Manage your venues</a> <a class="nav-item" href="#">CSV upload</a> <a class="nav-item" href="#">Unpublished courses</a> <a class="nav-item" href="#">Home</a> </nav>
+
+<div class="govuk-body" style="color: white;font-size: 16px;
+    position: absolute;
+    top: 18px;
+    right:60px;"> <a href="account-management" class="govuk-link" style="color: white;margin-left: 10px">Emir Appleseed</a> <a href="index" class="govuk-link" style="color: white;margin-left: 10px">Sign out</a> </div>
+
+<!--<header class="govuk-grid-row" style="position: relative;top:-30px;padding-bottom: 40px">-->
+<main role="main" id="adminContent" class="govuk-main-wrapper" style="width:100%;margin-top:80px;">
+
+<!--<i class="fa fa-bars menu-button collapsed" style="    color: #1754B9;"></i>-->
+
+<header class="admin-page-header" style="height:120px;">
+    <h1 class="govuk-heading-l" style="display: inline-block;margin-bottom: 0">View or update courses</h1>
+    <p class="count">(<span id="recs2">12</span>)</p>
+    <!--<div style="float:right; position: relative;"><a href="add-qualification" class="govuk-button">Add a qualification</a></div>-->
+
+
+
+    <div class="govuk-error-summary main-error" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary" style=" margin-top: 20px">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                    <a href="#dob-error">A course was duplicated</a>
+                </li>
+                <li>
+                    <a href="#postcode-error">At least one item needs to be different</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;margin-top:20px;display:none;" id="save-not">Your course changed:<br/>Start date: 22 December 2019</p>
+
+    <p style="padding: 15px 20px; border: 3px solid #009900;background-color:#fff;margin-top:20px;display:none;" id="loan-changed"></p>
+
+<div style="margin-top:20px;width:100%;height:40px;">
+<input type="text" style="width:20%;height:30px;padding-left:10px;border:solid 2px #000;color:#333;float:left;" placeholder="Search courses"/>
+<button style="height:36px;background-color:#000;color:#fff;float:left;border:none;">Search</button>
+</div>	
+	
+<div style="width:100%;height:30px;">
+	<div style="width:60%;margin-top:10px;float:left;">Showing 1-50 of <strong>318</strong> courses</div>
+	<div style="width:38%;margin-top:10px;float:right;text-align:right;"><a href="#">1</a>&nbsp;<a href="#">2</a>&nbsp;<a href="#">3</a>&nbsp;<a href="#">4</a>&nbsp;<a href="#">5</a>&nbsp;<a href="#">Next</a></div>
+</div>
+</header>
+<style>
+    .scrollable {
+        height: 1000px; /* or any value */
+        overflow-y: auto;
+        overflow-x: hidden;
+
+    }
+</style>
+<style>
+
+    /*TABLE STYLES*/
+
+    .table-container {
+        width:93vw;
+        height:auto;
+        position:relative;
+        float:left;
+        padding-bottom:30px;
+    }
+
+    .table-main-header {
+        padding:10px 0 10px 0;
+        width:100%;
+        height:35px;
+    }
+
+    .table-sub-header {
+        border-top: solid 1px #bfc1c3;
+        padding:10px 0 10px 0;
+        height:65px;
+    }
+
+    .table-label-row {
+        width:100%;
+        background-color:#eee;
+        border-top: solid 1px #bfc1c3;
+        font-weight:bold;
+        float:left;
+        clear:both;
+    }
+
+    .table-label-cell {
+        padding:10px;
+        float:left;
+    }
+
+    .table-row {
+        width:100%;
+        border-top: solid 1px #bfc1c3;
+        float:left;
+        clear:both !important;
+        display:none;
+    }
+
+    .table-cell {
+        padding:10px;
+        float:left;
+    }
+
+    .table-border-bottom {
+        border-bottom: solid 1px #bfc1c3;
+    }
+
+    .table-border-bottom-thick {
+        border-bottom: solid 2px #000;
+    }
+
+    .table-sub-header, .table-main-header {
+        clear:both;
+    }
+
+    .govuk-checkboxes__input + .govuk-checkboxes__label::before {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 6px;
+        left: 8px;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+    }
+
+    .govuk-checkboxes__input {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        margin: 0;
+        opacity: 0;
+    }
+
+    .coursename {
+        font-size:18px;
+        width:240px;
+    }
+
+    .datepicker {
+        font-size:18px !important;
+    }
+
+    .govuk-input {
+        font-size:18px !important;
+    }
+
+    .input-error {
+        border: 3px solid #b10e1e !important;
+    }
+
+    .row-error, .main-error {
+        display:none;
+    }
+
+</style>
+
+<!-- TABLE 1 -->
+
+<div class="table-container">
+
+<!-- TABLE HEADER -->
+<div class="table-main-header" style="border-bottom:solid 1px #000;"><i class="fa fa-angle-up table-collapse" style="cursor:pointer;font-size:18px;margin-top:3px;color:#000;float:right;margin-right:20px;">&nbsp;</i><a href="#" class="allup" style="float:right;margin-right:20px;margin-top:5px;">Collapse all</a>
+    <h2 style="margin:0;float:left;margin-right: 20px;margin-bottom:4px;" class="govuk-heading-l"> Diploma</h2>
+    <span class="count" style="margin-top:8px;">(7)</span> </div>
+
+
+<!-- TABLE ROW-->
+
+
+<div style="margin-top: 0px; border-top:2px solid;border-bottom:2px solid; padding: 0 0 0 0;" class="table-row">
+	
+	<div style="clear:both;border-bottom:solid 1px #ccc;width:100%;font-size:18px;padding:15px 0 15px 0;">
+	Course name <span style="font-weight:bold;ont-size:20px;">Diploma in Education and Training</span>&nbsp;&nbsp;&nbsp;ID <span style="font-weight:bold;ont-size:18px;">234567ft</span>
+	</div>
+	
+
+		<div style="clear:both;border-bottom:solid 1px #ccc;width:100%;font-size:16px;height:46px;">
+	<div style="width:120px;padding:15px;float:left;padding-left:0;">
+	Start Date
+	</div>
+	<div style="width:200px;padding:15px;float:left;">
+	22/11/2019&nbsp;&nbsp;&nbsp;&nbsp;<a href="course-start-date" class="change_start_date">Change</a>
+	</div>
+	</div>	
+
+	<div style="clear:both;border-bottom:solid 1px #ccc;padding-top:15px;">
+
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:190px;">
+        <label class="govuk-label">Delivery</label>
+        <select name="delivery" class="govuk-select">
+            <option value="work">Work based</option>
+            <option value="classroom" selected>Classroom based</option>
+            <option value="online">Online</option>
+        </select>
+    </div>
+
+
+  
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:300px;">
+        <label class="govuk-label">Venue</label> 
+        <select name="venue" class="govuk-select">
+            <option value="Lancaster Business Park">Lancaster Business Park</option>
+            <option value="Kent Innovation Centre" selected>Kent Innovation Centre</option>
+            <option value="Matthew Boulton Campus">Matthew Boulton Campus</option>
+            <option value="Sutton Coldfield Campus">Sutton Coldfield Campus</option>
+            <option value="Botanical gardens">Botanical gardens</option>
+            <option value="Winston College">Winston College</option>
+        </select>
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block; padding-right: 10px;width:100px;">
+        <label class="govuk-label">Cost</label>
+        <span style="display:inline-block;width:15%;margin-right:5%;">£</span><input class="govuk-input" style="width:80%;" type="text" placeholder="" value="2225">
+    </div>
+
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:75px;">
+        <label class="govuk-label">Duration</label>
+        <input class="govuk-input" name="duration" value="12" />
+    </div>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
+        <label class="govuk-label">Duration unit</label>
+        <select name="durationunit" class="govuk-select">
+            <option value="Days">Days</option>
+            <option value="Weeks">Weeks</option>
+            <option value="Months" selected>Months</option>
+            <option value="Years">Years</option>
+        </select>
+    </div>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:110px;">
+        <label class="govuk-label">Attendance</label>
+        <select name="attendance" class="govuk-select">
+            <option value="Full-time selected">Full-time</option>
+            <option value="Part time">Part time</option>
+            <option value="Flexible">Flexible</option>
+        </select>
+    </div>
+    <div class="govuk-form-group" style="display: inline-block;padding-right: 10px;width:190px;">
+        <label class="govuk-label">Mode</label>
+        <select name="mode" class="govuk-select">
+            <option value="Daytime">Daytime</option>
+            <option value="Evening">Evening</option>
+            <option value="Weekend">Weekend</option>
+            <option value="Day/Block release">Day/Block release</option>
+        </select>
+    </div>
+
+	</div><!--MAIN PART OF ROW-->
+	
+	<div style="clear:both;border-bottom:solid 1px #ccc;width:100%;font-size:16px;height:92px;">
+	<div style="width:120px;padding:15px;float:left;padding-left:0;">
+	URL
+	</div>
+	<div style="width:200px;padding:15px;float:left;">
+	<a href="course-url" class="change_url">Change</a>
+	</div>
+	<div style="width:120px;padding:15px;float:left;clear:both;padding-left:0;">
+	Cost description
+	</div>
+	<div style="width:200px;padding:15px;float:left;">
+	<a href="course-description" class="change_course_description">Change</a>
+	</div>	
+	</div>	
+	
+	
+    <section class="btns btns1" style="width: 400px;font-size:16px;">
+        <a href="#" class="copy-row" style="text-align: center;display: inline-block;padding:10px 10px 10px 0">Copy</a>
+        <a href="/ sprint5/course-details" target="_blank" class="" style="text-align: center;display: inline-block;padding:10px 10px 10px 0">Preview</a>
+        <a href="#" class="archive-row" style="text-align: center;display: inline-block;padding:10px 0 10px 0">Archive</a>
+    </section>
+
+    <section class="btns btns2" style="width: 400px;display:none;font-size:16px;">
+        <a href="#" class="govuk-button save-row">Save</a>
+        <a href="#" class="govuk-button discard-row">Discard</a>
+    </section>
+
+    <section class="btns btns3" style="width: 400px;display:none;font-size:16px;">
+        <a href="#" class="govuk-button save-row-changes">Save</a>
+        <a href="#" class="discard-row-changes" style="display:inline-block;margin-top:10px;">Discard</a>
+        <a href="#" class="preview-row-changes" style="display:inline-block;margin-top:10px;">Preview</a>
+    </section>
+	</div>
+
+</div>
+<!-- ////////////////////////// -->
+
+
+</div>
+
+
+</div>
+</div>
+
+
+{% endblock %}

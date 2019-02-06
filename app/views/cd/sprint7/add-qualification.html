@@ -1,0 +1,626 @@
+
+
+{% from "back-link/macro.njk"     import govukBackLink %}
+{% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
+{% from "button/macro.njk"        import govukButton %}
+{% from "checkboxes/macro.njk"    import govukCheckboxes %}
+{% from "date-input/macro.njk"    import govukDateInput %}
+{% from "details/macro.njk"       import govukDetails %}
+{% from "error-message/macro.njk" import govukErrorMessage %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "fieldset/macro.njk"      import govukFieldset %}
+{% from "file-upload/macro.njk"   import govukFileUpload %}
+{% from "input/macro.njk"         import govukInput %}
+{% from "label/macro.njk"         import govukLabel %}
+{% from "panel/macro.njk"         import govukPanel %}
+{% from "phase-banner/macro.njk"  import govukPhaseBanner %}
+{% from "radios/macro.njk"        import govukRadios %}
+{% from "select/macro.njk"        import govukSelect %}
+{% from "skip-link/macro.njk"     import govukSkipLink %}
+{% from "table/macro.njk"         import govukTable %}
+{% from "tag/macro.njk"           import govukTag %}
+{% from "textarea/macro.njk"      import govukTextarea %}
+{% from "warning-text/macro.njk"  import govukWarningText %}
+
+
+{% from "header/macro.njk" import govukHeader %}
+{% block head %}
+{% include "includes/head.html" %}
+{% endblock %}
+{{ govukHeader({
+homepageUrl: "#"
+}) }}
+
+<style>
+
+    .accordian{
+
+        border-bottom:1px solid #bfc1c3;
+
+    }
+    .accordian article {
+        border-top:1px solid #bfc1c3;
+    }
+    .accordian article:last-of-type {
+
+    }
+
+    /* Accordian headers */
+    .section-title{
+        display: block;
+        margin: 0;
+    }
+
+
+
+    .section-title:hover,
+    .section-title:focus {
+        background-color:#f8f8f8 ;
+    }
+
+    .section-title:hover {
+        cursor: pointer;
+    }
+    .section-title h3{
+        position: relative;
+        color: black;
+        padding: 0.5em 0;
+
+        margin:0;
+    }
+
+    .section-title h3 span {
+        position: absolute;
+        right:4px;
+    }
+    .section-title:last-of-type {
+        border:none;
+    }
+
+    .controls {
+        display:flex;
+        justify-content: space-between;
+    }
+
+    .controls span {
+        color:#005ea5;
+    }
+
+    /* collapsing-section */
+    .collapsing-section{
+        display: none;
+    }
+
+    .collapsing-section.open {
+        padding-bottom: 1rem;
+    }
+    .collapsing-section p{
+        margin: 0;
+    }
+
+    body {
+        margin:0;
+        padding:0;
+    }
+    .govuk-header {
+        border-bottom: none;
+    }
+    .govuk-header__container {
+        border:none;
+    }
+
+    .govuk-checkboxes__input {
+        height:38px;
+        width:38px;
+
+    }
+
+    .govuk-checkboxes__label {
+        font-size:16px;
+    }
+    .govuk-heading-l,
+    .search-instruction{
+        color: white;
+    }
+
+    .pagination {
+        text-align: right;
+    }
+
+    .pagination a {
+        padding :0 .25rem;
+    }
+
+    .cd-brand-masthead {
+       /* background-color: #28a197;*/
+	   background-color: #fff;
+        padding:2rem 0;
+
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: row;
+    }
+    .search-results {
+        margin-block-start:0;
+
+    }
+
+    .search-result {
+        border: 1px solid #bfc1c3;
+        margin-bottom:1rem;
+        padding:1rem;
+    }
+
+    .search-result h3 {
+        margin:0;
+    }
+
+    .search-result p {
+        margin-bottom: 0.8rem;
+    }
+
+    .results-cont h2 {
+        text-align: center;
+    }
+
+    .sort-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+    }
+
+    ul.sort-list  {
+        margin: 0;
+        padding-inline-start:1rem;
+    }
+
+    .sort-list .sort-list-item {
+        padding:0 .5rem;
+
+    }
+
+    .sort-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .accordion-controls  li div{
+        display:none;
+    }
+
+    .accordion-controls button {
+        width:100%;
+        border-top: 1px solid red;
+        padding:1rem;
+        text-align: left;
+    }
+
+    .accordion-controls {
+        padding-inline-start:0;
+    }
+	
+	.govuk-heading-l, .govuk-heading-s {
+		color:#000;
+	}
+</style>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://www.w3.org/TR/wai-aria-practices/examples/accordion/js/accordion.js"></script>
+
+<script>
+  $(document).ready(function (e) {
+
+
+
+
+
+    var json = [];
+
+    $.getJSON("json.html", function(result){
+      $.each(result, function(i, field){
+        json.push(field);
+      });
+    });
+
+    $("#submit1").click(function(e) {
+      e.preventDefault();
+      if ($("#search1").val().length>3) {
+        $("#search-cont").hide();
+        $("#results-cont").show();
+        $("#search").val($("#search1").val());
+        doSearch($("#search").val(), json);
+      }
+
+    });
+
+    $("#submit").click(function(e) {
+      e.preventDefault();
+      if ($("#search").val().length>3) {
+        doSearch($("#search").val(), json);
+      }
+
+    });
+
+    /*$("#course-list").click(function (e) {
+        $("#search").val($("li:hover").text());
+        $(this).hide();
+        $("#search").focus();
+    });	*/
+
+  });
+
+  function doSearch(text, json) {
+
+    text=text.toLowerCase();
+    $("#course-list li").remove();
+
+    var count=0;
+    $("#searchResultsList").empty();
+    $("#search-grp").removeClass("govuk-form-group--error");
+
+    $.each(json, function(i, value) {
+
+      var val=value[0].toLowerCase()+" "+value[1].toLowerCase();
+      if (val.indexOf(text)>-1) {
+        //$("#course-list").append("<li>"+value[0]+" NFCE Level "+value[2]+": "+value[1]+"</li>");
+
+        if (count<20) {
+
+          $("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox" data-list-id="9761"><div class="table collapsable"><div class="details"><div><h3 class="govuk-heading-s">'+value[1]+'</h3></div><div><p><span class="item-label">Lars Number: </span>'+value[0]+'</p></div><div><p><span class="item-label">Level: </span>'+value[2]+'</p></div><div><p><span class="item-label">Awarding body: </span>'+value[3]+'</p></div></div><a class="more-details-button collapsable collapsed" data-toggle="collapse" href="add-a-course-form?name='+value[1]+'&lars='+value[0]+'&level='+value[2]+'&org='+value[3]+'" aria-expanded="false" aria-controls="moredetails-98208ff9-324f-4272-bf60-d67e3d90d63f"><span aria-hidden="true" class="glyphicon glyphicon-menu-right"></span><span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>Add this qualification</a>' +
+            '<a href="javascript:void(0)" class="remove-compare" title="Remove item"><span class="glyphicon glyphicon-remove"></span></a></div></li>');
+
+          count++;
+        }
+
+      }
+
+
+    });
+
+    $("#count").text(count);
+
+    if (count==0) {
+      $("#searchResultsList").append('<li class="list-group-item search-result clearfix checkbox"><h2 style="font-family:Arial, sans-sherif;">There are no search results for your query.</h2></li>');
+    }
+
+    /*if ($("#course-list").children('li').length>0) {
+        $("#course-list").show();
+    } else {
+        $("#course-list").hide();
+    }	*/
+
+  }
+
+  $(window).on('load', function(){
+
+
+    //$(".section-title:first").addClass('open');
+    //var openOnLoad = $(".section-title:first").next('.collapsing-section');
+    //$(openOnLoad).slideDown();
+
+    $(".section-title").on('focus', function () {
+      if (!$(this).data("mouseDown"))
+        $(this).click();
+    });
+
+    $(".section-title").on('mousedown', function () {
+      $(this).data("mouseDown", true);
+    });
+
+    $(".section-title").on('mouseup', function () {
+      $(this).removeData("mouseDown");
+    });
+
+    $(".section-title").on('click', function (e) {
+      if ($(this).hasClass('open')) {
+        //Close the current section
+        $(this).removeClass('open');
+        $('.collapsing-section').slideUp();
+
+      }
+      else {
+        //close the prev section & open the newly click
+        //$('.section-title').removeClass('open');
+        //$('.collapsing-section').slideUp(); //Side up all sections that are open & remove their open class
+        $(this).addClass('open');
+        $('.collapsing-section').addClass('open');
+        var sectionToOpen = $(this).next('.collapsing-section');
+        $(sectionToOpen).slideDown();
+      }
+    });
+
+
+
+    var toggle = false;
+    $('.btn').click(function() {
+      toggle = !toggle;
+      if(toggle){
+        $('#A').animate({left: 0});
+      }
+      else{
+        $('#A').animate({left:-400});
+      }
+    });
+  });
+</script>
+<section class="cd-brand-masthead">
+    <div class="govuk-width-container">
+        <div class="govuk-breadcrumbs">
+            <ol class="govuk-breadcrumbs__list">
+                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Home</a></li>
+                <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="your-courses">Course directory</a></li>
+            </ol>
+        </div>
+        <h1 class="govuk-heading-l">Find a Qualification</h1>
+        <h2 class="govuk-heading-s search-instruction">Enter a search term or LARS/QAN number to begin</h2>
+        <form action="add-qualification1" class="site-search ui-front" id="header-search" method="post">
+
+            <div class="search-input-wrapper">
+
+                <div class="govuk-form-group"  id="search-grp">
+                    <div class="select-editable">
+                       <span id="number-too-long-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. The number you entered is too long or too short. Valid Lars number has 8 digits.
+                    </span>
+                        <span id="must-be-a-number-error" class="govuk-error-message" style="display: none; font-size: 14px" >
+                         Wrong Lars number. Valid Lars number has 8 digits and no letters.</span>
+
+                        <!--<input class="govuk-input" type="text" name="search" id="search" value="" placeholder="Enter LARS or Subject" style="font-size: 14px;width: 40%;float: left;">-->
+                        <!--<span id="dob-error" class="govuk-error-message">You must enter at least 4 characters.</span>-->
+                        <div class="input-container">
+                            <input class="govuk-input" type="text" name="search" id="search1" value="" placeholder="Enter LARS or Subject" style="display:block;" required pattern=".{4,}"   required title="4 characters minimum"/>
+                            <input id="submit1" class="submit govuk-button" type="submit" value="Search" style="display:block;font-size: 14px;margin-top:0;height:42px;" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</section>
+<section>
+
+</section>
+
+<div id="results-cont" class="govuk-width-container" style="display:none;">
+    <h2 class="govuk-heading-l">Search results (<b id="count"></b>) for</h2>
+    <section class="govuk-grid-row" style="font-size: 14px;margin-bottom: 0">
+        <div class=""  id="search" ></div>
+    </section>
+    <main class="govuk-main-wrapper" style="padding-top: 0">
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-one-third">
+                <div class="controls"><span>clear</span><span>open all</span></div>
+                <section class="accordian" role="tablist" aria-live="polite">
+                    <article>
+                        <span id="tab0" tabindex="0" class="section-title" aria-controls="panel0" role="tab">
+                            <h3 class="govuk-heading-s">Level <span>+</span></h3>
+                        </span>
+                        <div class="collapsing-section" id="panel0" aria-labelledby="tab0" role="tabpanel">
+                            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+
+                                </legend>
+
+                                <div class="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="All" name="All" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="All">
+                                            All
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="Entry-level" name="Entry-level" type="checkbox" value="mines">
+                                        <label class="govuk-label govuk-checkboxes__label" for="Entry-level">
+                                            Entry Level
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-1" name="level-1" type="checkbox" value="carcasses">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-1">
+                                                Level 1
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-2" name="level-2" type="checkbox" value="mines">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-2">
+                                                Level 2
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-3" name="level-3" type="checkbox" value="farm">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-3">
+                                                Level 3
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-4" name="level-4" type="checkbox" value="farm">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-4">
+                                                Level 4
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-5" name="level-5" type="checkbox" value="farm">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-5">
+                                                Level 5
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-6" name="level-6" type="checkbox" value="farm">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-6">
+                                                Level 6
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="level-7" name="level-7" type="checkbox" value="farm">
+                                            <label class="govuk-label govuk-checkboxes__label" for="level-7">
+                                                Level 7
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </article>
+                    <article>
+                        <span id="tab1" tabindex="0" class="section-title" aria-controls="panel1" role="tab">
+                            <h3 class="govuk-heading-s">Awarding Body <span>+</span></h3>
+                        </span>
+                        <div class="collapsing-section" id="panel1" aria-labelledby="tab1" role="tabpanel">
+                                <div class="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="CG" name="All" type="checkbox" value="carcasses">
+                                <label class="govuk-label govuk-checkboxes__label" for="CG">
+                                    City and Guilds of London Institute (5682)
+                                </label>
+                            </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="OCR" name="OCR" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="OCR">
+                                            OCR (2589)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="NCFE" name="NCFE" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="NCFE">
+                                            NCFE (1460)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="VTCT" name="VTCT" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="VTCT">
+                                            VTCT (1142)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="ABC" name="ABC" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="ABC">
+                                            ABC Awards (1111)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="NOCN" name="NOCN" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="NOCN">
+                                            NOCN (1079)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="WJEC-CBAC" name="WJEC-CBAC" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="WJEC-CBAC">
+                                            WJEC-CBAC (1016)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="AQA" name="AQA" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="AQA">
+                                            AQA Education
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="Pearson" name="Pearson" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="Pearson">
+                                            Pearson EDI (944)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="AIM" name="AIM" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="AIM">
+                                            AIM Awards (943)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="Ascentis" name="Ascentis" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="Ascentis">
+                                            Ascentis (935)
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="ACLL" name="ACLL" type="checkbox" value="carcasses">
+                                        <label class="govuk-label govuk-checkboxes__label" for="ACLL">
+                                            Excellence, Achievement &amp; Learning Limited (710)
+                                        </label>
+                                    </div>
+                                </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+            <div class="govuk-grid-column-two-thirds result-content" style="padding-left: 0">
+                <div class="sort-container">
+                    <span> Showing 1 - 25 of 120 | </span>
+                    <ul class="list-inline sort-order sort-list">
+                    <li>
+                        <span style="font-weight: 600">Show:</span>
+                    </li>
+                    <li class="sort-list-item">
+                        <a href="#">
+                            10
+                        </a>
+                    </li>
+                    <li class="sort-list-item">
+                        <a href="#">
+                            20
+
+                        </a>
+                    </li>
+                    <li class="sort-list-item">
+                        <a href="#">
+                            50
+
+                        </a>
+                    </li>
+                    <li class="sort-list-item">
+                        <a href="#">
+                            100
+
+                        </a>
+                    </li>
+                </ul>
+                </div>
+
+                <!--<nav class="pagination" role="navigation" aria-label="Pagination navigation">-->
+                    <!--<ul>-->
+                        <!--<li><a class="govuk-link pagination__item pagination__item&#45;&#45;current" href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=1" aria-label="Current page, page 1" aria-current="&quot;true&quot;">1</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=2" aria-label="Goto page 2">2</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=3" aria-label="Goto page 3">3</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=4" aria-label="Goto page 4">4</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=5" aria-label="Goto page 5">5</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=6" aria-label="Goto page 6">6</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=7" aria-label="Goto page 7">7</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=8" aria-label="Goto page 8">8</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=9" aria-label="Goto page 9">9</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=10" aria-label="Goto page 10">10</a></li>-->
+                        <!--<li><a class="govuk-link pagination__item " href="https://dfc-dev-prov-as.azurewebsites.net:443/LarsSearch?SearchTerm=maths&amp;PageNo=2" aria-label="Goto the next page, page 2">Next</a></li>-->
+                    <!--</ul>-->
+                <!--</nav>-->
+                <ul id="searchResultsList" class="list-group search-results">
+                </ul>
+
+                <div class="pagination page-bottom"><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=1" class="pagination-item current">1</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=2" class="pagination-item">2</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=3" class="pagination-item">3</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=4" class="pagination-item">4</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=5" class="pagination-item">5</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=6" class="pagination-item">6</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=7" class="pagination-item">7</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=8" class="pagination-item">8</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=9" class="pagination-item">9</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=10" class="pagination-item">10</a><a href="https://findacourse.nationalcareersservice.org.uk:443/CourseDirectory/CourseSearchResult?Location=&amp;LocationRadius=10&amp;IsDfe1619Funded=all&amp;SubjectKeyword=art&amp;Search2=Search&amp;SortBy=0&amp;PageNo=2" class="pagination-item pagination-next">Next</a></div>
+
+                <!--<hr style="clear:both;">-->
+                <!--<h2 class="govuk-heading-s" style="font-weight: 300;margin-top: 20px;-->
+    <!--">Alternatively search for <strong><a href="non-regulated-provision">Non regulated provision</a> </strong>(including community learning).</h2>-->
+            </div>
+        </div>
+    </main>
+</div>
+
+{% from "footer/macro.njk" import govukFooter %}
+
+{{ govukFooter({}) }}
+
+
